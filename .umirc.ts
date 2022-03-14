@@ -8,11 +8,15 @@ export default defineConfig({
     { path: '/login', component: '@/pages/login/index', exact: true },
     {
       path: '/views',
-      component: '@/pages/views/_layout',
+      component: '@/pages/layout/index',
+      exact: false,
+      title: '匹配管理',
       routes: [
         {
-          path: '/adminMatch',
-          component: '@/pages/views/adminMatch/index',
+          exact: true,
+          path: '/views/adminMatch',
+          component: '@/pages/adminMatch/index',
+          title: '匹配管理',
         },
       ],
     },
