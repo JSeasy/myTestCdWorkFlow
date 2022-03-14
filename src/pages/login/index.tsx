@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Input, Button, Modal } from 'antd';
 import styles from './index.less';
+import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 export default () => {
   const [form] = Form.useForm();
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState<boolean>(false);
   const handleOk = () => {};
   return (
     <>
@@ -23,9 +24,15 @@ export default () => {
                 <Input placeholder="请输入账号" size="large" />
               </Form.Item>
               <Form.Item label="密码:" required>
-                <Input placeholder="请输入密码" size="large" />
-                <p className={styles.forget} onClick={() => setVisible(true)}>
-                  忘记密码?
+                <Input.Password
+                  placeholder="请输入密码"
+                  size="large"
+                  iconRender={(visible) =>
+                    visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
+                  }
+                />
+                <p className={styles.forget}>
+                  <span onClick={() => setVisible(true)}>忘记密码?</span>
                 </p>
               </Form.Item>
               <Form.Item>
@@ -52,7 +59,12 @@ export default () => {
             <p className={styles.please}>
               如密码遗失，请与管理员联系寻回、重置密码
             </p>
-            <Button size="large" type="primary" style={{ width: '100%' }}>
+            <Button
+              size="large"
+              type="primary"
+              style={{ width: '100%' }}
+              onClick={() => setVisible(false)}
+            >
               登录
             </Button>
           </div>

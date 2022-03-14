@@ -4,10 +4,7 @@ export default defineConfig({
   nodeModulesTransform: {
     type: 'none',
   },
-  routes: [
-    { path: '/', component: '@/pages/index' },
-    { path: '/login', component: '@/pages/login/index' },
-  ],
+  routes: [{ path: '/login', component: '@/pages/login/index' }],
   fastRefresh: {},
   hash: true,
   history: {
