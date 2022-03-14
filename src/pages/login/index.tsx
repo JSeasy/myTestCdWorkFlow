@@ -6,6 +6,9 @@ export default () => {
   const [form] = Form.useForm();
   const [visible, setVisible] = useState<boolean>(false);
   const handleOk = () => {};
+  const onFinish = (values: any) => {
+    console.log(values);
+  };
   return (
     <>
       <div className={styles.login}>
@@ -19,11 +22,16 @@ export default () => {
           <div className={styles.right}>
             <p className={styles.title}>登录</p>
             <div className={styles.border}></div>
-            <Form form={form} layout="vertical">
-              <Form.Item label="账号:" required>
+            <Form form={form} layout="vertical" onFinish={onFinish}>
+              <Form.Item name="username" label="账号:" required>
                 <Input placeholder="请输入账号" size="large" />
               </Form.Item>
-              <Form.Item label="密码:" required>
+              <Form.Item
+                name="password"
+                label="密码:"
+                required
+                style={{ margin: 0 }}
+              >
                 <Input.Password
                   placeholder="请输入密码"
                   size="large"
@@ -31,12 +39,17 @@ export default () => {
                     visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
                   }
                 />
-                <p className={styles.forget}>
-                  <span onClick={() => setVisible(true)}>忘记密码?</span>
-                </p>
               </Form.Item>
+              <p className={styles.forget}>
+                <span onClick={() => setVisible(true)}>忘记密码?</span>
+              </p>
               <Form.Item>
-                <Button size="large" type="primary" style={{ width: '100%' }}>
+                <Button
+                  size="large"
+                  type="primary"
+                  style={{ width: '100%' }}
+                  htmlType="submit"
+                >
                   登录
                 </Button>
               </Form.Item>
