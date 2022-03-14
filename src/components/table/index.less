@@ -1,0 +1,38 @@
+.myTable {
+  :global {
+    table {
+      border-spacing: 0 1em;
+      margin-top: 12px;
+      .ant-table-thead {
+        .ant-table-cell {
+          background: white;
+          border: none;
+          font-size: 16px;
+          color: #030229;
+          &::before {
+            display: none;
+          }
+        }
+      }
+      .ant-table-tbody {
+        .ant-table-row {
+          border-radius: 10px;
+          width: 100%;
+          box-shadow: 0px 2px 10px 1px rgba(52, 76, 165, 0.15);
+          .ant-table-cell {
+            border: none;
+            padding: 19px 16px;
+            font-size: 14px;
+          }
+        }
+      }
+    }
+    .ant-pagination {
+      text-align: right;
+      .ant-pagination-total-text {
+        position: relative;
+        left: -200px;
+      }
+    }
+  }
+}
