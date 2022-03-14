@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState } from 'react';
 import styles from './index.less';
 export default () => {
@@ -45,10 +46,12 @@ export default () => {
   const [active, setActive] = useState('1');
   const renderMenuList = (menuList: any, isParent: boolean) => {
     return menuList.map((menu: any) => (
-      <>
+      <React.Fragment key={menu.id}>
         <div
           key={menu.id}
-          className={isParent ? styles.menu : styles.menuItem}
+          className={`${isParent ? styles.menu : styles.menuItem} ${
+            active === menu.id && styles.activeMenu
+          }`}
           onClick={() => {
             setActive(menu.id);
           }}
@@ -56,7 +59,7 @@ export default () => {
           {menu.name}
         </div>
         {!!menu.children.length && renderMenuList(menu.children, false)}
-      </>
+      </React.Fragment>
     ));
   };
   return (

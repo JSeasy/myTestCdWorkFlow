@@ -1,13 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Form, Input, Button, Modal } from 'antd';
 import styles from './index.less';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
+import { login } from '@/api/login';
 export default () => {
   const [form] = Form.useForm();
   const [visible, setVisible] = useState<boolean>(false);
   const handleOk = () => {};
   const onFinish = (values: any) => {
     console.log(values);
+    login(values).then((res) => {
+      console.log(res);
+    });
   };
   return (
     <>

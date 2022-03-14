@@ -4,6 +4,7 @@ export default defineConfig({
   nodeModulesTransform: {
     type: 'none',
   },
+  mock: false,
   routes: [
     { path: '/login', component: '@/pages/login/index', exact: true },
     {
@@ -22,8 +23,9 @@ export default defineConfig({
     },
   ],
   fastRefresh: {},
-  hash: true,
-  history: {
-    type: 'hash',
+  proxy: {
+    '/services': {
+      target: 'http://8.142.41.40:6580',
+    },
   },
 });
