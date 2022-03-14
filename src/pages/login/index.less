@@ -5,15 +5,89 @@
   justify-content: space-between;
   align-items: center;
   .wrap {
-    height: 702px;
-    width: 1030px;
+    height: 712px;
+    width: 1018px;
+    background: #ffffff;
+    border-radius: 20px 20px 20px 20px;
+    opacity: 1;
     margin: 0 auto;
-    border: 1px solid #cccccc;
-    border-radius: 15px;
+    display: flex;
+    justify-content: space-between;
+    padding-right: 116px;
     .left {
-      width: 40%;
+      margin-top: -32px;
+      margin-left: -81px;
+      position: relative;
+      .logo {
+        position: absolute;
+        left: 57px;
+        top: 384px;
+      }
+      .welcome {
+        position: absolute;
+        font-size: 60px;
+        color: #ffffff;
+        left: 57px;
+        top: 480px;
+        font-weight: bolder;
+      }
+      .tip {
+        position: absolute;
+        left: 57px;
+        top: 570px;
+        font-size: 24px;
+        color: #ffffff;
+        font-weight: bolder;
+      }
     }
     .right {
+      width: 442px;
+      .title {
+        margin: 0;
+        font-size: 40px;
+        color: #3353cc;
+        margin-top: 70px;
+        font-weight: bolder;
+      }
+      .border {
+        width: 90px;
+        height: 6px;
+        background: linear-gradient(
+          90deg,
+          #3353cc 0%,
+          rgba(51, 83, 204, 0) 100%
+        );
+        border-radius: 0px 0px 0px 0px;
+        opacity: 1;
+        margin-bottom: 127px;
+      }
+      .forget {
+        margin: 0;
+        text-align: right;
+        padding-top: 16px;
+        color: #ffa31b;
+        cursor: pointer;
+      }
+    }
+  }
+  .modalContent {
+    .modalTitle {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      p {
+        margin-left: 3px;
+        font-size: 30px;
+        color: #2b265b;
+        font-weight: bolder;
+      }
+    }
+    .please {
+      font-size: 22px;
+      text-align: center;
+      color: #646093;
+      margin-top: 20px;
+      margin-bottom: 75px;
     }
   }
 }
