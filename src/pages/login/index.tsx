@@ -24,6 +24,7 @@ export default () => {
     const { initialState, loading, error, refresh, setInitialState } =
       useModel('@@initialState');
     refresh();
+    console.log(initialState);
     const history = useHistory();
     history.push('/views/match');
   };
