@@ -1,6 +1,7 @@
 import Sider from './components/sider';
 import styles from './index.less';
 export default (props: any) => {
+  console.log(props.children);
   return (
     <div className={styles.layout}>
       <Sider />

@@ -3,25 +3,30 @@ import { Form, Input, Button, Modal } from 'antd';
 import styles from './index.less';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import { login } from '@/api/login';
-import { history } from 'umi';
+import { useHistory } from 'umi';
+import { useModel } from 'umi';
+
 export default () => {
+  if (window.localStorage.getItem('auth')) {
+    const history = useHistory();
+    history.push('/views/match');
+  }
   const [form] = Form.useForm();
   const [visible, setVisible] = useState<boolean>(false);
   const handleOk = () => {};
-  const onCheck = async (values: any) => {
-    // console.log(values);
-    // login(values).then((res) => {
-    //   // window.location.reload();
-
-    // });
-    try {
-      const values = await form.validateFields();
-      console.log('Success:', values);
-      window.localStorage.setItem('auth', 'get');
-      window.location.reload();
-    } catch (errorInfo) {
-      console.log('Failed:', errorInfo);
-    }
+  const onFinish = (values: any) => {
+    console.log(values);
+    login(values).then((res) => {
+      console.log(res);
+    });
+    window.localStorage.setItem('auth', '1');
+    window.location.reload();
+    const { initialState, loading, error, refresh, setInitialState } =
+      useModel('@@initialState');
+    refresh();
+    console.log(initialState);
+    const history = useHistory();
+    history.push('/views/match');
   };
   return (
     <>
