@@ -1,6 +1,7 @@
 import styles from './index.less';
 import Search from '@/components/searchInput';
 import Table from '@/components/table';
+import Select from '@/components/select';
 import { useState } from 'react';
 import model from './columns';
 export default () => {
@@ -32,6 +33,18 @@ export default () => {
             }}
             onPressEnter={search}
             onSearch={search}
+          />
+          <Select
+            placeholder={'产品类型'}
+            value={searchCondition.top}
+            onChange={(e: any) => {
+              console.log(e);
+              setSearchCondition({ ...searchCondition, top: e });
+            }}
+            data={[
+              { name: 1, value: 1 },
+              { name: 2, value: 2 },
+            ]}
           />
         </div>
         <div className={styles.count}>
