@@ -1,7 +1,18 @@
 import styles from './index.less';
 import { Select } from 'antd';
 const { Option } = Select;
-export default (props: any) => {
+interface IProps {
+  onChange: () => void;
+  placeholder: string;
+  value: string;
+  data: IItem[];
+}
+interface IItem {
+  name: string;
+  value: string | number;
+}
+
+export default (props: IProps) => {
   return (
     <div className={styles.mySelect}>
       <Select onChange={props.onChange} value={props.value}>

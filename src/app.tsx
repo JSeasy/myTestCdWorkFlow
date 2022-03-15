@@ -1,13 +1,13 @@
 export async function getInitialState() {
   return {
     product: {
-      read: Math.floor(Math.random() + 0.5),
+      read: 1,
     },
     match: {
-      read: Math.floor(Math.random() + 0.5),
+      read: 1,
     },
     stration: {
-      read: Math.floor(Math.random() + 0.5),
+      read: 1,
     },
   };
 }

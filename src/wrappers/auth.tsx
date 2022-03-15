@@ -6,6 +6,7 @@ export default (props: any) => {
 
   console.log(props.route);
   const { name } = props.route;
+  console.log(props);
   if (window.localStorage.getItem('auth')) {
     const read: { read: number } = initialState[name];
     console.log(read);

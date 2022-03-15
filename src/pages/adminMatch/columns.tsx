@@ -1,3 +1,5 @@
+import Actions from './action/index';
+
 const columns = [
   {
     title: '姓名',
@@ -16,6 +18,9 @@ const columns = [
     dataIndex: 'address',
     key: 'address',
     align: 'center',
+    render: (item: any, row: any) => {
+      return <Actions item={item} row={row} />;
+    },
   },
 ];
 
