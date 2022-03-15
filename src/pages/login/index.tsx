@@ -3,7 +3,12 @@ import { Form, Input, Button, Modal } from 'antd';
 import styles from './index.less';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import { login } from '@/api/login';
+import { useHistory } from 'umi';
 export default () => {
+  if (window.localStorage.getItem('auth')) {
+    const history = useHistory();
+    history.push('/views/adminMatch');
+  }
   const [form] = Form.useForm();
   const [visible, setVisible] = useState<boolean>(false);
   const handleOk = () => {};
@@ -12,6 +17,8 @@ export default () => {
     login(values).then((res) => {
       console.log(res);
     });
+    window.localStorage.setItem('auth', '1');
+    window.location.reload();
   };
   return (
     <>
