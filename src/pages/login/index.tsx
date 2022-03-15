@@ -3,15 +3,25 @@ import { Form, Input, Button, Modal } from 'antd';
 import styles from './index.less';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import { login } from '@/api/login';
+import { history } from 'umi';
 export default () => {
   const [form] = Form.useForm();
   const [visible, setVisible] = useState<boolean>(false);
   const handleOk = () => {};
-  const onFinish = (values: any) => {
-    console.log(values);
-    login(values).then((res) => {
-      console.log(res);
-    });
+  const onCheck = async (values: any) => {
+    // console.log(values);
+    // login(values).then((res) => {
+    //   // window.location.reload();
+
+    // });
+    try {
+      const values = await form.validateFields();
+      console.log('Success:', values);
+      window.localStorage.setItem('auth', 'get');
+      window.location.reload();
+    } catch (errorInfo) {
+      console.log('Failed:', errorInfo);
+    }
   };
   return (
     <>
@@ -26,14 +36,28 @@ export default () => {
           <div className={styles.right}>
             <p className={styles.title}>登录</p>
             <div className={styles.border}></div>
-            <Form form={form} layout="vertical" onFinish={onFinish}>
-              <Form.Item name="username" label="账号:" required>
+            <Form form={form} layout="vertical">
+              <Form.Item
+                name="username"
+                rules={[
+                  {
+                    required: true,
+                    message: '请输入账号',
+                  },
+                ]}
+                label="账号:"
+              >
                 <Input placeholder="请输入账号" size="large" />
               </Form.Item>
               <Form.Item
+                rules={[
+                  {
+                    required: true,
+                    message: '请输入密码',
+                  },
+                ]}
                 name="password"
                 label="密码:"
-                required
                 style={{ margin: 0 }}
               >
                 <Input.Password
@@ -52,7 +76,7 @@ export default () => {
                   size="large"
                   type="primary"
                   style={{ width: '100%' }}
-                  htmlType="submit"
+                  onClick={onCheck}
                 >
                   登录
                 </Button>
