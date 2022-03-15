@@ -1,10 +1,10 @@
 export async function getInitialState() {
   return {
     product: {
-      read: 1,
+      read: 0,
     },
     match: {
-      read: 0,
+      read: 1,
     },
     stration: {
       read: 0,

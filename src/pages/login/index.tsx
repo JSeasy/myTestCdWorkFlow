@@ -4,10 +4,12 @@ import styles from './index.less';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import { login } from '@/api/login';
 import { useHistory } from 'umi';
+import { useModel } from 'umi';
+
 export default () => {
   if (window.localStorage.getItem('auth')) {
     const history = useHistory();
-    history.push('/views/adminMatch');
+    history.push('/views/match');
   }
   const [form] = Form.useForm();
   const [visible, setVisible] = useState<boolean>(false);
@@ -19,6 +21,11 @@ export default () => {
     });
     window.localStorage.setItem('auth', '1');
     window.location.reload();
+    const { initialState, loading, error, refresh, setInitialState } =
+      useModel('@@initialState');
+    refresh();
+    const history = useHistory();
+    history.push('/views/match');
   };
   return (
     <>
