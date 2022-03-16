@@ -28,6 +28,7 @@ export default () => {
     const history = useHistory();
     history.push('/views/match');
   };
+  const onCheck = () => {};
   return (
     <>
       <div className={styles.login}>
