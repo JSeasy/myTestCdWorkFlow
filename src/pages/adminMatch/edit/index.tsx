@@ -1,3 +1,8 @@
+import EditBlock from './components/editBlock/index';
 export default () => {
-  return <>编辑</>;
+  return (
+    <>
+      <EditBlock />
+    </>
+  );
 };

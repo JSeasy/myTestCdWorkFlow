@@ -60,7 +60,7 @@ export default defineConfig({
           wrappers: ['@/wrappers/auth'],
           name: 'station',
           query: {
-            name: '匹配管理',
+            name: '企业管理',
           },
         },
         {
@@ -70,7 +70,7 @@ export default defineConfig({
           name: 'product',
           wrappers: ['@/wrappers/auth'],
           query: {
-            name: '匹配管理',
+            name: '产品维度管理',
           },
         },
       ],
