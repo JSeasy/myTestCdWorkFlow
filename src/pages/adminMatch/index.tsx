@@ -2,9 +2,10 @@ import styles from './index.less';
 import Search from '@/components/searchInput';
 import Table from '@/components/table';
 import Select from '@/components/select';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import model from './columns';
 import { useHistory } from 'umi';
+import Events from '@/events/index';
 export default (props: any) => {
   const [searchCondition, setSearchCondition] = useState({
     name: '',
@@ -15,7 +16,15 @@ export default (props: any) => {
     { name: 1, age: 2, address: 3 },
     { name: 1, age: 2, address: 3 },
   ]);
-  console.log(useHistory());
+  useEffect(() => {
+    Events.addListener('refresh', () => {
+      console.log('refresh');
+    });
+    return () => {
+      Events.removeAllListeners();
+      console.log('remove');
+    };
+  }, []);
   const [columns, setCoumns] = useState(model);
   const search = () => {
     console.log(searchCondition);

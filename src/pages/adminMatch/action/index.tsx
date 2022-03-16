@@ -1,6 +1,7 @@
 import { Button, Form, Input, Modal } from 'antd';
 import { useHistory } from 'umi';
 import { useState } from 'react';
+import Events from '@/events/index';
 // import Modal from '@/components/modal/index';
 export default (props: any) => {
   const history = useHistory();
@@ -9,6 +10,8 @@ export default (props: any) => {
 
   const handleOk = async () => {
     const values = await form.validateFields();
+    console.log(values);
+    Events.emit('refresh');
   };
   return (
     <>
