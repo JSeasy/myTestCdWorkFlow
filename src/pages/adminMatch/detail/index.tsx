@@ -2,7 +2,9 @@ import Title from '@/components/title/index';
 import ProductBlock from './components/productBlock';
 import { Button } from 'antd';
 import styles from './index.less';
+import { useHistory } from 'umi';
 export default (props: any) => {
+  console.log(useHistory().location.state);
   return (
     <div className={styles.matchDetail}>
       <Button style={{ marginBottom: '64px' }}>删除</Button>

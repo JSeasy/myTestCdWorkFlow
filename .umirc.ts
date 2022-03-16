@@ -35,6 +35,7 @@ export default defineConfig({
             {
               exact: true,
               path: '/views/match/detail',
+              name: 'matchDetail',
               component: '@/pages/adminMatch/detail/index',
               query: {
                 name: '匹配详情',
@@ -43,9 +44,11 @@ export default defineConfig({
             {
               exact: true,
               path: '/views/match/edit',
+              name: 'matchEdit',
+
               component: '@/pages/adminMatch/edit/index',
               query: {
-                name: '匹配详情',
+                name: '匹配编辑',
               },
             },
           ],

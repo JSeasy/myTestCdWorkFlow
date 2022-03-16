@@ -12,7 +12,12 @@ export default (props: any) => {
   };
   return (
     <>
-      <Button type="link" onClick={() => history.push('/views/match/detail')}>
+      <Button
+        type="link"
+        onClick={() =>
+          history.push({ pathname: '/views/match/detail', state: { id: '1' } })
+        }
+      >
         详情
       </Button>
       <Button type="link" onClick={() => history.push('/views/match/edit')}>
