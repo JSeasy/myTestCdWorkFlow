@@ -4,6 +4,7 @@ import Table from '@/components/table';
 import Select from '@/components/select';
 import { useState } from 'react';
 import model from './columns';
+import { useHistory } from 'umi';
 export default (props: any) => {
   const [searchCondition, setSearchCondition] = useState({
     name: '',
@@ -23,9 +24,8 @@ export default (props: any) => {
     { name: 1, age: 2, address: 3 },
     { name: 1, age: 2, address: 3 },
   ]);
-
+  console.log(useHistory());
   const [columns, setCoumns] = useState(model);
-
   const search = () => {
     console.log(searchCondition);
   };

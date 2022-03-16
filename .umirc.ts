@@ -20,14 +20,21 @@ export default defineConfig({
           path: '/views/match',
           component: '@/pages/adminMatch/index',
           name: 'match',
-          wrappers: ['@/wrappers/auth'],
+          // wrappers: ['@/wrappers/auth'],
+          query: {
+            name: '匹配管理',
+          },
+          routes: [],
+        },
+        {
+          path: '/views/match',
           query: {
             name: '匹配管理',
           },
           routes: [
             {
               exact: true,
-              path: '/views/match/id',
+              path: '/views/match/:id',
               name: 'matchDetail',
               component: '@/pages/adminMatch/detail/index',
               query: {
@@ -60,14 +67,13 @@ export default defineConfig({
       ],
     },
 
-    { path: '/403', exact: true, component: '@/pages/403/index' },
-
     {
       path: '/login',
       component: '@/pages/login/index',
       exact: true,
       // wrappers: ['@/wrappers/auth'],
     },
+    { path: '/403', component: '@/pages/403/index' },
   ],
   fastRefresh: {},
   locale: {
