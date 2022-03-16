@@ -12,8 +12,11 @@ export default (props: any) => {
   };
   return (
     <>
-      <Button type="link" onClick={() => history.push('/views/match/' + 12)}>
-        查看
+      <Button type="link" onClick={() => history.push('/views/match/detail')}>
+        详情
+      </Button>
+      <Button type="link" onClick={() => history.push('/views/match/edit')}>
+        编辑
       </Button>
       <Button type="link" onClick={() => setVisible(true)}>
         备注

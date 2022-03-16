@@ -34,8 +34,16 @@ export default defineConfig({
           routes: [
             {
               exact: true,
-              path: '/views/match/:id',
+              path: '/views/match/detail',
               component: '@/pages/adminMatch/detail/index',
+              query: {
+                name: '匹配详情',
+              },
+            },
+            {
+              exact: true,
+              path: '/views/match/edit',
+              component: '@/pages/adminMatch/edit/index',
               query: {
                 name: '匹配详情',
               },
