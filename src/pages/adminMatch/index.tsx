@@ -14,15 +14,6 @@ export default (props: any) => {
   const [data, setData] = useState([
     { name: 1, age: 2, address: 3 },
     { name: 1, age: 2, address: 3 },
-    { name: 1, age: 2, address: 3 },
-    { name: 1, age: 2, address: 3 },
-    { name: 1, age: 2, address: 3 },
-    { name: 1, age: 2, address: 3 },
-    { name: 1, age: 2, address: 3 },
-    { name: 1, age: 2, address: 3 },
-    { name: 1, age: 2, address: 3 },
-    { name: 1, age: 2, address: 3 },
-    { name: 1, age: 2, address: 3 },
   ]);
   console.log(useHistory());
   const [columns, setCoumns] = useState(model);

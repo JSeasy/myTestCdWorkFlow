@@ -6,7 +6,6 @@ export default defineConfig({
   },
   mock: false,
   routes: [
-    { path: '/', redirect: '/login', exact: true, routes: [] },
     {
       path: '/views',
       component: '@/pages/layout/index',
@@ -24,26 +23,36 @@ export default defineConfig({
           query: {
             name: '匹配管理',
           },
-          routes: [],
         },
         {
           path: '/views/match',
+          name: 'match',
+          // wrappers: ['@/wrappers/auth'],
           query: {
             name: '匹配管理',
           },
           routes: [
             {
               exact: true,
-              path: '/views/match/:id',
+              path: '/views/match/detail',
               name: 'matchDetail',
               component: '@/pages/adminMatch/detail/index',
               query: {
                 name: '匹配详情',
               },
             },
+            {
+              exact: true,
+              path: '/views/match/edit',
+              name: 'matchEdit',
+
+              component: '@/pages/adminMatch/edit/index',
+              query: {
+                name: '匹配编辑',
+              },
+            },
           ],
         },
-
         {
           exact: true,
           path: '/views/stration',
@@ -66,15 +75,16 @@ export default defineConfig({
         },
       ],
     },
+    { path: '/', redirect: '/login' },
 
     {
       path: '/login',
       component: '@/pages/login/index',
       exact: true,
-      // wrappers: ['@/wrappers/auth'],
     },
-    { path: '/403', component: '@/pages/403/index' },
+    { path: '*', exact: true, component: '@/pages/403/index' },
   ],
+  theme: {},
   fastRefresh: {},
   locale: {
     default: 'zh-CN',
