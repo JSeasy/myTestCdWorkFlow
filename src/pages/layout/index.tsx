@@ -13,7 +13,7 @@ export default (props: any) => {
             <span>用户名</span>
           </div>
         </div>
-        {props.children}
+        <div className={styles.mainContent}>{props.children}</div>
       </div>
     </div>
   );

@@ -7,73 +7,73 @@ export default defineConfig({
   mock: false,
   routes: [
     {
-      path: '/',
-      redirect: '/login',
-      exact: true,
+      path: '/views',
       component: '@/pages/layout/index',
+      exact: false,
+      query: {
+        name: '布局路由',
+      },
       routes: [
         {
-          path: '/match',
+          exact: true,
+          path: '/views/match',
           component: '@/pages/adminMatch/index',
-          exact: false,
+          name: 'match',
+          // wrappers: ['@/wrappers/auth'],
           query: {
-            name: '布局路由',
+            name: '匹配管理',
           },
-          // routes: [
-          //   {
-          //     exact: true,
-          //     path: '/views/match',
-          //     component: '@/pages/adminMatch/index',
-          //     name: 'match',
-          //     wrappers: ['@/wrappers/auth'],
-          //     query: {
-          //       name: '匹配管理',
-          //     },
-          //     routes: [
-          //       {
-          //         exact: true,
-          //         path: '/views/match/id',
-          //         name: 'matchDetail',
-          //         component: '@/pages/adminMatch/detail/index',
-          //         query: {
-          //           name: '匹配详情',
-          //         },
-          //       },
-          //     ],
-          //   },
-
-          //   {
-          //     exact: true,
-          //     path: '/views/stration',
-          //     component: '@/pages/adminStration/index',
-          //     wrappers: ['@/wrappers/auth'],
-          //     name: 'station',
-          //     query: {
-          //       name: '匹配管理',
-          //     },
-          //   },
-          //   {
-          //     exact: true,
-          //     path: '/views/product',
-          //     component: '@/pages/adminProduct/index',
-          //     name: 'product',
-          //     wrappers: ['@/wrappers/auth'],
-          //     query: {
-          //       name: '匹配管理',
-          //     },
-          //   },
-          // ],
+        },
+        {
+          path: '/views/match',
+          name: 'match',
+          // wrappers: ['@/wrappers/auth'],
+          query: {
+            name: '匹配管理',
+          },
+          routes: [
+            {
+              exact: true,
+              path: '/views/match/:id',
+              component: '@/pages/adminMatch/detail/index',
+              query: {
+                name: '匹配详情',
+              },
+            },
+          ],
+        },
+        {
+          exact: true,
+          path: '/views/stration',
+          component: '@/pages/adminStration/index',
+          wrappers: ['@/wrappers/auth'],
+          name: 'station',
+          query: {
+            name: '匹配管理',
+          },
+        },
+        {
+          exact: true,
+          path: '/views/product',
+          component: '@/pages/adminProduct/index',
+          name: 'product',
+          wrappers: ['@/wrappers/auth'],
+          query: {
+            name: '匹配管理',
+          },
         },
       ],
     },
+    { path: '/', redirect: '/login' },
 
     {
       path: '/login',
       component: '@/pages/login/index',
       exact: true,
     },
-    { path: '/403', exact: true, component: '@/pages/403/index' },
+    { path: '*', exact: true, component: '@/pages/403/index' },
   ],
+  theme: {},
   fastRefresh: {},
   locale: {
     default: 'zh-CN',

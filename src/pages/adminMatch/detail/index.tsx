@@ -1,4 +1,10 @@
+import Title from '@/components/title/index';
 export default (props: any) => {
-  console.log(123);
-  return <div className="detail">匹配详情</div>;
+  return (
+    <div className="matchDetail">
+      <Title title="企业信息" />
+      <Title title="账号信息" />
+      <Title title="法人征信" />
+    </div>
+  );
 };
