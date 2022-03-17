@@ -91,6 +91,15 @@ export default defineConfig({
             name: '产品维度管理',
           },
         },
+        {
+          exact: true,
+          path: '/views/log',
+          component: '@/pages/adminLog/index',
+          name: 'product',
+          query: {
+            name: '系统日志',
+          },
+        },
       ],
     },
     { path: '/', redirect: '/login' },

@@ -49,16 +49,13 @@ export default (props: any) => {
     );
   };
 
-  const columns: any = createColumns((row: any, col: any) => (
-    <Action row={row} col={col} key={row.id} />
-  ));
+  const columns: any = createColumns();
 
   const search = () => {};
   const handleOk = () => {};
-  console.log(data);
   return (
     <>
-      <div className={styles.adminService}>
+      <div className={styles.adminLog}>
         <div className={styles.topBar}>
           <div className={styles.searchCondition}>
             <Search
@@ -85,12 +82,6 @@ export default (props: any) => {
                 { name: '其他', value: 3 },
               ]}
             />
-          </div>
-          <div className="addBtn">
-            <Button>
-              <PlusOutlined />
-              新增
-            </Button>
           </div>
         </div>
         <Table columns={columns} dataSource={data} rowKey="id" />
