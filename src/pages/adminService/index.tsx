@@ -6,7 +6,12 @@ import { useState } from 'react';
 import createColumns from './columns';
 import { useHistory } from 'umi';
 import { Modal, Form, Input, Button } from 'antd';
-import { PlusOutlined, FormOutlined } from '@ant-design/icons';
+import {
+  EyeOutlined,
+  FormOutlined,
+  SolutionOutlined,
+  PlusOutlined,
+} from '@ant-design/icons';
 
 export default (props: any) => {
   const [searchCondition, setSearchCondition] = useState({
@@ -28,22 +33,9 @@ export default (props: any) => {
     const { row, col } = props;
     return (
       <>
-        <Button
-          type="link"
-          onClick={() =>
-            history.push({
-              pathname: '/views/match/detail',
-              state: { id: '1' },
-            })
-          }
-        >
-          详情
-        </Button>
         <Button type="link" onClick={() => history.push('/views/match/edit')}>
+          <FormOutlined />
           编辑
-        </Button>
-        <Button type="link" onClick={() => setVisible(true)}>
-          备注
         </Button>
       </>
     );
