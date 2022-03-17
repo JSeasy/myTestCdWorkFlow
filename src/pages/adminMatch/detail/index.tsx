@@ -7,7 +7,9 @@ export default (props: any) => {
   console.log(useHistory().location.state);
   return (
     <div className={styles.matchDetail}>
-      <Button style={{ marginBottom: '64px' }}>删除</Button>
+      <Button className="delBtn" style={{ marginBottom: '64px' }}>
+        删除
+      </Button>
       <Title title="产品信息" />
       <div className={styles.blockWrap}>
         <ProductBlock />

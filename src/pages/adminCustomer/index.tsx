@@ -6,10 +6,8 @@ import { useState } from 'react';
 import createColumns from './columns';
 import { useHistory } from 'umi';
 import { Modal, Form, Input, Button } from 'antd';
-import { EyeOutlined, FormOutlined, SolutionOutlined } from '@ant-design/icons';
-
+import { PlusOutlined, FormOutlined } from '@ant-design/icons';
 export default (props: any) => {
-  const history = useHistory();
   const [searchCondition, setSearchCondition] = useState({
     name: '',
     top: '',
@@ -28,28 +26,13 @@ export default (props: any) => {
     const history = useHistory();
     const { row, col } = props;
     return (
-      <>
-        <Button
-          type="link"
-          onClick={() =>
-            history.push({
-              pathname: '/views/match/detail',
-              state: { id: '1' },
-            })
-          }
-        >
-          <EyeOutlined />
-          详情
-        </Button>
-        <Button type="link" onClick={() => history.push('/views/match/edit')}>
-          <FormOutlined />
-          编辑
-        </Button>
-        <Button type="link" onClick={() => setVisible(true)}>
-          <SolutionOutlined />
-          备注
-        </Button>
-      </>
+      <Button
+        type="link"
+        onClick={() => history.push('/views/match/edit')}
+        className="editBtnTable"
+      >
+        <FormOutlined /> 编辑
+      </Button>
     );
   };
 
@@ -58,17 +41,15 @@ export default (props: any) => {
   ));
 
   const search = () => {};
-  const handleOk = () => {
-    history.push('/login');
-  };
+  const handleOk = () => {};
   console.log(data);
   return (
     <>
-      <div className={styles.adminMatch}>
+      <div className={styles.adminCustomer}>
         <div className={styles.topBar}>
           <div className={styles.searchCondition}>
             <Search
-              placeholder={'请输入产品名称'}
+              placeholder={'企业名称搜索'}
               value={searchCondition.name}
               onChange={(e: any) => {
                 setSearchCondition({
@@ -86,28 +67,18 @@ export default (props: any) => {
                 setSearchCondition({ ...searchCondition, top: e });
               }}
               data={[
-                { name: '信用', value: 1 },
-                { name: '抵押', value: 2 },
-                { name: '其他', value: 3 },
+                { name: '服装', value: 1 },
+                { name: '餐饮', value: 2 },
+                { name: '房地产', value: 3 },
+                { name: '汽车', value: 4 },
+                { name: '互联网', value: 5 },
               ]}
             />
           </div>
-          <div className={styles.count}>
-            <div className={styles.card}>
-              <img src={require('./assets/1.png')} height="60" />
-              <div className={styles.text}>
-                <h5>190</h5>
-                <p>匹配总量</p>
-              </div>
-            </div>
-            <div className={styles.card}>
-              <img src={require('./assets/2.png')} height="60" />
-              <div className={styles.text}>
-                <h5>12</h5>
-                <p>待办事项</p>
-              </div>
-            </div>
-          </div>
+          <Button className="addBtn">
+            <PlusOutlined />
+            新增
+          </Button>
         </div>
         <Table columns={columns} dataSource={data} rowKey="id" />
       </div>

@@ -10,6 +10,7 @@ export default (props: any) => {
         dataSource={props.dataSource}
         columns={props.columns}
         pagination={false}
+        rowKey={props.rowKey}
       />
       <Pagination
         size="small"

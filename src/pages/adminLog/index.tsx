@@ -6,10 +6,9 @@ import { useState } from 'react';
 import createColumns from './columns';
 import { useHistory } from 'umi';
 import { Modal, Form, Input, Button } from 'antd';
-import { EyeOutlined, FormOutlined, SolutionOutlined } from '@ant-design/icons';
+import { PlusOutlined, FormOutlined } from '@ant-design/icons';
 
 export default (props: any) => {
-  const history = useHistory();
   const [searchCondition, setSearchCondition] = useState({
     name: '',
     top: '',
@@ -38,33 +37,25 @@ export default (props: any) => {
             })
           }
         >
-          <EyeOutlined />
           详情
         </Button>
         <Button type="link" onClick={() => history.push('/views/match/edit')}>
-          <FormOutlined />
           编辑
         </Button>
         <Button type="link" onClick={() => setVisible(true)}>
-          <SolutionOutlined />
           备注
         </Button>
       </>
     );
   };
 
-  const columns: any = createColumns((row: any, col: any) => (
-    <Action row={row} col={col} key={row.id} />
-  ));
+  const columns: any = createColumns();
 
   const search = () => {};
-  const handleOk = () => {
-    history.push('/login');
-  };
-  console.log(data);
+  const handleOk = () => {};
   return (
     <>
-      <div className={styles.adminMatch}>
+      <div className={styles.adminLog}>
         <div className={styles.topBar}>
           <div className={styles.searchCondition}>
             <Search
@@ -91,22 +82,6 @@ export default (props: any) => {
                 { name: '其他', value: 3 },
               ]}
             />
-          </div>
-          <div className={styles.count}>
-            <div className={styles.card}>
-              <img src={require('./assets/1.png')} height="60" />
-              <div className={styles.text}>
-                <h5>190</h5>
-                <p>匹配总量</p>
-              </div>
-            </div>
-            <div className={styles.card}>
-              <img src={require('./assets/2.png')} height="60" />
-              <div className={styles.text}>
-                <h5>12</h5>
-                <p>待办事项</p>
-              </div>
-            </div>
           </div>
         </div>
         <Table columns={columns} dataSource={data} rowKey="id" />

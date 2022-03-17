@@ -16,6 +16,16 @@ export default defineConfig({
       routes: [
         {
           exact: true,
+          path: '/views/product',
+          component: '@/pages/adminProduct/index',
+          name: 'product',
+          // wrappers: ['@/wrappers/auth'],
+          query: {
+            name: '产品维度管理',
+          },
+        },
+        {
+          exact: true,
           path: '/views/match',
           component: '@/pages/adminMatch/index',
           name: 'match',
@@ -54,14 +64,51 @@ export default defineConfig({
           ],
         },
         {
-          exact: true,
+          exact: false,
           path: '/views/stration',
           component: '@/pages/adminStration/index',
-          wrappers: ['@/wrappers/auth'],
+          // wrappers: ['@/wrappers/auth'],
           name: 'station',
           query: {
             name: '企业管理',
           },
+          routes: [
+            {
+              path: '/views/stration/service',
+              name: 'service',
+              query: {
+                name: '服务企业管理',
+              },
+              routes: [
+                {
+                  path: '/views/stration/service/add',
+                  component: '@/pages/adminService/add/index',
+
+                  name: 'serviceAdd',
+                  query: {
+                    name: '服务企业新增',
+                  },
+                },
+              ],
+            },
+            {
+              path: '/views/stration/service',
+              component: '@/pages/adminService/index',
+              name: 'service',
+              query: {
+                name: '服务企业管理',
+              },
+            },
+            {
+              path: '/views/stration/customer',
+              component: '@/pages/adminCustomer/index',
+              name: 'customer',
+
+              query: {
+                name: '客户企业管理',
+              },
+            },
+          ],
         },
         {
           exact: true,
@@ -73,9 +120,18 @@ export default defineConfig({
             name: '产品维度管理',
           },
         },
+        {
+          exact: true,
+          path: '/views/log',
+          component: '@/pages/adminLog/index',
+          name: 'product',
+          query: {
+            name: '系统日志',
+          },
+        },
       ],
     },
-    { path: '/', redirect: '/login' },
+    { path: '/', redirect: '/login', component: '@/pages/layout/index' },
 
     {
       path: '/login',
