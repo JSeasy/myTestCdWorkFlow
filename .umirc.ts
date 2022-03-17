@@ -75,6 +75,24 @@ export default defineConfig({
           routes: [
             {
               path: '/views/stration/service',
+              name: 'service',
+              query: {
+                name: '服务企业管理',
+              },
+              routes: [
+                {
+                  path: '/views/stration/service/add',
+                  component: '@/pages/adminService/add/index',
+
+                  name: 'serviceAdd',
+                  query: {
+                    name: '服务企业新增',
+                  },
+                },
+              ],
+            },
+            {
+              path: '/views/stration/service',
               component: '@/pages/adminService/index',
               name: 'service',
               query: {
