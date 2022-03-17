@@ -31,9 +31,8 @@ export default (props: any) => {
     <>
       <Form
         form={form}
-        labelCol={{ span: 4 }}
-        wrapperCol={{ span: 14 }}
         layout="horizontal"
+        colon={false}
         initialValues={{
           time: {
             flag: true,
@@ -43,9 +42,9 @@ export default (props: any) => {
           name: '',
         }}
       >
-        <Checkbox onChange={checkBoxChange}></Checkbox>
-
-        <Form.Item label={<p>address</p>} required>
+        <Form.Item
+          label={<Checkbox onChange={checkBoxChange}>address</Checkbox>}
+        >
           <Form.Item
             name={['time', 'street']}
             noStyle

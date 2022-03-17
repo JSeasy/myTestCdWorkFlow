@@ -7,6 +7,7 @@ import createColumns from './columns';
 import { useHistory } from 'umi';
 import { Modal, Form, Input, Button } from 'antd';
 export default (props: any) => {
+  const history = useHistory();
   const [searchCondition, setSearchCondition] = useState({
     name: '',
     top: '',
@@ -52,7 +53,9 @@ export default (props: any) => {
   ));
 
   const search = () => {};
-  const handleOk = () => {};
+  const handleOk = () => {
+    history.push('/login');
+  };
   console.log(data);
   return (
     <>

@@ -17,15 +17,18 @@ export async function getInitialState() {
 
 export function render(oldRender: any) {
   new Promise((resove, reject) => {
-    setTimeout(resove, 5000);
+    setTimeout(resove, 1000);
   }).then(() => {
-    console.log(123);
     oldRender();
-    console.log(789);
   });
 }
 
 export function patchRoutes({ routes }: any) {
-  console.log(routes);
-  console.log(456);
+  // console.log(routes);
+  // routes.push({
+  //   path: '/login',
+  //   component: require('@/pages/login/index').default,
+  //   exact: true,
+  // });
+  // console.log(456);
 }
