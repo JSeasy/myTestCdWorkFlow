@@ -75,6 +75,7 @@ export default defineConfig({
               path: '/views/stration/customer',
               component: '@/pages/adminCustomer/index',
               name: 'customer',
+
               query: {
                 name: '客户企业管理',
               },
@@ -102,7 +103,7 @@ export default defineConfig({
         },
       ],
     },
-    { path: '/', redirect: '/login' },
+    { path: '/', redirect: '/login', component: '@/pages/layout/index' },
 
     {
       path: '/login',
