@@ -86,12 +86,10 @@ export default (props: any) => {
               ]}
             />
           </div>
-          <div className="addBtn">
-            <Button>
-              <PlusOutlined />
-              新增
-            </Button>
-          </div>
+          <Button className="addBtn">
+            <PlusOutlined />
+            新增
+          </Button>
         </div>
         <Table columns={columns} dataSource={data} rowKey="id" />
       </div>
