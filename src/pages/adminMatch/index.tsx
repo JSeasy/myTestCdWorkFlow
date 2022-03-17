@@ -21,15 +21,6 @@ export default (props: any) => {
 
   const [form] = Form.useForm();
 
-  // useEffect(() => {
-  //   Events.addListener('refresh', () => {
-  //     console.log('refresh');
-  //   });
-  //   return () => {
-  //     Events.removeAllListeners();
-  //     console.log('remove');
-  //   };
-  // }, []);
   const Action = (props: any) => {
     const history = useHistory();
     const { row, col } = props;
