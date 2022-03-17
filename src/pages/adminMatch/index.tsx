@@ -12,8 +12,9 @@ export default (props: any) => {
     top: '',
   });
   const [data, setData] = useState([
-    { name: 1, age: 2, address: 5, id: 1 },
-    { name: 1, age: 13, address: 3, id: 2 },
+    { name: 1, age: 2, id: '1' },
+    { name: 1, age: 13, id: '2' },
+    { name: 1, age: 13, id: '3' },
   ]);
 
   const [visible, setVisible] = useState(false);
@@ -32,7 +33,6 @@ export default (props: any) => {
   const Action = (props: any) => {
     const history = useHistory();
     const { row, col } = props;
-    console.log(row, col);
     return (
       <>
         <Button
@@ -60,10 +60,9 @@ export default (props: any) => {
     <Action row={row} col={col} key={row.id} />
   ));
 
-  const search = () => {
-    console.log(searchCondition);
-  };
+  const search = () => {};
   const handleOk = () => {};
+  console.log(data);
   return (
     <>
       <div className={styles.adminMatch}>
