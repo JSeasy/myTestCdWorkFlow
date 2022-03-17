@@ -10,7 +10,7 @@ export default (props: any) => {
       console.log(res);
     });
   };
-  const checkBoxChange = (e) => {
+  const checkBoxChange = (e: any) => {
     console.log(e.target.checked);
     setRequire(e.target.checked);
   };
@@ -43,10 +43,9 @@ export default (props: any) => {
           name: '',
         }}
       >
-        <Form.Item label="address" required>
-          <Form.Item name={['time', 'flag']} valuePropName="checked">
-            <Checkbox onChange={checkBoxChange}></Checkbox>
-          </Form.Item>
+        <Checkbox onChange={checkBoxChange}></Checkbox>
+
+        <Form.Item label={<p>address</p>} required>
           <Form.Item
             name={['time', 'street']}
             noStyle

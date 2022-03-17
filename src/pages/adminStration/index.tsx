@@ -1,7 +1,3 @@
-export default () => {
-  return (
-    <>
-      <span>企业管理</span>
-    </>
-  );
+export default (props: any) => {
+  return <>{props.children}</>;
 };

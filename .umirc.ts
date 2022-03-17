@@ -54,14 +54,32 @@ export default defineConfig({
           ],
         },
         {
-          exact: true,
+          exact: false,
           path: '/views/stration',
           component: '@/pages/adminStration/index',
-          wrappers: ['@/wrappers/auth'],
+          // wrappers: ['@/wrappers/auth'],
           name: 'station',
           query: {
             name: '企业管理',
           },
+          routes: [
+            {
+              path: '/views/stration/service',
+              component: '@/pages/adminService/index',
+              name: 'service',
+              query: {
+                name: '服务企业管理',
+              },
+            },
+            {
+              path: '/views/stration/customer',
+              component: '@/pages/adminCustomer/index',
+              name: 'customer',
+              query: {
+                name: '客户企业管理',
+              },
+            },
+          ],
         },
         {
           exact: true,
