@@ -16,6 +16,16 @@ export default defineConfig({
       routes: [
         {
           exact: true,
+          path: '/views/product',
+          component: '@/pages/adminProduct/index',
+          name: 'product',
+          // wrappers: ['@/wrappers/auth'],
+          query: {
+            name: '产品维度管理',
+          },
+        },
+        {
+          exact: true,
           path: '/views/match',
           component: '@/pages/adminMatch/index',
           name: 'match',

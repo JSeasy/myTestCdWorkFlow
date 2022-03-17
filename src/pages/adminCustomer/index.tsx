@@ -29,7 +29,7 @@ export default (props: any) => {
       <Button
         type="link"
         onClick={() => history.push('/views/match/edit')}
-        className="editBtn"
+        className="editBtnTable"
       >
         <FormOutlined /> 编辑
       </Button>
