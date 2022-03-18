@@ -4,11 +4,13 @@ import Table from '@/components/table';
 import Select from '@/components/select';
 import { useState } from 'react';
 import createColumns from './columns';
-import { useHistory } from 'umi';
+import { useHistory, useParams } from 'umi';
 import { Modal, Form, Input, Button } from 'antd';
 import { EyeOutlined, FormOutlined, SolutionOutlined } from '@ant-design/icons';
 
 export default (props: any) => {
+  const params = useParams();
+  console.log(params);
   const history = useHistory();
   const [searchCondition, setSearchCondition] = useState({
     name: '',
@@ -33,15 +35,14 @@ export default (props: any) => {
           type="link"
           onClick={() =>
             history.push({
-              pathname: '/views/match/detail',
-              state: { id: '1' },
+              pathname: '/match/detail',
             })
           }
         >
           <EyeOutlined />
           详情
         </Button>
-        <Button type="link" onClick={() => history.push('/views/match/edit')}>
+        <Button type="link" onClick={() => history.push('/match/edit')}>
           <FormOutlined />
           编辑
         </Button>
