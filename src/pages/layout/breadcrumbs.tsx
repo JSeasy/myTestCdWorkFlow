@@ -10,7 +10,6 @@ const MAP: any = {
 
 const Breadcrumbs = (props: any) => {
   const { breadcrumbs } = props;
-  console.log(breadcrumbs, 'breadcrumbs');
   return (
     <Breadcrumb>
       {breadcrumbs.map(
