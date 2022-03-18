@@ -1,11 +1,11 @@
 import styles from './index.less';
 import Search from '@/components/searchInput';
 import Table from '@/components/table';
-import Select from '@/components/select';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import createColumns from './columns';
 import { useHistory } from 'umi';
 import { Modal, Form, Input, Button } from 'antd';
+import { get } from '@/api/product/index';
 import {
   PlusOutlined,
   FormOutlined,
@@ -16,20 +16,26 @@ import {
 } from '@ant-design/icons';
 export default (props: any) => {
   const [searchCondition, setSearchCondition] = useState({
-    name: '',
-    top: '',
+    query: '',
   });
-  const [data, setData] = useState([
-    { name: 1, age: 2, id: '1' },
-    { name: 1, age: 13, id: '2' },
-    { name: 1, age: 13, id: '3' },
-  ]);
+  const [data, setData] = useState([]);
+
+  const listApi = () => {
+    get(searchCondition).then((res) => {
+      console.log(res);
+    });
+  };
+
+  useEffect(() => {
+    listApi();
+  }, []);
 
   const [visible, setVisible] = useState(false);
 
   const [form] = Form.useForm();
 
   const [delVisible, setDelVisible] = useState(false);
+
   const [revertVisible, setRevertVisible] = useState(false);
 
   const Action = (props: any) => {

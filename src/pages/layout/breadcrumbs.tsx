@@ -6,6 +6,7 @@ const MAP: any = {
   '/match': '匹配管理',
   '/match/detail': '匹配详情',
   '/match/edit': '匹配编辑',
+  '/product': '产品维度管理',
 };
 
 const Breadcrumbs = (props: any) => {

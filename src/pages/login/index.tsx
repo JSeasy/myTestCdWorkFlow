@@ -4,9 +4,10 @@ import styles from './index.less';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import { login, getCode, regist } from '@/api/login';
 import { blobToDataURL } from '@/utils/index';
+import { useHistory } from 'umi';
 export default () => {
   const [form] = Form.useForm();
-
+  const history = useHistory();
   const [visible, setVisible] = useState<boolean>(false);
   const [src, setSrc] = useState<string | unknown>('');
   const handleOk = () => {};
@@ -14,6 +15,7 @@ export default () => {
     form.validateFields().then((values) => {
       login(values).then((res) => {
         window.localStorage.setItem('token', res.data['x-auth-token']);
+        history.push('/match');
       });
     });
   };

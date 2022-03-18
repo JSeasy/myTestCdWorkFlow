@@ -46,6 +46,12 @@ export default defineConfig({
             },
           ],
         },
+        {
+          path: '/product',
+          name: 'product',
+          component: '@/pages/adminProduct/index',
+          wrappers: ['@/wrappers/auth'],
+        },
       ],
     },
 
