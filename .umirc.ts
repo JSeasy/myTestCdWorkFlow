@@ -7,16 +7,25 @@ export default defineConfig({
   mock: false,
   routes: [
     {
+      exact: true,
+      path: '/login',
+      component: '@/pages/login/index',
+      wrappers: ['@/wrappers/auth'],
+    },
+    {
       path: '/',
       name: 'layout',
       component: '@/pages/layout/index',
+      exact: false,
       breadcrumb: '主页',
       routes: [
         {
           path: '/match',
           name: 'match',
+          exact: true,
           component: '@/pages/adminMatch/index',
           breadcrumb: '匹配管理',
+          wrappers: ['@/wrappers/auth'],
         },
         {
           exact: false,
@@ -32,6 +41,8 @@ export default defineConfig({
               breadcrumb: '匹配详情',
             },
             {
+              exact: true,
+
               path: '/match/edit',
               name: 'matchEdit',
               component: '@/pages/adminMatch/edit/index',
@@ -42,15 +53,6 @@ export default defineConfig({
       ],
     },
 
-    {
-      path: '/',
-      routes: [
-        {
-          path: '/login',
-          component: '@/pages/login/index',
-        },
-      ],
-    },
     { path: '*', component: '@/pages/403/index' },
   ],
   theme: {},

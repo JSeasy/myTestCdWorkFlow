@@ -7,3 +7,19 @@ export const login = (params: any) => {
     params,
   });
 };
+
+export const getCode = () => {
+  return request({
+    url: '/services/v1/common/getCaptcha',
+    method: 'GET',
+    responseType: 'blob',
+  });
+};
+
+export const regist = (params: any) => {
+  return request({
+    url: '/services/v1/user/regist',
+    method: 'POST',
+    params,
+  });
+};

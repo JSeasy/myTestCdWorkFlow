@@ -16,11 +16,12 @@ export async function getInitialState() {
 }
 
 export function render(oldRender: any) {
-  new Promise((resove, reject) => {
-    setTimeout(resove, 1000);
-  }).then(() => {
-    oldRender();
-  });
+  // new Promise((resove, reject) => {
+  //   setTimeout(resove, 1000);
+  // }).then(() => {
+  //   oldRender();
+  // });
+  oldRender();
 }
 
 export function patchRoutes({ routes }: any) {

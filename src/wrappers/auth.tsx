@@ -1,17 +1,20 @@
-import { Redirect } from 'umi';
-import { useModel } from 'umi';
+import { Redirect, useModel, useHistory } from 'umi';
+const whiteList = ['/login'];
 export default (props: any) => {
   const { initialState, loading, error, refresh, setInitialState }: any =
     useModel('@@initialState');
-
-  console.log(props.route);
-  const { name } = props.route;
-  console.log(props);
-  if (window.localStorage.getItem('auth')) {
-    const read: { read: number } = initialState[name];
-    console.log(read);
-    return read.read === 1 ? <>{props.children}</> : <Redirect to="/403" />;
+  const {
+    location: { pathname },
+  } = useHistory();
+  if (window.localStorage.getItem('token')) {
+    if (pathname === '/login') {
+      return <Redirect to="/match" />;
+    }
+    return <>{props.children}</>;
   } else {
+    if (pathname === '/login') {
+      return <>{props.children}</>;
+    }
     return <Redirect to="/login" />;
   }
 };

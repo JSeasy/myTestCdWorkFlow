@@ -1,34 +1,36 @@
-import { useState } from 'react';
-import { Form, Input, Button, Modal } from 'antd';
+import { useEffect, useState } from 'react';
+import { Form, Input, Button, Modal, Space } from 'antd';
 import styles from './index.less';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
-import { login } from '@/api/login';
+import { login, getCode, regist } from '@/api/login';
 import { useHistory } from 'umi';
 import { useModel } from 'umi';
-
+import { blobToDataURL } from '@/utils/index';
 export default () => {
-  if (window.localStorage.getItem('auth')) {
-    const history = useHistory();
-    history.push('/views/match');
-  }
   const [form] = Form.useForm();
+
   const [visible, setVisible] = useState<boolean>(false);
+  const [src, setSrc] = useState<string | unknown>('');
   const handleOk = () => {};
-  const onFinish = (values: any) => {
-    console.log(values);
-    login(values).then((res) => {
-      console.log(res);
+  const onCheck = () => {
+    form.validateFields().then((values) => {
+      login(values).then((res) => {
+        window.localStorage.setItem('token', res.data['x-auth-token']);
+      });
     });
-    window.localStorage.setItem('auth', '1');
-    window.location.reload();
-    const { initialState, loading, error, refresh, setInitialState } =
-      useModel('@@initialState');
-    refresh();
-    console.log(initialState);
-    const history = useHistory();
-    history.push('/views/match');
   };
-  const onCheck = () => {};
+
+  const codeApi = () => {
+    getCode().then((res: any) => {
+      blobToDataURL(res).then((res: string | unknown) => {
+        setSrc(res);
+      });
+    });
+  };
+
+  useEffect(() => {
+    codeApi();
+  }, []);
   return (
     <>
       <div className={styles.login}>
@@ -44,14 +46,14 @@ export default () => {
             <div className={styles.border}></div>
             <Form form={form} layout="vertical">
               <Form.Item
-                name="username"
+                name="loginName"
                 rules={[
                   {
                     required: true,
                     message: '请输入账号',
                   },
                 ]}
-                label="账号:"
+                label="账号"
               >
                 <Input placeholder="请输入账号" size="large" />
               </Form.Item>
@@ -62,9 +64,8 @@ export default () => {
                     message: '请输入密码',
                   },
                 ]}
-                name="password"
-                label="密码:"
-                style={{ margin: 0 }}
+                name="passwd"
+                label="密码"
               >
                 <Input.Password
                   placeholder="请输入密码"
@@ -74,6 +75,29 @@ export default () => {
                   }
                 />
               </Form.Item>
+              <Form.Item label="验证码" required>
+                <Space size="large" align="center">
+                  <Form.Item
+                    name="captcha"
+                    noStyle
+                    rules={[
+                      {
+                        required: true,
+                        message: '请输入验证码',
+                      },
+                    ]}
+                  >
+                    <Input
+                      placeholder="请输入验证码"
+                      size="large"
+                      style={{ width: '250px' }}
+                      maxLength={4}
+                    />
+                  </Form.Item>
+                  <img src={src} onClick={codeApi} />
+                </Space>
+              </Form.Item>
+
               <p className={styles.forget}>
                 <span onClick={() => setVisible(true)}>忘记密码?</span>
               </p>
