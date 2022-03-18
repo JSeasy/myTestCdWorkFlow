@@ -2,14 +2,15 @@ import { NavLink } from 'umi';
 import { Breadcrumb } from 'antd';
 import withBreadcrumbs from 'react-router-breadcrumbs-hoc';
 
-const routes = [
-  { path: '/home', breadcrumb: '首页' },
-  { path: '/home/category-detail', breadcrumb: '详情' },
-];
+const MAP: any = {
+  '/match': '匹配管理',
+  '/match/detail': '匹配详情',
+  '/match/edit': '匹配编辑',
+};
 
 const Breadcrumbs = (props: any) => {
   const { breadcrumbs } = props;
-  console.log(breadcrumbs);
+  console.log(breadcrumbs, 'breadcrumbs');
   return (
     <Breadcrumb>
       {breadcrumbs.map(
@@ -23,7 +24,7 @@ const Breadcrumbs = (props: any) => {
                   query: item.location.query,
                 }}
               >
-                {item.breadcrumb.props.children}
+                {MAP[item.key]}
               </NavLink>
             </Breadcrumb.Item>
           ),
@@ -32,4 +33,4 @@ const Breadcrumbs = (props: any) => {
   );
 };
 
-export default withBreadcrumbs(routes)(Breadcrumbs);
+export default withBreadcrumbs()(Breadcrumbs);
