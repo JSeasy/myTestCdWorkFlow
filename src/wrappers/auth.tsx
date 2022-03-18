@@ -12,6 +12,7 @@ export default (props: any) => {
     }
     return <>{props.children}</>;
   } else {
+    console.log(pathname);
     if (pathname === '/login') {
       return <>{props.children}</>;
     }

@@ -3,8 +3,6 @@ import { Form, Input, Button, Modal, Space } from 'antd';
 import styles from './index.less';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import { login, getCode, regist } from '@/api/login';
-import { useHistory } from 'umi';
-import { useModel } from 'umi';
 import { blobToDataURL } from '@/utils/index';
 export default () => {
   const [form] = Form.useForm();
