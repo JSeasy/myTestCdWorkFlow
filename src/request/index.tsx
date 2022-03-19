@@ -1,7 +1,7 @@
 import axios from 'axios';
 axios.interceptors.request.use((config) => {
   config.headers['x-auth-token'] = window.localStorage.getItem('token');
-  console.log(config.headers);
+  console.log(config, 'configHeader ');
   return config;
 });
 axios.interceptors.response.use(

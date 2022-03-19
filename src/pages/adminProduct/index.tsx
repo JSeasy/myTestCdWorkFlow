@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import createColumns from './columns';
 import { useHistory } from 'umi';
 import { Modal, Form, Input, Button } from 'antd';
-import { get } from '@/api/product/index';
+import { get, del } from '@/api/product/index';
 import {
   PlusOutlined,
   FormOutlined,
@@ -14,46 +14,77 @@ import {
   RetweetOutlined,
   DeleteOutlined,
 } from '@ant-design/icons';
+import Add_Edit from './add&edit/index';
 export default (props: any) => {
+  // 表单实例
+  const [form] = Form.useForm();
+  //删除id
+  const [id, setId] = useState('');
+  //搜索条件
   const [searchCondition, setSearchCondition] = useState({
-    query: '',
+    label: '',
   });
-  const [data, setData] = useState([]);
 
-  const listApi = () => {
-    get(searchCondition).then((res) => {
-      console.log(res);
+  const [pageInfo, setPageInfo] = useState({
+    current: 1,
+    pageSize: 10,
+    total: 0,
+  });
+  //列表数据
+  const [data, setData] = useState([]);
+  // 获取列表数据接口
+  const search = (params?: any) => {
+    console.log({ ...searchCondition });
+    get({
+      ...searchCondition,
+      pageNo: pageInfo.current,
+      pageSize: pageInfo.pageSize,
+      ...params,
+    }).then(({ data }) => {
+      const { page } = data;
+      setData(page.list);
+      setPageInfo({
+        ...pageInfo,
+        total: page.rowCount,
+        current: page.pageNum,
+        pageSize: page.pageSize,
+      });
     });
   };
 
   useEffect(() => {
-    listApi();
+    search();
   }, []);
 
+  // 新增
   const [visible, setVisible] = useState(false);
 
-  const [form] = Form.useForm();
-
+  // 删除
   const [delVisible, setDelVisible] = useState(false);
 
+  // 重构
   const [revertVisible, setRevertVisible] = useState(false);
+  // 查看
+  const [viewVisible, setViewVisible] = useState(false);
+  const [uid, setUid] = useState('');
+
+  const [editVisible, setEditVisible] = useState(false);
 
   const Action = (props: any) => {
     const history = useHistory();
     const { row, col } = props;
     return (
       <>
-        <Button
-          type="link"
-          onClick={() => history.push('/views/match/edit')}
-          className="editBtnTable"
-        >
+        <Button type="link" className="editBtnTable">
           <CopyOutlined /> 复制
         </Button>
         <Button
           type="link"
-          onClick={() => history.push('/views/match/edit')}
           className="editBtnTable"
+          onClick={() => {
+            setVisible(true);
+            setId(row.id);
+          }}
         >
           <FormOutlined /> 编辑
         </Button>
@@ -66,7 +97,10 @@ export default (props: any) => {
         </Button>
         <Button
           type="link"
-          onClick={() => setDelVisible(true)}
+          onClick={() => {
+            setDelVisible(true);
+            setId(row.id);
+          }}
           className="delBtnTable"
         >
           <DeleteOutlined />
@@ -76,8 +110,6 @@ export default (props: any) => {
     );
   };
 
-  const [viewVisible, setViewVisible] = useState(false);
-  const [uid, setUid] = useState('');
   const View = (props: any) => {
     const history = useHistory();
     const { row, col } = props;
@@ -87,7 +119,7 @@ export default (props: any) => {
         className="editBtn"
         onClick={() => {
           setViewVisible(true);
-          setUid('stinguidddddddddddd');
+          setUid(col);
         }}
       >
         <EyeOutlined /> 查看
@@ -100,7 +132,6 @@ export default (props: any) => {
     (row: any, col: any) => <View row={row} col={col} />,
   );
 
-  const search = () => {};
   const handleOk = () => {};
   console.log(data);
   return (
@@ -110,47 +141,47 @@ export default (props: any) => {
           <div className={styles.searchCondition}>
             <Search
               placeholder={'配置信息名称搜索'}
-              value={searchCondition.name}
+              value={searchCondition.label}
               onChange={(e: any) => {
                 setSearchCondition({
-                  ...searchCondition,
-                  name: e.target.value,
+                  label: e.target.value,
                 });
+                console.log(searchCondition);
               }}
-              onPressEnter={search}
-              onSearch={search}
+              onPressEnter={() => search({ pageNo: 1 })}
+              onSearch={() => search({ pageNo: 1 })}
             />
           </div>
-          <Button className="addBtn">
+          <Button
+            className="addBtn"
+            onClick={() => {
+              setVisible(true);
+              setId('');
+            }}
+          >
             <PlusOutlined />
             新增
           </Button>
         </div>
-        <Table columns={columns} dataSource={data} rowKey="id" />
+        <Table
+          columns={columns}
+          dataSource={data}
+          rowKey="id"
+          pageInfo={pageInfo}
+          onChange={(current: number, pageSize: number) => {
+            search({ pageNo: current, pageSize });
+          }}
+        />
       </div>
-      <Modal
-        wrapClassName="myModal"
-        getContainer={'#root'}
-        title="快速备注"
+      <Add_Edit
         visible={visible}
-        onOk={handleOk}
+        id={id}
         onCancel={() => setVisible(false)}
-      >
-        <Form form={form}>
-          <Form.Item
-            name="remark"
-            label="备注"
-            rules={[
-              {
-                required: true,
-                message: '请输入备注',
-              },
-            ]}
-          >
-            <Input.TextArea />
-          </Form.Item>
-        </Form>
-      </Modal>
+        onOk={() => {
+          setVisible(false);
+          search();
+        }}
+      />
       <Modal
         wrapClassName="myModal"
         getContainer={'#root'}
@@ -171,7 +202,12 @@ export default (props: any) => {
         title="删除模型"
         okText={'删除'}
         width={400}
-        onOk={() => setDelVisible(false)}
+        onOk={() => {
+          del({ id }).then(() => {
+            setDelVisible(false);
+            search();
+          });
+        }}
         onCancel={() => setDelVisible(false)}
         okButtonProps={{
           style: { background: '#ff4651', borderColor: '#ff4651' },

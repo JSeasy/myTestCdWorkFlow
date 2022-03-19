@@ -16,13 +16,11 @@ export default defineConfig({
       path: '/',
       name: 'layout',
       component: '@/pages/layout/index',
-      exact: false,
       wrappers: ['@/wrappers/auth'],
       routes: [
         {
           path: '/match',
           name: 'match',
-          exact: true,
           component: '@/pages/adminMatch/index',
           wrappers: ['@/wrappers/auth'],
         },
