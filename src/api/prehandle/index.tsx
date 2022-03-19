@@ -34,3 +34,11 @@ export const add = (data: any) => {
     data,
   });
 };
+
+// 获取原始字段
+export const getOriginField = (id: string) => {
+  return request({
+    url: '/services/v1/field/list/' + id,
+    method: 'GET',
+  });
+};

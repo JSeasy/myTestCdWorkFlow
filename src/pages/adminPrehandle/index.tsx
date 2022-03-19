@@ -21,7 +21,7 @@ import {
   PlusOutlined,
   ExclamationCircleOutlined,
 } from '@ant-design/icons';
-import { get, del, add, getPlugins } from '@/api/prehandle';
+import { get, del, add, getPlugins, getOriginField } from '@/api/prehandle';
 
 const layout = {
   labelCol: { span: 6 },
@@ -62,11 +62,11 @@ export default (props: any) => {
           onClick={() => {
             setVisible(true);
             setId(row.id);
-            const { plugin, label, sourceLabel, args } = row;
+            const { plugin, label, sourceField, args } = row;
             form.setFieldsValue({
               plugin,
               label,
-              sourceLabel,
+              sourceField,
               args,
             });
             setPluginType(plugin);
@@ -115,9 +115,9 @@ export default (props: any) => {
 
   const [sourceFields, setSourceFields] = useState([]);
   const getSourceFields = () => {
-    get({ pageNo: 1, pageSize: 1000, modelId: params.id }).then(({ data }) => {
-      const { page } = data;
-      setSourceFields(page.list);
+    getOriginField(params.id).then(({ data }) => {
+      const { field } = data;
+      setSourceFields(field);
     });
   };
   // 插件数据列表
@@ -216,6 +216,9 @@ export default (props: any) => {
               ...values,
               modelId: params.id,
               id: id ? id : undefined,
+              sourceLabel: sourceFields.find(
+                (item: any) => item.fieldName === values.sourceField,
+              ).label,
             }).then(() => {
               setVisible(false);
               search();
@@ -405,8 +408,8 @@ export default (props: any) => {
                   <Select size="large">
                     <Option value="">--请选择--</Option>
                     {sourceFields.map((field: any) => (
-                      <Option value={field.id} key={field.id}>
-                        {field.sourceLabel}
+                      <Option value={field.fieldName} key={field.fieldName}>
+                        {field.label}
                       </Option>
                     ))}
                   </Select>
