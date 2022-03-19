@@ -9,7 +9,8 @@ const layout = {
   wrapperCol: { span: 20 },
 };
 export default (props: any) => {
-  const { id, onOk } = props;
+  const { id, onOk, onCancel, visible, modelName } = props;
+  console.log(modelName);
   const [form] = Form.useForm();
   // 获取模板列表
   const [templates, setTemplates] = useState([]);
@@ -23,16 +24,16 @@ export default (props: any) => {
   }, []);
   const onCheck = async () => {
     const values = await form.validateFields();
-    id ? edit({ ...values, id: props.id }).then(onOk) : add(values).then(onOk);
+    id ? edit({ ...values, id }).then(onOk) : add(values).then(onOk);
   };
   return (
     <Modal
       wrapClassName="myModal"
       getContainer={'#root'}
-      title="新增模型"
-      visible={props.visible}
+      title={id ? '编辑模型' : '新增模型'}
+      visible={visible}
       onOk={onCheck}
-      onCancel={props.onCancel}
+      onCancel={onCancel}
       destroyOnClose
     >
       <Form
@@ -40,7 +41,7 @@ export default (props: any) => {
         {...layout}
         colon
         initialValues={{
-          modelName: '',
+          modelName,
           label: '',
         }}
       >

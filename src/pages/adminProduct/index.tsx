@@ -18,8 +18,7 @@ import Add_Edit from './add&edit/index';
 export default (props: any) => {
   // 表单实例
   const [form] = Form.useForm();
-  //删除id
-  const [id, setId] = useState('');
+
   //搜索条件
   const [searchCondition, setSearchCondition] = useState({
     label: '',
@@ -56,9 +55,11 @@ export default (props: any) => {
     search();
   }, []);
 
-  // 新增
+  // 新增编辑
   const [visible, setVisible] = useState(false);
-
+  //删除id
+  const [id, setId] = useState('');
+  const [modelName, setModelName] = useState('');
   // 删除
   const [delVisible, setDelVisible] = useState(false);
 
@@ -84,6 +85,7 @@ export default (props: any) => {
           onClick={() => {
             setVisible(true);
             setId(row.id);
+            setModelName(row.modelName);
           }}
         >
           <FormOutlined /> 编辑
@@ -157,6 +159,7 @@ export default (props: any) => {
             onClick={() => {
               setVisible(true);
               setId('');
+              setModelName('');
             }}
           >
             <PlusOutlined />
@@ -177,6 +180,7 @@ export default (props: any) => {
         visible={visible}
         id={id}
         onCancel={() => setVisible(false)}
+        modelName={modelName}
         onOk={() => {
           setVisible(false);
           search();

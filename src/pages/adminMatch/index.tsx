@@ -9,18 +9,12 @@ import { Modal, Form, Input, Button } from 'antd';
 import { EyeOutlined, FormOutlined, SolutionOutlined } from '@ant-design/icons';
 
 export default (props: any) => {
-  const params = useParams();
-  console.log(params);
   const history = useHistory();
   const [searchCondition, setSearchCondition] = useState({
     name: '',
     top: '',
   });
-  const [data, setData] = useState([
-    { name: 1, age: 2, id: '1' },
-    { name: 1, age: 13, id: '2' },
-    { name: 1, age: 13, id: '3' },
-  ]);
+  const [data, setData] = useState([]);
 
   const [visible, setVisible] = useState(false);
 
