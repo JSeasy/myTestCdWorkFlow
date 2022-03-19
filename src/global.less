@@ -48,19 +48,24 @@
   }
   // tabs
   .ant-tabs {
-    .ant-tabs-nav-wrap {
-      .ant-tabs-tab-btn {
-        color: #030229;
-        font-size: 24px;
-      }
-      .ant-tabs-tab-active {
+    .ant-tabs-nav {
+      .ant-tabs-nav-wrap {
         .ant-tabs-tab-btn {
-          color: #3353cc;
+          color: #030229;
+          font-size: 24px;
+        }
+        .ant-tabs-tab-active {
+          .ant-tabs-tab-btn {
+            color: #3353cc;
+          }
+        }
+        .ant-tabs-ink-bar {
+          background-color: #3353cc !important;
+          width: 40px !important;
         }
       }
-      .ant-tabs-ink-bar {
-        background-color: #3353cc !important;
-        width: 40px !important;
+      &::before {
+        display: none;
       }
     }
   }
