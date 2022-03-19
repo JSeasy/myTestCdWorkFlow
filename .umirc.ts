@@ -76,6 +76,12 @@ export default defineConfig({
               component: '@/pages/adminPrehandle/index',
               wrappers: ['@/wrappers/auth'],
             },
+            {
+              path: '/product/:id/white',
+              name: 'prehandle',
+              component: '@/pages/adminWhite/index',
+              wrappers: ['@/wrappers/auth'],
+            },
           ],
         },
         {

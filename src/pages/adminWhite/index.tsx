@@ -20,8 +20,9 @@ import {
   DeleteOutlined,
   PlusOutlined,
   ExclamationCircleOutlined,
+  DiffOutlined,
 } from '@ant-design/icons';
-import { get, del, add, getPlugins } from '@/api/prehandle';
+import { get, del, add } from '@/api/white';
 
 const layout = {
   labelCol: { span: 6 },
@@ -81,6 +82,17 @@ export default (props: any) => {
             setId(row.id);
             setDelVisible(true);
           }}
+          className="editBtnTable"
+        >
+          <DiffOutlined />
+          字段管理
+        </Button>
+        <Button
+          type="link"
+          onClick={() => {
+            setId(row.id);
+            setDelVisible(true);
+          }}
           className="delBtnTable"
         >
           <DeleteOutlined />
@@ -112,21 +124,12 @@ export default (props: any) => {
     });
   };
 
-  // 插件数据列表
-  const [pluginList, setPluginList] = useState([]);
-  const getPluginsHook = () => {
-    getPlugins().then(({ data }) => {
-      setPluginList(data.plugins);
-    });
-  };
-
   useEffect(() => {
     search();
-    getPluginsHook();
   }, []);
   return (
     <>
-      <div className={styles.adminPrehandle}>
+      <div className={styles.adminWhite}>
         <div className={styles.topBar}>
           <div className={styles.searchCondition}>
             <Search
@@ -182,7 +185,7 @@ export default (props: any) => {
           style: { background: '#ff4651', borderColor: '#ff4651' },
         }}
       >
-        <p style={{ textAlign: 'center' }}>确认删除该字段吗?</p>
+        <p style={{ textAlign: 'center' }}>确认删除该行?</p>
       </Modal>
 
       <Modal
@@ -206,36 +209,28 @@ export default (props: any) => {
         }}
         onCancel={() => setVisible(false)}
       >
-        <Form form={form} {...layout} colon>
-          <Form.Item label="插件种类" required>
+        {/* <Form form={form} {...layout} colon>
+          <Form.Item label="字段名" required>
             <Row gutter={8} align="middle">
               <Col span={22}>
                 <Form.Item
-                  name="fieldType"
+                  name="fieldName"
                   noStyle
                   rules={[
                     {
                       required: true,
-                      message: '请选择插件种类',
+                      message: '请输入字段名',
                     },
                   ]}
-                  initialValue=""
                 >
-                  <Select size="large">
-                    <Option value="">--请选择--</Option>
-                    {pluginList.map((field: any) => (
-                      <Option value={field.key} key={field.key}>
-                        {field.desc}
-                      </Option>
-                    ))}
-                  </Select>
+                  <Input size="large" placeholder="请输入字段名" />
                 </Form.Item>
               </Col>
               <Col span={2}>
                 <Tooltip
                   placement="right"
                   title={
-                    '字段类型，目前有四种类型，分别为字符串（如"你好"，"abc"等），整数（其范围为 -2147483648 到 2147483647 之间），长整数（其范围为 -9223372036854775808 到 9223372036854775807 之间），浮点数（如 3.14'
+                    '位英文字母、数字、下划线的组合，以英文字母开头，如"deviceId"'
                   }
                 >
                   <ExclamationCircleOutlined
@@ -249,27 +244,66 @@ export default (props: any) => {
               </Col>
             </Row>
           </Form.Item>
-          <Form.Item label="目标字段名" required>
+          <Form.Item label="显示名称" required>
             <Row gutter={8} align="middle">
               <Col span={22}>
                 <Form.Item
-                  name="fieldName"
+                  name="label"
                   noStyle
                   rules={[
                     {
                       required: true,
-                      message: '请输入目标字段名',
+                      message: '请输入显示名称',
                     },
                   ]}
                 >
-                  <Input size="large" placeholder="请输入目标字段名" />
+                  <Input size="large" placeholder="请输入显示名称" />
+                </Form.Item>
+              </Col>
+              <Col span={2}>
+                <Tooltip
+                  placement="right"
+                  title={'字段显示名称，一般为中文，如"设备ID"'}
+                >
+                  <ExclamationCircleOutlined
+                    style={{
+                      fontSize: 20,
+                      color: '#6F7CAB',
+                      cursor: 'pointer',
+                    }}
+                  />
+                </Tooltip>
+              </Col>
+            </Row>
+          </Form.Item>
+          <Form.Item label="字段类型" required>
+            <Row gutter={8} align="middle">
+              <Col span={22}>
+                <Form.Item
+                  name="fieldType"
+                  noStyle
+                  rules={[
+                    {
+                      required: true,
+                      message: '请选择字段类型',
+                    },
+                  ]}
+                  initialValue="STRING"
+                >
+                  <Select size="large">
+                    {fieldType.map((field: any) => (
+                      <Option value={field.name} key={field.name}>
+                        {field.desc}
+                      </Option>
+                    ))}
+                  </Select>
                 </Form.Item>
               </Col>
               <Col span={2}>
                 <Tooltip
                   placement="right"
                   title={
-                    '位英文字母、数字、下划线的组合，以英文字母开头，如"deviceId"'
+                    '字段类型，目前有四种类型，分别为字符串（如"你好"，"abc"等），整数（其范围为 -2147483648 到 2147483647 之间），长整数（其范围为 -9223372036854775808 到 9223372036854775807 之间），浮点数（如 3.14'
                   }
                 >
                   <ExclamationCircleOutlined
@@ -306,7 +340,7 @@ export default (props: any) => {
               </Col>
             </Row>
           </Form.Item>
-        </Form>
+        </Form> */}
       </Modal>
     </>
   );
