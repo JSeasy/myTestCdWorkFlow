@@ -13,6 +13,7 @@ export default (props: any) => {
         columns={props.columns}
         pagination={false}
         rowKey={props.rowKey}
+        onRow={props.onRow}
       />
       <Pagination
         size="small"

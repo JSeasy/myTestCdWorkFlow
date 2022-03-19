@@ -5,12 +5,12 @@ import { ExclamationCircleOutlined } from '@ant-design/icons';
 const { Option } = Select;
 
 const layout = {
-  labelCol: { span: 4 },
-  wrapperCol: { span: 20 },
+  labelCol: { span: 6 },
+  wrapperCol: { span: 18 },
 };
 export default (props: any) => {
-  const { id, onOk, onCancel, visible, modelName } = props;
-  console.log(modelName);
+  const { id, onOk, onCancel, visible, label, isCopy } = props;
+  console.log(label);
   const [form] = Form.useForm();
   // 获取模板列表
   const [templates, setTemplates] = useState([]);
@@ -24,13 +24,17 @@ export default (props: any) => {
   }, []);
   const onCheck = async () => {
     const values = await form.validateFields();
-    id ? edit({ ...values, id }).then(onOk) : add(values).then(onOk);
+    isCopy
+      ? add({ ...values, id }).then(onOk)
+      : id
+      ? edit({ ...values, id }).then(onOk)
+      : add(values).then(onOk);
   };
   return (
     <Modal
       wrapClassName="myModal"
       getContainer={'#root'}
-      title={id ? '编辑模型' : '新增模型'}
+      title={isCopy ? '复制模型' : id ? '编辑模型' : '新增模型'}
       visible={visible}
       onOk={onCheck}
       onCancel={onCancel}
@@ -41,15 +45,23 @@ export default (props: any) => {
         {...layout}
         colon
         initialValues={{
-          modelName,
-          label: '',
+          label,
+          id: '',
         }}
+        labelAlign="left"
       >
-        <Form.Item label="模型名" required>
+        {isCopy && (
+          <Form.Item label="复制模型" required>
+            <p style={{ fontSize: 14, color: '#646093', paddingLeft: 40 }}>
+              {label}
+            </p>
+          </Form.Item>
+        )}
+        <Form.Item label={isCopy ? '新模型名' : '模型名'} required>
           <Row gutter={8} align="middle">
             <Col span={22}>
               <Form.Item
-                name="modelName"
+                name="label"
                 noStyle
                 rules={[
                   {
@@ -78,7 +90,7 @@ export default (props: any) => {
             <Row gutter={8} align="middle">
               <Col span={22}>
                 <Form.Item
-                  name="label"
+                  name="id"
                   noStyle
                   rules={[
                     {

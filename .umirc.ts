@@ -48,10 +48,29 @@ export default defineConfig({
           ],
         },
         {
+          exact: true,
           path: '/product',
           name: 'product',
           component: '@/pages/adminProduct/index',
           wrappers: ['@/wrappers/auth'],
+        },
+        {
+          exact: false,
+          path: '/product/:id',
+          name: 'productEdit',
+          component: '@/pages/layout/productLayout/index',
+          routes: [
+            {
+              path: '/product/:id',
+              redirect: '/product/:id/fields',
+            },
+            {
+              path: '/product/:id/fields',
+              name: 'fields',
+              component: '@/pages/adminFields/index',
+              wrappers: ['@/wrappers/auth'],
+            },
+          ],
         },
         {
           path: '/role',

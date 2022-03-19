@@ -19,7 +19,7 @@ export const del = (data: any) => {
 // 新增
 export const add = (data: any) => {
   return request({
-    url: '/services/v1/model',
+    url: '/services/v1/model/copy',
     method: 'POST',
     data,
   });

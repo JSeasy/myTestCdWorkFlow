@@ -4,7 +4,7 @@ import Table from '@/components/table';
 import { useEffect, useState } from 'react';
 import createColumns from './columns';
 import { useHistory } from 'umi';
-import { Modal, Form, Input, Button } from 'antd';
+import { Modal, Form, Button } from 'antd';
 import { get, del } from '@/api/product/index';
 import {
   PlusOutlined,
@@ -14,7 +14,7 @@ import {
   RetweetOutlined,
   DeleteOutlined,
 } from '@ant-design/icons';
-import Add_Edit from './add&edit/index';
+import Add_Edit_Copy from './add&edit/index';
 export default (props: any) => {
   // 表单实例
   const [form] = Form.useForm();
@@ -59,7 +59,8 @@ export default (props: any) => {
   const [visible, setVisible] = useState(false);
   //删除id
   const [id, setId] = useState('');
-  const [modelName, setModelName] = useState('');
+  const [label, setLabel] = useState('');
+  const [isCopy, setIsCopy] = useState(false);
   // 删除
   const [delVisible, setDelVisible] = useState(false);
 
@@ -69,14 +70,21 @@ export default (props: any) => {
   const [viewVisible, setViewVisible] = useState(false);
   const [uid, setUid] = useState('');
 
-  const [editVisible, setEditVisible] = useState(false);
-
   const Action = (props: any) => {
     const history = useHistory();
     const { row, col } = props;
     return (
       <>
-        <Button type="link" className="editBtnTable">
+        <Button
+          type="link"
+          className="editBtnTable"
+          onClick={() => {
+            setVisible(true);
+            setId(row.id);
+            setIsCopy(true);
+            setLabel(row.label);
+          }}
+        >
           <CopyOutlined /> 复制
         </Button>
         <Button
@@ -85,7 +93,8 @@ export default (props: any) => {
           onClick={() => {
             setVisible(true);
             setId(row.id);
-            setModelName(row.modelName);
+            setLabel(row.label);
+            setIsCopy(false);
           }}
         >
           <FormOutlined /> 编辑
@@ -135,7 +144,9 @@ export default (props: any) => {
   );
 
   const handleOk = () => {};
-  console.log(data);
+  const onRow = () => {
+    console.log(123);
+  };
   return (
     <>
       <div className={styles.adminProduct}>
@@ -159,7 +170,8 @@ export default (props: any) => {
             onClick={() => {
               setVisible(true);
               setId('');
-              setModelName('');
+              setLabel('');
+              setIsCopy(false);
             }}
           >
             <PlusOutlined />
@@ -174,13 +186,21 @@ export default (props: any) => {
           onChange={(current: number, pageSize: number) => {
             search({ pageNo: current, pageSize });
           }}
+          onRow={(row: any) => {
+            return {
+              onDoubleClick: () => {
+                console.log(row.id);
+              },
+            };
+          }}
         />
       </div>
-      <Add_Edit
+      <Add_Edit_Copy
         visible={visible}
         id={id}
         onCancel={() => setVisible(false)}
-        modelName={modelName}
+        label={label}
+        isCopy={isCopy}
         onOk={() => {
           setVisible(false);
           search();
@@ -207,7 +227,7 @@ export default (props: any) => {
         okText={'删除'}
         width={400}
         onOk={() => {
-          del({ id }).then(() => {
+          del([id]).then(() => {
             setDelVisible(false);
             search();
           });
@@ -219,6 +239,7 @@ export default (props: any) => {
       >
         <p style={{ textAlign: 'center' }}>确认删除该模型吗?</p>
       </Modal>
+
       <Modal
         wrapClassName="myModal"
         getContainer={'#root'}
