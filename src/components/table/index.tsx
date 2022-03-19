@@ -2,7 +2,6 @@ import { Table, Pagination } from 'antd';
 import styles from './index.less';
 export default (props: any) => {
   const { pageInfo } = props;
-  console.log(pageInfo);
   const showTotal = (total: number) => {
     return `共 ${total} 条`;
   };

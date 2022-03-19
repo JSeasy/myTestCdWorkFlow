@@ -1,7 +1,6 @@
 import { history } from 'umi';
 
 export async function getInitialState() {
-  console.log('initail');
   return {
     product: {
       read: 1,

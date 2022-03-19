@@ -5,10 +5,7 @@ export default (props: any) => {
   const [form] = Form.useForm();
   const [require, setRequire] = useState(true);
   const submit = () => {
-    console.log(form.getFieldValue('time'));
-    form.validateFields().then((res) => {
-      console.log(res);
-    });
+    form.validateFields().then((res) => {});
   };
   const checkBoxChange = (e: any) => {
     console.log(e.target.checked);

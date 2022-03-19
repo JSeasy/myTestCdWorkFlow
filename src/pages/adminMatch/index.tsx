@@ -56,7 +56,6 @@ export default (props: any) => {
   const handleOk = () => {
     history.push('/login');
   };
-  console.log(data);
   return (
     <>
       <div className={styles.adminMatch}>

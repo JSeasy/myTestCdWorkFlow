@@ -34,7 +34,6 @@ export default (props: any) => {
   const [data, setData] = useState([]);
   // 获取列表数据接口
   const search = (params?: any) => {
-    console.log({ ...searchCondition });
     get({
       ...searchCondition,
       pageNo: pageInfo.current,
