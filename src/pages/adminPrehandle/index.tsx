@@ -13,7 +13,7 @@ import {
   Col,
   Tooltip,
   Select,
-  Checkbox,
+  InputNumber,
 } from 'antd';
 import {
   FormOutlined,
@@ -62,13 +62,14 @@ export default (props: any) => {
           onClick={() => {
             setVisible(true);
             setId(row.id);
-            const { fieldType, label, indexed, fieldName } = row;
+            const { plugin, label, sourceLabel, args } = row;
             form.setFieldsValue({
-              fieldType,
+              plugin,
               label,
-              indexed: indexed ? true : false,
-              fieldName,
+              sourceLabel,
+              args,
             });
+            setPluginType(plugin);
           }}
           className="editBtnTable"
         >
@@ -112,6 +113,13 @@ export default (props: any) => {
     });
   };
 
+  const [sourceFields, setSourceFields] = useState([]);
+  const getSourceFields = () => {
+    get({ pageNo: 1, pageSize: 1000, modelId: params.id }).then(({ data }) => {
+      const { page } = data;
+      setSourceFields(page.list);
+    });
+  };
   // 插件数据列表
   const [pluginList, setPluginList] = useState([]);
   const getPluginsHook = () => {
@@ -123,7 +131,17 @@ export default (props: any) => {
   useEffect(() => {
     search();
     getPluginsHook();
+    getSourceFields();
   }, []);
+  const dateFormate = [
+    'yyyy',
+    'yyyy-mm',
+    'yyyy-mm-dd',
+    'yyyy/mm/dd',
+    'yyyy-mm-dd hh:mm:ss',
+  ];
+
+  const [pluginType, setPluginType] = useState('');
   return (
     <>
       <div className={styles.adminPrehandle}>
@@ -148,6 +166,7 @@ export default (props: any) => {
               setVisible(true);
               setId('');
               form.resetFields();
+              setPluginType('');
             }}
           >
             <PlusOutlined />
@@ -195,7 +214,6 @@ export default (props: any) => {
           form.validateFields().then((values) => {
             add({
               ...values,
-              indexed: values.indexed ? 1 : 0,
               modelId: params.id,
               id: id ? id : undefined,
             }).then(() => {
@@ -211,7 +229,7 @@ export default (props: any) => {
             <Row gutter={8} align="middle">
               <Col span={22}>
                 <Form.Item
-                  name="fieldType"
+                  name="plugin"
                   noStyle
                   rules={[
                     {
@@ -221,11 +239,19 @@ export default (props: any) => {
                   ]}
                   initialValue=""
                 >
-                  <Select size="large">
+                  <Select
+                    size="large"
+                    onChange={(e) => {
+                      setPluginType(e);
+                      form.setFieldsValue({
+                        args: '',
+                      });
+                    }}
+                  >
                     <Option value="">--请选择--</Option>
                     {pluginList.map((field: any) => (
-                      <Option value={field.key} key={field.key}>
-                        {field.desc}
+                      <Option value={field.method} key={field.key}>
+                        {field.name}
                       </Option>
                     ))}
                   </Select>
@@ -235,7 +261,7 @@ export default (props: any) => {
                 <Tooltip
                   placement="right"
                   title={
-                    '字段类型，目前有四种类型，分别为字符串（如"你好"，"abc"等），整数（其范围为 -2147483648 到 2147483647 之间），长整数（其范围为 -9223372036854775808 到 9223372036854775807 之间），浮点数（如 3.14'
+                    '插件种类，如 IP转换成地址（将IP地址转换成详细的实际地址），字段合并（将多个原始字段合并起来），字符串截短（例将手机号码截取部分进行筛选，如前七位0,7），等等'
                   }
                 >
                   <ExclamationCircleOutlined
@@ -249,11 +275,92 @@ export default (props: any) => {
               </Col>
             </Row>
           </Form.Item>
+          {pluginType === 'DATEFORMAT' && (
+            <Form.Item label={'日期时间格式化'} required>
+              <Row gutter={8} align="middle">
+                <Col span={22}>
+                  <Form.Item
+                    name="args"
+                    noStyle
+                    rules={[
+                      {
+                        required: true,
+                        message: '请选择日期格式',
+                      },
+                    ]}
+                    initialValue=""
+                  >
+                    <Select size="large">
+                      <Option value="">--请选择--</Option>
+                      {dateFormate.map((date: any) => (
+                        <Option value={date} key={date}>
+                          {date}
+                        </Option>
+                      ))}
+                    </Select>
+                  </Form.Item>
+                </Col>
+                <Col span={2}>
+                  {/* <Tooltip
+                    placement="right"
+                    title={
+                      '插件种类，如 IP转换成地址（将IP地址转换成详细的实际地址），字段合并（将多个原始字段合并起来），字符串截短（例将手机号码截取部分进行筛选，如前七位0,7），等等'
+                    }
+                  >
+                    <ExclamationCircleOutlined
+                      style={{
+                        fontSize: 20,
+                        color: '#6F7CAB',
+                        cursor: 'pointer',
+                      }}
+                    />
+                  </Tooltip> */}
+                </Col>
+              </Row>
+            </Form.Item>
+          )}
+          {pluginType === 'SUBSTRING' && (
+            <Form.Item label="字符串截短" required>
+              <Row gutter={8} align="middle">
+                <Col span={22}>
+                  <Form.Item
+                    name="args"
+                    noStyle
+                    rules={[
+                      {
+                        required: true,
+                        message: '请填写字符串截短',
+                      },
+                    ]}
+                    initialValue={0}
+                  >
+                    <Input size="large"></Input>
+                  </Form.Item>
+                </Col>
+                <Col span={2}>
+                  {/* <Tooltip
+                placement="right"
+                title={
+                  '插件种类，如 IP转换成地址（将IP地址转换成详细的实际地址），字段合并（将多个原始字段合并起来），字符串截短（例将手机号码截取部分进行筛选，如前七位0,7），等等'
+                }
+              >
+                <ExclamationCircleOutlined
+                  style={{
+                    fontSize: 20,
+                    color: '#6F7CAB',
+                    cursor: 'pointer',
+                  }}
+                />
+              </Tooltip> */}
+                </Col>
+              </Row>
+            </Form.Item>
+          )}
           <Form.Item label="目标字段名" required>
             <Row gutter={8} align="middle">
               <Col span={22}>
                 <Form.Item
-                  name="fieldName"
+                  name="label"
                   noStyle
                   rules={[
                     {
@@ -268,9 +375,7 @@ export default (props: any) => {
               <Col span={2}>
                 <Tooltip
                   placement="right"
-                  title={
-                    '位英文字母、数字、下划线的组合，以英文字母开头，如"deviceId"'
-                  }
+                  title={'字段显示名称，一般为中文，如"IP归属地"'}
                 >
                   <ExclamationCircleOutlined
                     style={{
@@ -283,17 +388,34 @@ export default (props: any) => {
               </Col>
             </Row>
           </Form.Item>
-          <Form.Item label="是否索引">
+          <Form.Item label="原始字段名" required>
             <Row gutter={8} align="middle">
-              <Col span={2}>
-                <Form.Item name="indexed" noStyle valuePropName="checked">
-                  <Checkbox></Checkbox>
+              <Col span={22}>
+                <Form.Item
+                  name="sourceField"
+                  noStyle
+                  rules={[
+                    {
+                      required: true,
+                      message: '请选择原始字段名',
+                    },
+                  ]}
+                  initialValue=""
+                >
+                  <Select size="large">
+                    <Option value="">--请选择--</Option>
+                    {sourceFields.map((field: any) => (
+                      <Option value={field.id} key={field.id}>
+                        {field.sourceLabel}
+                      </Option>
+                    ))}
+                  </Select>
                 </Form.Item>
               </Col>
               <Col span={2}>
                 <Tooltip
                   placement="right"
-                  title={'如果勾选，则为该字段创建索引'}
+                  title={'原始字段名，均为自己定义的字段名'}
                 >
                   <ExclamationCircleOutlined
                     style={{

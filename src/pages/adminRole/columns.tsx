@@ -5,7 +5,11 @@ const createColumns = (element: any) => {
       dataIndex: 'id',
     },
     {
-      title: '年龄',
+      title: '角色名',
+      dataIndex: 'age',
+    },
+    {
+      title: '描述',
       dataIndex: 'age',
     },
     {

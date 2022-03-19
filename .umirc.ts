@@ -85,7 +85,7 @@ export default defineConfig({
           ],
         },
         {
-          path: '/role',
+          path: '/admin/role',
           name: 'role',
           component: '@/pages/adminRole/index',
           wrappers: ['@/wrappers/auth'],

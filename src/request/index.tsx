@@ -1,7 +1,7 @@
 import axios from 'axios';
+import { message } from 'antd';
 axios.interceptors.request.use((config) => {
   config.headers['x-auth-token'] = window.localStorage.getItem('token');
-  console.log(config, 'configHeader ');
   return config;
 });
 axios.interceptors.response.use(
@@ -11,6 +11,10 @@ axios.interceptors.response.use(
       if (data.success || response.config.responseType === 'blob') {
         return data;
       } else {
+        message.error(data.msg);
+        if (data.code === '603') {
+          window.localStorage.setItem('token', '');
+        }
         return Promise.reject(data);
       }
     }
