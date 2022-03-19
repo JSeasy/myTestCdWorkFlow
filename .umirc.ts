@@ -7,7 +7,6 @@ export default defineConfig({
   mock: false,
   routes: [
     {
-      exact: true,
       path: '/login',
       component: '@/pages/login/index',
       wrappers: ['@/wrappers/auth'],
@@ -18,6 +17,10 @@ export default defineConfig({
       component: '@/pages/layout/index',
       wrappers: ['@/wrappers/auth'],
       routes: [
+        {
+          path: '/',
+          redirect: '/product',
+        },
         {
           path: '/match',
           name: 'match',
@@ -50,9 +53,14 @@ export default defineConfig({
           component: '@/pages/adminProduct/index',
           wrappers: ['@/wrappers/auth'],
         },
+        {
+          path: '/role',
+          name: 'role',
+          component: '@/pages/adminRole/index',
+          wrappers: ['@/wrappers/auth'],
+        },
       ],
     },
-
     { path: '*', component: '@/pages/403/index' },
   ],
   theme: {},
