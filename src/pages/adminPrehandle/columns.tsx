@@ -5,21 +5,20 @@ const createColumns = (element: any) => {
       dataIndex: 'id',
     },
     {
-      title: '字段名称',
-      dataIndex: 'fieldName',
-    },
-    {
-      title: '显示名称',
+      title: '字段名',
       dataIndex: 'label',
     },
     {
-      title: '字段类型',
-      dataIndex: 'fieldType',
+      title: '来源字段名',
+      dataIndex: 'sourceLabel',
     },
     {
-      title: '是否索引',
-      dataIndex: 'indexed',
-      render: (col: any) => <>{col ? '是' : '否'}</>,
+      title: '插件',
+      dataIndex: 'plugin',
+    },
+    {
+      title: '插件参数(可选)',
+      dataIndex: 'args',
     },
     {
       title: '操作',

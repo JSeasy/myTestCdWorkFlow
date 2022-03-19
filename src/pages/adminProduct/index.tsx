@@ -16,6 +16,7 @@ import {
 } from '@ant-design/icons';
 import Add_Edit_Copy from './add&edit/index';
 export default (props: any) => {
+  const history = useHistory();
   // 表单实例
   const [form] = Form.useForm();
 
@@ -189,7 +190,7 @@ export default (props: any) => {
           onRow={(row: any) => {
             return {
               onDoubleClick: () => {
-                console.log(row.id);
+                history.push('/product/' + row.id);
               },
             };
           }}

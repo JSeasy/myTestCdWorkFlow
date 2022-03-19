@@ -70,6 +70,12 @@ export default defineConfig({
               component: '@/pages/adminFields/index',
               wrappers: ['@/wrappers/auth'],
             },
+            {
+              path: '/product/:id/prehandle',
+              name: 'prehandle',
+              component: '@/pages/adminPrehandle/index',
+              wrappers: ['@/wrappers/auth'],
+            },
           ],
         },
         {

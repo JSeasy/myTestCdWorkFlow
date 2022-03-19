@@ -6,7 +6,7 @@ const createColumns = (action: any, view: any) => {
     },
     {
       title: '模型名',
-      dataIndex: 'label',
+      dataIndex: 'modelName',
     },
     {
       title: '实体名',
