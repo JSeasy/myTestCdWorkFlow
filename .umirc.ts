@@ -4,7 +4,9 @@ export default defineConfig({
   nodeModulesTransform: {
     type: 'none',
   },
-  dynamicImport: {},
+  dynamicImport: {
+    loading: '@/components/loading/index',
+  },
   mock: false,
   routes: [
     {

@@ -53,12 +53,12 @@ export default (props: any) => {
           onClick={() => {
             setVisible(true);
             setId(row.id);
-            const { fieldType, label, indexed, fieldName } = row;
+            const { comment, label, status, listType } = row;
             form.setFieldsValue({
-              fieldType,
+              comment,
               label,
-              indexed: indexed ? true : false,
-              fieldName,
+              status,
+              listType,
             });
           }}
           className="editBtnTable"
@@ -288,8 +288,8 @@ export default (props: any) => {
                 <Col span={22}>
                   <Form.Item name="status" noStyle>
                     <Select size="large">
-                      <Select.Option value="BLACK">正常</Select.Option>
-                      <Select.Option value="WHITE">异常</Select.Option>
+                      <Select.Option value={1}>正常</Select.Option>
+                      <Select.Option value={0}>异常</Select.Option>
                     </Select>
                   </Form.Item>
                 </Col>
