@@ -4,6 +4,7 @@ export default defineConfig({
   nodeModulesTransform: {
     type: 'none',
   },
+  dynamicImport: {},
   mock: false,
   routes: [
     {

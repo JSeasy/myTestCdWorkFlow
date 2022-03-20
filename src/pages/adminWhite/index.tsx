@@ -4,17 +4,7 @@ import Table from '@/components/table';
 import { useEffect, useState } from 'react';
 import createColumns from './columns';
 import { useHistory, useParams } from 'umi';
-import {
-  Modal,
-  Form,
-  Input,
-  Button,
-  Row,
-  Col,
-  Tooltip,
-  Select,
-  Checkbox,
-} from 'antd';
+import { Modal, Form, Input, Button, Row, Col, Tooltip, Select } from 'antd';
 import {
   FormOutlined,
   DeleteOutlined,
@@ -198,7 +188,6 @@ export default (props: any) => {
           form.validateFields().then((values) => {
             add({
               ...values,
-              indexed: values.indexed ? 1 : 0,
               modelId: params.id,
               id: id ? id : undefined,
             }).then(() => {
@@ -209,12 +198,12 @@ export default (props: any) => {
         }}
         onCancel={() => setVisible(false)}
       >
-        {/* <Form form={form} {...layout} colon>
-          <Form.Item label="字段名" required>
+        <Form form={form} {...layout} colon>
+          <Form.Item label="列表名" required>
             <Row gutter={8} align="middle">
               <Col span={22}>
                 <Form.Item
-                  name="fieldName"
+                  name="label"
                   noStyle
                   rules={[
                     {
@@ -229,9 +218,7 @@ export default (props: any) => {
               <Col span={2}>
                 <Tooltip
                   placement="right"
-                  title={
-                    '位英文字母、数字、下划线的组合，以英文字母开头，如"deviceId"'
-                  }
+                  title={'列表显示名称，一般为中文，如注册手机黑名单'}
                 >
                   <ExclamationCircleOutlined
                     style={{
@@ -244,24 +231,15 @@ export default (props: any) => {
               </Col>
             </Row>
           </Form.Item>
-          <Form.Item label="显示名称" required>
+          <Form.Item label="备注">
             <Row gutter={8} align="middle">
               <Col span={22}>
-                <Form.Item
-                  name="label"
-                  noStyle
-                  rules={[
-                    {
-                      required: true,
-                      message: '请输入显示名称',
-                    },
-                  ]}
-                >
-                  <Input size="large" placeholder="请输入显示名称" />
+                <Form.Item name="comment" noStyle>
+                  <Input.TextArea size="large" placeholder="请输入备注" />
                 </Form.Item>
               </Col>
               <Col span={2}>
-                <Tooltip
+                {/* <Tooltip
                   placement="right"
                   title={'字段显示名称，一般为中文，如"设备ID"'}
                 >
@@ -272,35 +250,22 @@ export default (props: any) => {
                       cursor: 'pointer',
                     }}
                   />
-                </Tooltip>
+                </Tooltip> */}
               </Col>
             </Row>
           </Form.Item>
-          <Form.Item label="字段类型" required>
+          <Form.Item label="名单类型" required>
             <Row gutter={8} align="middle">
               <Col span={22}>
-                <Form.Item
-                  name="fieldType"
-                  noStyle
-                  rules={[
-                    {
-                      required: true,
-                      message: '请选择字段类型',
-                    },
-                  ]}
-                  initialValue="STRING"
-                >
+                <Form.Item name="listType" noStyle initialValue="WHITE">
                   <Select size="large">
-                    {fieldType.map((field: any) => (
-                      <Option value={field.name} key={field.name}>
-                        {field.desc}
-                      </Option>
-                    ))}
+                    <Select.Option value="BLACK">黑名单</Select.Option>
+                    <Select.Option value="WHITE">白名单</Select.Option>
                   </Select>
                 </Form.Item>
               </Col>
               <Col span={2}>
-                <Tooltip
+                {/* <Tooltip
                   placement="right"
                   title={
                     '字段类型，目前有四种类型，分别为字符串（如"你好"，"abc"等），整数（其范围为 -2147483648 到 2147483647 之间），长整数（其范围为 -9223372036854775808 到 9223372036854775807 之间），浮点数（如 3.14'
@@ -313,34 +278,39 @@ export default (props: any) => {
                       cursor: 'pointer',
                     }}
                   />
-                </Tooltip>
+                </Tooltip> */}
               </Col>
             </Row>
           </Form.Item>
-          <Form.Item label="是否索引">
-            <Row gutter={8} align="middle">
-              <Col span={2}>
-                <Form.Item name="indexed" noStyle valuePropName="checked">
-                  <Checkbox></Checkbox>
-                </Form.Item>
-              </Col>
-              <Col span={2}>
-                <Tooltip
-                  placement="right"
-                  title={'如果勾选，则为该字段创建索引'}
-                >
-                  <ExclamationCircleOutlined
-                    style={{
-                      fontSize: 20,
-                      color: '#6F7CAB',
-                      cursor: 'pointer',
-                    }}
-                  />
-                </Tooltip>
-              </Col>
-            </Row>
-          </Form.Item>
-        </Form> */}
+          {id && (
+            <Form.Item label="状态">
+              <Row gutter={8} align="middle">
+                <Col span={22}>
+                  <Form.Item name="status" noStyle>
+                    <Select size="large">
+                      <Select.Option value="BLACK">正常</Select.Option>
+                      <Select.Option value="WHITE">异常</Select.Option>
+                    </Select>
+                  </Form.Item>
+                </Col>
+                <Col span={2}>
+                  {/* <Tooltip
+                    placement="right"
+                    title={'如果勾选，则为该字段创建索引'}
+                  >
+                    <ExclamationCircleOutlined
+                      style={{
+                        fontSize: 20,
+                        color: '#6F7CAB',
+                        cursor: 'pointer',
+                      }}
+                    />
+                  </Tooltip> */}
+                </Col>
+              </Row>
+            </Form.Item>
+          )}
+        </Form>
       </Modal>
     </>
   );
