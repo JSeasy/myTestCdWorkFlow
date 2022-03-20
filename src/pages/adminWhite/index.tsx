@@ -13,7 +13,7 @@ import {
   DiffOutlined,
 } from '@ant-design/icons';
 import { get, del, add } from '@/api/white';
-
+import DynamicForm from './components/dynamicForm/index';
 const layout = {
   labelCol: { span: 6 },
   wrapperCol: { span: 16, offset: 2 },
@@ -43,6 +43,8 @@ export default (props: any) => {
 
   const [form] = Form.useForm();
 
+  const [adminVisible, setAdminVisible] = useState(false);
+
   const Action = (props: any) => {
     const history = useHistory();
     const { row, col } = props;
@@ -70,7 +72,7 @@ export default (props: any) => {
           type="link"
           onClick={() => {
             setId(row.id);
-            setDelVisible(true);
+            setAdminVisible(true);
           }}
           className="editBtnTable"
         >
@@ -312,6 +314,15 @@ export default (props: any) => {
           )}
         </Form>
       </Modal>
+
+      <DynamicForm
+        id={id}
+        visible={adminVisible}
+        onCancel={() => setAdminVisible(false)}
+        onOk={() => {
+          setAdminVisible(false);
+        }}
+      />
     </>
   );
 };

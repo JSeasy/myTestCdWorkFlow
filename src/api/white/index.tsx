@@ -26,3 +26,21 @@ export const add = (data: any) => {
     data,
   });
 };
+
+// 获取单行
+export const getRow = (id: any) => {
+  return request({
+    url: '/services/v1/datalistmeta/list/' + id,
+    method: 'GET',
+  });
+};
+
+// 保存
+
+export const save = (data: any) => {
+  return request({
+    url: '/services/v1/datalistmeta',
+    method: 'PUT',
+    data,
+  });
+};
