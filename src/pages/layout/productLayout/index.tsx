@@ -1,11 +1,22 @@
 import { Tabs } from 'antd';
+import { useMemo } from 'react';
 import { useHistory, useParams } from 'umi';
 const { TabPane } = Tabs;
 export default (props: any) => {
   const history = useHistory();
+  // const params = useMemo(() => {
+  //   console.log('emo');
+  //   return useParams();
+  // }, []);
   const params = useParams();
+
+  const memo = useMemo(() => {
+    console.log(',emo');
+    return () => params.id;
+  }, []);
+
   const onchange = (target: string) => {
-    history.replace('/product/' + params.id + '/' + target);
+    history.replace('/product/' + memo() + '/' + target);
   };
   return (
     <>
