@@ -17,12 +17,24 @@ export default (props: any) => {
   useEffect(() => {
     props.visible &&
       getRow(id).then(({ data }) => {
+        form.resetFields();
         setFormInfo(data.list);
       });
   }, [props.visible]);
+  const handleForm = (values: any): any => {
+    const arr: any = [];
+    Object.entries(values).map((item) => {
+      arr.push({
+        dataListId: id,
+        label: item[1],
+        fieldName: item[0],
+      });
+    });
+    return arr;
+  };
   const onOk = () => {
     form.validateFields().then((values: any) => {
-      save(values).then(() => {
+      save(handleForm(values)).then(() => {
         props.onOk();
       });
     });
@@ -43,12 +55,13 @@ export default (props: any) => {
       <Form form={form} {...layout} colon>
         {formInfo.map((item: any) => {
           return (
-            <Form.Item label={item.label} required key={item.id}>
+            <Form.Item label="字段名" required key={item.id}>
               <Row gutter={8} align="middle">
                 <Col span={22}>
                   <Form.Item
                     name={item.fieldName}
                     noStyle
+                    initialValue={item.label}
                     rules={[
                       {
                         required: true,

@@ -82,6 +82,21 @@ export default (props: any) => {
         <Button
           type="link"
           onClick={() => {
+            history.push({
+              pathname: '/product/' + row.id + '/whiteDetail',
+              state: {
+                title: row.label,
+              },
+            });
+          }}
+          className="editBtnTable"
+        >
+          <DiffOutlined />
+          管理内容
+        </Button>
+        <Button
+          type="link"
+          onClick={() => {
             setId(row.id);
             setDelVisible(true);
           }}
