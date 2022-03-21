@@ -92,6 +92,12 @@ export default defineConfig({
               component: '@/pages/adminWhiteDetail/index',
               wrappers: ['@/wrappers/auth'],
             },
+            {
+              path: '/product/:id/abstract',
+              name: 'abstract',
+              component: '@/pages/adminAbstract/index',
+              wrappers: ['@/wrappers/auth'],
+            },
           ],
         },
         {
