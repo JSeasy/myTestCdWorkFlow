@@ -1,7 +1,7 @@
 import styles from './index.less';
 import Search from '@/components/searchInput';
 import Table from '@/components/table';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import createColumns from './columns';
 import { useHistory, useParams } from 'umi';
 import { Modal, Form, Input, Button, Row, Col, Tooltip, Select } from 'antd';
@@ -12,6 +12,7 @@ import {
   ExclamationCircleOutlined,
   DiffOutlined,
 } from '@ant-design/icons';
+import DynamicFilterCondition from './dynamicFilterCondition/index';
 import { getPrehandleFields, del, get, save } from '@/api/abstract';
 const layout = {
   labelCol: { span: 6 },
@@ -131,6 +132,7 @@ export default (props: any) => {
   };
 
   const renderGroupSelectEl = renderGroupSelect(prehandleFields);
+  const ref: any = useRef();
   useEffect(() => {
     search();
     getPrehandleFieldsHook();
@@ -203,18 +205,22 @@ export default (props: any) => {
         title={id ? '编辑字段' : '新增字段'}
         width={560}
         onOk={() => {
+          const ruleDefinition = ref.current.getRuleDefinition() || '';
+          console.log(ruleDefinition);
+          console.log(ref);
           form.validateFields().then((values) => {
-            // save({
-            //   ...values,
-            //   modelId: params.id,
-            //   id: id ? id : undefined,
-            // }).then(() => {
-            //   setVisible(false);
-            //   search();
-            // });
-            console.log(values);
+            save({
+              ...values,
+              ruleDefinition,
+              modelId: params.id,
+              id: id ? id : undefined,
+            }).then(() => {
+              setVisible(false);
+              search();
+            });
           });
         }}
+        destroyOnClose
         onCancel={() => setVisible(false)}
       >
         <Form form={form} {...layout} colon>
@@ -385,6 +391,14 @@ export default (props: any) => {
             </Row>
           </Form.Item>
         </Form>
+        <div className="filterCondition">
+          <p className="title">过滤条件</p>
+          <DynamicFilterCondition
+            renderGroupSelectEl={renderGroupSelectEl}
+            prehandleFields={prehandleFields}
+            ref={ref}
+          />
+        </div>
       </Modal>
     </>
   );
