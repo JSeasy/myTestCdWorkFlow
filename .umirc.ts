@@ -98,6 +98,12 @@ export default defineConfig({
               component: '@/pages/adminAbstract/index',
               wrappers: ['@/wrappers/auth'],
             },
+            {
+              path: '/product/:id/strategy',
+              name: 'strategy',
+              component: '@/pages/adminStrategy/index',
+              wrappers: ['@/wrappers/auth'],
+            },
           ],
         },
         {
