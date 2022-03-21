@@ -118,7 +118,7 @@ export default (props: any) => {
             item.children.map((child: any) => {
               return (
                 <Select.Option
-                  value={item.value + child.value}
+                  value={item.value + '.' + child.value}
                   key={child.value}
                 >
                   {child.label}
@@ -130,6 +130,7 @@ export default (props: any) => {
     });
   };
 
+  const renderGroupSelectEl = renderGroupSelect(prehandleFields);
   useEffect(() => {
     search();
     getPrehandleFieldsHook();
@@ -249,13 +250,28 @@ export default (props: any) => {
               </Col>
             </Row>
           </Form.Item>
-          <Form.Item label="聚合条件">
+          <Form.Item label="聚合条件" required>
             <Row gutter={8} align="middle">
               <Col span={22}>
-                <Form.Item name="comment" noStyle initialValue="">
+                <Form.Item
+                  name="aggregateType"
+                  noStyle
+                  initialValue=""
+                  rules={[
+                    {
+                      required: true,
+                      message: '请选择聚合条件',
+                    },
+                  ]}
+                >
                   <Select size="large">
                     <Select.Option value="">--请选择--</Select.Option>
-                    {renderGroupSelect(prehandleFields)}
+                    <Select.Option value="1">求总数</Select.Option>
+                    <Select.Option value="2">求不同项总数</Select.Option>
+                    <Select.Option value="3">求和</Select.Option>
+                    <Select.Option value="4">求平均值</Select.Option>
+                    <Select.Option value="5">求最大值</Select.Option>
+                    <Select.Option value="6">求最小值</Select.Option>
                   </Select>
                 </Form.Item>
               </Col>
@@ -265,10 +281,20 @@ export default (props: any) => {
           <Form.Item label="搜索字段" required>
             <Row gutter={8} align="middle">
               <Col span={22}>
-                <Form.Item name="searchField" noStyle initialValue="">
+                <Form.Item
+                  name="searchField"
+                  noStyle
+                  initialValue=""
+                  rules={[
+                    {
+                      required: true,
+                      message: '请输入搜索字段',
+                    },
+                  ]}
+                >
                   <Select size="large">
                     <Select.Option value="">--请选择--</Select.Option>
-                    {renderGroupSelect(prehandleFields)}
+                    {renderGroupSelectEl}
                   </Select>
                 </Form.Item>
               </Col>
@@ -296,7 +322,7 @@ export default (props: any) => {
                 <Form.Item name="functionField" noStyle initialValue="">
                   <Select size="large">
                     <Select.Option value="">--请选择--</Select.Option>
-                    {renderGroupSelect(prehandleFields)}
+                    {renderGroupSelectEl}
                   </Select>
                 </Form.Item>
               </Col>
@@ -321,7 +347,16 @@ export default (props: any) => {
           <Form.Item label="时间片" required>
             <Row gutter={8} align="middle">
               <Col span={12}>
-                <Form.Item name="searchIntervalValue" noStyle>
+                <Form.Item
+                  name="searchIntervalValue"
+                  noStyle
+                  rules={[
+                    {
+                      required: true,
+                      message: '请输入时间切片',
+                    },
+                  ]}
+                >
                   <Input size="large" placeholder="请输入时间片"></Input>
                 </Form.Item>
               </Col>
