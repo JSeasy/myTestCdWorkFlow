@@ -44,6 +44,8 @@ export default (props: any) => {
 
   const [form] = Form.useForm();
 
+  const [ruleDefinitionEdit, setRuleDefinitionEdit] = useState([]);
+
   const Action = (props: any) => {
     const history = useHistory();
     const { row, col } = props;
@@ -54,13 +56,26 @@ export default (props: any) => {
           onClick={() => {
             setVisible(true);
             setId(row.id);
-            const { comment, label, status, listType } = row;
+            const {
+              comment,
+              label,
+              aggregateType,
+              searchField,
+              functionField,
+              searchIntervalValue,
+              searchIntervalType,
+              ruleDefinition,
+            } = row;
             form.setFieldsValue({
               comment,
               label,
-              status,
-              listType,
+              aggregateType,
+              searchField,
+              functionField,
+              searchIntervalValue,
+              searchIntervalType,
             });
+            setRuleDefinitionEdit(ruleDefinition);
           }}
           className="editBtnTable"
         >
@@ -161,6 +176,7 @@ export default (props: any) => {
               setVisible(true);
               setId('');
               form.resetFields();
+              setRuleDefinitionEdit([]);
             }}
           >
             <PlusOutlined />
@@ -397,6 +413,7 @@ export default (props: any) => {
             renderGroupSelectEl={renderGroupSelectEl}
             prehandleFields={prehandleFields}
             ref={ref}
+            ruleDefinitionEdit={ruleDefinitionEdit}
           />
         </div>
       </Modal>

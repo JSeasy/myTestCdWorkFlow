@@ -2,7 +2,7 @@ import { Select, Button, Input } from 'antd';
 import styles from './index.less';
 import { PlusOutlined } from '@ant-design/icons';
 import { useImmer } from 'use-immer';
-import { forwardRef, useImperativeHandle } from 'react';
+import { forwardRef, useEffect, useImperativeHandle } from 'react';
 const selectOption = [
   {
     name: '以...开始',
@@ -107,7 +107,7 @@ const selectOption = [
 ];
 
 export default forwardRef((props: any, ref: any) => {
-  const { renderGroupSelectEl, prehandleFields } = props;
+  const { renderGroupSelectEl, prehandleFields, ruleDefinitionEdit } = props;
 
   const renderSelectOption = (selectOption: any) => {
     return (
@@ -156,6 +156,10 @@ export default forwardRef((props: any, ref: any) => {
       conditions: [simpleCondition],
     },
   ]);
+  useEffect(() => {
+    console.log(123);
+    ruleDefinitionEdit.length && updateRuleDefinition(ruleDefinitionEdit);
+  }, []);
 
   useImperativeHandle(ref, () => ({
     getRuleDefinition: () => ruleDefinition,
