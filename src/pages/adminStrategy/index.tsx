@@ -150,7 +150,12 @@ export default (props: any) => {
           onRow={(row: any) => {
             return {
               onDoubleClick: () => {
-                history.push('/product/' + row.id + '/rules');
+                history.push({
+                  pathname: '/product/' + row.id + '/rules',
+                  state: {
+                    id: params.id,
+                  },
+                });
               },
             };
           }}

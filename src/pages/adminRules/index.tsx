@@ -33,6 +33,7 @@ const layout = {
 const { Option } = Select;
 
 export default (props: any) => {
+  const { state } = props.location;
   const history = useHistory();
   const params = useParams();
   const [searchCondition, setSearchCondition] = useState({
@@ -144,7 +145,7 @@ export default (props: any) => {
     });
   };
   useEffect(() => {
-    getFields(params.id).then(({ data }) => {
+    getFields(state.id).then(({ data }) => {
       setFields(data.list);
     });
     search();
@@ -446,12 +447,12 @@ export default (props: any) => {
             </Row>
           </Form.Item>
         </Form>
-        <DynamicFilterCondition
+        {/* <DynamicFilterCondition
         // renderGroupSelectEl={renderGroupSelectEl}
         // prehandleFields={prehandleFields}
         // ref={ref}
         // ruleDefinitionEdit={ruleDefinitionEdit}
-        />
+        /> */}
       </Modal>
     </>
   );
