@@ -14,6 +14,7 @@ axios.interceptors.response.use(
         message.error(data.msg);
         if (data.code === '603') {
           window.localStorage.setItem('token', '');
+          window.location.reload();
         }
         return Promise.reject(data);
       }
