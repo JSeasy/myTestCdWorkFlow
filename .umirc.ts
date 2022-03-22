@@ -4,7 +4,6 @@ export default defineConfig({
   nodeModulesTransform: {
     type: 'none',
   },
-  mfsu: {},
   dynamicImport: {
     loading: '@/components/loading/index',
   },
@@ -13,6 +12,11 @@ export default defineConfig({
     {
       path: '/login',
       component: '@/pages/login/index',
+      wrappers: ['@/wrappers/auth'],
+    },
+    {
+      path: '/user/login',
+      component: '@/pages/userLogin/index',
       wrappers: ['@/wrappers/auth'],
     },
     {

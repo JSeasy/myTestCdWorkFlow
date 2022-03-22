@@ -25,7 +25,7 @@ export default (props: any) => {
   const params = useParams();
   const [searchCondition, setSearchCondition] = useState({
     name: '',
-    modelId: params.id,
+    activationId: params.id,
   });
   const [pageInfo, setPageInfo] = useState({
     current: 1,

@@ -4,14 +4,10 @@ import { useHistory, useParams } from 'umi';
 const { TabPane } = Tabs;
 export default (props: any) => {
   const history = useHistory();
-  // const params = useMemo(() => {
-  //   console.log('emo');
-  //   return useParams();
-  // }, []);
+
   const params = useParams();
 
   const memo = useMemo(() => {
-    console.log(',emo');
     return () => params.id;
   }, []);
 
@@ -20,7 +16,7 @@ export default (props: any) => {
   };
   return (
     <>
-      <Tabs defaultActiveKey="1" onChange={onchange}>
+      <Tabs defaultActiveKey="fields" onChange={onchange}>
         <TabPane tab="字段管理" key="fields"></TabPane>
         <TabPane tab="预处理管理" key="prehandle"></TabPane>
         <TabPane tab="黑/白名单管理" key="white"></TabPane>
