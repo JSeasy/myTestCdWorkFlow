@@ -157,7 +157,6 @@ export default forwardRef((props: any, ref: any) => {
     },
   ]);
   useEffect(() => {
-    console.log(123);
     ruleDefinitionEdit.length && updateRuleDefinition(ruleDefinitionEdit);
   }, []);
 
