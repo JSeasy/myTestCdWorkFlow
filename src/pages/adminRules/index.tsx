@@ -12,7 +12,7 @@ import {
   ExclamationCircleOutlined,
   DiffOutlined,
 } from '@ant-design/icons';
-import { get, del, save } from '@/api/rules';
+import { get, del, save, getFields } from '@/api/rules';
 const layout = {
   labelCol: { span: 6 },
   wrapperCol: { span: 16, offset: 2 },
@@ -102,8 +102,11 @@ export default (props: any) => {
       });
     });
   };
-
+  const [fields, setFields] = useState([]);
   useEffect(() => {
+    getFields().then(({ data }) => {
+      console.log(data);
+    });
     search();
   }, []);
   return (
@@ -288,25 +291,16 @@ export default (props: any) => {
               </Col>
             </Row>
           </Form.Item>
-          <Form.Item label="操作符" required>
+          <Form.Item label="操作符">
             <Row gutter={8} align="middle">
               <Col span={22}>
-                <Form.Item
-                  name="high"
-                  noStyle
-                  rules={[
-                    {
-                      required: true,
-                      message: '请输入拒绝值',
-                    },
-                  ]}
-                >
+                <Form.Item name="high" noStyle>
                   <Select size="large">
-                    <Select.Option value="">--请选择--</Select.Option>
-                    <Select.Option>加</Select.Option>
-                    <Select.Option>减</Select.Option>
-                    <Select.Option>乘</Select.Option>
-                    <Select.Option>除</Select.Option>
+                    <Select.Option value="NONE">无</Select.Option>
+                    <Select.Option vlaue="ADD">加</Select.Option>
+                    <Select.Option value="DEC">减</Select.Option>
+                    <Select.Option value="MUL">乘</Select.Option>
+                    <Select.Option value="DIV">除</Select.Option>
                   </Select>
                 </Form.Item>
               </Col>
@@ -328,20 +322,13 @@ export default (props: any) => {
               </Col>
             </Row>
           </Form.Item>
-          <Form.Item label="指标字段" required>
+          <Form.Item label="指标字段">
             <Row gutter={8} align="middle">
               <Col span={22}>
-                <Form.Item
-                  name="high"
-                  noStyle
-                  rules={[
-                    {
-                      required: true,
-                      message: '请输入拒绝值',
-                    },
-                  ]}
-                >
-                  <Input size="large" placeholder="请输入拒绝值"></Input>
+                <Form.Item name="high" noStyle>
+                  <Select>
+                    <Select.Option></Select.Option>
+                  </Select>
                 </Form.Item>
               </Col>
               <Col span={2}>

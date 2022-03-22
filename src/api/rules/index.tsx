@@ -26,3 +26,11 @@ export const del = (data: any) => {
     data,
   });
 };
+
+// 获取指标字段
+export const getFields = () => {
+  return request({
+    url: '/services/v1/activation/feature/columns',
+    method: 'GET',
+  });
+};
