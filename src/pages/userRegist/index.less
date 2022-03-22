@@ -1,6 +1,11 @@
 .regist {
   width: 1200px;
   margin: 0 auto;
+  .color {
+    color: #fc896c;
+    text-decoration: underline;
+    cursor: pointer;
+  }
   .title {
     padding: 0 225px;
     display: flex;
@@ -36,6 +41,58 @@
       border: 1px dashed #9d99c6;
       flex: 1;
       margin-top: 45px;
+    }
+  }
+  .content {
+    width: 1200px;
+    margin-top: 40px;
+    border-radius: 20px 20px 20px 20px;
+    box-shadow: 0px 8px 40px 1px rgba(220, 210, 232, 0.8);
+    height: 700px;
+    padding: 60px 110px;
+    .border {
+      width: 40px;
+      height: 6px;
+      background: #fc896c;
+      border-radius: 0px 0px 0px 0px;
+      margin-bottom: 12px;
+    }
+
+    :global {
+      h1 {
+        color: #2b265b;
+        font-size: 20px;
+        font-weight: bolder;
+        margin-bottom: 12px;
+      }
+      h2 {
+        font-size: 16px;
+        color: #2b265b;
+        font-weight: bolder;
+        margin: 12px 0;
+      }
+      p {
+        font-size: 16px;
+        color: #646093;
+        line-height: 20px;
+      }
+      .ant-btn {
+        height: 50px;
+        background: #fc896c;
+        border-color: #fc896c;
+        color: #fff;
+        width: 422px;
+      }
+      .ant-btn-primary:hover,
+      .ant-btn-primary:focus {
+        color: #fff;
+        background: #fc896c;
+        border-color: #fc896c;
+      }
+      .ant-checkbox-checked .ant-checkbox-inner {
+        background-color: #fc896c;
+        border-color: #fc896c;
+      }
     }
   }
 }

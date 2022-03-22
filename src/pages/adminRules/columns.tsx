@@ -5,20 +5,8 @@ const createColumns = (element: any) => {
       dataIndex: 'id',
     },
     {
-      title: '策略名',
+      title: '规则',
       dataIndex: 'label',
-    },
-    {
-      title: '备注',
-      dataIndex: 'comment',
-    },
-    {
-      title: '警戒值',
-      dataIndex: 'median',
-    },
-    {
-      title: '拒绝值',
-      dataIndex: 'high',
     },
 
     {

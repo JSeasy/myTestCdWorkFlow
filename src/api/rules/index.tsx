@@ -28,9 +28,9 @@ export const del = (data: any) => {
 };
 
 // 获取指标字段
-export const getFields = () => {
+export const getFields = (id: any) => {
   return request({
-    url: '/services/v1/activation/feature/columns',
+    url: '/services/v1/activation/feature/columns/' + id,
     method: 'GET',
   });
 };

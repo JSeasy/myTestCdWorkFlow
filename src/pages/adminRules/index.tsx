@@ -4,7 +4,17 @@ import Table from '@/components/table';
 import { useEffect, useState } from 'react';
 import createColumns from './columns';
 import { useHistory, useParams } from 'umi';
-import { Modal, Form, Input, Button, Row, Col, Tooltip, Select } from 'antd';
+import {
+  Modal,
+  Form,
+  Input,
+  Button,
+  Row,
+  Col,
+  Tooltip,
+  Select,
+  InputNumber,
+} from 'antd';
 import {
   FormOutlined,
   DeleteOutlined,
@@ -13,6 +23,8 @@ import {
   DiffOutlined,
 } from '@ant-design/icons';
 import { get, del, save, getFields } from '@/api/rules';
+import DynamicFilterCondition from '../adminAbstract/dynamicFilterCondition/index';
+
 const layout = {
   labelCol: { span: 6 },
   wrapperCol: { span: 16, offset: 2 },
@@ -52,12 +64,21 @@ export default (props: any) => {
           onClick={() => {
             setVisible(true);
             setId(row.id);
-            const { comment, label, high, median } = row;
-            form.setFieldsValue({
-              comment,
+            const {
+              operator,
               label,
-              high,
-              median,
+              initScore,
+              baseNum,
+              abstractionName,
+              rate,
+            } = row;
+            form.setFieldsValue({
+              operator,
+              label,
+              initScore,
+              baseNum,
+              abstractionName,
+              rate,
             });
           }}
           className="editBtnTable"
@@ -103,9 +124,28 @@ export default (props: any) => {
     });
   };
   const [fields, setFields] = useState([]);
+  const renderGroupSelect = (fields: any) => {
+    return fields.map((item: any) => {
+      return (
+        <Select.OptGroup label={item.label} key={item.value}>
+          {item.children &&
+            item.children.map((child: any) => {
+              return (
+                <Select.Option
+                  value={item.value + '.' + child.value}
+                  key={child.value}
+                >
+                  {child.label}
+                </Select.Option>
+              );
+            })}
+        </Select.OptGroup>
+      );
+    });
+  };
   useEffect(() => {
-    getFields().then(({ data }) => {
-      console.log(data);
+    getFields(params.id).then(({ data }) => {
+      setFields(data.list);
     });
     search();
   }, []);
@@ -191,7 +231,7 @@ export default (props: any) => {
           form.validateFields().then((values) => {
             save({
               ...values,
-              modelId: params.id,
+              activationId: params.id,
               id: id ? id : undefined,
             }).then(() => {
               setVisible(false);
@@ -211,11 +251,11 @@ export default (props: any) => {
                   rules={[
                     {
                       required: true,
-                      message: '请输入策略名',
+                      message: '请输入显示名称',
                     },
                   ]}
                 >
-                  <Input size="large" placeholder="请输入策略名" />
+                  <Input size="large" placeholder="请输入显示名称" />
                 </Form.Item>
               </Col>
               <Col span={2}>
@@ -236,11 +276,24 @@ export default (props: any) => {
               </Col>
             </Row>
           </Form.Item>
-          <Form.Item label="命中初始得分">
+          <Form.Item label="命中初始得分" required>
             <Row gutter={8} align="middle">
               <Col span={22}>
-                <Form.Item name="comment" noStyle>
-                  <Input.TextArea size="large" placeholder="请输入备注" />
+                <Form.Item
+                  name="initScore"
+                  noStyle
+                  rules={[
+                    {
+                      required: true,
+                      message: '请输入命中初始得分',
+                    },
+                  ]}
+                >
+                  <InputNumber
+                    style={{ width: '100%' }}
+                    size="large"
+                    placeholder="请输入命中初始得分"
+                  />
                 </Form.Item>
               </Col>
               <Col span={2}>
@@ -263,16 +316,20 @@ export default (props: any) => {
             <Row gutter={8} align="middle">
               <Col span={22}>
                 <Form.Item
-                  name="median"
+                  name="baseNum"
                   noStyle
                   rules={[
                     {
                       required: true,
-                      message: '请输入警戒值',
+                      message: '请输入命中基数',
                     },
                   ]}
                 >
-                  <Input size="large" placeholder="请输入警戒值"></Input>
+                  <InputNumber
+                    style={{ width: '100%' }}
+                    size="large"
+                    placeholder="请输入命中基数"
+                  ></InputNumber>
                 </Form.Item>
               </Col>
               <Col span={2}>
@@ -294,10 +351,10 @@ export default (props: any) => {
           <Form.Item label="操作符">
             <Row gutter={8} align="middle">
               <Col span={22}>
-                <Form.Item name="high" noStyle>
+                <Form.Item name="operator" noStyle initialValue="NONE">
                   <Select size="large">
                     <Select.Option value="NONE">无</Select.Option>
-                    <Select.Option vlaue="ADD">加</Select.Option>
+                    <Select.Option value="ADD">加</Select.Option>
                     <Select.Option value="DEC">减</Select.Option>
                     <Select.Option value="MUL">乘</Select.Option>
                     <Select.Option value="DIV">除</Select.Option>
@@ -325,9 +382,10 @@ export default (props: any) => {
           <Form.Item label="指标字段">
             <Row gutter={8} align="middle">
               <Col span={22}>
-                <Form.Item name="high" noStyle>
-                  <Select>
-                    <Select.Option></Select.Option>
+                <Form.Item name="abstractionName" noStyle initialValue="">
+                  <Select size="large">
+                    <Select.Option value="">--请选择--</Select.Option>
+                    {renderGroupSelect(fields)}
                   </Select>
                 </Form.Item>
               </Col>
@@ -353,7 +411,7 @@ export default (props: any) => {
             <Row gutter={8} align="middle">
               <Col span={22}>
                 <Form.Item
-                  name="high"
+                  name="rate"
                   noStyle
                   rules={[
                     {
@@ -362,7 +420,11 @@ export default (props: any) => {
                     },
                   ]}
                 >
-                  <Input size="large" placeholder="请输入比率"></Input>
+                  <InputNumber
+                    style={{ width: '100%' }}
+                    size="large"
+                    placeholder="请输入比率"
+                  ></InputNumber>
                 </Form.Item>
               </Col>
               <Col span={2}>
@@ -384,6 +446,12 @@ export default (props: any) => {
             </Row>
           </Form.Item>
         </Form>
+        <DynamicFilterCondition
+        // renderGroupSelectEl={renderGroupSelectEl}
+        // prehandleFields={prehandleFields}
+        // ref={ref}
+        // ruleDefinitionEdit={ruleDefinitionEdit}
+        />
       </Modal>
     </>
   );
