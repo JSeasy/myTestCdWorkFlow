@@ -5,21 +5,37 @@
     padding: 0 225px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     padding-top: 110px;
     .icon {
       text-align: center;
       img {
+        margin-bottom: 15px;
       }
       p {
         font-size: 16px;
         color: #646093;
         font-weight: bolder;
       }
+      &:nth-child(1) {
+        margin-right: 15px;
+      }
+      &:nth-child(3) {
+        margin: 0 15px;
+      }
+      &:nth-child(5) {
+        margin-left: 15px;
+      }
+    }
+    .iconActive {
+      img {
+        margin-bottom: 0;
+      }
     }
     .dashed {
       border: 1px dashed #9d99c6;
       flex: 1;
+      margin-top: 45px;
     }
   }
 }

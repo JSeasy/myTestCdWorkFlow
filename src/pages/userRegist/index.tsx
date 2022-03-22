@@ -1,9 +1,17 @@
+import { useState } from 'react';
 import styles from './index.less';
+import cs from 'classnames';
 export default (props: any) => {
+  const [active, setActive] = useState(0);
   return (
     <div className={styles.regist}>
       <div className={styles.title}>
-        <div className={styles.icon}>
+        <div
+          className={cs(
+            styles.icon,
+            active >= 0 ? styles.iconActive : undefined,
+          )}
+        >
           <img src={require('./assets/1.png')} />
           <p>注册须知</p>
         </div>
