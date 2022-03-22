@@ -1,7 +1,7 @@
 import styles from './index.less';
 import Search from '@/components/searchInput';
 import Table from '@/components/table';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import createColumns from './columns';
 import { useHistory, useParams } from 'umi';
 import {
@@ -72,6 +72,7 @@ export default (props: any) => {
               baseNum,
               abstractionName,
               rate,
+              ruleDefinition,
             } = row;
             form.setFieldsValue({
               operator,
@@ -81,6 +82,7 @@ export default (props: any) => {
               abstractionName,
               rate,
             });
+            setRuleDefinitionEdit(ruleDefinition);
           }}
           className="editBtnTable"
         >
@@ -144,6 +146,9 @@ export default (props: any) => {
       );
     });
   };
+  const ref: any = useRef();
+  const [ruleDefinitionEdit, setRuleDefinitionEdit] = useState([]);
+
   useEffect(() => {
     getFields(state.id).then(({ data }) => {
       setFields(data.list);
@@ -178,6 +183,7 @@ export default (props: any) => {
               setVisible(true);
               setId('');
               form.resetFields();
+              setRuleDefinitionEdit([]);
             }}
           >
             <PlusOutlined />
@@ -191,13 +197,6 @@ export default (props: any) => {
           pageInfo={pageInfo}
           onChange={(pageNo: number, pageSize: number) => {
             search({ pageNo, pageSize });
-          }}
-          onRow={(row: any) => {
-            return {
-              onDoubleClick: () => {
-                history.push('/product/' + row.id + 'rules');
-              },
-            };
           }}
         />
       </div>
@@ -234,6 +233,8 @@ export default (props: any) => {
               ...values,
               activationId: params.id,
               id: id ? id : undefined,
+              modelId: state.id,
+              ruleDefinition: ref.current.getRuleDefinition(),
             }).then(() => {
               setVisible(false);
               search({ pageNo: 1 });
@@ -241,6 +242,7 @@ export default (props: any) => {
           });
         }}
         onCancel={() => setVisible(false)}
+        destroyOnClose
       >
         <Form form={form} {...layout} colon>
           <Form.Item label="显示名称" required>
@@ -447,12 +449,15 @@ export default (props: any) => {
             </Row>
           </Form.Item>
         </Form>
-        {/* <DynamicFilterCondition
-        // renderGroupSelectEl={renderGroupSelectEl}
-        // prehandleFields={prehandleFields}
-        // ref={ref}
-        // ruleDefinitionEdit={ruleDefinitionEdit}
-        /> */}
+        <div className="filterCondition">
+          <p className="title">过滤条件</p>
+          <DynamicFilterCondition
+            renderGroupSelectEl={renderGroupSelect(fields)}
+            prehandleFields={fields}
+            ref={ref}
+            ruleDefinitionEdit={ruleDefinitionEdit}
+          />
+        </div>
       </Modal>
     </>
   );

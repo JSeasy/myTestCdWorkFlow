@@ -157,6 +157,7 @@ export default forwardRef((props: any, ref: any) => {
     },
   ]);
   useEffect(() => {
+    console.log(12131);
     ruleDefinitionEdit.length && updateRuleDefinition(ruleDefinitionEdit);
   }, []);
 
@@ -282,7 +283,7 @@ export default forwardRef((props: any, ref: any) => {
                     <Select.Option value="">--请选择--</Select.Option>
                     {selectOptionEl}
                   </Select>
-                  {item.expressions[1].type === 'input' && (
+                  {item.expressions[1] && item.expressions[1].type === 'input' && (
                     <Input
                       size="large"
                       style={{ width: 120, marginLeft: 12 }}
