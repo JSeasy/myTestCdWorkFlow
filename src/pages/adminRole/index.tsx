@@ -23,7 +23,7 @@ import {
   PlusOutlined,
   ExclamationCircleOutlined,
 } from '@ant-design/icons';
-import { get } from '@/api/role';
+import { get, getDetail } from '@/api/role';
 
 const layout = {
   labelCol: { span: 6 },
@@ -62,7 +62,7 @@ export default (props: any) => {
         type="link"
         onClick={() => {
           setVisible(true);
-          setId(row.id);
+          setId(row.roleId);
           const { fieldType, label, indexed, fieldName } = row;
           form.setFieldsValue({
             fieldType,
@@ -70,6 +70,7 @@ export default (props: any) => {
             indexed: indexed ? true : false,
             fieldName,
           });
+          getDetail(row.roleId);
         }}
         className="editBtnTable"
       >
