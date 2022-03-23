@@ -2,15 +2,23 @@ const createColumns = (element: any) => {
   const columns = [
     {
       title: 'ID',
-      dataIndex: 'roleId',
+      dataIndex: 'id',
     },
     {
-      title: '角色名',
+      title: '用户名',
+      dataIndex: 'userName',
+    },
+    {
+      title: '姓名',
+      dataIndex: 'realName',
+    },
+    {
+      title: '联系电话',
+      dataIndex: 'mobile',
+    },
+    {
+      title: '角色',
       dataIndex: 'roleName',
-    },
-    {
-      title: '描述',
-      dataIndex: 'remark',
     },
     {
       title: '操作',

@@ -14,6 +14,7 @@ import {
   Tooltip,
   Select,
   InputNumber,
+  Switch,
 } from 'antd';
 import {
   FormOutlined,
@@ -60,6 +61,7 @@ export default (props: any) => {
     const { row, col } = props;
     return (
       <>
+        <Switch onChange={() => {}} />
         <Button
           type="link"
           onClick={() => {

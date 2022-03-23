@@ -23,7 +23,7 @@ import {
   PlusOutlined,
   ExclamationCircleOutlined,
 } from '@ant-design/icons';
-import { get, getDetail } from '@/api/role';
+import { get, add, edit } from '@/api/account';
 
 const layout = {
   labelCol: { span: 6 },
@@ -36,7 +36,7 @@ export default (props: any) => {
   const history = useHistory();
   const params = useParams();
   const [searchCondition, setSearchCondition] = useState({
-    roleName: '',
+    userName: '',
     status: '',
   });
   const [pageInfo, setPageInfo] = useState({
@@ -60,20 +60,11 @@ export default (props: any) => {
         type="link"
         onClick={() => {
           history.push({
-            pathname: '/role/detail',
+            pathname: '/account/detail',
             state: {
-              id: row.roleId,
+              id: row.id,
             },
           });
-          // setVisible(true);
-          // setId(row.roleId);
-          // const { fieldType, label, indexed, fieldName } = row;
-          // form.setFieldsValue({
-          //   fieldType,
-          //   label,
-          //   indexed: indexed ? true : false,
-          //   fieldName,
-          // });
         }}
         className="editBtnTable"
       >
@@ -115,11 +106,11 @@ export default (props: any) => {
           <div className={styles.searchCondition}>
             <Search
               placeholder={'配置信息名称搜索'}
-              value={searchCondition.roleName}
+              value={searchCondition.userName}
               onChange={(e: any) => {
                 setSearchCondition({
                   ...searchCondition,
-                  roleName: e.target.value,
+                  userName: e.target.value,
                 });
               }}
               onPressEnter={() => search({ pageNo: 1 })}
