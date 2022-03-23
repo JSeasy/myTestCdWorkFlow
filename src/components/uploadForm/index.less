@@ -1,0 +1,26 @@
+.customUpload {
+  display: flex;
+  align-items: flex-start;
+  color: #c0c4cc;
+  align-items: center;
+  .fileName {
+    width: 200px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  :global {
+    .ant-btn {
+      background: #fc896c;
+      border-color: #fc896c;
+      color: #fff;
+      height: 40px;
+    }
+    .ant-btn-primary:hover,
+    .ant-btn-primary:focus {
+      color: #fff;
+      background: #fc896c;
+      border-color: #fc896c;
+    }
+  }
+}

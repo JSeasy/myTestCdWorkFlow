@@ -7,3 +7,16 @@ export const blobToDataURL = (blob: Blob) => {
     };
   });
 };
+
+export const uploadFile = (file: any) => {
+  return new Promise((resolve, reject) => {
+    resolve('src');
+  });
+};
+
+export const openUploadWindow = () => {
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.click();
+  return input;
+};

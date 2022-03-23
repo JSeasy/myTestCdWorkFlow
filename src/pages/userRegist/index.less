@@ -1,10 +1,12 @@
 .regist {
   width: 1200px;
   margin: 0 auto;
-  .color {
-    color: #fc896c;
-    text-decoration: underline;
-    cursor: pointer;
+  :global {
+    .color {
+      color: #fc896c;
+      text-decoration: underline;
+      cursor: pointer;
+    }
   }
   > .title {
     padding: 0 225px;
@@ -71,6 +73,54 @@
       border-radius: 0px 0px 0px 0px;
       margin-bottom: 12px;
     }
+    :global {
+      h1 {
+        color: #2b265b;
+        font-size: 20px;
+        font-weight: bolder;
+        margin-bottom: 12px;
+      }
+      h2 {
+        font-size: 16px;
+        color: #2b265b;
+        font-weight: bolder;
+        margin: 12px 0;
+      }
+      p {
+        font-size: 16px;
+        color: #646093;
+        line-height: 23px;
+      }
+      .ant-btn {
+        height: 50px;
+        background: #fc896c;
+        border-color: #fc896c;
+        color: #fff;
+        width: 422px;
+      }
+      .ant-btn-primary:hover,
+      .ant-btn-primary:focus {
+        color: #fff;
+        background: #fc896c;
+        border-color: #fc896c;
+      }
+      .ant-checkbox-checked .ant-checkbox-inner {
+        background-color: #fc896c;
+        border-color: #fc896c;
+      }
+
+      .ant-input {
+        height: 50px;
+        border: none;
+        background: rgba(240, 241, 247, 0.7) !important;
+        border-radius: 10px 10px 10px 10px;
+        color: #c3bfd9;
+        padding-left: 20px;
+        &:focus {
+          box-shadow: none;
+        }
+      }
+    }
   }
   .info {
     height: 590px;
@@ -89,53 +139,68 @@
       margin-bottom: 50px;
       text-align: center;
     }
-  }
-  :global {
-    h1 {
-      color: #2b265b;
-      font-size: 20px;
-      font-weight: bolder;
-      margin-bottom: 12px;
-    }
-    h2 {
-      font-size: 16px;
-      color: #2b265b;
-      font-weight: bolder;
-      margin: 12px 0;
-    }
-    p {
-      font-size: 16px;
-      color: #646093;
-      line-height: 23px;
-    }
-    .ant-btn {
-      height: 50px;
-      background: #fc896c;
-      border-color: #fc896c;
-      color: #fff;
-      width: 422px;
-    }
-    .ant-btn-primary:hover,
-    .ant-btn-primary:focus {
-      color: #fff;
-      background: #fc896c;
-      border-color: #fc896c;
-    }
-    .ant-checkbox-checked .ant-checkbox-inner {
-      background-color: #fc896c;
-      border-color: #fc896c;
-    }
-
-    .ant-input {
-      height: 50px;
-      border: none;
-      background: rgba(240, 241, 247, 0.7) !important;
-      border-radius: 10px 10px 10px 10px;
-      color: #c3bfd9;
-      padding-left: 20px;
-      &:focus {
-        box-shadow: none;
+    :global {
+      h1 {
+        color: #2b265b;
+        font-size: 20px;
+        font-weight: bolder;
+        margin-bottom: 12px;
       }
+      h2 {
+        font-size: 16px;
+        color: #2b265b;
+        font-weight: bolder;
+        margin: 12px 0;
+      }
+      p {
+        font-size: 16px;
+        color: #646093;
+        line-height: 23px;
+      }
+      .ant-btn {
+        height: 50px;
+        background: #fc896c;
+        border-color: #fc896c;
+        color: #fff;
+        width: 422px;
+      }
+      .ant-btn-primary:hover,
+      .ant-btn-primary:focus {
+        color: #fff;
+        background: #fc896c;
+        border-color: #fc896c;
+      }
+      .ant-checkbox-checked .ant-checkbox-inner {
+        background-color: #fc896c;
+        border-color: #fc896c;
+      }
+
+      .ant-input {
+        height: 50px;
+        border: none;
+        background: rgba(240, 241, 247, 0.7) !important;
+        border-radius: 10px 10px 10px 10px;
+        color: #c3bfd9;
+        padding-left: 20px;
+        &:focus {
+          box-shadow: none;
+        }
+      }
+    }
+  }
+  .formWrap {
+    width: 1200px;
+    height: 1588px;
+    margin-top: 43px;
+    background: #ffffff;
+    border-radius: 20px 20px 20px 20px;
+    box-shadow: 0px 8px 40px 1px rgba(220, 210, 232, 0.8);
+    padding: 57px 80px;
+    > h1 {
+      font-size: 20px;
+      color: #2b265b;
+      text-align: center;
+      font-weight: bolder;
     }
   }
 }

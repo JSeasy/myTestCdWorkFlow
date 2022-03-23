@@ -2,6 +2,8 @@ import { useState } from 'react';
 import styles from './index.less';
 import cs from 'classnames';
 import { Button, Checkbox, Form, Input } from 'antd';
+import Title from '@/components/title/index';
+import RegistForm from './components/registForm/index';
 export default (props: any) => {
   const [active, setActive] = useState(0);
   const [form] = Form.useForm();
@@ -69,7 +71,7 @@ export default (props: any) => {
             <Checkbox></Checkbox>
             <span style={{ marginLeft: 12, color: '#696F79' }}>
               我已认真阅读并同意
-              <span className={styles.color}>《注册须知》</span>
+              <span className="color">《注册须知》</span>
             </span>
           </div>
           <div style={{ textAlign: 'center', marginTop: 55 }}>
@@ -142,6 +144,12 @@ export default (props: any) => {
               下一步
             </Button>
           </div>
+        </div>
+      )}
+      {active === 2 && (
+        <div className={styles.formWrap}>
+          <h1>请完善资料</h1>
+          <RegistForm />
         </div>
       )}
     </div>
