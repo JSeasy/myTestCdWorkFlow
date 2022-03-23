@@ -110,7 +110,7 @@ export default (props: any) => {
   }, []);
   return (
     <>
-      <div className={styles.adminRole}>
+      <div className={styles.adminAccount}>
         <div className={styles.topBar}>
           <div className={styles.searchCondition}>
             <Search

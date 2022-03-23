@@ -132,6 +132,18 @@ export default defineConfig({
           component: '@/pages/adminRole/index',
           wrappers: ['@/wrappers/auth'],
         },
+        {
+          path: '/role/detail',
+          name: 'roleDetail',
+          component: '@/pages/adminRole/detail/index',
+          wrappers: ['@/wrappers/auth'],
+        },
+        {
+          path: '/account',
+          name: 'account',
+          component: '@/pages/adminAccount/index',
+          wrappers: ['@/wrappers/auth'],
+        },
       ],
     },
     { path: '*', component: '@/pages/403/index' },
