@@ -6,11 +6,11 @@ const createColumns = (element: any) => {
     },
     {
       title: '角色名',
-      dataIndex: 'age',
+      dataIndex: 'roleName',
     },
     {
       title: '描述',
-      dataIndex: 'age',
+      dataIndex: 'remark',
     },
     {
       title: '操作',

@@ -58,37 +58,24 @@ export default (props: any) => {
     const history = useHistory();
     const { row, col } = props;
     return (
-      <>
-        <Button
-          type="link"
-          onClick={() => {
-            setVisible(true);
-            setId(row.id);
-            const { fieldType, label, indexed, fieldName } = row;
-            form.setFieldsValue({
-              fieldType,
-              label,
-              indexed: indexed ? true : false,
-              fieldName,
-            });
-          }}
-          className="editBtnTable"
-        >
-          <FormOutlined />
-          编辑
-        </Button>
-        <Button
-          type="link"
-          onClick={() => {
-            setId(row.id);
-            setDelVisible(true);
-          }}
-          className="delBtnTable"
-        >
-          <DeleteOutlined />
-          删除
-        </Button>
-      </>
+      <Button
+        type="link"
+        onClick={() => {
+          setVisible(true);
+          setId(row.id);
+          const { fieldType, label, indexed, fieldName } = row;
+          form.setFieldsValue({
+            fieldType,
+            label,
+            indexed: indexed ? true : false,
+            fieldName,
+          });
+        }}
+        className="editBtnTable"
+      >
+        <FormOutlined />
+        编辑
+      </Button>
     );
   };
 
@@ -131,14 +118,15 @@ export default (props: any) => {
                   roleName: e.target.value,
                 });
               }}
-              onPressEnter={() => search()}
-              onSearch={() => search()}
+              onPressEnter={() => search({ pageNo: 1 })}
+              onSearch={() => search({ pageNo: 1 })}
             />
             <MySelect
               placeholder={'状态'}
               value={searchCondition.status}
               onChange={(e: any) => {
                 setSearchCondition({ ...searchCondition, status: e });
+                search({ pageNo: 1 });
               }}
               data={[
                 { name: '启用', value: 1 },
@@ -161,7 +149,7 @@ export default (props: any) => {
         <Table
           columns={columns}
           dataSource={data}
-          rowKey="id"
+          rowKey="roleId"
           pageInfo={pageInfo}
           onChange={(pageNo: number, pageSize: number) => {
             search({ pageNo, pageSize });
