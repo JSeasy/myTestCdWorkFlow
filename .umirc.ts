@@ -25,6 +25,11 @@ export default defineConfig({
       wrappers: ['@/wrappers/auth'],
     },
     {
+      path: '/user/forget',
+      component: '@/pages/userForget/index',
+      wrappers: ['@/wrappers/auth'],
+    },
+    {
       path: '/',
       name: 'layout',
       component: '@/pages/layout/index',
