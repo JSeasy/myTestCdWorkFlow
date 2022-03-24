@@ -1,9 +1,8 @@
 import styles from './index.less';
 import Title from '@/components/title/index';
 import { getDetail } from '@/api/role';
-import { useEffect } from 'react';
-import { Form, Input, Button, Row, Col } from 'antd';
-import { useImmer } from 'use-immer';
+import { useEffect, useState } from 'react';
+import { Form, Input, Button } from 'antd';
 
 import PermissionCheckBox from '../components/permissionCheckBox/index';
 const layout = {
@@ -13,7 +12,8 @@ const layout = {
 export default (props: any) => {
   const { state } = props.location;
   const [form] = Form.useForm();
-  const [data, updateData] = useImmer([]);
+  const [data, setData] = useState([]);
+  const [menuIds, setMenuIds] = useState([]);
   const getDetailEdit = () => {
     getDetail(state.id).then(({ data }) => {
       const { sysRole, menus } = data;
@@ -21,32 +21,39 @@ export default (props: any) => {
         remark: sysRole.remark,
         roleName: sysRole.roleName,
       });
-      updateData(menus);
+      setData(menus);
+      setMenuIds(sysRole.menuIds);
     });
   };
 
   useEffect(() => {
     getDetailEdit();
   }, []);
-  const onChange = (itemIndex: any, childIndex: any, value: any) => {
-    updateData((draft) => {
-      draft[itemIndex].children[childIndex].checked = value;
-    });
+  const onChange = (menuIds: any) => {
+    setMenuIds(menuIds);
   };
   return (
     <div className={styles.roleDetail}>
       <Title title={'角色信息'} style={{ marginTop: 22, marginBottom: 64 }} />
-      <Row>
-        <Col span={8}>123</Col>
-        <Col span={6} offset={1}>
-          123
-        </Col>
-      </Row>
-      <Row>
-        <Col span={8}>123</Col>
-        <Col span={6}>123</Col>
-      </Row>
+      <Form {...layout} form={form}>
+        <Form.Item
+          name="roleName"
+          rules={[
+            {
+              required: true,
+              message: '请选择插件种类',
+            },
+          ]}
+          label="角色名"
+        >
+          <Input size="large" placeholder="请输入角色名"></Input>
+        </Form.Item>
+        <Form.Item name="remark" label="描述">
+          <Input.TextArea size="large" placeholder="请输入描述" />
+        </Form.Item>
+      </Form>
       <Title title={'资源'} style={{ marginTop: 64, marginBottom: 64 }} />
+      <PermissionCheckBox data={data} onChange={onChange} menuIds={menuIds} />
       <div style={{ textAlign: 'center', width: 481, margin: '0 auto' }}>
         <Button>保存</Button>
       </div>

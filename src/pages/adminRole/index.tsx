@@ -24,7 +24,7 @@ import {
   ExclamationCircleOutlined,
 } from '@ant-design/icons';
 import { get, getDetail } from '@/api/role';
-
+import Pie from '@/components/pie';
 const layout = {
   labelCol: { span: 6 },
   wrapperCol: { span: 16, offset: 2 },
@@ -56,30 +56,47 @@ export default (props: any) => {
     const history = useHistory();
     const { row, col } = props;
     return (
-      <Button
-        type="link"
-        onClick={() => {
-          history.push({
-            pathname: '/role/detail',
-            state: {
-              id: row.roleId,
-            },
-          });
-          // setVisible(true);
-          // setId(row.roleId);
-          // const { fieldType, label, indexed, fieldName } = row;
-          // form.setFieldsValue({
-          //   fieldType,
-          //   label,
-          //   indexed: indexed ? true : false,
-          //   fieldName,
-          // });
-        }}
-        className="editBtnTable"
-      >
-        <FormOutlined />
-        编辑
-      </Button>
+      <>
+        <Button
+          type="link"
+          onClick={() => {
+            history.push({
+              pathname: '/role/edit',
+              state: {
+                id: row.roleId,
+              },
+            });
+            // setVisible(true);
+            // setId(row.roleId);
+            // const { fieldType, label, indexed, fieldName } = row;
+            // form.setFieldsValue({
+            //   fieldType,
+            //   label,
+            //   indexed: indexed ? true : false,
+            //   fieldName,
+            // });
+          }}
+          className="editBtnTable"
+        >
+          <FormOutlined />
+          编辑
+        </Button>
+        {/* <Button
+          type="link"
+          onClick={() => {
+            history.push({
+              pathname: '/role/detail',
+              state: {
+                id: row.roleId,
+              },
+            });
+          }}
+          className="editBtnTable"
+        >
+          <FormOutlined />
+          详情
+        </Button> */}
+      </>
     );
   };
 
@@ -141,9 +158,9 @@ export default (props: any) => {
           <Button
             className="addBtn"
             onClick={() => {
-              setVisible(true);
-              setId('');
-              form.resetFields();
+              history.push({
+                pathname: '/role/add',
+              });
             }}
           >
             <PlusOutlined />

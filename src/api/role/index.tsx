@@ -17,20 +17,18 @@ export const getDetail = (id: any) => {
   });
 };
 
-const a = [
-  {
-    pageName: '匹配管理',
-    authList: [
-      {
-        id: 'xx',
-        checked: false,
-        name: '查看',
-      },
-      {
-        id: 'xx',
-        checked: true,
-        name: '删除',
-      },
-    ],
-  },
-];
+// 获取角色详情
+export const getAllAuth = () => {
+  return request({
+    url: '/services/v1/role/getAllMenus',
+    method: 'GET',
+  });
+};
+
+export const add = (data: any) => {
+  return request({
+    url: '/services/v1/role',
+    method: 'POST',
+    data,
+  });
+};

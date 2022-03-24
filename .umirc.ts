@@ -30,6 +30,11 @@ export default defineConfig({
       wrappers: ['@/wrappers/auth'],
     },
     {
+      path: '/user/result',
+      component: '@/pages/userResult/index',
+      wrappers: ['@/wrappers/auth'],
+    },
+    {
       path: '/',
       name: 'layout',
       component: '@/pages/layout/index',
@@ -133,11 +138,18 @@ export default defineConfig({
           wrappers: ['@/wrappers/auth'],
         },
         {
-          path: '/role/detail',
-          name: 'roleDetail',
-          component: '@/pages/adminRole/detail/index',
+          path: '/role/edit',
+          name: 'roleEdit',
+          component: '@/pages/adminRole/edit/index',
           wrappers: ['@/wrappers/auth'],
         },
+        {
+          path: '/role/add',
+          name: 'roleAdd',
+          component: '@/pages/adminRole/add/index',
+          wrappers: ['@/wrappers/auth'],
+        },
+
         {
           path: '/account',
           name: 'account',

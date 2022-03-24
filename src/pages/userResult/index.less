@@ -1,0 +1,97 @@
+.userResult {
+  width: 1438px;
+  margin: 0 auto;
+  .bar {
+    border-radius: 4px 0px 0px 4px;
+    overflow: hidden;
+    display: flex;
+    padding-top: 60px;
+    .barItem {
+      width: 120px;
+      line-height: 40px;
+      height: 40px;
+      color: '#646093';
+      text-align: center;
+      cursor: pointer;
+      background: white;
+      transition: all 0.3s;
+      margin-right: 1px;
+      &:nth-child(1) {
+        border-radius: 4px 0px 0px 4px;
+      }
+      &:nth-child(3) {
+        border-radius: 0 4px 4px 0px;
+      }
+    }
+    .barItemActive {
+      color: white;
+      background: #fc896c;
+    }
+  }
+  .list {
+    margin-top: 24px;
+    .item {
+      width: 1440px;
+      height: 206px;
+      background: #ffffff;
+      box-shadow: 0px 8px 40px 1px rgba(220, 210, 232, 0.8);
+      border-radius: 10px;
+      margin-bottom: 16px;
+      padding: 40px 60px;
+      display: flex;
+      justify-content: space-between;
+      .left {
+        display: flex;
+        .info {
+          margin-left: 30px;
+          > h1 {
+            display: flex;
+            margin-bottom: 12px;
+            span {
+              &:nth-child(1) {
+                font-size: 24px;
+                font-weight: bolder;
+                color: #2b265b;
+              }
+              &:nth-child(2) {
+                color: #ffffff;
+                border-radius: 4px 4px 4px 4px;
+                padding: 0 12px;
+                height: 24px;
+                line-height: 24px;
+                background: #fc896c;
+                margin-left: 7px;
+              }
+            }
+          }
+          > .text {
+            p {
+              font-size: 16px;
+              line-height: 27px;
+              color: #646093;
+            }
+          }
+        }
+      }
+      .right {
+        display: flex;
+        align-items: center;
+        .rightItem {
+          text-align: center;
+          margin-left: 113px;
+          > h1 {
+            font-size: 36px;
+            font-weight: bolder;
+            color: #2b265b;
+          }
+          > p {
+            margin-top: 20px;
+
+            font-size: 16px;
+            color: #646093;
+          }
+        }
+      }
+    }
+  }
+}
