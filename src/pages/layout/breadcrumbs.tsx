@@ -14,6 +14,10 @@ const MAP: any = {
   '/product/strategy': '产品维度',
   '/product/whiteDetail': '产品维度',
   '/product/rules': '产品维度',
+  '/role': '角色管理',
+  '/role/edit': '编辑角色',
+  '/role/add': '新增角色',
+  '/account': '用户管理',
 };
 const numberTest = /(\d+)$/g;
 const endWithNumber = /(\d+)\//g;
