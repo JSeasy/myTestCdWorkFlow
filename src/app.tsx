@@ -1,5 +1,5 @@
 import { history } from 'umi';
-
+import { getRouters } from '@/api/login';
 export async function getInitialState() {
   console.log(123123123);
   return {
@@ -14,27 +14,47 @@ export async function getInitialState() {
     },
   };
 }
-
+let permission: any = [];
 export async function render(oldRender: any) {
-  // new Promise((resove, reject) => {
-  //   setTimeout(resove, 1000);
-  // }).then(() => {
-  //   oldRender();
-  // });\
-  await getRoute();
+  if (window.localStorage.getItem('token')) {
+    const router = await getRouters();
+    permission = router.data.menus;
+  }
   oldRender();
-  console.log(3);
 }
+
+const path = [
+  {
+    path: '/match',
+    name: '匹配管理',
+    component: require('@/pages/adminMatch/index').default,
+    // wrappers: ['@/wrappers/auth'],
+  },
+  {
+    exact: false,
+    path: '/match',
+    name: '匹配管理',
+    routes: [
+      {
+        exact: true,
+        path: '/match/detail',
+        name: '匹配详情',
+        component: require('@/pages/adminMatch/detail/index').default,
+      },
+      {
+        exact: true,
+        path: '/match/edit',
+        name: '匹配编辑',
+        component: require('@/pages/adminMatch/edit/index').default,
+      },
+    ],
+  },
+];
 
 export function patchRoutes({ routes }: any) {
-  console.log(routes);
-  console.log(2);
+  // // console.log(routes.routes.push(...path));
+  // console.log(routes);
+  routes[0].routes.push(...path);
 }
-const getRoute = () => {
-  return new Promise<void>((resolve, reject) => {
-    setTimeout(() => {
-      console.log(1);
-      resolve();
-    }, 1000);
-  });
-};
+
+const routerMap = () => {};

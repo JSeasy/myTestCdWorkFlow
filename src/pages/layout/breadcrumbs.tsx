@@ -24,7 +24,6 @@ const endWithNumber = /(\d+)\//g;
 
 const Breadcrumbs = (props: any) => {
   const { breadcrumbs } = props;
-  console.log(breadcrumbs);
   return (
     <Breadcrumb>
       {breadcrumbs.map(
