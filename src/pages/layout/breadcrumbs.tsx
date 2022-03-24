@@ -7,9 +7,16 @@ const MAP: any = {
   '/match/detail': '匹配详情',
   '/match/edit': '匹配编辑',
   '/product': '产品维度管理',
-  '/product/:id': '产品维度管理',
-  '/product/:id/fields': '字段管理',
+  '/product/fields': '产品维度',
+  '/product/prehandle': '产品维度',
+  '/product/white': '产品维度',
+  '/product/abstract': '产品维度',
+  '/product/strategy': '产品维度',
+  '/product/whiteDetail': '产品维度',
+  '/product/rules': '产品维度',
 };
+const numberTest = /(\d+)$/g;
+const endWithNumber = /(\d+)\//g;
 
 const Breadcrumbs = (props: any) => {
   const { breadcrumbs } = props;
@@ -18,7 +25,8 @@ const Breadcrumbs = (props: any) => {
     <Breadcrumb>
       {breadcrumbs.map(
         (item: any, index: any) =>
-          index > 0 && (
+          index > 0 &&
+          !numberTest.test(item.key) && (
             <Breadcrumb.Item key={item.key}>
               <NavLink
                 to={{
@@ -27,7 +35,7 @@ const Breadcrumbs = (props: any) => {
                   query: item.location.query,
                 }}
               >
-                {MAP[item.key]}
+                {MAP[item.key.replace(endWithNumber, '')]}
               </NavLink>
             </Breadcrumb.Item>
           ),

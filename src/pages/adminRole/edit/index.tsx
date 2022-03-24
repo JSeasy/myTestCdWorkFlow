@@ -7,7 +7,7 @@ import { Form, Input, Button } from 'antd';
 import PermissionCheckBox from '../components/permissionCheckBox/index';
 const layout = {
   labelCol: { span: 8 },
-  wrapperCol: { span: 6, offset: 1 },
+  wrapperCol: { span: 7, offset: 1 },
 };
 export default (props: any) => {
   const { state } = props.location;

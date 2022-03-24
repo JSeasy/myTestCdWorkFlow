@@ -144,7 +144,7 @@ export default (props: any) => {
         <Table
           columns={columns}
           dataSource={data}
-          rowKey="roleId"
+          rowKey="id"
           pageInfo={pageInfo}
           onChange={(pageNo: number, pageSize: number) => {
             search({ pageNo, pageSize });
