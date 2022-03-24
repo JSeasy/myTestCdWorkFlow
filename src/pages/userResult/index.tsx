@@ -54,7 +54,7 @@ export default (props: any) => {
       <div className={styles.list}>
         <div className={styles.item}>
           <div className={styles.left}>
-            <Pie percent={12} />
+            <Pie percent={100} />
             <div className={styles.info}>
               <h1>
                 <span>产品名产品名产品名</span>
@@ -84,7 +84,7 @@ export default (props: any) => {
         </div>
         <div className={styles.item}>
           <div className={styles.left}>
-            <Pie percent={12} />
+            <Pie percent={50} />
             <div className={styles.info}>
               <h1>
                 <span>产品名产品名产品名</span>
@@ -114,7 +114,7 @@ export default (props: any) => {
         </div>
         <div className={styles.item}>
           <div className={styles.left}>
-            <Pie percent={12} />
+            <Pie percent={90} />
             <div className={styles.info}>
               <h1>
                 <span>产品名产品名产品名</span>
