@@ -156,6 +156,18 @@ export default defineConfig({
           component: '@/pages/adminAccount/index',
           wrappers: ['@/wrappers/auth'],
         },
+        {
+          path: '/account/add',
+          name: 'accountAdd',
+          component: '@/pages/adminAccount/add/index',
+          wrappers: ['@/wrappers/auth'],
+        },
+        {
+          path: '/account/edit',
+          name: 'accountEdit',
+          component: '@/pages/adminAccount/edit/index',
+          wrappers: ['@/wrappers/auth'],
+        },
       ],
     },
     { path: '*', component: '@/pages/403/index' },

@@ -23,3 +23,10 @@ export const regist = (params: any) => {
     params,
   });
 };
+
+export const getRouters = () => {
+  return request({
+    url: '/services/v1/getRouters',
+    method: 'GET',
+  });
+};

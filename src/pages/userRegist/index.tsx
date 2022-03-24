@@ -3,7 +3,7 @@ import styles from './index.less';
 import cs from 'classnames';
 import { Button, Checkbox, Form, Input } from 'antd';
 import Title from '@/components/title/index';
-import RegistForm from './components/registForm/index';
+import RegistForm from '@/components/registForm/index';
 export default (props: any) => {
   const [active, setActive] = useState(0);
   const [form] = Form.useForm();

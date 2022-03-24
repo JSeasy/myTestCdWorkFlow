@@ -6,8 +6,8 @@ import { Form, Input, Button } from 'antd';
 import { useHistory } from 'umi';
 import PermissionCheckBox from '../components/permissionCheckBox/index';
 const layout = {
-  labelCol: { span: 8 },
-  wrapperCol: { span: 7, offset: 1 },
+  labelCol: { span: 4 },
+  wrapperCol: { span: 20, offset: 1 },
 };
 export default (props: any) => {
   const history = useHistory();
@@ -37,21 +37,23 @@ export default (props: any) => {
     <div className={styles.roleAdd}>
       <Title title={'角色信息'} style={{ marginTop: 22, marginBottom: 64 }} />
       <Form {...layout} form={form}>
-        <Form.Item
-          name="roleName"
-          rules={[
-            {
-              required: true,
-              message: '请选择插件种类',
-            },
-          ]}
-          label="角色名"
-        >
-          <Input size="large" placeholder="请输入角色名"></Input>
-        </Form.Item>
-        <Form.Item name="remark" label="描述">
-          <Input.TextArea size="large" placeholder="请输入描述" />
-        </Form.Item>
+        <div style={{ width: 481, margin: '0 auto' }}>
+          <Form.Item
+            name="roleName"
+            rules={[
+              {
+                required: true,
+                message: '请选择插件种类',
+              },
+            ]}
+            label="角色名"
+          >
+            <Input size="large" placeholder="请输入角色名"></Input>
+          </Form.Item>
+          <Form.Item name="remark" label="描述">
+            <Input.TextArea size="large" placeholder="请输入描述" />
+          </Form.Item>
+        </div>
       </Form>
       <Title title={'资源'} style={{ marginTop: 64, marginBottom: 64 }} />
       <PermissionCheckBox data={data} menuIds={menuIds} onChange={onChange} />

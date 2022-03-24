@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Form, Input, Button, Modal, Space } from 'antd';
 import styles from './index.less';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
-import { login, getCode, regist } from '@/api/login';
+import { login, getCode, regist, getRouters } from '@/api/login';
 import { blobToDataURL } from '@/utils/index';
 import { useHistory } from 'umi';
 export default () => {
@@ -14,6 +14,7 @@ export default () => {
   const onCheck = () => {
     form.validateFields().then((values) => {
       login(values).then((res) => {
+        getRouters();
         window.localStorage.setItem('token', res.data['x-auth-token']);
         history.push('/match');
       });
