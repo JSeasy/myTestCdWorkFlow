@@ -1,21 +1,9 @@
 import { history } from 'umi';
 import { getRouters } from '@/api/login';
 export async function getInitialState() {
-  console.log(123123123);
-  return {
-    product: {
-      read: 1,
-    },
-    match: {
-      read: 1,
-    },
-    layout: {
-      read: 1,
-    },
-    // match: {
-    //   read: 0,
-    // },
-  };
+  const c = await routerMap();
+  console.log(213);
+  return c;
 }
 let permission: any = [];
 export async function render(oldRender: any) {
@@ -60,4 +48,21 @@ export function patchRoutes({ routes }: any) {
   // routes[0].routes.push(...path);
 }
 
-const routerMap = () => {};
+const routerMap = () => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve({
+        product: {
+          read: 1,
+          add: 0,
+        },
+        match: {
+          read: 1,
+        },
+        layout: {
+          read: 1,
+        },
+      });
+    }, 2000);
+  });
+};
