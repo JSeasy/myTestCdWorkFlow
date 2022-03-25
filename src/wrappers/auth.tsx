@@ -3,6 +3,7 @@ const whiteList = ['/login'];
 export default (props: any) => {
   const { initialState, loading, error, refresh, setInitialState }: any =
     useModel('@@initialState');
+  console.log(props);
   const {
     location: { pathname },
   } = useHistory();
