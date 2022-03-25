@@ -16,7 +16,7 @@ export default () => {
       login(values).then((res) => {
         getRouters();
         window.localStorage.setItem('token', res.data['x-auth-token']);
-        history.push('/match');
+        window.location.reload();
       });
     });
   };

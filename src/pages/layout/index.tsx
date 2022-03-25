@@ -2,6 +2,7 @@ import Sider from './components/sider';
 import styles from './index.less';
 import Breadcrumbs from './breadcrumbs';
 export default (props: any) => {
+  console.log('side');
   return (
     <div className={styles.layout}>
       <Sider />

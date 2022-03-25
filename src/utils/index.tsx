@@ -20,3 +20,49 @@ export const openUploadWindow = () => {
   input.click();
   return input;
 };
+
+const map: any = {
+  匹配管理: '/match',
+  客户企业管理: '/customer',
+  服务企业管理: '/service',
+  产品纬度管理: '/product',
+  角色管理: '/role',
+  管理员: '/account',
+  系统日志: '/system',
+  查看: '/read',
+  编辑: 'edit',
+  删除: 'del',
+  新增: 'add',
+};
+
+// 生成数据结构
+// {
+//   product:{
+//     read:true,
+//     edit:false,
+//     edit:false
+//   }
+// }
+
+export const getPermission = (permissions: any, result: any = {}) => {
+  permissions.forEach((permission: any) => {
+    if (permission.children.length) {
+      getPermission(permission.children, result);
+    } else {
+      const menuName = permission.menuName;
+      const mapMenuName = map[menuName];
+      result[mapMenuName] = {};
+      permission.auth.map((item: any) => {
+        const mapAuthName = map[item.menuName];
+        const { checked } = item;
+        result[mapMenuName][mapAuthName] = checked;
+      });
+    }
+  });
+  return result;
+};
+
+export const getCanReadPageFirst = (initialState: any) => {
+  const pathKeys = Object.keys(initialState);
+  return pathKeys.find((item) => initialState[item].read);
+};

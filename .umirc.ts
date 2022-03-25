@@ -34,18 +34,18 @@ export default defineConfig({
       path: '/login',
       name: 'login',
       component: '@/pages/login/index',
-      // wrappers: ['@/wrappers/auth'],
+      wrappers: ['@/wrappers/auth'],
     },
     {
       path: '/user/regist',
       component: '@/pages/userRegist/index',
       // wrappers: ['@/wrappers/auth'],
     },
+
     {
       path: '/',
       name: 'layout',
       component: '@/pages/layout/index',
-      wrappers: ['@/wrappers/auth'],
       routes: [
         {
           path: '/',
@@ -61,7 +61,7 @@ export default defineConfig({
           exact: false,
           path: '/match',
           name: 'match',
-          wrappers: ['@/wrappers/auth'],
+          // wrappers: ['@/wrappers/auth'],
           routes: [
             {
               exact: true,
@@ -142,25 +142,25 @@ export default defineConfig({
           path: '/role',
           name: 'role',
           component: '@/pages/adminRole/index',
-          wrappers: ['@/wrappers/auth'],
+          // wrappers: ['@/wrappers/auth'],
         },
 
         {
           path: '/role',
           name: 'role',
-          wrappers: ['@/wrappers/auth'],
+          // wrappers: ['@/wrappers/auth'],
           routes: [
             {
               path: '/role/edit',
               name: 'roleEdit',
               component: '@/pages/adminRole/edit/index',
-              wrappers: ['@/wrappers/auth'],
+              // wrappers: ['@/wrappers/auth'],
             },
             {
               path: '/role/add',
               name: 'roleAdd',
               component: '@/pages/adminRole/add/index',
-              wrappers: ['@/wrappers/auth'],
+              // wrappers: ['@/wrappers/auth'],
             },
           ],
         },
