@@ -1,7 +1,6 @@
 import { history } from 'umi';
 import { getRouters } from '@/api/login';
 export async function getInitialState() {
-  console.log(123123123);
   return {
     product: {
       read: 1,
