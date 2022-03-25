@@ -10,7 +10,7 @@ export default (props: any) => {
       <div className="item" key={item.menuId}>
         <p>{item.menuName}:</p>
         <div className={styles.checkboxs}>
-          {item.children.map((child: any) => {
+          {item.auth.map((child: any) => {
             return (
               <React.Fragment key={child.menuId}>
                 <Checkbox value={child.menuId}>{child.menuName}</Checkbox>
@@ -21,12 +21,34 @@ export default (props: any) => {
       </div>
     );
   };
+  const renderSubByChildren = (item: any, children: any) => {
+    return children.map((child: any) => {
+      return (
+        <div className="item" key={child.menuId}>
+          <p>
+            {item.menuName}-{child.menuName}:
+          </p>
+          <div className={styles.checkboxs}>
+            {child.auth.map((child: any) => {
+              return (
+                <React.Fragment key={child.menuId}>
+                  <Checkbox value={child.menuId}>{child.menuName}</Checkbox>
+                </React.Fragment>
+              );
+            })}
+          </div>
+        </div>
+      );
+    });
+  };
   return (
     <div className={styles.permissionCb}>
       <div className="list">
         <Checkbox.Group onChange={onChange} value={menuIds}>
           {data.map((item: any) => {
-            return renderSub(item);
+            return item.children.length
+              ? renderSubByChildren(item, item.children)
+              : renderSub(item);
           })}
         </Checkbox.Group>
       </div>
