@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import styles from './index.less';
 import cs from 'classnames';
-import { Button, Checkbox, Form, Input } from 'antd';
-import Title from '@/components/title/index';
+import { Button, Checkbox, Form, Input, Row, Col } from 'antd';
 import RegistForm from '@/components/registForm/index';
 export default (props: any) => {
   const [active, setActive] = useState(0);
@@ -150,6 +149,14 @@ export default (props: any) => {
         <div className={styles.formWrap}>
           <h1>请完善资料</h1>
           <RegistForm />
+          <div style={{ width: 582, margin: '0 auto', marginTop: 64 }}>
+            <Row>
+              <Col span={9}></Col>
+              <Col span={15}>
+                <Button>完成</Button>
+              </Col>
+            </Row>
+          </div>
         </div>
       )}
     </div>

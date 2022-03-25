@@ -1,6 +1,8 @@
-import { Form, Input, Row, Col } from 'antd';
+import { Form, Input, Radio } from 'antd';
 import Title from '@/components/title/index';
 import UploadForm from '@/components/uploadForm';
+import CheckboxSingle from '../checkboxSingle/index';
+import styles from './index.less';
 const layout = {
   labelCol: { span: 9 },
   wrapperCol: { span: 15, offset: 1 },
@@ -9,13 +11,13 @@ const layout = {
 export default (props: any) => {
   const [form] = Form.useForm();
   return (
-    <>
+    <div className={styles.registForm}>
       <Form form={form} {...layout}>
         <Title
           title={'企业基本信息'}
           style={{ marginTop: 52, marginBottom: 40 }}
         ></Title>
-        <div style={{ width: 481, margin: '0 auto' }}>
+        <div style={{ width: 582, margin: '0 auto' }}>
           <Form.Item
             name="loginName"
             rules={[
@@ -79,7 +81,7 @@ export default (props: any) => {
           title={'法人征信'}
           style={{ marginTop: 52, marginBottom: 40 }}
         ></Title>
-        <div style={{ width: 481, margin: '0 auto' }}>
+        <div style={{ width: 582, margin: '0 auto' }}>
           <Form.Item name="passwd1" label="法人征信">
             <UploadForm
               title={
@@ -103,7 +105,7 @@ export default (props: any) => {
           title={'财务数据'}
           style={{ marginTop: 52, marginBottom: 40 }}
         ></Title>
-        <div style={{ width: 481, margin: '0 auto' }}>
+        <div style={{ width: 582, margin: '0 auto' }}>
           <Form.Item
             rules={[
               {
@@ -154,41 +156,77 @@ export default (props: any) => {
           </Form.Item>
         </div>
         <Title title={'融资信息'} style={{ marginTop: 52, marginBottom: 40 }} />
-        <Form.Item
-          rules={[
-            {
-              required: true,
-              message: '请上传文件',
-            },
-          ]}
-          name="passwd1"
-          label="融资类型"
-        >
-          <Row gutter={8} align="middle">
-            <Col span={12}>
-              <Form.Item
-                name="searchIntervalValue"
-                noStyle
-                rules={[
-                  {
-                    required: true,
-                    message: '请输入时间切片',
-                  },
+        <div style={{ width: 582, margin: '0 auto' }}>
+          <Form.Item
+            rules={[
+              {
+                required: true,
+                message: '请上传文件',
+              },
+            ]}
+            name="passwd1"
+            label="融资类型"
+          >
+            <Form.Item
+              name="searchIntervalValue"
+              noStyle
+              rules={[
+                {
+                  required: true,
+                  message: '请输入时间切片',
+                },
+              ]}
+            ></Form.Item>
+            <Form.Item
+              name="searchIntervalValue"
+              noStyle
+              rules={[
+                {
+                  required: true,
+                  message: '请输入时间切片',
+                },
+              ]}
+              initialValue={1}
+            >
+              <CheckboxSingle
+                info={[
+                  { label: '信用贷款', value: 1 },
+                  { label: '融资类型', value: 2 },
                 ]}
-              >
-                <Input size="large" placeholder="请输入时间片"></Input>
-              </Form.Item>
-            </Col>
-            <Col span={10}>
-              <Form.Item
-                name="searchIntervalType"
-                noStyle
-                initialValue="1"
-              ></Form.Item>
-            </Col>
-          </Row>
-        </Form.Item>
+              />
+            </Form.Item>
+            <Form.Item name="searchIntervalType" noStyle>
+              <UploadForm
+                title={
+                  <p style={{ whiteSpace: 'nowrap' }}>
+                    可在
+                    <span
+                      className="color"
+                      onClick={() => {
+                        window.open('https://ipcrs.pbccrc.org.cn');
+                      }}
+                    >
+                      https://ipcrs.pbccrc.org.cn
+                    </span>
+                    点击"马上开始"申请下载
+                  </p>
+                }
+              />
+            </Form.Item>
+          </Form.Item>
+          <Form.Item name="searchIntervalType" label="融资偏好">
+            <Radio.Group>
+              <Radio value={1}>A</Radio>
+              <Radio value={2}>B</Radio>
+              <Radio value={3}>C</Radio>
+              <Radio value={4}>D</Radio>
+            </Radio.Group>
+          </Form.Item>
+          <Form.Item name="searchIntervalType" label="需求金额">
+            <Input size="large" />
+          </Form.Item>
+        </div>
       </Form>
-    </>
+    </div>
   );
 };
