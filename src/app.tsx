@@ -20,8 +20,8 @@ export async function getInitialState() {
 let permission: any = [];
 export async function render(oldRender: any) {
   if (window.localStorage.getItem('token')) {
-    const router = await getRouters();
-    permission = router.data.menus;
+    // const router = await getRouters();
+    // permission = router.data.menus;
   }
   oldRender();
 }

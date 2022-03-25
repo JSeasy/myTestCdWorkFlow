@@ -34,9 +34,13 @@ export default defineConfig({
       path: '/login',
       name: 'login',
       component: '@/pages/login/index',
-      wrappers: ['@/wrappers/auth'],
+      // wrappers: ['@/wrappers/auth'],
     },
-
+    {
+      path: '/user/regist',
+      component: '@/pages/userRegist/index',
+      // wrappers: ['@/wrappers/auth'],
+    },
     {
       path: '/',
       name: 'layout',
