@@ -30,11 +30,12 @@ export default defineConfig({
   //   wrappers: ['@/wrappers/auth'],
   // },
   routes: [
-    // {
-    //   path: '/login',
-    //   component: '@/pages/login/index',
-    //   wrappers: ['@/wrappers/auth'],
-    // },
+    {
+      path: '/login',
+      name: 'login',
+      component: '@/pages/login/index',
+      wrappers: ['@/wrappers/auth'],
+    },
 
     {
       path: '/',
@@ -46,42 +47,43 @@ export default defineConfig({
           path: '/',
           redirect: '/product',
         },
-        // {
-        //   path: '/match',
-        //   name: '匹配管理',
-        //   component: '@/pages/adminMatch/index',
-        //   wrappers: ['@/wrappers/auth'],
-        // },
-        // {
-        //   exact: false,
-        //   path: '/match',
-        //   name: '匹配管理',
-        //   routes: [
-        //     {
-        //       exact: true,
-        //       path: '/match/detail',
-        //       name: '匹配详情',
-        //       component: '@/pages/adminMatch/detail/index',
-        //     },
-        //     {
-        //       exact: true,
-        //       path: '/match/edit',
-        //       name: '匹配编辑',
-        //       component: '@/pages/adminMatch/edit/index',
-        //     },
-        //   ],
-        // },
+        {
+          path: '/match',
+          name: 'match',
+          component: '@/pages/adminMatch/index',
+          wrappers: ['@/wrappers/auth'],
+        },
+        {
+          exact: false,
+          path: '/match',
+          name: 'match',
+          wrappers: ['@/wrappers/auth'],
+          routes: [
+            {
+              exact: true,
+              path: '/match/detail',
+              name: '匹配详情',
+              component: '@/pages/adminMatch/detail/index',
+            },
+            {
+              exact: true,
+              path: '/match/edit',
+              name: '匹配编辑',
+              component: '@/pages/adminMatch/edit/index',
+            },
+          ],
+        },
         {
           exact: true,
           path: '/product',
-          name: '产品维度管理',
+          name: 'product',
           component: '@/pages/adminProduct/index',
           wrappers: ['@/wrappers/auth'],
         },
         {
           exact: false,
           path: '/product/:id',
-          name: '产品维度管理',
+          name: 'product',
           component: '@/pages/layout/productLayout/index',
           routes: [
             {
@@ -184,6 +186,7 @@ export default defineConfig({
             },
           ],
         },
+        { path: '*', component: '@/pages/403/index' },
       ],
     },
     { path: '*', component: '@/pages/403/index' },

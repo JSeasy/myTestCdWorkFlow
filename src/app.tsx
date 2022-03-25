@@ -9,9 +9,12 @@ export async function getInitialState() {
     match: {
       read: 1,
     },
-    stration: {
+    layout: {
       read: 1,
     },
+    // match: {
+    //   read: 0,
+    // },
   };
 }
 let permission: any = [];
@@ -23,38 +26,38 @@ export async function render(oldRender: any) {
   oldRender();
 }
 
-const path = [
-  {
-    path: '/match',
-    name: '匹配管理',
-    component: require('@/pages/adminMatch/index').default,
-    // wrappers: ['@/wrappers/auth'],
-  },
-  {
-    exact: false,
-    path: '/match',
-    name: '匹配管理',
-    routes: [
-      {
-        exact: true,
-        path: '/match/detail',
-        name: '匹配详情',
-        component: require('@/pages/adminMatch/detail/index').default,
-      },
-      {
-        exact: true,
-        path: '/match/edit',
-        name: '匹配编辑',
-        component: require('@/pages/adminMatch/edit/index').default,
-      },
-    ],
-  },
-];
+// const path = [
+//   {
+//     path: '/match',
+//     name: '匹配管理',
+//     component: require('@/pages/adminMatch/index').default,
+//     // wrappers: ['@/wrappers/auth'],
+//   },
+//   {
+//     exact: false,
+//     path: '/match',
+//     name: '匹配管理',
+//     routes: [
+//       {
+//         exact: true,
+//         path: '/match/detail',
+//         name: '匹配详情',
+//         component: require('@/pages/adminMatch/detail/index').default,
+//       },
+//       {
+//         exact: true,
+//         path: '/match/edit',
+//         name: '匹配编辑',
+//         component: require('@/pages/adminMatch/edit/index').default,
+//       },
+//     ],
+//   },
+// ];
 
 export function patchRoutes({ routes }: any) {
   // // console.log(routes.routes.push(...path));
   // console.log(routes);
-  routes[0].routes.push(...path);
+  // routes[0].routes.push(...path);
 }
 
 const routerMap = () => {};
