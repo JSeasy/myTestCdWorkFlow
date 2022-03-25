@@ -96,43 +96,43 @@ export default defineConfig({
             },
             {
               path: '/product/:id/fields',
-              name: '字段管理',
+              name: 'fields',
               component: '@/pages/adminFields/index',
               wrappers: ['@/wrappers/auth'],
             },
             {
               path: '/product/:id/prehandle',
-              name: '预处理管理',
+              name: 'prehandle',
               component: '@/pages/adminPrehandle/index',
               wrappers: ['@/wrappers/auth'],
             },
             {
               path: '/product/:id/white',
-              name: '黑白名单管理',
+              name: 'white',
               component: '@/pages/adminWhite/index',
               wrappers: ['@/wrappers/auth'],
             },
             {
               path: '/product/:id/whiteDetail',
-              name: '黑白名单详情',
+              name: 'whiteDetail',
               component: '@/pages/adminWhiteDetail/index',
               wrappers: ['@/wrappers/auth'],
             },
             {
               path: '/product/:id/abstract',
-              name: '抽象处理',
+              name: 'abstract',
               component: '@/pages/adminAbstract/index',
               wrappers: ['@/wrappers/auth'],
             },
             {
               path: '/product/:id/strategy',
-              name: '策略管理',
+              name: 'strategy',
               component: '@/pages/adminStrategy/index',
               wrappers: ['@/wrappers/auth'],
             },
             {
               path: '/product/:id/rules',
-              name: '规则管理',
+              name: 'rules',
               component: '@/pages/adminRules/index',
               wrappers: ['@/wrappers/auth'],
             },
@@ -140,14 +140,14 @@ export default defineConfig({
         },
         {
           path: '/role',
-          name: '角色管理',
+          name: 'role',
           component: '@/pages/adminRole/index',
           wrappers: ['@/wrappers/auth'],
         },
 
         {
           path: '/role',
-          name: '角色管理',
+          name: 'role',
           wrappers: ['@/wrappers/auth'],
           routes: [
             {
@@ -167,13 +167,13 @@ export default defineConfig({
 
         {
           path: '/account',
-          name: '账号管理',
+          name: 'account',
           component: '@/pages/adminAccount/index',
           wrappers: ['@/wrappers/auth'],
         },
         {
           path: '/account',
-          name: '账号管理',
+          name: 'account',
           wrappers: ['@/wrappers/auth'],
           routes: [
             {
