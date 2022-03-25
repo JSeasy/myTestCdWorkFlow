@@ -30,12 +30,17 @@ export default defineConfig({
   //   wrappers: ['@/wrappers/auth'],
   // },
   routes: [
-    // {
-    //   path: '/login',
-    //   component: '@/pages/login/index',
-    //   wrappers: ['@/wrappers/auth'],
-    // },
-
+    {
+      path: '/login',
+      name: 'login',
+      component: '@/pages/login/index',
+      // wrappers: ['@/wrappers/auth'],
+    },
+    {
+      path: '/user/regist',
+      component: '@/pages/userRegist/index',
+      // wrappers: ['@/wrappers/auth'],
+    },
     {
       path: '/',
       name: 'layout',
@@ -46,42 +51,43 @@ export default defineConfig({
           path: '/',
           redirect: '/product',
         },
-        // {
-        //   path: '/match',
-        //   name: '匹配管理',
-        //   component: '@/pages/adminMatch/index',
-        //   wrappers: ['@/wrappers/auth'],
-        // },
-        // {
-        //   exact: false,
-        //   path: '/match',
-        //   name: '匹配管理',
-        //   routes: [
-        //     {
-        //       exact: true,
-        //       path: '/match/detail',
-        //       name: '匹配详情',
-        //       component: '@/pages/adminMatch/detail/index',
-        //     },
-        //     {
-        //       exact: true,
-        //       path: '/match/edit',
-        //       name: '匹配编辑',
-        //       component: '@/pages/adminMatch/edit/index',
-        //     },
-        //   ],
-        // },
+        {
+          path: '/match',
+          name: 'match',
+          component: '@/pages/adminMatch/index',
+          wrappers: ['@/wrappers/auth'],
+        },
+        {
+          exact: false,
+          path: '/match',
+          name: 'match',
+          wrappers: ['@/wrappers/auth'],
+          routes: [
+            {
+              exact: true,
+              path: '/match/detail',
+              name: '匹配详情',
+              component: '@/pages/adminMatch/detail/index',
+            },
+            {
+              exact: true,
+              path: '/match/edit',
+              name: '匹配编辑',
+              component: '@/pages/adminMatch/edit/index',
+            },
+          ],
+        },
         {
           exact: true,
           path: '/product',
-          name: '产品维度管理',
+          name: 'product',
           component: '@/pages/adminProduct/index',
           wrappers: ['@/wrappers/auth'],
         },
         {
           exact: false,
           path: '/product/:id',
-          name: '产品维度管理',
+          name: 'product',
           component: '@/pages/layout/productLayout/index',
           routes: [
             {
@@ -90,43 +96,43 @@ export default defineConfig({
             },
             {
               path: '/product/:id/fields',
-              name: '字段管理',
+              name: 'fields',
               component: '@/pages/adminFields/index',
               wrappers: ['@/wrappers/auth'],
             },
             {
               path: '/product/:id/prehandle',
-              name: '预处理管理',
+              name: 'prehandle',
               component: '@/pages/adminPrehandle/index',
               wrappers: ['@/wrappers/auth'],
             },
             {
               path: '/product/:id/white',
-              name: '黑白名单管理',
+              name: 'white',
               component: '@/pages/adminWhite/index',
               wrappers: ['@/wrappers/auth'],
             },
             {
               path: '/product/:id/whiteDetail',
-              name: '黑白名单详情',
+              name: 'whiteDetail',
               component: '@/pages/adminWhiteDetail/index',
               wrappers: ['@/wrappers/auth'],
             },
             {
               path: '/product/:id/abstract',
-              name: '抽象处理',
+              name: 'abstract',
               component: '@/pages/adminAbstract/index',
               wrappers: ['@/wrappers/auth'],
             },
             {
               path: '/product/:id/strategy',
-              name: '策略管理',
+              name: 'strategy',
               component: '@/pages/adminStrategy/index',
               wrappers: ['@/wrappers/auth'],
             },
             {
               path: '/product/:id/rules',
-              name: '规则管理',
+              name: 'rules',
               component: '@/pages/adminRules/index',
               wrappers: ['@/wrappers/auth'],
             },
@@ -134,14 +140,14 @@ export default defineConfig({
         },
         {
           path: '/role',
-          name: '角色管理',
+          name: 'role',
           component: '@/pages/adminRole/index',
           wrappers: ['@/wrappers/auth'],
         },
 
         {
           path: '/role',
-          name: '角色管理',
+          name: 'role',
           wrappers: ['@/wrappers/auth'],
           routes: [
             {
@@ -161,13 +167,13 @@ export default defineConfig({
 
         {
           path: '/account',
-          name: '账号管理',
+          name: 'account',
           component: '@/pages/adminAccount/index',
           wrappers: ['@/wrappers/auth'],
         },
         {
           path: '/account',
-          name: '账号管理',
+          name: 'account',
           wrappers: ['@/wrappers/auth'],
           routes: [
             {
@@ -184,6 +190,7 @@ export default defineConfig({
             },
           ],
         },
+        { path: '*', component: '@/pages/403/index' },
       ],
     },
     { path: '*', component: '@/pages/403/index' },

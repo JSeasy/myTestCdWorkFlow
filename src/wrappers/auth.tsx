@@ -3,16 +3,16 @@ const whiteList = ['/login'];
 export default (props: any) => {
   const { initialState, loading, error, refresh, setInitialState }: any =
     useModel('@@initialState');
-  const {
-    location: { pathname },
-  } = useHistory();
+  // console.log(props);
+  const { route } = props;
+  const { read } = initialState[route.name];
   if (window.localStorage.getItem('token')) {
-    if (pathname === '/login') {
+    if (route.path === '/login') {
       return <Redirect to="/match" />;
     }
-    return <>{props.children}</>;
+    return read ? <>{props.children}</> : <Redirect to="/404" />;
   } else {
-    if (pathname === '/login') {
+    if (route.path === '/login') {
       return <>{props.children}</>;
     }
     return <Redirect to="/login" />;

@@ -3,7 +3,7 @@ import Search from '@/components/searchInput';
 import Table from '@/components/table';
 import { useEffect, useState } from 'react';
 import createColumns from './columns';
-import { useHistory } from 'umi';
+import { useHistory, useModel } from 'umi';
 import { Modal, Form, Button } from 'antd';
 import { get, del } from '@/api/product/index';
 import {
@@ -16,6 +16,16 @@ import {
 } from '@ant-design/icons';
 import Add_Edit_Copy from './add&edit/index';
 export default (props: any) => {
+  const {
+    initialState: {
+      product: { add },
+    },
+    loading,
+    error,
+    refresh,
+    setInitialState,
+  } = useModel('@@initialState');
+
   const history = useHistory();
   // 表单实例
   const [form] = Form.useForm();
@@ -165,18 +175,20 @@ export default (props: any) => {
               onSearch={() => search({ pageNo: 1 })}
             />
           </div>
-          <Button
-            className="addBtn"
-            onClick={() => {
-              setVisible(true);
-              setId('');
-              setLabel('');
-              setIsCopy(false);
-            }}
-          >
-            <PlusOutlined />
-            新增
-          </Button>
+          {!!add && (
+            <Button
+              className="addBtn"
+              onClick={() => {
+                setVisible(true);
+                setId('');
+                setLabel('');
+                setIsCopy(false);
+              }}
+            >
+              <PlusOutlined />
+              新增
+            </Button>
+          )}
         </div>
         <Table
           columns={columns}
