@@ -132,9 +132,12 @@ export default (props: any) => {
           <Button
             className="addBtn"
             onClick={() => {
-              setVisible(true);
-              setId('');
-              form.resetFields();
+              history.push({
+                pathname: '/account/add',
+                state: {
+                  id: '',
+                },
+              });
             }}
           >
             <PlusOutlined />

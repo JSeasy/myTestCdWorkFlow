@@ -17,7 +17,11 @@ export default (props: any) => {
   const [data, setData] = useState([]);
 
   const [visible, setVisible] = useState(false);
-
+  const [pageInfo, setPageInfo] = useState({
+    current: 1,
+    pageSize: 10,
+    total: 0,
+  });
   const [form] = Form.useForm();
 
   const Action = (props: any) => {
@@ -103,7 +107,12 @@ export default (props: any) => {
             </div>
           </div>
         </div>
-        <Table columns={columns} dataSource={data} rowKey="id" />
+        <Table
+          columns={columns}
+          dataSource={data}
+          rowKey="id"
+          pageInfo={pageInfo}
+        />
       </div>
       <Modal
         wrapClassName="myModal"
