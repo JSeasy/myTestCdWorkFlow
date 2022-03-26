@@ -10,8 +10,9 @@ export default (props: any) => {
   const { initialState, loading, error, refresh, setInitialState }: any =
     useModel('@@initialState');
   const { route } = props;
+  console.log(route.path);
   if (window.localStorage.getItem('token')) {
-    const permission = initialState ? initialState[route.path] : undefined;
+    const permission = initialState[route.path];
     const read = permission ? permission.read : true;
     if (route.path === '/login' || (route.path === '/product' && !read)) {
       const path = getCanReadPageFirst(initialState);
