@@ -1,15 +1,21 @@
-import { Form, Input, Radio } from 'antd';
+import { Form, Input, Radio, Checkbox, Col, Row, Select } from 'antd';
 import Title from '@/components/title/index';
 import UploadForm from '@/components/uploadForm';
-import CheckboxSingle from '../checkboxSingle/index';
+
 import styles from './index.less';
+import { forwardRef, useImperativeHandle } from 'react';
 const layout = {
   labelCol: { span: 9 },
   wrapperCol: { span: 15, offset: 1 },
 };
 
-export default (props: any) => {
+export default forwardRef((props: any, ref: any) => {
   const [form] = Form.useForm();
+  useImperativeHandle(ref, () => ({
+    validateForm: () => {
+      return form.validateFields();
+    },
+  }));
   return (
     <div className={styles.registForm}>
       <Form form={form} {...layout}>
@@ -19,7 +25,7 @@ export default (props: any) => {
         ></Title>
         <div style={{ width: 582, margin: '0 auto' }}>
           <Form.Item
-            name="loginName"
+            name="orgName"
             rules={[
               {
                 required: true,
@@ -34,46 +40,44 @@ export default (props: any) => {
             rules={[
               {
                 required: true,
-                message: '请输入密码',
+                message: '请输入公司行业',
               },
             ]}
-            name="passwd"
+            name="gshy"
             label="公司行业"
+            initialValue={1}
           >
-            <Input
-              placeholder="密码由6～16位字母、数字、符号组成，区分大小写"
-              size="large"
-            />
+            <Select size="large">
+              <Select.Option value={1}>服装</Select.Option>
+              <Select.Option value={2}>餐饮</Select.Option>
+              <Select.Option value={3}>房地产</Select.Option>
+              <Select.Option value={4}>汽车</Select.Option>
+              <Select.Option value={5}>互联网</Select.Option>
+            </Select>
           </Form.Item>
           <Form.Item
             rules={[
               {
                 required: true,
-                message: '请再次输入密码',
+                message: '请输入联系人姓名',
               },
             ]}
-            name="passwd1"
+            name="lxrxm"
             label="联系人姓名"
           >
-            <Input
-              placeholder="密码由6～16位字母、数字、符号组成，区分大小写"
-              size="large"
-            />
+            <Input placeholder="请输入联系人姓名" size="large" />
           </Form.Item>
           <Form.Item
             rules={[
               {
                 required: true,
-                message: '请再次输入密码',
+                message: '请输入联系人电话',
               },
             ]}
-            name="passwd1"
+            name="lxrdh"
             label="联系人电话"
           >
-            <Input
-              placeholder="密码由6～16位字母、数字、符号组成，区分大小写"
-              size="large"
-            />
+            <Input placeholder="请输入联系人电话" size="large" />
           </Form.Item>
         </div>
 
@@ -82,8 +86,9 @@ export default (props: any) => {
           style={{ marginTop: 52, marginBottom: 40 }}
         ></Title>
         <div style={{ width: 582, margin: '0 auto' }}>
-          <Form.Item name="passwd1" label="法人征信">
+          <Form.Item name="frzxbgfileList" label="法人征信报告">
             <UploadForm
+              fileType={1}
               title={
                 <p style={{ whiteSpace: 'nowrap' }}>
                   可在
@@ -113,7 +118,7 @@ export default (props: any) => {
                 message: '请输入纳税等级',
               },
             ]}
-            name="passwd1"
+            name="nsdj"
             label="纳税等级"
           >
             <Input placeholder="A/B/M/C" size="large" />
@@ -125,7 +130,7 @@ export default (props: any) => {
                 message: '请输入内容',
               },
             ]}
-            name="passwd1"
+            name="nsze"
             label="近一年纳税总额(万元)"
           >
             <Input size="large" />
@@ -137,7 +142,7 @@ export default (props: any) => {
                 message: '请输入内容',
               },
             ]}
-            name="passwd1"
+            name="kpze"
             label="近一年开票总额(万元)"
           >
             <Input size="large" />
@@ -149,7 +154,7 @@ export default (props: any) => {
                 message: '请输入内容',
               },
             ]}
-            name="passwd1"
+            name="fzze"
             label="企业当前负债余额(万元)"
           >
             <Input size="large" />
@@ -157,76 +162,85 @@ export default (props: any) => {
         </div>
         <Title title={'融资信息'} style={{ marginTop: 52, marginBottom: 40 }} />
         <div style={{ width: 582, margin: '0 auto' }}>
+          <Form.Item label="融资类型">
+            <Row>
+              <Col span={9}>
+                <Form.Item name="rzlxXydk" noStyle valuePropName="checked">
+                  <Checkbox style={{ whiteSpace: 'nowrap' }}>信用贷款</Checkbox>
+                </Form.Item>
+              </Col>
+              <Col span={15}>
+                <Form.Item name="xydkFileList" noStyle>
+                  <UploadForm
+                    fileType={2}
+                    title={
+                      <p style={{ whiteSpace: 'nowrap' }}>
+                        模板:
+                        <span
+                          className="color"
+                          onClick={() => {
+                            window.open('https://ipcrs.pbccrc.org.cn');
+                          }}
+                        >
+                          提交数据.xlsx
+                        </span>
+                      </p>
+                    }
+                  />
+                </Form.Item>
+              </Col>
+            </Row>
+
+            <Row style={{ marginTop: 30 }}>
+              <Col span={9}>
+                <Form.Item name="rzlxDydk" noStyle valuePropName="checked">
+                  <Checkbox style={{ whiteSpace: 'nowrap' }}>抵押贷款</Checkbox>
+                </Form.Item>
+              </Col>
+              <Col span={15}>
+                <Form.Item name="dydkfileList" noStyle>
+                  <UploadForm
+                    title={
+                      <p style={{ whiteSpace: 'nowrap' }}>
+                        模板:
+                        <span
+                          className="color"
+                          onClick={() => {
+                            window.open('https://ipcrs.pbccrc.org.cn');
+                          }}
+                        >
+                          提交数据.xlsx
+                        </span>
+                      </p>
+                    }
+                    fileType={3}
+                  />
+                </Form.Item>
+              </Col>
+            </Row>
+          </Form.Item>
+          <Form.Item name="rzph" label="融资偏好" initialValue={1}>
+            <Radio.Group>
+              <Radio value={1}>额度优先</Radio>
+              <Radio value={2}>利率优先</Radio>
+              <Radio value={3}>速度优先</Radio>
+            </Radio.Group>
+          </Form.Item>
           <Form.Item
+            name="xqje"
+            label="需求金额"
+            required
             rules={[
               {
                 required: true,
-                message: '请上传文件',
+                message: '请输入内容',
               },
             ]}
-            name="passwd1"
-            label="融资类型"
           >
-            <Form.Item
-              name="searchIntervalValue"
-              noStyle
-              rules={[
-                {
-                  required: true,
-                  message: '请输入时间切片',
-                },
-              ]}
-            ></Form.Item>
-            <Form.Item
-              name="searchIntervalValue"
-              noStyle
-              rules={[
-                {
-                  required: true,
-                  message: '请输入时间切片',
-                },
-              ]}
-              initialValue={1}
-            >
-              <CheckboxSingle
-                info={[
-                  { label: '信用贷款', value: 1 },
-                  { label: '融资类型', value: 2 },
-                ]}
-              />
-            </Form.Item>
-            <Form.Item name="searchIntervalType" noStyle>
-              <UploadForm
-                title={
-                  <p style={{ whiteSpace: 'nowrap' }}>
-                    可在
-                    <span
-                      className="color"
-                      onClick={() => {
-                        window.open('https://ipcrs.pbccrc.org.cn');
-                      }}
-                    >
-                      https://ipcrs.pbccrc.org.cn
-                    </span>
-                    点击"马上开始"申请下载
-                  </p>
-                }
-              />
-            </Form.Item>
-          </Form.Item>
-          <Form.Item name="searchIntervalType" label="融资偏好">
-            <Radio.Group>
-              <Radio value={1}>A</Radio>
-              <Radio value={2}>B</Radio>
-              <Radio value={3}>C</Radio>
-              <Radio value={4}>D</Radio>
-            </Radio.Group>
-          </Form.Item>
-          <Form.Item name="searchIntervalType" label="需求金额">
             <Input size="large" />
           </Form.Item>
         </div>
       </Form>
     </div>
   );
-};
+});

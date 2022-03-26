@@ -1,3 +1,4 @@
+import { uploadFileApi } from '@/api/common';
 export const blobToDataURL = (blob: Blob) => {
   return new Promise((resolve, reject) => {
     const fd = new FileReader();
@@ -8,10 +9,8 @@ export const blobToDataURL = (blob: Blob) => {
   });
 };
 
-export const uploadFile = (file: any) => {
-  return new Promise((resolve, reject) => {
-    resolve('src');
-  });
+export const uploadFile = (data: any) => {
+  return uploadFileApi(data);
 };
 
 export const openUploadWindow = () => {
