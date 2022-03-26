@@ -2,7 +2,7 @@ import styles from './index.less';
 import Search from '@/components/searchInput';
 import Table from '@/components/table';
 import Select from '@/components/select';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import createColumns from './columns';
 import { useHistory } from 'umi';
 import { Modal, Form, Input, Button } from 'antd';
@@ -12,17 +12,19 @@ import {
   SolutionOutlined,
   PlusOutlined,
 } from '@ant-design/icons';
-
+import { get } from '@/api/service/index';
 export default (props: any) => {
   const [searchCondition, setSearchCondition] = useState({
-    name: '',
-    top: '',
+    orgName: '',
+    gshy: '',
   });
-  const [data, setData] = useState([
-    { name: 1, age: 2, id: '1' },
-    { name: 1, age: 13, id: '2' },
-    { name: 1, age: 13, id: '3' },
-  ]);
+  const [data, setData] = useState([]);
+
+  const [pageInfo, setPageInfo] = useState({
+    current: 1,
+    pageSize: 10,
+    total: 0,
+  });
 
   const [visible, setVisible] = useState(false);
 
@@ -45,31 +47,52 @@ export default (props: any) => {
     <Action row={row} col={col} key={row.id} />
   ));
 
-  const search = () => {};
+  const search = (params?: any) => {
+    get({
+      ...searchCondition,
+      pageNo: pageInfo.current,
+      pageSize: pageInfo.pageSize,
+      ...params,
+    }).then(({ data }) => {
+      const { page } = data;
+      setData(page.list);
+      setPageInfo({
+        ...pageInfo,
+        total: page.rowCount,
+        current: page.pageNum,
+        pageSize: page.pageSize,
+      });
+    });
+  };
+
   const handleOk = () => {};
-  console.log(data);
+
+  useEffect(() => {
+    search();
+  }, []);
   return (
     <>
       <div className={styles.adminService}>
         <div className={styles.topBar}>
           <div className={styles.searchCondition}>
             <Search
-              placeholder={'请输入产品名称'}
-              value={searchCondition.name}
+              placeholder={'请输入企业名称'}
+              value={searchCondition.orgName}
               onChange={(e: any) => {
                 setSearchCondition({
                   ...searchCondition,
-                  name: e.target.value,
+                  orgName: e.target.value,
                 });
               }}
-              onPressEnter={search}
-              onSearch={search}
+              onPressEnter={() => search({ pageNo: 1 })}
+              onSearch={() => search({ pageNo: 1 })}
             />
             <Select
               placeholder={'融资类型'}
-              value={searchCondition.top}
+              value={searchCondition.gshy}
               onChange={(e: any) => {
-                setSearchCondition({ ...searchCondition, top: e });
+                setSearchCondition({ ...searchCondition, gshy: e });
+                search({ pageNo: 1 });
               }}
               data={[
                 { name: '信用', value: 1 },
@@ -83,7 +106,12 @@ export default (props: any) => {
             新增
           </Button>
         </div>
-        <Table columns={columns} dataSource={data} rowKey="id" />
+        <Table
+          columns={columns}
+          dataSource={data}
+          rowKey="id"
+          pageInfo={pageInfo}
+        />
       </div>
       <Modal
         wrapClassName="myModal"

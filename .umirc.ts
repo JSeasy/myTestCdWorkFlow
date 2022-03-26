@@ -170,7 +170,12 @@ export default defineConfig({
             },
           ],
         },
-
+        {
+          path: '/service',
+          name: 'service',
+          component: '@/pages/adminService/index',
+          wrappers: ['@/wrappers/auth'],
+        },
         {
           path: '/account',
           name: 'account',
