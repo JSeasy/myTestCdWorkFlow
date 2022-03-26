@@ -9,6 +9,7 @@ export async function getInitialState() {
     result['/account'].read = 1;
     result['/match'].read = 1;
     result['/service'].read = 1;
+    result['/product'].read = 1;
     return result;
   }
   return {};
