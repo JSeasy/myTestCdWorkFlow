@@ -35,3 +35,10 @@ export const edit = (data: any) => {
     data,
   });
 };
+
+export const getRoleType = () => {
+  return request({
+    url: '/services/v1/role/queryRoleList',
+    method: 'GET',
+  });
+};
