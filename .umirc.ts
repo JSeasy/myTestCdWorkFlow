@@ -15,11 +15,7 @@ export default defineConfig({
   //   component: '@/pages/userRegist/index',
   //   wrappers: ['@/wrappers/auth'],
   // },
-  // {
-  //   path: '/user/forget',
-  //   component: '@/pages/userForget/index',
-  //   wrappers: ['@/wrappers/auth'],
-  // },
+
   // {
   //   path: '/user/result',
   //   component: '@/pages/userResult/index',
@@ -46,7 +42,11 @@ export default defineConfig({
       component: '@/pages/userRegist/index',
       // wrappers: ['@/wrappers/auth'],
     },
-
+    {
+      path: '/user/forget',
+      component: '@/pages/userForget/index',
+      wrappers: ['@/wrappers/auth'],
+    },
     {
       path: '/',
       name: 'layout',

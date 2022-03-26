@@ -20,6 +20,15 @@ export const openUploadWindow = () => {
   return input;
 };
 
+export const privatePhone = (phone: any) => {
+  if (null != phone && phone != undefined) {
+    var pat = /(\d{3})\d*(\d{4})/;
+    return phone.replace(pat, '$1****$2');
+  } else {
+    return '';
+  }
+};
+
 const map: any = {
   匹配管理: '/match',
   客户企业管理: '/customer',

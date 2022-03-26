@@ -47,3 +47,10 @@ export const loginByCode = (params: any) => {
     params,
   });
 };
+
+export const getUserInfo = () => {
+  return request({
+    url: '/services/v1/user/getInfo',
+    method: 'GET',
+  });
+};

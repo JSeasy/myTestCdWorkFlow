@@ -1,10 +1,18 @@
 import styles from './index.less';
 import { Form, Input, Button, Row, Col } from 'antd';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { getUserInfo } from '@/api/login';
+import { privatePhone } from '@/utils';
 export default (props: any) => {
   const [form] = Form.useForm();
   const [form1] = Form.useForm();
   const [step, setStep] = useState('code');
+  const [userInfo, setUserInfo] = useState({});
+  useEffect(() => {
+    getUserInfo().then(({ data }) => {
+      setUserInfo(data.user);
+    });
+  }, []);
   return (
     <div className={styles.forget}>
       <div className={styles.title}>
@@ -19,7 +27,7 @@ export default (props: any) => {
           {step === 'code' && (
             <div className={styles.number}>
               <p>将验证码发至</p>
-              <p>135****2446</p>
+              <p>{userInfo.mobile ? privatePhone(userInfo.mobile) : ''}</p>
               <Form form={form} layout="vertical">
                 <Form.Item label="验证码" required>
                   <Row gutter={8} justify="start">
@@ -45,7 +53,7 @@ export default (props: any) => {
                       <Button
                         className="getCode"
                         onClick={() => {
-                          form.validateFields();
+                          form.validateFields().then((res) => {});
                         }}
                       >
                         获取验证码
