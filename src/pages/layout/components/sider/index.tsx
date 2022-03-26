@@ -81,7 +81,7 @@ export default () => {
               location.pathname === menu.path && styles.activeMenu
             }`}
             onClick={() => {
-              !isParent && history.push(menu.path);
+              !menu.children.length && history.push(menu.path);
             }}
           >
             {menu.name}

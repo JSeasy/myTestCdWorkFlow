@@ -1,4 +1,4 @@
-import { defineConfig } from 'umi';
+import { defineConfig, Redirect } from 'umi';
 
 export default defineConfig({
   nodeModulesTransform: {
@@ -31,11 +31,16 @@ export default defineConfig({
   // },
   routes: [
     {
+      path: '/',
+      redirect: '/login',
+    },
+    {
       path: '/login',
       name: 'login',
       component: '@/pages/login/index',
       wrappers: ['@/wrappers/auth'],
     },
+
     {
       path: '/user/regist',
       component: '@/pages/userRegist/index',
