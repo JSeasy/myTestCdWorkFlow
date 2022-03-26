@@ -9,11 +9,7 @@ export default defineConfig({
   },
   mock: false,
   // 客户端路由
-  // {
-  //   path: '/user/login',
-  //   component: '@/pages/userLogin/index',
-  //   wrappers: ['@/wrappers/auth'],
-  // },
+
   // {
   //   path: '/user/regist',
   //   component: '@/pages/userRegist/index',
@@ -30,6 +26,10 @@ export default defineConfig({
   //   wrappers: ['@/wrappers/auth'],
   // },
   routes: [
+    {
+      path: '/user/login',
+      component: '@/pages/userLogin/index',
+    },
     {
       path: '/',
       redirect: '/login',
