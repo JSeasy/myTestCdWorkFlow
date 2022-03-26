@@ -54,3 +54,11 @@ export const getUserInfo = () => {
     method: 'GET',
   });
 };
+
+export const editPassword = (data: any) => {
+  return request({
+    url: '/services/v1/user/updatePassword',
+    method: 'POST',
+    data,
+  });
+};
