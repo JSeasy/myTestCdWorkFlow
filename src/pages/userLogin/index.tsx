@@ -52,7 +52,15 @@ export default () => {
             <p className={styles.title}>
               <span>登录</span>
               <span>
-                还没有账号?<span className={styles.color}>前往注册</span>
+                还没有账号?
+                <span
+                  className={styles.color}
+                  onClick={() => {
+                    history.push('/user/regist');
+                  }}
+                >
+                  前往注册
+                </span>
               </span>
             </p>
             <div className={styles.border}></div>
