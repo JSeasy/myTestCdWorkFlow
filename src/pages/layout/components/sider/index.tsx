@@ -7,7 +7,6 @@ export default () => {
   const { location } = history;
   const { initialState, loading, error, refresh, setInitialState }: any =
     useModel('@@initialState');
-  console.log(initialState);
   const [menuList, setMenuList] = useState([
     {
       name: '匹配管理',

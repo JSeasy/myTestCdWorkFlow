@@ -32,3 +32,11 @@ export const add = (data: any) => {
     data,
   });
 };
+
+export const delRole = (data: any) => {
+  return request({
+    url: '/services/v1/role',
+    method: 'delete',
+    data,
+  });
+};

@@ -5,11 +5,20 @@ import { useEffect, useState } from 'react';
 import { Form, Input, Button } from 'antd';
 
 import PermissionCheckBox from '../components/permissionCheckBox/index';
+import { Redirect, useModel } from 'umi';
 const layout = {
   labelCol: { span: 4 },
   wrapperCol: { span: 20, offset: 1 },
 };
 export default (props: any) => {
+  const {
+    initialState: {
+      ['/role']: { edit: editAuth },
+    },
+  } = useModel('@@initialState');
+  if (!editAuth) {
+    return <Redirect to="/404" />;
+  }
   const { state } = props.location;
   const [form] = Form.useForm();
   const [data, setData] = useState([]);
