@@ -42,3 +42,18 @@ export const getRoleType = () => {
     method: 'GET',
   });
 };
+
+export const getDetail = (id: any) => {
+  return request({
+    url: '/services/v1/user/' + id,
+    method: 'GET',
+  });
+};
+
+export const updateUser = (data: any) => {
+  return request({
+    url: '/services/v1/user/updateUser',
+    method: 'POST',
+    data,
+  });
+};

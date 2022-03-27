@@ -60,7 +60,7 @@ export default (props: any) => {
         type="link"
         onClick={() => {
           history.push({
-            pathname: '/account/detail',
+            pathname: '/account/edit',
             state: {
               id: row.id,
             },

@@ -2,11 +2,11 @@ import styles from './index.less';
 import Title from '@/components/title/index';
 import { getRoleType, add } from '@/api/account';
 import { useEffect, useState } from 'react';
-import { Form, Input, Button, Select } from 'antd';
+import { Form, Input, Button, Select, Row, Col } from 'antd';
 import { useHistory } from 'umi';
 const layout = {
   labelCol: { span: 8 },
-  wrapperCol: { span: 7, offset: 1 },
+  wrapperCol: { span: 6, offset: 1 },
 };
 export default (props: any) => {
   const history = useHistory();
@@ -84,6 +84,7 @@ export default (props: any) => {
         >
           <Input size="large" placeholder="请输入密码" />
         </Form.Item>
+
         <Title title={'角色信息'} style={{ marginTop: 64, marginBottom: 64 }} />
         <Form.Item
           name="roleIds"
@@ -91,7 +92,7 @@ export default (props: any) => {
           rules={[
             {
               required: true,
-              message: '请输入密码',
+              message: '请选择角色',
             },
           ]}
           required
@@ -109,9 +110,14 @@ export default (props: any) => {
           </Select>
         </Form.Item>
       </Form>
-      <div style={{ textAlign: 'center', width: 481, margin: '0 auto' }}>
-        <Button onClick={save}>保存</Button>
-      </div>
+      <Row>
+        <Col span={8}></Col>
+        <Col span={6} offset={1}>
+          <Button onClick={save} style={{ width: '100%' }}>
+            保存
+          </Button>
+        </Col>
+      </Row>
     </div>
   );
 };
