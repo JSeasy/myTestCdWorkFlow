@@ -14,6 +14,7 @@ import {
 } from '@ant-design/icons';
 import { get } from '@/api/service/index';
 export default (props: any) => {
+  const history = useHistory();
   const [searchCondition, setSearchCondition] = useState({
     orgName: '',
     gshy: '',
@@ -101,7 +102,12 @@ export default (props: any) => {
               ]}
             />
           </div>
-          <Button className="addBtn">
+          <Button
+            className="addBtn"
+            onClick={() => {
+              history.push('/service/add');
+            }}
+          >
             <PlusOutlined />
             新增
           </Button>

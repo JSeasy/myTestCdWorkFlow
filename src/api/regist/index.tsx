@@ -1,6 +1,5 @@
 import request from '@/request';
 
-// 获取列表
 export const saveCompanyInfo = (data: any) => {
   return request({
     url: '/services/v1/org/khd/saveQy',

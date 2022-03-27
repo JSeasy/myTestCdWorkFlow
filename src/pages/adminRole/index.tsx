@@ -4,7 +4,7 @@ import Table from '@/components/table';
 import { useEffect, useState } from 'react';
 import createColumns from './columns';
 import { useHistory, useModel, useParams } from 'umi';
-import { Form, Button, Select } from 'antd';
+import { Form, Button, Select, Modal } from 'antd';
 import MySelect from '@/components/select';
 
 import { FormOutlined, DeleteOutlined, PlusOutlined } from '@ant-design/icons';
@@ -23,6 +23,8 @@ export default (props: any) => {
     },
   } = useModel('@@initialState');
 
+  const [delVisible, setDelVisible] = useState(false);
+
   const history = useHistory();
   const [searchCondition, setSearchCondition] = useState({
     roleName: '',
@@ -36,7 +38,7 @@ export default (props: any) => {
   const [data, setData] = useState([]);
 
   // 新增和编辑
-  const [visible, setVisible] = useState(false);
+  // const [visible, setVisible] = useState(false);
   const [id, setId] = useState('');
 
   const [form] = Form.useForm();
@@ -56,15 +58,6 @@ export default (props: any) => {
                   id: row.roleId,
                 },
               });
-              // setVisible(true);
-              // setId(row.roleId);
-              // const { fieldType, label, indexed, fieldName } = row;
-              // form.setFieldsValue({
-              //   fieldType,
-              //   label,
-              //   indexed: indexed ? true : false,
-              //   fieldName,
-              // });
             }}
             className="editBtnTable"
           >
@@ -76,9 +69,8 @@ export default (props: any) => {
           <Button
             type="link"
             onClick={() => {
-              delRole([row.id]).then(() => {
-                search();
-              });
+              setDelVisible(true);
+              setId(row.roleId);
             }}
             className="delBtnTable"
           >
@@ -169,6 +161,26 @@ export default (props: any) => {
           }}
         />
       </div>
+      <Modal
+        wrapClassName="myModal"
+        getContainer={'#root'}
+        visible={delVisible}
+        title="删除字段"
+        okText={'删除'}
+        width={400}
+        onOk={() => {
+          delRole([id]).then(() => {
+            setDelVisible(false);
+            search();
+          });
+        }}
+        onCancel={() => setDelVisible(false)}
+        okButtonProps={{
+          style: { background: '#ff4651', borderColor: '#ff4651' },
+        }}
+      >
+        <p style={{ textAlign: 'center' }}>确认删除该角色?</p>
+      </Modal>
     </>
   );
 };

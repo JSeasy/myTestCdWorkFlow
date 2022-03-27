@@ -177,6 +177,18 @@ export default defineConfig({
           wrappers: ['@/wrappers/auth'],
         },
         {
+          path: '/service',
+          name: 'service',
+          routes: [
+            {
+              path: '/service/add',
+              name: 'serviceAdd',
+              component: '@/pages/adminService/add/index',
+              wrappers: ['@/wrappers/auth'],
+            },
+          ],
+        },
+        {
           path: '/account',
           name: 'account',
           component: '@/pages/adminAccount/index',
