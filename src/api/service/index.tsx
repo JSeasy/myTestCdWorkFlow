@@ -3,34 +3,32 @@ import request from '@/request';
 // 获取列表
 export const get = (data: any) => {
   return request({
-    url: '/services/v1/org/query',
+    url: '/services/v1/fworg/query',
     method: 'POST',
     data,
   });
 };
 
-// // 保存
-// export const save = (data: any) => {
-//   return request({
-//     url: '/services/v1/rule',
-//     method: 'PUT',
-//     data,
-//   });
-// };
+export const add = (data: any) => {
+  return request({
+    url: '/services/v1/fworg/save',
+    method: 'POST',
+    data,
+  });
+};
 
-// // 删除
-// export const del = (data: any) => {
-//   return request({
-//     url: '/services/v1/rule',
-//     method: 'DELETE',
-//     data,
-//   });
-// };
+export const edit = (data: any) => {
+  return request({
+    url: '/services/v1/fworg/edit',
+    method: 'PUT',
+    data,
+  });
+};
 
-// // 获取指标字段
-// export const getFields = (id: any) => {
-//   return request({
-//     url: '/services/v1/activation/feature/columns/' + id,
-//     method: 'GET',
-//   });
-// };
+export const del = (data: any) => {
+  return request({
+    url: '/services/v1/fworg',
+    method: 'DELETE',
+    data,
+  });
+};

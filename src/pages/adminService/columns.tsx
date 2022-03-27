@@ -1,12 +1,20 @@
 const createColumns = (element: any) => {
   const columns = [
     {
-      title: '姓名',
-      dataIndex: 'name',
+      title: '服务企业名称',
+      dataIndex: 'orgName',
     },
     {
-      title: '年龄',
-      dataIndex: 'age',
+      title: '信用产品',
+      dataIndex: 'xycpmc',
+    },
+    {
+      title: '抵押产品',
+      dataIndex: 'dycpmc',
+    },
+    {
+      title: '其他产品',
+      dataIndex: 'qtcpmc',
     },
     {
       title: '操作',
