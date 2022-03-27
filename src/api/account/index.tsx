@@ -12,7 +12,7 @@ export const get = (data: any) => {
 // 删除
 export const del = (data: any) => {
   return request({
-    url: '/services/v1/abstraction',
+    url: '/services/v1/user',
     method: 'delete',
     data,
   });

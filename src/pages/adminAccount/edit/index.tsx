@@ -1,6 +1,6 @@
 import styles from './index.less';
 import Title from '@/components/title/index';
-import { getRoleType, add, getDetail } from '@/api/account';
+import { getRoleType, edit, getDetail } from '@/api/account';
 import { useEffect, useState } from 'react';
 import { Form, Input, Button, Select, Row, Col } from 'antd';
 import { useHistory } from 'umi';
@@ -41,7 +41,7 @@ export default (props: any) => {
 
   const save = () => {
     form.validateFields().then((values) => {
-      add({ ...values, id: state.id }).then((res) => {
+      edit({ ...values, id: state.id }).then((res) => {
         history.push('/account');
       });
     });

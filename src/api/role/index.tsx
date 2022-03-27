@@ -40,3 +40,11 @@ export const delRole = (data: any) => {
     data,
   });
 };
+
+export const edit = (data: any) => {
+  return request({
+    url: '/services/v1/role/edit',
+    method: 'PUT',
+    data,
+  });
+};

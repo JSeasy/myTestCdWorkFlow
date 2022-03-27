@@ -1,16 +1,17 @@
 import styles from './index.less';
 import Title from '@/components/title/index';
-import { getDetail } from '@/api/role';
+import { getDetail, edit } from '@/api/role';
 import { useEffect, useState } from 'react';
 import { Form, Input, Button } from 'antd';
 
 import PermissionCheckBox from '../components/permissionCheckBox/index';
-import { Redirect, useModel } from 'umi';
+import { Redirect, useHistory, useModel } from 'umi';
 const layout = {
   labelCol: { span: 4 },
   wrapperCol: { span: 20, offset: 1 },
 };
 export default (props: any) => {
+  const history = useHistory();
   const {
     initialState: {
       ['/role']: { edit: editAuth },
@@ -68,7 +69,17 @@ export default (props: any) => {
       <Title title={'资源'} style={{ marginTop: 64, marginBottom: 64 }} />
       <PermissionCheckBox data={data} onChange={onChange} menuIds={menuIds} />
       <div style={{ textAlign: 'center', width: 481, margin: '0 auto' }}>
-        <Button>保存</Button>
+        <Button
+          onClick={() => {
+            form.validateFields().then((values) => {
+              edit({ ...values, menuIds, roleId: state.id }).then(() => {
+                history.push('/role');
+              });
+            });
+          }}
+        >
+          保存
+        </Button>
       </div>
     </div>
   );

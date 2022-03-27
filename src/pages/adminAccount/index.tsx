@@ -23,7 +23,7 @@ import {
   PlusOutlined,
   ExclamationCircleOutlined,
 } from '@ant-design/icons';
-import { get, add, edit } from '@/api/account';
+import { get, add, edit, del } from '@/api/account';
 
 const layout = {
   labelCol: { span: 6 },
@@ -46,8 +46,7 @@ export default (props: any) => {
   });
   const [data, setData] = useState([]);
 
-  // 新增和编辑
-  const [visible, setVisible] = useState(false);
+  const [delVisible, setDelVisible] = useState(false);
   const [id, setId] = useState('');
 
   const [form] = Form.useForm();
@@ -56,21 +55,34 @@ export default (props: any) => {
     const history = useHistory();
     const { row, col } = props;
     return (
-      <Button
-        type="link"
-        onClick={() => {
-          history.push({
-            pathname: '/account/edit',
-            state: {
-              id: row.id,
-            },
-          });
-        }}
-        className="editBtnTable"
-      >
-        <FormOutlined />
-        编辑
-      </Button>
+      <>
+        <Button
+          type="link"
+          onClick={() => {
+            history.push({
+              pathname: '/account/edit',
+              state: {
+                id: row.id,
+              },
+            });
+          }}
+          className="editBtnTable"
+        >
+          <FormOutlined />
+          编辑
+        </Button>
+        <Button
+          type="link"
+          onClick={() => {
+            setDelVisible(true);
+            setId(row.id);
+          }}
+          className="delBtnTable"
+        >
+          <DeleteOutlined />
+          删除
+        </Button>
+      </>
     );
   };
 
@@ -154,6 +166,26 @@ export default (props: any) => {
           }}
         />
       </div>
+      <Modal
+        wrapClassName="myModal"
+        getContainer={'#root'}
+        visible={delVisible}
+        title="删除字段"
+        okText={'删除'}
+        width={400}
+        onOk={() => {
+          del([id]).then(() => {
+            setDelVisible(false);
+            search();
+          });
+        }}
+        onCancel={() => setDelVisible(false)}
+        okButtonProps={{
+          style: { background: '#ff4651', borderColor: '#ff4651' },
+        }}
+      >
+        <p style={{ textAlign: 'center' }}>确认删除该账号?</p>
+      </Modal>
     </>
   );
 };
