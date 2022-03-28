@@ -2,17 +2,18 @@ import styles from './index.less';
 import Search from '@/components/searchInput';
 import Table from '@/components/table';
 import Select from '@/components/select';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import createColumns from './columns';
 import { useHistory, useParams } from 'umi';
 import { Modal, Form, Input, Button } from 'antd';
+import { get } from '@/api/match';
 import { EyeOutlined, FormOutlined, SolutionOutlined } from '@ant-design/icons';
 
 export default (props: any) => {
   const history = useHistory();
   const [searchCondition, setSearchCondition] = useState({
-    name: '',
-    top: '',
+    orgName: '',
+    rzlx: '',
   });
   const [data, setData] = useState([]);
 
@@ -24,6 +25,9 @@ export default (props: any) => {
   });
   const [form] = Form.useForm();
 
+  useEffect(() => {
+    search();
+  }, []);
   const Action = (props: any) => {
     const history = useHistory();
     const { row, col } = props;
@@ -56,7 +60,23 @@ export default (props: any) => {
     <Action row={row} col={col} key={row.id} />
   ));
 
-  const search = () => {};
+  const search = (params?: any) => {
+    get({
+      ...searchCondition,
+      pageNo: pageInfo.current,
+      pageSize: pageInfo.pageSize,
+      ...params,
+    }).then(({ data }) => {
+      const { page } = data;
+      setData(page.list);
+      setPageInfo({
+        ...pageInfo,
+        total: page.rowCount,
+        current: page.pageNum,
+        pageSize: page.pageSize,
+      });
+    });
+  };
   const handleOk = () => {
     history.push('/login');
   };
@@ -67,11 +87,11 @@ export default (props: any) => {
           <div className={styles.searchCondition}>
             <Search
               placeholder={'请输入产品名称'}
-              value={searchCondition.name}
+              value={searchCondition.orgName}
               onChange={(e: any) => {
                 setSearchCondition({
                   ...searchCondition,
-                  name: e.target.value,
+                  orgName: e.target.value,
                 });
               }}
               onPressEnter={search}
@@ -79,9 +99,9 @@ export default (props: any) => {
             />
             <Select
               placeholder={'融资类型'}
-              value={searchCondition.top}
+              value={searchCondition.rzlx}
               onChange={(e: any) => {
-                setSearchCondition({ ...searchCondition, top: e });
+                setSearchCondition({ ...searchCondition, rzlx: e });
               }}
               data={[
                 { name: '信用', value: 1 },
@@ -112,6 +132,9 @@ export default (props: any) => {
           dataSource={data}
           rowKey="id"
           pageInfo={pageInfo}
+          onChange={(pageNo: number, pageSize: number) => {
+            search({ pageNo, pageSize });
+          }}
         />
       </div>
       <Modal

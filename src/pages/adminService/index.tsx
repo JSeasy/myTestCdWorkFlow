@@ -140,6 +140,9 @@ export default (props: any) => {
           dataSource={data}
           rowKey="id"
           pageInfo={pageInfo}
+          onChange={(pageNo: number, pageSize: number) => {
+            search({ pageNo, pageSize });
+          }}
         />
       </div>
       <Modal

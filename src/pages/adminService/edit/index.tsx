@@ -5,13 +5,15 @@ import styles from './index.less';
 import MyForm from '../component/form';
 import { useImmer } from 'use-immer';
 import { useEffect, useState } from 'react';
-import { getCityTree, getRow } from '@/api/service';
+import { getCityTree, getRow, edit } from '@/api/service';
 import { useHistory } from 'umi';
 const layout = {
   labelCol: { span: 8 },
   wrapperCol: { span: 6, offset: 1 },
 };
 export default (props: any) => {
+  const history = useHistory();
+
   const [form] = Form.useForm();
   const info = {
     cplb: '1',
@@ -28,20 +30,17 @@ export default (props: any) => {
     splx: '1',
     tkfs: '1',
   };
+  const {
+    location: { state },
+  } = history;
 
   useEffect(() => {
-    const {
-      location: { state },
-    } = history;
-    getRow(state.id).then((res) => {
-      console.log(12313);
-    });
+    getRow(state.id).then((res) => {});
   }, []);
 
   const [tree, setTree] = useState([]);
   const [formValues, updateFormValues] = useImmer<any>([]);
   const [fromWhitch, setFromWhitch] = useState('add');
-  const history = useHistory();
   useEffect(() => {
     getCityTree()
       .then((res) => {
@@ -117,12 +116,13 @@ export default (props: any) => {
             form.validateFields().then((values) => {
               const [szsfdm, szsqdm, szqxdm] = values.city;
               console.log(szsfdm, szsqdm, szqxdm);
-              add({
+              edit({
                 szsfdm,
                 szsqdm,
                 szqxdm,
                 orgName: values.orgName,
                 orgProductList: formValues,
+                id: state.id,
               }).then(() => {
                 history.push('/service');
               });
