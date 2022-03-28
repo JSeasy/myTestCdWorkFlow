@@ -3,13 +3,21 @@ import Title from '@/components/title/index';
 import { getAllAuth, add } from '@/api/role';
 import { useEffect, useState } from 'react';
 import { Form, Input, Button } from 'antd';
-import { useHistory } from 'umi';
+import { Redirect, useHistory, useModel } from 'umi';
 import PermissionCheckBox from '../components/permissionCheckBox/index';
 const layout = {
   labelCol: { span: 4 },
   wrapperCol: { span: 20, offset: 1 },
 };
 export default (props: any) => {
+  const {
+    initialState: {
+      ['/role']: { add: addAuth },
+    },
+  } = useModel('@@initialState');
+  if (!addAuth) {
+    return <Redirect to="/404" />;
+  }
   const history = useHistory();
   const [form] = Form.useForm();
   const [data, setData] = useState([]);

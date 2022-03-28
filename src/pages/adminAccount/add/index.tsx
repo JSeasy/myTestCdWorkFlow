@@ -1,37 +1,34 @@
 import styles from './index.less';
 import Title from '@/components/title/index';
-import { getAllAuth, add } from '@/api/role';
+import { getRoleType, add } from '@/api/account';
 import { useEffect, useState } from 'react';
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button, Select, Row, Col } from 'antd';
 import { useHistory } from 'umi';
 const layout = {
   labelCol: { span: 8 },
-  wrapperCol: { span: 7, offset: 1 },
+  wrapperCol: { span: 6, offset: 1 },
 };
 export default (props: any) => {
   const history = useHistory();
   const [form] = Form.useForm();
-  const [data, setData] = useState([]);
-  const [menuIds, setMenuIds] = useState([]);
-  const getDetailAdd = () => {
-    getAllAuth().then(({ data }) => {
-      setData(data.menus);
+  const [roleType, setRoleType] = useState([]);
+  const getRoleTypeAdd = () => {
+    getRoleType().then(({ data }) => {
+      setRoleType(data.roleList);
     });
   };
   useEffect(() => {
-    getDetailAdd();
+    getRoleTypeAdd();
   }, []);
 
   const save = () => {
     form.validateFields().then((values) => {
-      add({ ...values, menuIds }).then((res) => {
-        history.push('/role');
+      add({ ...values }).then((res) => {
+        history.push('/account');
       });
     });
   };
-  const onChange = (menuIds: any) => {
-    setMenuIds(menuIds);
-  };
+
   return (
     <div className={styles.accountAdd}>
       <Title
@@ -40,7 +37,7 @@ export default (props: any) => {
       />
       <Form {...layout} form={form}>
         <Form.Item
-          name="roleName"
+          name="userName"
           rules={[
             {
               required: true,
@@ -52,7 +49,7 @@ export default (props: any) => {
           <Input size="large" placeholder="请输入用户名"></Input>
         </Form.Item>
         <Form.Item
-          name="remark"
+          name="realName"
           label="姓名"
           rules={[
             {
@@ -64,7 +61,7 @@ export default (props: any) => {
           <Input size="large" placeholder="请输入姓名" />
         </Form.Item>
         <Form.Item
-          name="remark"
+          name="mobile"
           rules={[
             {
               required: true,
@@ -76,7 +73,7 @@ export default (props: any) => {
           <Input size="large" placeholder="请输入联系电话" />
         </Form.Item>
         <Form.Item
-          name="remark"
+          name="passwd"
           label="登录密码"
           rules={[
             {
@@ -87,11 +84,40 @@ export default (props: any) => {
         >
           <Input size="large" placeholder="请输入密码" />
         </Form.Item>
+
+        <Title title={'角色信息'} style={{ marginTop: 64, marginBottom: 64 }} />
+        <Form.Item
+          name="roleIds"
+          label="角色"
+          rules={[
+            {
+              required: true,
+              message: '请选择角色',
+            },
+          ]}
+          required
+          initialValue=""
+        >
+          <Select size="large">
+            <Select.Option value="">--请选择--</Select.Option>
+            {roleType.map((item: any) => {
+              return (
+                <Select.Option value={item.roleId} key={item.roleId}>
+                  {item.roleName}
+                </Select.Option>
+              );
+            })}
+          </Select>
+        </Form.Item>
       </Form>
-      <Title title={'角色信息'} style={{ marginTop: 64, marginBottom: 64 }} />
-      <div style={{ textAlign: 'center', width: 481, margin: '0 auto' }}>
-        <Button onClick={save}>保存</Button>
-      </div>
+      <Row>
+        <Col span={8}></Col>
+        <Col span={6} offset={1}>
+          <Button onClick={save} style={{ width: '100%' }}>
+            保存
+          </Button>
+        </Col>
+      </Row>
     </div>
   );
 };

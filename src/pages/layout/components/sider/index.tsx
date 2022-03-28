@@ -1,87 +1,93 @@
 import React from 'react';
 import { useState } from 'react';
-import { useHistory } from 'umi';
+import { useHistory, useModel } from 'umi';
 import styles from './index.less';
-export default ({ props }: any) => {
-  console.log(props);
-  console.log(1231);
+export default () => {
   const history = useHistory();
-  const activePathname = history.location.pathname;
+  const { location } = history;
+  const { initialState, loading, error, refresh, setInitialState }: any =
+    useModel('@@initialState');
   const [menuList, setMenuList] = useState([
     {
       name: '匹配管理',
       children: [],
-      enName: 'match',
-      id: '1',
       path: '/match',
+      auth: initialState['/match'],
     },
     {
-      id: '2',
+      path: '/man',
       name: '企业管理',
+      auth: {
+        read:
+          initialState['/service']['read'] || initialState['/customer']['read'],
+      },
       children: [
         {
-          id: '2-1',
+          path: '/service',
           name: '服务企业管理',
           children: [],
+          auth: initialState['/service'],
         },
         {
-          id: '2-2',
+          path: '/customer',
           name: '客户企业管理',
           children: [],
+          auth: initialState['/customer'],
         },
       ],
     },
     {
-      id: '3',
+      path: '/product',
       name: '产品维度管理',
       enName: 'product',
       children: [],
-      path: '/product',
+      auth: initialState['/product'],
     },
     {
-      id: '4',
       name: '平台管理',
-      enName: 'platform',
+      path: '/platform',
+      auth: {
+        read: initialState['/account']['read'] || initialState['/role']['read'],
+      },
       children: [
         {
           name: '管理员',
           path: '/account',
-          enName: 'account',
           children: [],
-          id: '4-1',
+          auth: initialState['/account'],
         },
         {
           name: '角色管理',
           path: '/role',
-          enName: 'role',
           children: [],
-          id: '4-2',
+          auth: initialState['/role'],
         },
       ],
     },
     {
-      id: '5',
+      path: '/system',
       name: '系统日志',
       enName: 'system',
-      path: '/system',
       children: [],
+      auth: initialState['/system'],
     },
   ]);
-  const [active, setActive] = useState('1');
   const renderMenuList = (menuList: any, isParent: boolean) => {
     return menuList.map((menu: any) => (
-      <React.Fragment key={menu.id}>
-        <div
-          key={menu.id}
-          className={`${isParent ? styles.menu : styles.menuItem} ${
-            activePathname === menu.path && styles.activeMenu
-          }`}
-          onClick={() => {
-            history.push(menu.path);
-          }}
-        >
-          {menu.name}
-        </div>
+      <React.Fragment key={menu.path}>
+        {menu.auth.read && (
+          <div
+            key={menu.path}
+            className={`${isParent ? styles.menu : styles.menuItem} ${
+              location.pathname === menu.path && styles.activeMenu
+            }`}
+            onClick={() => {
+              !menu.children.length && history.push(menu.path);
+            }}
+          >
+            {menu.name}
+          </div>
+        )}
         {!!menu.children.length && renderMenuList(menu.children, false)}
       </React.Fragment>
     ));

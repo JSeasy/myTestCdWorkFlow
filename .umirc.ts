@@ -1,4 +1,4 @@
-import { defineConfig } from 'umi';
+import { defineConfig, Redirect } from 'umi';
 
 export default defineConfig({
   nodeModulesTransform: {
@@ -9,21 +9,13 @@ export default defineConfig({
   },
   mock: false,
   // 客户端路由
-  // {
-  //   path: '/user/login',
-  //   component: '@/pages/userLogin/index',
-  //   wrappers: ['@/wrappers/auth'],
-  // },
+
   // {
   //   path: '/user/regist',
   //   component: '@/pages/userRegist/index',
   //   wrappers: ['@/wrappers/auth'],
   // },
-  // {
-  //   path: '/user/forget',
-  //   component: '@/pages/userForget/index',
-  //   wrappers: ['@/wrappers/auth'],
-  // },
+
   // {
   //   path: '/user/result',
   //   component: '@/pages/userResult/index',
@@ -31,15 +23,29 @@ export default defineConfig({
   // },
   routes: [
     {
+      path: '/user/login',
+      component: '@/pages/userLogin/index',
+    },
+    {
+      path: '/',
+      redirect: '/login',
+    },
+    {
       path: '/login',
       name: 'login',
       component: '@/pages/login/index',
-      // wrappers: ['@/wrappers/auth'],
+      wrappers: ['@/wrappers/auth'],
     },
+
     {
       path: '/user/regist',
       component: '@/pages/userRegist/index',
       // wrappers: ['@/wrappers/auth'],
+    },
+    {
+      path: '/user/forget',
+      component: '@/pages/userForget/index',
+      wrappers: ['@/wrappers/auth'],
     },
     {
       path: '/',
@@ -61,7 +67,7 @@ export default defineConfig({
           exact: false,
           path: '/match',
           name: 'match',
-          wrappers: ['@/wrappers/auth'],
+          // wrappers: ['@/wrappers/auth'],
           routes: [
             {
               exact: true,
@@ -164,7 +170,24 @@ export default defineConfig({
             },
           ],
         },
-
+        {
+          path: '/service',
+          name: 'service',
+          component: '@/pages/adminService/index',
+          wrappers: ['@/wrappers/auth'],
+        },
+        {
+          path: '/service',
+          name: 'service',
+          routes: [
+            {
+              path: '/service/add',
+              name: 'serviceAdd',
+              component: '@/pages/adminService/add/index',
+              wrappers: ['@/wrappers/auth'],
+            },
+          ],
+        },
         {
           path: '/account',
           name: 'account',

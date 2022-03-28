@@ -1,11 +1,13 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import styles from './index.less';
 import cs from 'classnames';
 import { Button, Checkbox, Form, Input, Row, Col } from 'antd';
 import RegistForm from '@/components/registForm/index';
+import { saveCompanyInfo, saveUserInfo } from '@/api/regist';
 export default (props: any) => {
   const [active, setActive] = useState(0);
   const [form] = Form.useForm();
+  const ref: any = useRef(null);
   return (
     <div className={styles.regist}>
       <div className={styles.title}>
@@ -87,18 +89,27 @@ export default (props: any) => {
       {active === 1 && (
         <div className={styles.info}>
           <h1 className={styles.title}>请填写账号信息</h1>
-          <Form form={form} layout="vertical">
+          <Form form={form} layout="vertical" validateTrigger={false}>
             <Form.Item
-              name="loginName"
+              name="mobile"
               rules={[
                 {
                   required: true,
                   message: '请输入手机号',
                 },
+                {
+                  min: 11,
+                  message: '小于11位',
+                },
               ]}
               label="手机号"
             >
-              <Input placeholder="请输入手机号" size="large" />
+              <Input
+                placeholder="请输入手机号"
+                size="large"
+                maxLength={11}
+                minLength={11}
+              />
             </Form.Item>
             <Form.Item
               rules={[
@@ -106,6 +117,18 @@ export default (props: any) => {
                   required: true,
                   message: '请输入密码',
                 },
+                {
+                  min: 6,
+                  message: '小于6位',
+                },
+                ({ getFieldValue }) => ({
+                  validator(rule, value) {
+                    if (!value || getFieldValue('verifyPasswd') === value) {
+                      return Promise.resolve();
+                    }
+                    return Promise.reject('两次密码输入不一致');
+                  },
+                }),
               ]}
               name="passwd"
               label="设置密码"
@@ -113,6 +136,8 @@ export default (props: any) => {
               <Input
                 placeholder="密码由6～16位字母、数字、符号组成，区分大小写"
                 size="large"
+                minLength={6}
+                maxLength={16}
               />
             </Form.Item>
             <Form.Item
@@ -121,11 +146,25 @@ export default (props: any) => {
                   required: true,
                   message: '请再次输入密码',
                 },
+                {
+                  min: 6,
+                  message: '小于6位',
+                },
+                ({ getFieldValue }) => ({
+                  validator(rule, value) {
+                    if (!value || getFieldValue('passwd') === value) {
+                      return Promise.resolve();
+                    }
+                    return Promise.reject('两次密码输入不一致');
+                  },
+                }),
               ]}
-              name="passwd1"
+              name="verifyPasswd"
               label="确认密码"
             >
               <Input
+                minLength={6}
+                maxLength={16}
                 placeholder="密码由6～16位字母、数字、符号组成，区分大小写"
                 size="large"
               />
@@ -136,7 +175,9 @@ export default (props: any) => {
               style={{ width: '100%' }}
               onClick={() => {
                 form.validateFields().then((values) => {
-                  setActive(2);
+                  saveUserInfo(values).then((res) => {
+                    setActive(2);
+                  });
                 });
               }}
             >
@@ -148,12 +189,20 @@ export default (props: any) => {
       {active === 2 && (
         <div className={styles.formWrap}>
           <h1>请完善资料</h1>
-          <RegistForm />
+          <RegistForm ref={ref} />
           <div style={{ width: 582, margin: '0 auto', marginTop: 64 }}>
             <Row>
               <Col span={9}></Col>
               <Col span={15}>
-                <Button>完成</Button>
+                <Button
+                  onClick={() => {
+                    ref.current.validateForm().then((values: any) => {
+                      saveCompanyInfo(values);
+                    });
+                  }}
+                >
+                  完成
+                </Button>
               </Col>
             </Row>
           </div>

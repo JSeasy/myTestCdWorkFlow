@@ -30,3 +30,35 @@ export const getRouters = () => {
     method: 'GET',
   });
 };
+
+// 验证码登录
+export const getMobileCode = (params: any) => {
+  return request({
+    url: '/services/v1/user/getPhoneCode',
+    method: 'GET',
+    params,
+  });
+};
+
+export const loginByCode = (params: any) => {
+  return request({
+    url: '/services/v1/user/loginByCode',
+    method: 'GET',
+    params,
+  });
+};
+
+export const getUserInfo = () => {
+  return request({
+    url: '/services/v1/user/getInfo',
+    method: 'GET',
+  });
+};
+
+export const editPassword = (data: any) => {
+  return request({
+    url: '/services/v1/user/updatePassword',
+    method: 'POST',
+    data,
+  });
+};

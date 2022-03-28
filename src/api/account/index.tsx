@@ -12,7 +12,7 @@ export const get = (data: any) => {
 // 删除
 export const del = (data: any) => {
   return request({
-    url: '/services/v1/abstraction',
+    url: '/services/v1/user',
     method: 'delete',
     data,
   });
@@ -29,6 +29,28 @@ export const add = (data: any) => {
 
 // 修改
 export const edit = (data: any) => {
+  return request({
+    url: '/services/v1/user/updateUser',
+    method: 'POST',
+    data,
+  });
+};
+
+export const getRoleType = () => {
+  return request({
+    url: '/services/v1/role/queryRoleList',
+    method: 'GET',
+  });
+};
+
+export const getDetail = (id: any) => {
+  return request({
+    url: '/services/v1/user/' + id,
+    method: 'GET',
+  });
+};
+
+export const updateUser = (data: any) => {
   return request({
     url: '/services/v1/user/updateUser',
     method: 'POST',

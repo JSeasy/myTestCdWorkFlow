@@ -1,10 +1,20 @@
 import styles from './index.less';
 import { Form, Input, Button, Row, Col } from 'antd';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { getMobileCode, getUserInfo, editPassword } from '@/api/login';
+import { privatePhone } from '@/utils';
+import { message } from 'antd';
 export default (props: any) => {
   const [form] = Form.useForm();
   const [form1] = Form.useForm();
   const [step, setStep] = useState('code');
+  const [code, setCode] = useState(null);
+  const [userInfo, setUserInfo] = useState({});
+  useEffect(() => {
+    getUserInfo().then(({ data }) => {
+      setUserInfo(data.user);
+    });
+  }, []);
   return (
     <div className={styles.forget}>
       <div className={styles.title}>
@@ -19,25 +29,29 @@ export default (props: any) => {
           {step === 'code' && (
             <div className={styles.number}>
               <p>将验证码发至</p>
-              <p>135****2446</p>
+              <p>{userInfo.mobile ? privatePhone(userInfo.mobile) : ''}</p>
               <Form form={form} layout="vertical">
                 <Form.Item label="验证码" required>
                   <Row gutter={8} justify="start">
                     <Col span={18}>
                       <Form.Item
-                        name="loginName"
+                        name="mobileCode"
                         rules={[
                           {
                             required: true,
                             message: '请输入验证码',
+                          },
+                          {
+                            min: 6,
+                            message: '最少六位',
                           },
                         ]}
                       >
                         <Input
                           placeholder="请输入验证码"
                           size="large"
-                          minLength={11}
-                          maxLength={11}
+                          minLength={6}
+                          maxLength={6}
                         />
                       </Form.Item>
                     </Col>
@@ -45,7 +59,11 @@ export default (props: any) => {
                       <Button
                         className="getCode"
                         onClick={() => {
-                          form.validateFields();
+                          getMobileCode({ mobile: userInfo.mobile }).then(
+                            () => {
+                              message.success('获取验证码成功!');
+                            },
+                          );
                         }}
                       >
                         获取验证码
@@ -56,7 +74,10 @@ export default (props: any) => {
               </Form>
               <Button
                 onClick={() => {
-                  setStep('password');
+                  form.validateFields().then((values: any) => {
+                    setCode(values);
+                    setStep('password');
+                  });
                 }}
               >
                 下一步
@@ -65,13 +86,13 @@ export default (props: any) => {
           )}
           {step === 'password' && (
             <>
-              <Form form={form1} layout="vertical">
+              <Form form={form1} layout="vertical" validateTrigger={false}>
                 <Form.Item
-                  name="loginName"
+                  name="passwd"
                   rules={[
                     {
                       required: true,
-                      message: '请输入验证码',
+                      message: '请输入密码',
                     },
                   ]}
                   label="设置密码"
@@ -82,11 +103,11 @@ export default (props: any) => {
                   />
                 </Form.Item>
                 <Form.Item
-                  name="loginName"
+                  name="verifyPasswd"
                   rules={[
                     {
                       required: true,
-                      message: '请输入验证码',
+                      message: '请确认密码',
                     },
                   ]}
                   label="确认密码"
@@ -97,6 +118,15 @@ export default (props: any) => {
               <Button
                 onClick={() => {
                   setStep('password');
+                  form1.validateFields().then((values) => {
+                    editPassword({
+                      ...code,
+                      mobile: userInfo.mobile,
+                      ...values,
+                    }).then((res) => {
+                      console.log(res);
+                    });
+                  });
                 }}
               >
                 完成

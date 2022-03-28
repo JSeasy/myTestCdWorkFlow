@@ -1,11 +1,13 @@
-import { useEffect, useState } from 'react';
-import { Form, Input, Button, Modal, Space, Checkbox } from 'antd';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { Form, Input, Button, Modal, Space, Checkbox, Row, Col } from 'antd';
 import styles from './index.less';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
-import { login, getCode, regist } from '@/api/userLogin/index';
+import { login, getCode, getMobileCode, loginByCode } from '@/api/login/index';
 import { blobToDataURL } from '@/utils/index';
-import { useHistory } from 'umi';
+import { useHistory, useModel } from 'umi';
 import { DoubleRightOutlined } from '@ant-design/icons';
+import { message } from 'antd';
+
 export default () => {
   const [form] = Form.useForm();
   const history = useHistory();
@@ -14,13 +16,24 @@ export default () => {
   const handleOk = () => {};
   const onCheck = () => {
     form.validateFields().then((values) => {
-      login(values).then((res) => {
-        window.localStorage.setItem('token', res.data['x-auth-token']);
-        history.push('/match');
-      });
+      const { current } = ref;
+      current.state.checked &&
+        loginMethod === 'password' &&
+        login(values).then((res) => {
+          window.localStorage.setItem('token', res.data['x-auth-token']);
+          window.location.reload();
+        });
+      current.state.checked &&
+        loginMethod === 'phone' &&
+        loginByCode(values).then((res) => {
+          console.log(res);
+          window.localStorage.setItem('token', res.data['x-auth-token']);
+          window.location.reload();
+        });
+      !current.state.checked && message.error('请阅读协议');
     });
   };
-
+  const ref = useRef();
   const codeApi = () => {
     getCode().then((res: any) => {
       blobToDataURL(res).then((res: string | unknown) => {
@@ -32,6 +45,18 @@ export default () => {
   useEffect(() => {
     codeApi();
   }, []);
+
+  // const [time, setTime] = useState(60);
+  // const countTime = (time: number) => {
+  //   const timer = setInterval(() => {
+  //     setTime((time) => --time);
+  //     if (time === 1) {
+  //       setTime(60);
+  //       clearInterval(timer);
+  //     }
+  //   }, 1000);
+  // };
+  // useEffect(() => {}, [time]);
 
   const [loginMethod, setLoginMethod] = useState('password');
 
@@ -52,7 +77,15 @@ export default () => {
             <p className={styles.title}>
               <span>登录</span>
               <span>
-                还没有账号?<span className={styles.color}>前往注册</span>
+                还没有账号?
+                <span
+                  className={styles.color}
+                  onClick={() => {
+                    history.push('/user/regist');
+                  }}
+                >
+                  前往注册
+                </span>
               </span>
             </p>
             <div className={styles.border}></div>
@@ -116,11 +149,15 @@ export default () => {
               {loginMethod === 'phone' && (
                 <>
                   <Form.Item
-                    name="loginName"
+                    name="mobile"
                     rules={[
                       {
                         required: true,
                         message: '请输入手机号码',
+                      },
+                      {
+                        min: 11,
+                        message: '小于11位',
                       },
                     ]}
                     label="手机号码"
@@ -133,27 +170,46 @@ export default () => {
                   </Form.Item>
 
                   <Form.Item label="验证码" required>
-                    <Form.Item
-                      name="captcha"
-                      noStyle
-                      rules={[
-                        {
-                          required: true,
-                          message: '请输入验证码',
-                        },
-                      ]}
-                    >
-                      <Input.Group compact>
-                        <Input style={{ width: 'calc(100% - 102px' }} />
-                        <Button type="primary">获取验证码</Button>
-                      </Input.Group>
-                    </Form.Item>
+                    <Row>
+                      <Col span={17}>
+                        <Form.Item
+                          name="mobileCode"
+                          noStyle
+                          rules={[
+                            {
+                              required: true,
+                              message: '请输入验证码',
+                            },
+                          ]}
+                        >
+                          <Input
+                            style={{ borderRadius: '10px 0 0 10px' }}
+                            size="large"
+                            maxLength={6}
+                          ></Input>
+                        </Form.Item>
+                      </Col>
+                      <Col span={7}>
+                        <Button
+                          className="getCode"
+                          onClick={() => {
+                            form.validateFields(['mobile']).then((res: any) => {
+                              getMobileCode(res).then((res) => {
+                                message.success('发送成功!');
+                              });
+                            });
+                          }}
+                        >
+                          获取验证码
+                        </Button>
+                      </Col>
+                    </Row>
                   </Form.Item>
                 </>
               )}
               <Form.Item>
                 <p style={{ marginBottom: 20 }}>
-                  <Checkbox></Checkbox>
+                  <Checkbox ref={ref}></Checkbox>
                   <span style={{ marginLeft: 14 }}>
                     我已认真阅读并同意
                     <span className={styles.color}>《某某某协议》</span>和

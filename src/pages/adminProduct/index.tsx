@@ -18,7 +18,7 @@ import Add_Edit_Copy from './add&edit/index';
 export default (props: any) => {
   const {
     initialState: {
-      product: { add },
+      ['/product']: { add, edit, del },
     },
     loading,
     error,
@@ -97,18 +97,20 @@ export default (props: any) => {
         >
           <CopyOutlined /> 复制
         </Button>
-        <Button
-          type="link"
-          className="editBtnTable"
-          onClick={() => {
-            setVisible(true);
-            setId(row.id);
-            setLabel(row.label);
-            setIsCopy(false);
-          }}
-        >
-          <FormOutlined /> 编辑
-        </Button>
+        {edit && (
+          <Button
+            type="link"
+            className="editBtnTable"
+            onClick={() => {
+              setVisible(true);
+              setId(row.id);
+              setLabel(row.label);
+              setIsCopy(false);
+            }}
+          >
+            <FormOutlined /> 编辑
+          </Button>
+        )}
         <Button
           type="link"
           onClick={() => setRevertVisible(true)}
@@ -116,17 +118,19 @@ export default (props: any) => {
         >
           <RetweetOutlined /> 重构
         </Button>
-        <Button
-          type="link"
-          onClick={() => {
-            setDelVisible(true);
-            setId(row.id);
-          }}
-          className="delBtnTable"
-        >
-          <DeleteOutlined />
-          删除
-        </Button>
+        {del && (
+          <Button
+            type="link"
+            onClick={() => {
+              setDelVisible(true);
+              setId(row.id);
+            }}
+            className="delBtnTable"
+          >
+            <DeleteOutlined />
+            删除
+          </Button>
+        )}
       </>
     );
   };

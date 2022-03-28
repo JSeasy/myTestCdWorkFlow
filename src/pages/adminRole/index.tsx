@@ -3,28 +3,12 @@ import Search from '@/components/searchInput';
 import Table from '@/components/table';
 import { useEffect, useState } from 'react';
 import createColumns from './columns';
-import { useHistory, useParams } from 'umi';
-import {
-  Modal,
-  Form,
-  Input,
-  Button,
-  Row,
-  Col,
-  Tooltip,
-  Select,
-  Checkbox,
-} from 'antd';
+import { useHistory, useModel, useParams } from 'umi';
+import { Form, Button, Select, Modal } from 'antd';
 import MySelect from '@/components/select';
 
-import {
-  FormOutlined,
-  DeleteOutlined,
-  PlusOutlined,
-  ExclamationCircleOutlined,
-} from '@ant-design/icons';
-import { get, getDetail } from '@/api/role';
-import Pie from '@/components/pie';
+import { FormOutlined, DeleteOutlined, PlusOutlined } from '@ant-design/icons';
+import { get, delRole } from '@/api/role';
 const layout = {
   labelCol: { span: 6 },
   wrapperCol: { span: 16, offset: 2 },
@@ -33,8 +17,15 @@ const layout = {
 const { Option } = Select;
 
 export default (props: any) => {
+  const {
+    initialState: {
+      ['/role']: { add, edit, del },
+    },
+  } = useModel('@@initialState');
+
+  const [delVisible, setDelVisible] = useState(false);
+
   const history = useHistory();
-  const params = useParams();
   const [searchCondition, setSearchCondition] = useState({
     roleName: '',
     status: '',
@@ -47,7 +38,7 @@ export default (props: any) => {
   const [data, setData] = useState([]);
 
   // 新增和编辑
-  const [visible, setVisible] = useState(false);
+  // const [visible, setVisible] = useState(false);
   const [id, setId] = useState('');
 
   const [form] = Form.useForm();
@@ -57,45 +48,36 @@ export default (props: any) => {
     const { row, col } = props;
     return (
       <>
-        <Button
-          type="link"
-          onClick={() => {
-            history.push({
-              pathname: '/role/edit',
-              state: {
-                id: row.roleId,
-              },
-            });
-            // setVisible(true);
-            // setId(row.roleId);
-            // const { fieldType, label, indexed, fieldName } = row;
-            // form.setFieldsValue({
-            //   fieldType,
-            //   label,
-            //   indexed: indexed ? true : false,
-            //   fieldName,
-            // });
-          }}
-          className="editBtnTable"
-        >
-          <FormOutlined />
-          编辑
-        </Button>
-        {/* <Button
-          type="link"
-          onClick={() => {
-            history.push({
-              pathname: '/role/detail',
-              state: {
-                id: row.roleId,
-              },
-            });
-          }}
-          className="editBtnTable"
-        >
-          <FormOutlined />
-          详情
-        </Button> */}
+        {edit && (
+          <Button
+            type="link"
+            onClick={() => {
+              history.push({
+                pathname: '/role/edit',
+                state: {
+                  id: row.roleId,
+                },
+              });
+            }}
+            className="editBtnTable"
+          >
+            <FormOutlined />
+            编辑
+          </Button>
+        )}
+        {del && (
+          <Button
+            type="link"
+            onClick={() => {
+              setDelVisible(true);
+              setId(row.roleId);
+            }}
+            className="delBtnTable"
+          >
+            <DeleteOutlined />
+            删除
+          </Button>
+        )}
       </>
     );
   };
@@ -155,17 +137,19 @@ export default (props: any) => {
               ]}
             />
           </div>
-          <Button
-            className="addBtn"
-            onClick={() => {
-              history.push({
-                pathname: '/role/add',
-              });
-            }}
-          >
-            <PlusOutlined />
-            新增
-          </Button>
+          {add && (
+            <Button
+              className="addBtn"
+              onClick={() => {
+                history.push({
+                  pathname: '/role/add',
+                });
+              }}
+            >
+              <PlusOutlined />
+              新增
+            </Button>
+          )}
         </div>
         <Table
           columns={columns}
@@ -177,6 +161,26 @@ export default (props: any) => {
           }}
         />
       </div>
+      <Modal
+        wrapClassName="myModal"
+        getContainer={'#root'}
+        visible={delVisible}
+        title="删除字段"
+        okText={'删除'}
+        width={400}
+        onOk={() => {
+          delRole([id]).then(() => {
+            setDelVisible(false);
+            search();
+          });
+        }}
+        onCancel={() => setDelVisible(false)}
+        okButtonProps={{
+          style: { background: '#ff4651', borderColor: '#ff4651' },
+        }}
+      >
+        <p style={{ textAlign: 'center' }}>确认删除该角色?</p>
+      </Modal>
     </>
   );
 };

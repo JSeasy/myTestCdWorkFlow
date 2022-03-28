@@ -1,14 +1,22 @@
 import { Redirect, useModel, useHistory } from 'umi';
-const whiteList = ['/login'];
+import { getCanReadPageFirst } from '@/utils/index';
+const permissionList = [
+  '/role/add',
+  '/role/edit',
+  '/account/add',
+  '/account/edit',
+];
 export default (props: any) => {
   const { initialState, loading, error, refresh, setInitialState }: any =
     useModel('@@initialState');
-  // console.log(props);
   const { route } = props;
-  const { read } = initialState[route.name];
+  console.log(route.path);
   if (window.localStorage.getItem('token')) {
-    if (route.path === '/login') {
-      return <Redirect to="/match" />;
+    const permission = initialState[route.path];
+    const read = permission ? permission.read : true;
+    if (route.path === '/login' || (route.path === '/product' && !read)) {
+      const path = getCanReadPageFirst(initialState);
+      return <Redirect to={path} />;
     }
     return read ? <>{props.children}</> : <Redirect to="/404" />;
   } else {
