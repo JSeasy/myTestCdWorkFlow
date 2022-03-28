@@ -109,7 +109,7 @@ export default (props: any) => {
               onPressEnter={() => search({ pageNo: 1 })}
               onSearch={() => search({ pageNo: 1 })}
             />
-            <Select
+            {/* <Select
               placeholder={'融资类型'}
               value={searchCondition.gshy}
               onChange={(e: any) => {
@@ -121,7 +121,7 @@ export default (props: any) => {
                 { name: '抵押', value: 2 },
                 { name: '其他', value: 3 },
               ]}
-            />
+            /> */}
           </div>
           <div>
             <Button
