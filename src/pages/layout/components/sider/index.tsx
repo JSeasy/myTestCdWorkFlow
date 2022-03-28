@@ -39,6 +39,7 @@ export default () => {
     {
       path: '/product',
       name: '产品维度管理',
+      enName: 'product',
       children: [],
       auth: initialState['/product'],
     },
@@ -66,6 +67,7 @@ export default () => {
     {
       path: '/system',
       name: '系统日志',
+      enName: 'system',
       children: [],
       auth: initialState['/system'],
     },
