@@ -186,6 +186,12 @@ export default defineConfig({
               component: '@/pages/adminService/add/index',
               wrappers: ['@/wrappers/auth'],
             },
+            {
+              path: '/service/edit',
+              name: 'serviceEdit',
+              component: '@/pages/adminService/edit/index',
+              wrappers: ['@/wrappers/auth'],
+            },
           ],
         },
         {

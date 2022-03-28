@@ -9,6 +9,12 @@ export const get = (data: any) => {
   });
 };
 
+export const getRow = (id: number) => {
+  return request({
+    url: '/services/v1/fworg/' + id,
+    method: 'GET',
+  });
+};
 export const add = (data: any) => {
   return request({
     url: '/services/v1/fworg/save',
@@ -30,5 +36,12 @@ export const del = (data: any) => {
     url: '/services/v1/fworg',
     method: 'DELETE',
     data,
+  });
+};
+
+export const getCityTree = () => {
+  return request({
+    url: '/services/v1/common/areaTree',
+    method: 'GET',
   });
 };

@@ -6,11 +6,32 @@ const layout = {
   labelCol: { span: 8 },
   wrapperCol: { span: 6, offset: 1 },
 };
+const cplb: any = {
+  1: '信用',
+  2: '抵押',
+  3: '其他',
+};
+const splx: any = {
+  1: '线上',
+  2: '线下',
+  3: '线上+线下',
+};
+const tkfs: any = {
+  1: '自主支付',
+  2: '受托支付',
+  3: '其他',
+};
+const hkfs: any = {
+  1: '先息后本',
+  2: '等额本息',
+  3: '等额本金',
+  4: '其他',
+};
 export default (props: any) => {
   const [form] = Form.useForm();
   const [isEdit, setIsEdit] = useState(true);
-  const { onChange, info } = props;
-  console.log(info);
+  const { onChange, info, fromWhitch, onDel, setFromWhitch } = props;
+
   return (
     <div className={styles.myForm}>
       {isEdit ? (
@@ -56,7 +77,7 @@ export default (props: any) => {
             </Select>
           </Form.Item>
           <Form.Item
-            label="额度"
+            label="额度(万元)"
             name="ed"
             required
             rules={[
@@ -153,6 +174,7 @@ export default (props: any) => {
           </Form.Item>
           <Form.Item label={' '} colon={false}>
             <Button
+              className="addFormBtn"
               onClick={() => {
                 form.validateFields().then((values) => {
                   onChange(values);
@@ -163,8 +185,9 @@ export default (props: any) => {
               完成
             </Button>
             <Button
+              className="cancelFormBtn"
               onClick={() => {
-                setIsEdit(false);
+                fromWhitch === 'add' ? onDel() : setIsEdit(false);
               }}
             >
               取消
@@ -178,12 +201,14 @@ export default (props: any) => {
               type="link"
               className="editBtnTable"
               onClick={() => {
+                form.setFieldsValue({ ...info });
                 setIsEdit(true);
+                setFromWhitch('edit');
               }}
             >
               <FormOutlined /> 编辑
             </Button>
-            <Button type="link" className="delBtnTable">
+            <Button type="link" className="delBtnTable" onClick={onDel}>
               <DeleteOutlined />
               删除
             </Button>
@@ -196,39 +221,45 @@ export default (props: any) => {
               </div>
               <div className={styles.item}>
                 <h1>产品类别:</h1>
-                <p>产品1</p>
+                <p>{cplb[info.cplb]}</p>
               </div>
               <div className={styles.item}>
                 <h1>产品名称:</h1>
-                <p>产品1</p>
+                <p>{info.cpmc}</p>
               </div>
               <div className={styles.item}>
                 <h1>审批类型 :</h1>
-                <p>产品1</p>
+                <p>{splx[info.splx]}</p>
               </div>
               <div className={styles.item}>
                 <h1>额度:</h1>
-                <p>产品1</p>
+                <p>{info.ed}万</p>
               </div>
               <div className={styles.item}>
                 <h1>利率:</h1>
-                <p>产品1</p>
+                <p>{info.lilv}%</p>
               </div>
               <div className={styles.item}>
                 <h1>期限:</h1>
-                <p>产品1</p>
+                <p>
+                  {info.qxsj}
+                  {info.qxdw === 1 ? '年' : '月'}
+                </p>
               </div>
               <div className={styles.item}>
                 <h1>放款时间:</h1>
-                <p>产品1</p>
+                <p>
+                  {info.fksj}
+                  {info.fkdw === 1 ? '天' : '月'}
+                </p>
               </div>
               <div className={styles.item}>
                 <h1>提款方式:</h1>
-                <p>产品1</p>
+                <p>{tkfs[info.tkfs]}</p>
               </div>
               <div className={styles.item}>
                 <h1>还款方式:</h1>
-                <p>产品1</p>
+                <p>{hkfs[info.hkfs]}</p>
               </div>
               <div className={styles.item}>
                 <h1>备注:</h1>

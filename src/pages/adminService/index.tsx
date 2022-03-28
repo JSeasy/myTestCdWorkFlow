@@ -9,10 +9,10 @@ import { Modal, Form, Input, Button } from 'antd';
 import {
   EyeOutlined,
   FormOutlined,
-  SolutionOutlined,
+  DeleteOutlined,
   PlusOutlined,
 } from '@ant-design/icons';
-import { get } from '@/api/service/index';
+import { get, del } from '@/api/service/index';
 export default (props: any) => {
   const history = useHistory();
   const [searchCondition, setSearchCondition] = useState({
@@ -28,7 +28,7 @@ export default (props: any) => {
   });
 
   const [visible, setVisible] = useState(false);
-
+  const [id, setId] = useState('');
   const [form] = Form.useForm();
 
   const Action = (props: any) => {
@@ -36,9 +36,30 @@ export default (props: any) => {
     const { row, col } = props;
     return (
       <>
-        <Button type="link" onClick={() => history.push('/views/match/edit')}>
+        <Button
+          type="link"
+          onClick={() =>
+            history.push({
+              pathname: '/service/edit',
+              state: {
+                id: row.id,
+              },
+            })
+          }
+        >
           <FormOutlined />
           编辑
+        </Button>
+        <Button
+          type="link"
+          className="delBtnTable"
+          onClick={() => {
+            setVisible(true);
+            setId(row.id);
+          }}
+        >
+          <DeleteOutlined />
+          删除
         </Button>
       </>
     );
@@ -102,15 +123,17 @@ export default (props: any) => {
               ]}
             />
           </div>
-          <Button
-            className="addBtn"
-            onClick={() => {
-              history.push('/service/add');
-            }}
-          >
-            <PlusOutlined />
-            新增
-          </Button>
+          <div>
+            <Button
+              className="addBtn"
+              onClick={() => {
+                history.push('/service/add');
+              }}
+            >
+              <PlusOutlined />
+              新增
+            </Button>
+          </div>
         </div>
         <Table
           columns={columns}
@@ -122,25 +145,22 @@ export default (props: any) => {
       <Modal
         wrapClassName="myModal"
         getContainer={'#root'}
-        title="快速备注"
         visible={visible}
-        onOk={handleOk}
+        title="删除"
+        okText={'删除'}
+        width={400}
+        onOk={() => {
+          del([id]).then(() => {
+            setVisible(false);
+            search();
+          });
+        }}
         onCancel={() => setVisible(false)}
+        okButtonProps={{
+          style: { background: '#ff4651', borderColor: '#ff4651' },
+        }}
       >
-        <Form form={form}>
-          <Form.Item
-            name="remark"
-            label="备注"
-            rules={[
-              {
-                required: true,
-                message: '请输入备注',
-              },
-            ]}
-          >
-            <Input.TextArea />
-          </Form.Item>
-        </Form>
+        <p style={{ textAlign: 'center' }}>确认删除?</p>
       </Modal>
     </>
   );
