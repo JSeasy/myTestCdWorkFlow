@@ -1,12 +1,19 @@
 import React from 'react';
 import { useState } from 'react';
+import { useHistory } from 'umi';
 import styles from './index.less';
-export default () => {
+export default ({ props }: any) => {
+  console.log(props);
+  console.log(1231);
+  const history = useHistory();
+  const activePathname = history.location.pathname;
   const [menuList, setMenuList] = useState([
     {
       name: '匹配管理',
       children: [],
+      enName: 'match',
       id: '1',
+      path: '/match',
     },
     {
       id: '2',
@@ -27,19 +34,36 @@ export default () => {
     {
       id: '3',
       name: '产品维度管理',
+      enName: 'product',
       children: [],
+      path: '/product',
     },
     {
       id: '4',
       name: '平台管理',
+      enName: 'platform',
       children: [
-        { name: '管理员', children: [], id: '4-1' },
-        { name: '角色管理', children: [], id: '4-2' },
+        {
+          name: '管理员',
+          path: '/account',
+          enName: 'account',
+          children: [],
+          id: '4-1',
+        },
+        {
+          name: '角色管理',
+          path: '/role',
+          enName: 'role',
+          children: [],
+          id: '4-2',
+        },
       ],
     },
     {
       id: '5',
       name: '系统日志',
+      enName: 'system',
+      path: '/system',
       children: [],
     },
   ]);
@@ -50,10 +74,10 @@ export default () => {
         <div
           key={menu.id}
           className={`${isParent ? styles.menu : styles.menuItem} ${
-            active === menu.id && styles.activeMenu
+            activePathname === menu.path && styles.activeMenu
           }`}
           onClick={() => {
-            setActive(menu.id);
+            history.push(menu.path);
           }}
         >
           {menu.name}

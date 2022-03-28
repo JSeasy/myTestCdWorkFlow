@@ -2,7 +2,6 @@ import { history } from 'umi';
 import { getRouters } from '@/api/login';
 export async function getInitialState() {
   const c = await routerMap();
-  console.log(213);
   return c;
 }
 let permission: any = [];
@@ -60,6 +59,9 @@ const routerMap = () => {
           read: 1,
         },
         layout: {
+          read: 1,
+        },
+        account: {
           read: 1,
         },
       });

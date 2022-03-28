@@ -4,7 +4,7 @@ import Breadcrumbs from './breadcrumbs';
 export default (props: any) => {
   return (
     <div className={styles.layout}>
-      <Sider />
+      <Sider props={props} />
       <div className={styles.content}>
         <div className={styles.bar}>
           <span className={styles.routerName}>
