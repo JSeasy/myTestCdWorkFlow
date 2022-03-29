@@ -48,6 +48,11 @@ export default defineConfig({
       wrappers: ['@/wrappers/auth'],
     },
     {
+      path: '/user/result',
+      component: '@/pages/userResult/index',
+      wrappers: ['@/wrappers/auth'],
+    },
+    {
       path: '/',
       name: 'layout',
       component: '@/pages/layout/index',

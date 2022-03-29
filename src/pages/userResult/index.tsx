@@ -1,22 +1,32 @@
 import { useState } from 'react';
 import styles from './index.less';
 import Pie from '@/components/pie';
+import { get } from '@/api/userResult';
+import { useEffect } from 'react';
 export default (props: any) => {
   const [searchCondition, setSearchCondition] = useState({
-    active: 1,
+    sortBy: 'ed',
   });
+  const search = (params?: any) => {
+    get({ ...searchCondition, ...params }).then((res) => {
+      console.log(res);
+    });
+  };
+  useEffect(() => {
+    search();
+  }, []);
   return (
     <div className={styles.userResult}>
       <div className={styles.bar}>
         <div
           className={[
             styles.barItem,
-            searchCondition.active === 1 ? styles.barItemActive : '',
+            searchCondition.sortBy === 'ed' ? styles.barItemActive : '',
           ].join(' ')}
           onClick={() => {
             setSearchCondition({
               ...searchCondition,
-              active: 1,
+              sortBy: 'ed',
             });
           }}
         >
@@ -25,12 +35,12 @@ export default (props: any) => {
         <div
           className={[
             styles.barItem,
-            searchCondition.active === 2 ? styles.barItemActive : '',
+            searchCondition.sortBy === 'lilv' ? styles.barItemActive : '',
           ].join(' ')}
           onClick={() => {
             setSearchCondition({
               ...searchCondition,
-              active: 2,
+              sortBy: 'lilv',
             });
           }}
         >
@@ -39,12 +49,12 @@ export default (props: any) => {
         <div
           className={[
             styles.barItem,
-            searchCondition.active === 3 ? styles.barItemActive : '',
+            searchCondition.sortBy === 'fksj' ? styles.barItemActive : '',
           ].join(' ')}
           onClick={() => {
             setSearchCondition({
               ...searchCondition,
-              active: 3,
+              sortBy: 'fksj',
             });
           }}
         >
