@@ -18,7 +18,7 @@ export const edit = (data: any) => {
 export const del = (data: any) => {
   return request({
     url: '/services/v1/pipei/edit',
-    method: 'PUT',
+    method: 'DELETE',
     data,
   });
 };

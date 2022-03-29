@@ -6,8 +6,12 @@ import { useEffect, useState } from 'react';
 import createColumns from './columns';
 import { useHistory, useParams } from 'umi';
 import { Modal, Form, Input, Button } from 'antd';
-import { get, getInfo, edit } from '@/api/match';
-import { EyeOutlined, FormOutlined, SolutionOutlined } from '@ant-design/icons';
+import { get, getInfo, edit, del } from '@/api/match';
+import {
+  DeleteOutlined,
+  FormOutlined,
+  SolutionOutlined,
+} from '@ant-design/icons';
 
 export default (props: any) => {
   const history = useHistory();
@@ -18,6 +22,7 @@ export default (props: any) => {
   const [data, setData] = useState([]);
   const [info, setInfo] = useState({});
   const [visible, setVisible] = useState(false);
+  const [delVisible, setDelVisible] = useState(false);
   const [id, setId] = useState('');
   const [pageInfo, setPageInfo] = useState({
     current: 1,
@@ -37,17 +42,6 @@ export default (props: any) => {
     const { row, col } = props;
     return (
       <>
-        <Button
-          type="link"
-          onClick={() =>
-            history.push({
-              pathname: '/match/detail',
-            })
-          }
-        >
-          <EyeOutlined />
-          详情
-        </Button>
         <Button type="link" onClick={() => history.push('/match/edit')}>
           <FormOutlined />
           编辑
@@ -62,6 +56,17 @@ export default (props: any) => {
         >
           <SolutionOutlined />
           备注
+        </Button>
+        <Button
+          className="delBtnTable"
+          type="link"
+          onClick={() => {
+            setDelVisible(true);
+            setId(row.id);
+          }}
+        >
+          <DeleteOutlined />
+          删除
         </Button>
       </>
     );
@@ -167,6 +172,26 @@ export default (props: any) => {
             <Input.TextArea />
           </Form.Item>
         </Form>
+      </Modal>
+      <Modal
+        wrapClassName="myModal"
+        getContainer={'#root'}
+        visible={delVisible}
+        title="删除"
+        okText={'删除'}
+        width={400}
+        onOk={() => {
+          del([id]).then(() => {
+            setDelVisible(false);
+            search();
+          });
+        }}
+        onCancel={() => setDelVisible(false)}
+        okButtonProps={{
+          style: { background: '#ff4651', borderColor: '#ff4651' },
+        }}
+      >
+        <p style={{ textAlign: 'center' }}>确认删除?</p>
       </Modal>
     </>
   );
