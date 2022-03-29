@@ -16,6 +16,7 @@ export async function getInitialState() {
     result['/service'].read = 1;
     result['/product'].read = 1;
     result['/match'].read = 1;
+    result['/customer'].read = 1;
     return result;
   }
   return {};

@@ -15,6 +15,9 @@ export default forwardRef((props: any, ref: any) => {
     validateForm: () => {
       return form.validateFields();
     },
+    getForm: () => {
+      return form;
+    },
   }));
   return (
     <div className={styles.registForm}>
@@ -80,13 +83,13 @@ export default forwardRef((props: any, ref: any) => {
             <Input placeholder="请输入联系人电话" size="large" />
           </Form.Item>
         </div>
-
+        {props.children}
         <Title
           title={'法人征信'}
           style={{ marginTop: 52, marginBottom: 40 }}
         ></Title>
         <div style={{ width: 582, margin: '0 auto' }}>
-          <Form.Item name="frzxbgfileList" label="法人征信报告">
+          <Form.Item name={['frzxbgfileList', 'id']} label="法人征信报告">
             <UploadForm
               fileType={1}
               title={
@@ -170,7 +173,7 @@ export default forwardRef((props: any, ref: any) => {
                 </Form.Item>
               </Col>
               <Col span={15}>
-                <Form.Item name="xydkFileList" noStyle>
+                <Form.Item name={['xydkFileList', 'id']} noStyle>
                   <UploadForm
                     fileType={2}
                     title={
@@ -198,7 +201,7 @@ export default forwardRef((props: any, ref: any) => {
                 </Form.Item>
               </Col>
               <Col span={15}>
-                <Form.Item name="dydkfileList" noStyle>
+                <Form.Item name={['dydkfileList', 'id']} noStyle>
                   <UploadForm
                     title={
                       <p style={{ whiteSpace: 'nowrap' }}>

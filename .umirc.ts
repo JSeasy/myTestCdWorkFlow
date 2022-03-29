@@ -200,6 +200,31 @@ export default defineConfig({
           ],
         },
         {
+          path: '/customer',
+          name: 'customer',
+          component: '@/pages/adminCustomer/index',
+          wrappers: ['@/wrappers/auth'],
+        },
+        {
+          path: '/customer',
+          name: 'customer',
+          wrappers: ['@/wrappers/auth'],
+          routes: [
+            {
+              path: '/customer/add',
+              name: 'customerAdd',
+              component: '@/pages/adminCustomer/add/index',
+              wrappers: ['@/wrappers/auth'],
+            },
+            // {
+            //   path: '/customer/edit',
+            //   name: 'customerEdit',
+            //   component: '@/pages/adminCustomer/edit/index',
+            //   wrappers: ['@/wrappers/auth'],
+            // },
+          ],
+        },
+        {
           path: '/account',
           name: 'account',
           component: '@/pages/adminAccount/index',
