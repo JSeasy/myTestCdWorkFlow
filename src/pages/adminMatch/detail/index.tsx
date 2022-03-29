@@ -3,20 +3,34 @@ import ProductBlock from './components/productBlock';
 import { Button } from 'antd';
 import styles from './index.less';
 import { useHistory } from 'umi';
+import { useEffect, useState } from 'react';
+import { getRow } from '@/api/match';
 export default (props: any) => {
-  console.log(useHistory().location.state);
+  const history = useHistory();
+  const {
+    location: { state },
+  } = history;
+  const [productList, setProductList] = useState([]);
+  useEffect(() => {
+    getRow(state.id).then((res) => {
+      setProductList(res.data.pipeiInfo.productVOList);
+    });
+  }, []);
   return (
     <div className={styles.matchDetail}>
-      <Button className="delBtn" style={{ marginBottom: '64px' }}>
-        删除
-      </Button>
+      <Title
+        title="企业信息
+      "
+      />
+
+      <div className={styles.companyInfo}>
+        <div></div>
+      </div>
       <Title title="产品信息" />
       <div className={styles.blockWrap}>
-        <ProductBlock />
-        <ProductBlock />
-        <ProductBlock />
-        <ProductBlock />
-        <ProductBlock />
+        {productList.map((product: any) => {
+          return <ProductBlock product={product} />;
+        })}
       </div>
     </div>
   );

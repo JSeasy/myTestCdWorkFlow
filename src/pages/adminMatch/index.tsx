@@ -32,16 +32,25 @@ export default (props: any) => {
   const [form] = Form.useForm();
 
   useEffect(() => {
-    search();
+    search({ pageNo: 1 });
     getInfo().then((res) => {
       setInfo(res.data.count);
     });
-  }, []);
+  }, [searchCondition.rzlx]);
   const Action = (props: any) => {
     const history = useHistory();
     const { row, col } = props;
     return (
       <>
+        <Button
+          type="link"
+          onClick={() =>
+            history.push({ pathname: '/match/detail', state: { id: row.id } })
+          }
+        >
+          <FormOutlined />
+          详情
+        </Button>
         <Button type="link" onClick={() => history.push('/match/edit')}>
           <FormOutlined />
           编辑
@@ -123,7 +132,6 @@ export default (props: any) => {
               value={searchCondition.rzlx}
               onChange={(e: any) => {
                 setSearchCondition({ ...searchCondition, rzlx: e });
-                search({ pageNo: 1 });
               }}
               data={[
                 { name: '信用', value: 1 },
