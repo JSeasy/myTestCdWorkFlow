@@ -3,6 +3,8 @@ import styles from './index.less';
 import Pie from '@/components/pie';
 import { get } from '@/api/userResult';
 import { useEffect } from 'react';
+import { CaretUpOutlined, CaretDownOutlined } from '@ant-design/icons';
+
 export default (props: any) => {
   const [searchCondition, setSearchCondition] = useState({
     sortBy: 'ed',
@@ -31,6 +33,10 @@ export default (props: any) => {
           }}
         >
           利率优先
+          <span className={styles.sort}>
+            <CaretUpOutlined />
+            <CaretDownOutlined />
+          </span>
         </div>
         <div
           className={[
