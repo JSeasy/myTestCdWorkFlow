@@ -29,7 +29,7 @@ const hkfs: any = {
 };
 export default (props: any) => {
   const [form] = Form.useForm();
-  const [isEdit, setIsEdit] = useState(true);
+  const [isEdit, setIsEdit] = useState(props.showBlock ? false : true);
   const { onChange, info, fromWhitch, onDel, setFromWhitch } = props;
 
   return (

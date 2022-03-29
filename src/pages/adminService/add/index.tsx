@@ -32,14 +32,9 @@ export default (props: any) => {
   const [fromWhitch, setFromWhitch] = useState('add');
   const history = useHistory();
   useEffect(() => {
-    getCityTree()
-      .then((res) => {
-        setTree(res.data);
-      })
-      .catch(({ data }) => {
-        console.log(data);
-        setTree(data.areas);
-      });
+    getCityTree().then((res) => {
+      setTree(res.data.areas);
+    });
   }, []);
   return (
     <div className={styles.adminServiceAdd}>

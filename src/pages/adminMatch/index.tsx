@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import createColumns from './columns';
 import { useHistory, useParams } from 'umi';
 import { Modal, Form, Input, Button } from 'antd';
-import { get } from '@/api/match';
+import { get, getInfo, edit } from '@/api/match';
 import { EyeOutlined, FormOutlined, SolutionOutlined } from '@ant-design/icons';
 
 export default (props: any) => {
@@ -16,8 +16,9 @@ export default (props: any) => {
     rzlx: '',
   });
   const [data, setData] = useState([]);
-
+  const [info, setInfo] = useState({});
   const [visible, setVisible] = useState(false);
+  const [id, setId] = useState('');
   const [pageInfo, setPageInfo] = useState({
     current: 1,
     pageSize: 10,
@@ -27,6 +28,9 @@ export default (props: any) => {
 
   useEffect(() => {
     search();
+    getInfo().then((res) => {
+      setInfo(res.data.count);
+    });
   }, []);
   const Action = (props: any) => {
     const history = useHistory();
@@ -48,7 +52,14 @@ export default (props: any) => {
           <FormOutlined />
           编辑
         </Button>
-        <Button type="link" onClick={() => setVisible(true)}>
+        <Button
+          type="link"
+          onClick={() => {
+            setVisible(true);
+            setId(row.id);
+            form.setFieldsValue({ remark: row.remark });
+          }}
+        >
           <SolutionOutlined />
           备注
         </Button>
@@ -78,7 +89,12 @@ export default (props: any) => {
     });
   };
   const handleOk = () => {
-    history.push('/login');
+    form.validateFields().then((values) => {
+      edit({ ...values, id }).then(() => {
+        search();
+        setVisible(false);
+      });
+    });
   };
   return (
     <>
@@ -94,14 +110,15 @@ export default (props: any) => {
                   orgName: e.target.value,
                 });
               }}
-              onPressEnter={search}
-              onSearch={search}
+              onPressEnter={() => search({ pageNo: 1 })}
+              onSearch={() => search({ pageNo: 1 })}
             />
             <Select
               placeholder={'融资类型'}
               value={searchCondition.rzlx}
               onChange={(e: any) => {
                 setSearchCondition({ ...searchCondition, rzlx: e });
+                search({ pageNo: 1 });
               }}
               data={[
                 { name: '信用', value: 1 },
@@ -114,14 +131,14 @@ export default (props: any) => {
             <div className={styles.card}>
               <img src={require('./assets/1.png')} height="60" />
               <div className={styles.text}>
-                <h5>190</h5>
+                <h5>{info.ppzl}</h5>
                 <p>匹配总量</p>
               </div>
             </div>
             <div className={styles.card}>
               <img src={require('./assets/2.png')} height="60" />
               <div className={styles.text}>
-                <h5>12</h5>
+                <h5>{info.dbsx}</h5>
                 <p>待办事项</p>
               </div>
             </div>
@@ -146,16 +163,7 @@ export default (props: any) => {
         onCancel={() => setVisible(false)}
       >
         <Form form={form}>
-          <Form.Item
-            name="remark"
-            label="备注"
-            rules={[
-              {
-                required: true,
-                message: '请输入备注',
-              },
-            ]}
-          >
+          <Form.Item name="remark" label="备注">
             <Input.TextArea />
           </Form.Item>
         </Form>

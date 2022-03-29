@@ -13,7 +13,7 @@ const layout = {
 };
 export default (props: any) => {
   const history = useHistory();
-
+  const [showBloack, setShowBloack] = useState(true);
   const [form] = Form.useForm();
   const info = {
     cplb: '1',
@@ -35,20 +35,23 @@ export default (props: any) => {
   } = history;
 
   useEffect(() => {
-    getRow(state.id).then((res) => {});
+    getRow(state.id).then((res) => {
+      const { fwOrgInfo } = res.data;
+      form.setFieldsValue({
+        orgName: fwOrgInfo.orgName,
+        city: [fwOrgInfo.szsfdm, fwOrgInfo.szsqdm, fwOrgInfo.szqxdm],
+      });
+      updateFormValues(fwOrgInfo.orgProductList);
+    });
   }, []);
 
   const [tree, setTree] = useState([]);
   const [formValues, updateFormValues] = useImmer<any>([]);
   const [fromWhitch, setFromWhitch] = useState('add');
   useEffect(() => {
-    getCityTree()
-      .then((res) => {
-        setTree(res.data);
-      })
-      .catch(({ data }) => {
-        setTree(data.areas);
-      });
+    getCityTree().then((res) => {
+      setTree(res.data.areas);
+    });
   }, []);
   return (
     <div className={styles.adminServiceAdd}>
@@ -83,6 +86,7 @@ export default (props: any) => {
             info={item}
             setFromWhitch={setFromWhitch}
             fromWhitch={fromWhitch}
+            showBlock={showBloack}
             onDel={() => {
               updateFormValues((draft: any) => {
                 draft.splice(index, 1);
@@ -101,6 +105,7 @@ export default (props: any) => {
           className="adminServiceAddBtn"
           onClick={() => {
             setFromWhitch('add');
+            setShowBloack(false);
             updateFormValues((draft: any) => {
               draft.push(info);
             });
