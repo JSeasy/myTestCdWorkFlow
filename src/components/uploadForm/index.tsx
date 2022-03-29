@@ -31,7 +31,11 @@ export default (props: any) => {
       <div>
         <div>{title}</div>
         <p className={styles.fileName}>
-          {fileName ? fileName : '上传文件请小于10M'}
+          {value ? (
+            <span className="color">文件.pdf</span>
+          ) : (
+            '上传文件请小于10M'
+          )}
         </p>
       </div>
     </div>

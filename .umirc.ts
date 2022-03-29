@@ -216,12 +216,12 @@ export default defineConfig({
               component: '@/pages/adminCustomer/add/index',
               wrappers: ['@/wrappers/auth'],
             },
-            // {
-            //   path: '/customer/edit',
-            //   name: 'customerEdit',
-            //   component: '@/pages/adminCustomer/edit/index',
-            //   wrappers: ['@/wrappers/auth'],
-            // },
+            {
+              path: '/customer/edit',
+              name: 'customerEdit',
+              component: '@/pages/adminCustomer/edit/index',
+              wrappers: ['@/wrappers/auth'],
+            },
           ],
         },
         {

@@ -24,3 +24,18 @@ export const add = (data: any) => {
     data,
   });
 };
+
+export const edit = (data: any) => {
+  return request({
+    url: '/services/1v/org/edit',
+    method: 'PUT',
+    data,
+  });
+};
+
+export const getRow = (id: any) => {
+  return request({
+    url: '/services/v1/org/khd/' + id,
+    method: 'GET',
+  });
+};
