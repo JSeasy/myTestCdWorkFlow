@@ -18,10 +18,7 @@ export default (props: any) => {
   }, []);
   return (
     <div className={styles.matchDetail}>
-      <Title
-        title="企业信息
-      "
-      />
+      <Title title="企业信息" />
 
       <div className={styles.companyInfo}>
         <div></div>
