@@ -33,10 +33,10 @@ export default (props: any) => {
           }}
         >
           利率优先
-          <span className={styles.sort}>
+          {/* <span className={styles.sort}>
             <CaretUpOutlined />
             <CaretDownOutlined />
-          </span>
+          </span> */}
         </div>
         <div
           className={[
