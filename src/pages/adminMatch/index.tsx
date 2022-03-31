@@ -51,7 +51,17 @@ export default (props: any) => {
           <FormOutlined />
           详情
         </Button>
-        <Button type="link" onClick={() => history.push('/match/edit')}>
+        <Button
+          type="link"
+          onClick={() =>
+            history.push({
+              pathname: '/match/edit',
+              state: {
+                id: row.id,
+              },
+            })
+          }
+        >
           <FormOutlined />
           编辑
         </Button>

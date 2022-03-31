@@ -1,6 +1,5 @@
 import Title from '@/components/title/index';
 import ProductBlock from './components/productBlock';
-import { Button } from 'antd';
 import styles from './index.less';
 import { useHistory } from 'umi';
 import { useEffect, useState } from 'react';
@@ -12,6 +11,11 @@ const gshy: any = {
   3: '房地产',
   4: '汽车',
   5: '互联网',
+};
+const rzph: any = {
+  1: '额度优先',
+  2: '利率优先',
+  3: '速度优先',
 };
 
 export default (props: any) => {
@@ -52,7 +56,7 @@ export default (props: any) => {
       <div className={styles.list}>
         <div className={styles.item}>
           <p>登录手机号:</p>
-          <p>{userInfo.xx}</p>
+          <p>{userInfo.mobile}</p>
         </div>
         <div className={styles.item}>
           <p>登录密码:</p>
@@ -64,7 +68,14 @@ export default (props: any) => {
         <div className={styles.item}>
           <p>法人征信报告:</p>
           <p>
-            <span className="color">xxxxxxxxx</span>
+            <span
+              className="color"
+              onClick={() => {
+                window.open(userInfo?.frzxbgfileList?.addrUrl);
+              }}
+            >
+              {userInfo?.frzxbgfileList?.name}
+            </span>
           </p>
         </div>
       </div>
@@ -72,26 +83,56 @@ export default (props: any) => {
       <div className={styles.list}>
         <div className={styles.item}>
           <p>纳税等级:</p>
-          <p>xxxxxxxx</p>
+          <p>{userInfo?.nsdj}</p>
         </div>
         <div className={styles.item}>
           <p>近一年纳税总额(万元):</p>
-          <p>xxxxxxxx</p>
+          <p>{userInfo.nsze}</p>
         </div>
         <div className={styles.item}>
-          <p>企业当前负债余额"万元"：</p>
-          <p>xxxxxxxx</p>
+          <p>企业当前负债余额(万元)：</p>
+          <p>{userInfo.fzze}</p>
         </div>
       </div>
       <Title title="融资信息" />
       <div className={styles.list}>
-        <div className={styles.item}>
-          <p>融资类型:</p>
-          <p>xxxxxxxx</p>
-        </div>
+        {userInfo.rzlxXydk && (
+          <div className={styles.item}>
+            <p>融资类型:</p>
+            <p>
+              信用贷款{' '}
+              <span
+                style={{ marginLeft: 12 }}
+                className="color"
+                onClick={() => {
+                  window.open(userInfo.xydkFileList.addrUrl);
+                }}
+              >
+                {userInfo.xydkFileList.name}
+              </span>
+            </p>
+          </div>
+        )}
+        {userInfo.rzlxDydk && (
+          <div className={styles.item}>
+            <p></p>
+            <p>
+              抵押贷款
+              <span
+                className="color"
+                style={{ marginLeft: 12 }}
+                onClick={() => {
+                  window.open(userInfo.dydkfileList.addrUrl);
+                }}
+              >
+                {userInfo.dydkfileList.name}
+              </span>
+            </p>
+          </div>
+        )}
         <div className={styles.item}>
           <p>融资偏好:</p>
-          <p>额度优先</p>
+          <p>{rzph[userInfo.rzph]}</p>
         </div>
       </div>
       <Title title="产品信息" />
@@ -101,6 +142,10 @@ export default (props: any) => {
         })}
       </div>
       <Title title="备注" />
+      <div className={styles.remark}>
+        <p>备注:</p>
+        <p style={{ marginLeft: 12 }}>{userInfo.remark}111111111111111111</p>
+      </div>
     </div>
   );
 };
