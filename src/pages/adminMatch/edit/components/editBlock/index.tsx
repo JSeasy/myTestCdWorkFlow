@@ -22,6 +22,9 @@ export default (props: any, ref: any) => {
   return (
     <div className={styles.formItem}>
       <Form form={form} layout="horizontal" labelCol={{ span: 6 }}>
+        <Form.Item name="id" style={{ display: 'none' }}>
+          <Input />
+        </Form.Item>
         <div className={styles.formContent}>
           <Row>
             <Col span={4}>

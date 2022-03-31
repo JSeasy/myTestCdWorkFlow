@@ -16,6 +16,7 @@ export default () => {
       setInfos(data.pipeiInfo.productVOList);
     });
   }, []);
+  const handleValues = () => {};
   const save = async () => {
     const valuesList = [];
     for (let i = 0; i < formList.length; i++) {
@@ -31,9 +32,10 @@ export default () => {
 
   return (
     <div className={styles.matchEdit}>
-      {infos.map((info) => {
+      {infos.map((info, index) => {
         return (
           <EditBlock
+            index={index}
             info={info}
             key={info.id}
             onChange={(form: any) => {
