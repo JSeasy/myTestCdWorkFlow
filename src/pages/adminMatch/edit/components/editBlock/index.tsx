@@ -2,13 +2,7 @@ import { Form, Input, Button, Select, Checkbox, Row, Col } from 'antd';
 import { forwardRef, useEffect, useState, useImperativeHandle } from 'react';
 import styles from './index.less';
 const { Option } = Select;
-export default forwardRef((props: any, ref: any) => {
-  useImperativeHandle(ref, () => ({
-    getForm: () => {
-      return form;
-    },
-  }));
-
+export default (props: any, ref: any) => {
   const [form] = Form.useForm();
   const [require, setRequire] = useState(true);
   const submit = () => {
@@ -22,6 +16,7 @@ export default forwardRef((props: any, ref: any) => {
     form.setFieldsValue({
       ...props.info,
     });
+    props.onChange(form);
   }, []);
 
   return (
@@ -29,6 +24,30 @@ export default forwardRef((props: any, ref: any) => {
       <Form form={form} layout="horizontal" labelCol={{ span: 6 }}>
         <div className={styles.formContent}>
           <Row>
+            <Col span={4}>
+              <Form.Item
+                valuePropName="checked"
+                name="cpxhShow"
+                initialValue={true}
+              >
+                <Checkbox />
+              </Form.Item>
+            </Col>
+            <Col span={20}>
+              <Form.Item
+                label="产品序号"
+                name="cpxh"
+                rules={[
+                  {
+                    required: require,
+                    message: '请输入产品序号',
+                  },
+                ]}
+                required
+              >
+                <Input size="large" placeholder="请输入产品序号"></Input>
+              </Form.Item>
+            </Col>
             <Col span={4}>
               <Form.Item
                 valuePropName="checked"
@@ -278,4 +297,4 @@ export default forwardRef((props: any, ref: any) => {
       </Form>
     </div>
   );
-});
+};
