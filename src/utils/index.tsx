@@ -37,7 +37,7 @@ const map: any = {
   角色管理: '/role',
   管理员: '/account',
   系统日志: '/system',
-  查看: '/read',
+  查看: 'read',
   编辑: 'edit',
   删除: 'del',
   新增: 'add',

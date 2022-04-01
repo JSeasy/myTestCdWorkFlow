@@ -5,7 +5,7 @@ export async function getInitialState() {
     const router = await getRouters();
     const { menus } = router.data;
     const result = getPermission(menus);
-
+    console.log(result);
     return result;
   }
   return {};

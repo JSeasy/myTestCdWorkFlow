@@ -73,7 +73,7 @@ export default defineConfig({
       path: '/',
       name: 'layout',
       component: '@/pages/layout/index',
-      wrappers: ['@/wrappers/auth'],
+      // wrappers: ['@/wrappers/auth'],
       routes: [
         {
           path: '/',

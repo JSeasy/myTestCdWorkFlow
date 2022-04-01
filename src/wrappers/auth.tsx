@@ -13,11 +13,13 @@ export default (props: any) => {
   console.log(route.path);
   if (window.localStorage.getItem('token')) {
     const permission = initialState[route.path];
+    console.log(permission);
     const read = permission ? permission.read : true;
     if (route.path === '/login' || (route.path === '/product' && !read)) {
       const path = getCanReadPageFirst(initialState);
       return <Redirect to={path} />;
     }
+    console.log('xxxx');
     return read ? <>{props.children}</> : <Redirect to="/404" />;
   } else {
     if (route.path === '/login') {
