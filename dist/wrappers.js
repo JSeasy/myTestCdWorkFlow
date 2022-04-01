@@ -1,30 +1,31 @@
 (window['webpackJsonp'] = window['webpackJsonp'] || []).push([
-  [21],
+  [42],
   {
-    GZYO: function (t, e, n) {
+    GZYO: function (t, e, a) {
       'use strict';
-      n.r(e);
-      var i = n('9kvl'),
-        a = n('q5+0'),
-        o = n('ikfJ');
+      a.r(e);
+      var r = a('9kvl'),
+        n = a('q5+0'),
+        i = a('MLMA'),
+        o = a('ikfJ');
       e['default'] = (t) => {
-        var e = Object(i['c'])('@@initialState'),
-          n =
-            (e.initialState,
-            e.loading,
-            e.error,
-            e.refresh,
-            e.setInitialState,
-            Object(a['g'])()),
-          c = n.location.pathname;
-        return window.localStorage.getItem('token')
-          ? '/login' === c
-            ? Object(o['jsx'])(a['a'], { to: '/match' })
-            : Object(o['jsx'])(o['Fragment'], { children: t.children })
-          : (console.log(c),
-            '/login' === c
-              ? Object(o['jsx'])(o['Fragment'], { children: t.children })
-              : Object(o['jsx'])(a['a'], { to: '/login' }));
+        var e = Object(r['c'])('@@initialState'),
+          a = e.initialState,
+          c = (e.loading, e.error, e.refresh, e.setInitialState, t.route);
+        if ((console.log(c.path), window.localStorage.getItem('token'))) {
+          var l = a[c.path],
+            s = !l || l.read;
+          if ('/login' === c.path || ('/product' === c.path && !s)) {
+            var j = Object(i['b'])(a);
+            return Object(o['jsx'])(n['a'], { to: j });
+          }
+          return s
+            ? Object(o['jsx'])(o['Fragment'], { children: t.children })
+            : Object(o['jsx'])(n['a'], { to: '/404' });
+        }
+        return '/login' === c.path
+          ? Object(o['jsx'])(o['Fragment'], { children: t.children })
+          : Object(o['jsx'])(n['a'], { to: '/login' });
       };
     },
   },

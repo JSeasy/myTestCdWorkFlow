@@ -1,25 +1,27 @@
 (window['webpackJsonp'] = window['webpackJsonp'] || []).push([
-  [15],
+  [32],
   {
-    l1cM: function (e, t, c) {
+    l1cM: function (e, t, a) {
       'use strict';
-      c.r(t);
-      c('YVgN');
-      var a = c('x+C3'),
-        b = c('q5+0'),
-        j = c('ikfJ'),
-        n = a['a'].TabPane;
+      a.r(t);
+      a('1zsP');
+      var c = a('70JQ'),
+        s = a('T9Mk'),
+        b = a('q5+0'),
+        j = a('ikfJ'),
+        n = c['a'].TabPane;
       t['default'] = (e) => {
         var t = Object(b['g'])(),
-          c = Object(b['i'])(),
-          s = (e) => {
-            t.replace('/product/' + c.id + '/' + e);
+          a = Object(b['i'])(),
+          r = Object(s['useMemo'])(() => () => a.id, []),
+          i = (e) => {
+            t.replace('/product/' + r() + '/' + e);
           };
         return Object(j['jsxs'])(j['Fragment'], {
           children: [
-            Object(j['jsxs'])(a['a'], {
-              defaultActiveKey: '1',
-              onChange: s,
+            Object(j['jsxs'])(c['a'], {
+              defaultActiveKey: 'fields',
+              onChange: i,
               children: [
                 Object(j['jsx'])(
                   n,
@@ -36,8 +38,16 @@
                   { tab: '\u9ed1/\u767d\u540d\u5355\u7ba1\u7406' },
                   'white',
                 ),
-                Object(j['jsx'])(n, { tab: '\u62bd\u8c61\u5904\u7406' }, '4'),
-                Object(j['jsx'])(n, { tab: '\u7b56\u7565\u7ba1\u7406' }, '5'),
+                Object(j['jsx'])(
+                  n,
+                  { tab: '\u62bd\u8c61\u5904\u7406' },
+                  'abstract',
+                ),
+                Object(j['jsx'])(
+                  n,
+                  { tab: '\u7b56\u7565\u7ba1\u7406' },
+                  'strategy',
+                ),
               ],
             }),
             e.children,
