@@ -51,6 +51,11 @@ export default defineConfig({
           component: '@/pages/userHome/index',
           wrappers: ['@/wrappers/auth'],
         },
+        {
+          path: '/user/info',
+          component: '@/pages/userInfo/index',
+          wrappers: ['@/wrappers/auth'],
+        },
       ],
     },
     {
