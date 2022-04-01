@@ -1,0 +1,50 @@
+.userHome {
+  width: 1440px;
+  padding: 72px 120px;
+  margin: 0 auto;
+  border-radius: 20px 20px 20px 20px;
+  box-shadow: 0px 8px 40px 1px rgba(220, 210, 232, 0.8);
+  margin-top: 40px;
+  margin-bottom: 40px;
+  .submit {
+    text-align: center;
+    width: 582px;
+    margin: 0 auto;
+    .service {
+      margin-top: 12px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      p {
+        padding: 0 5px;
+        :global {
+          .color {
+            color: #fc896c;
+            text-decoration: underline;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+  :global {
+    .ant-checkbox-checked .ant-checkbox-inner {
+      background-color: #fc896c;
+      border-color: #fc896c;
+    }
+    .ant-btn {
+      height: 50px;
+      background: #fc896c;
+      border-color: #fc896c;
+      color: white;
+      width: 100%;
+    }
+    .ant-btn-primary:hover,
+    .ant-btn-primary:focus {
+      color: #fff;
+      background: #fc896c;
+      border-color: #fc896c;
+    }
+  }
+}

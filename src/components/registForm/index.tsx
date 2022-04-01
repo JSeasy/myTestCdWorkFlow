@@ -168,7 +168,12 @@ export default forwardRef((props: any, ref: any) => {
           <Form.Item label="融资类型">
             <Row>
               <Col span={9}>
-                <Form.Item name="rzlxXydk" noStyle valuePropName="checked">
+                <Form.Item
+                  name="rzlxXydk"
+                  noStyle
+                  valuePropName="checked"
+                  initialValue={false}
+                >
                   <Checkbox style={{ whiteSpace: 'nowrap' }}>信用贷款</Checkbox>
                 </Form.Item>
               </Col>
@@ -196,7 +201,12 @@ export default forwardRef((props: any, ref: any) => {
 
             <Row style={{ marginTop: 30 }}>
               <Col span={9}>
-                <Form.Item name="rzlxDydk" noStyle valuePropName="checked">
+                <Form.Item
+                  name="rzlxDydk"
+                  noStyle
+                  valuePropName="checked"
+                  initialValue={false}
+                >
                   <Checkbox style={{ whiteSpace: 'nowrap' }}>抵押贷款</Checkbox>
                 </Form.Item>
               </Col>
