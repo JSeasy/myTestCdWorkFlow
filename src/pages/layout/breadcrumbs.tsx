@@ -18,6 +18,14 @@ const MAP: any = {
   '/role/edit': '编辑角色',
   '/role/add': '新增角色',
   '/account': '用户管理',
+  '/account/add': '新增用户',
+  '/account/edit': '编辑用户',
+  '/customer': '客户企业',
+  '/customer/add': '企业新增',
+  '/customer/edit': '企业编辑',
+  '/service': '服务企业',
+  '/service/add': '服务企业新增',
+  '/service/edit': '服务企业编辑',
 };
 const numberTest = /(\d+)$/g;
 const endWithNumber = /(\d+)\//g;

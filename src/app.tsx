@@ -5,18 +5,7 @@ export async function getInitialState() {
     const router = await getRouters();
     const { menus } = router.data;
     const result = getPermission(menus);
-    result['/role'].read = 1;
-    result['/role'].edit = 1;
-    result['/role'].del = 1;
-    result['/role'].add = 1;
-    result['/account'].read = 1;
-    result['/account'].add = 1;
-    result['/account'].edit = 1;
-    result['/account'].del = 1;
-    result['/service'].read = 1;
-    result['/product'].read = 1;
-    result['/match'].read = 1;
-    result['/customer'].read = 1;
+
     return result;
   }
   return {};
