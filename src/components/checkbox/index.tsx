@@ -10,6 +10,8 @@ export default (props: any) => {
       onChange={(e) => {
         onchange(e);
       }}
-    />
+    >
+      {props.children}
+    </Checkbox>
   );
 };

@@ -196,8 +196,9 @@ export default (props: any) => {
               <Col span={15}>
                 <Button
                   onClick={() => {
+                    const mobile = form.getFieldValue('mobile');
                     ref.current.validateForm().then((values: any) => {
-                      saveCompanyInfo(values);
+                      saveCompanyInfo({ ...values, mobile }).then((res) => {});
                     });
                   }}
                 >
