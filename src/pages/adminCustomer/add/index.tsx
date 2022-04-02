@@ -11,7 +11,7 @@ export default (props: any) => {
   const save = () => {
     ref.current.validateForm().then((values: any) => {
       console.log(values);
-      add(values).then(() => {
+      add({ ...values, addType: 2 }).then(() => {
         history.push('/customer');
       });
     });
