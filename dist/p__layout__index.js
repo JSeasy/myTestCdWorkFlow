@@ -22,17 +22,17 @@
       var a = t('4+7e'),
         c = t('T9Mk'),
         r = t.n(c),
-        l = t('q5+0'),
-        n = t('9kvl'),
+        n = t('q5+0'),
+        l = t('9kvl'),
         s = t('SQnf'),
         i = t.n(s),
         d = t('ikfJ'),
-        A = () => {
-          var e = Object(l['g'])(),
+        o = () => {
+          var e = Object(n['g'])(),
             M = e.location,
-            s = Object(n['c'])('@@initialState'),
-            A = s.initialState,
-            o =
+            s = Object(l['c'])('@@initialState'),
+            o = s.initialState,
+            A =
               (s.loading,
               s.error,
               s.refresh,
@@ -42,26 +42,26 @@
                   name: '\u5339\u914d\u7ba1\u7406',
                   children: [],
                   path: '/match',
-                  auth: A['/match'],
+                  auth: o['/match'],
                 },
                 {
                   path: '/man',
                   name: '\u4f01\u4e1a\u7ba1\u7406',
                   auth: {
-                    read: A['/service']['read'] || A['/customer']['read'],
+                    read: o['/service']['read'] || o['/customer']['read'],
                   },
                   children: [
                     {
                       path: '/service',
                       name: '\u670d\u52a1\u4f01\u4e1a\u7ba1\u7406',
                       children: [],
-                      auth: A['/service'],
+                      auth: o['/service'],
                     },
                     {
                       path: '/customer',
                       name: '\u5ba2\u6237\u4f01\u4e1a\u7ba1\u7406',
                       children: [],
-                      auth: A['/customer'],
+                      auth: o['/customer'],
                     },
                   ],
                 },
@@ -70,24 +70,24 @@
                   name: '\u4ea7\u54c1\u7ef4\u5ea6\u7ba1\u7406',
                   enName: 'product',
                   children: [],
-                  auth: A['/product'],
+                  auth: o['/product'],
                 },
                 {
                   name: '\u5e73\u53f0\u7ba1\u7406',
                   path: '/platform',
-                  auth: { read: A['/account']['read'] || A['/role']['read'] },
+                  auth: { read: o['/account']['read'] || o['/role']['read'] },
                   children: [
                     {
                       name: '\u7ba1\u7406\u5458',
                       path: '/account',
                       children: [],
-                      auth: A['/account'],
+                      auth: o['/account'],
                     },
                     {
                       name: '\u89d2\u8272\u7ba1\u7406',
                       path: '/role',
                       children: [],
-                      auth: A['/role'],
+                      auth: o['/role'],
                     },
                   ],
                 },
@@ -96,12 +96,12 @@
                   name: '\u7cfb\u7edf\u65e5\u5fd7',
                   enName: 'system',
                   children: [],
-                  auth: A['/system'],
+                  auth: o['/system'],
                 },
               ])),
-            P = Object(a['a'])(o, 2),
-            L = P[0],
-            h =
+            P = Object(a['a'])(A, 2),
+            u = P[0],
+            L =
               (P[1],
               (t, a) =>
                 t.map((t) =>
@@ -125,7 +125,7 @@
                             },
                             t.path,
                           ),
-                        !!t.children.length && h(t.children, !1),
+                        !!t.children.length && L(t.children, !1),
                       ],
                     },
                     t.path,
@@ -151,17 +151,17 @@
               }),
               Object(d['jsx'])('div', {
                 className: i.a.menuWrap,
-                children: h(L, !0),
+                children: L(u, !0),
               }),
             ],
           });
         },
-        o = t('pjrA'),
-        P = t.n(o),
-        L = (t('ek0e'), t('ntcw')),
-        h = t('DndG'),
-        u = t('/6Z1'),
-        j = {
+        A = t('pjrA'),
+        P = t.n(A),
+        u = (t('ek0e'), t('ntcw')),
+        L = t('DndG'),
+        h = t('/6Z1'),
+        m = {
           '/match': '\u5339\u914d\u7ba1\u7406',
           '/match/detail': '\u5339\u914d\u8be6\u60c5',
           '/match/edit': '\u5339\u914d\u7f16\u8f91',
@@ -177,26 +177,34 @@
           '/role/edit': '\u7f16\u8f91\u89d2\u8272',
           '/role/add': '\u65b0\u589e\u89d2\u8272',
           '/account': '\u7528\u6237\u7ba1\u7406',
+          '/account/add': '\u65b0\u589e\u7528\u6237',
+          '/account/edit': '\u7f16\u8f91\u7528\u6237',
+          '/customer': '\u5ba2\u6237\u4f01\u4e1a',
+          '/customer/add': '\u4f01\u4e1a\u65b0\u589e',
+          '/customer/edit': '\u4f01\u4e1a\u7f16\u8f91',
+          '/service': '\u670d\u52a1\u4f01\u4e1a',
+          '/service/add': '\u670d\u52a1\u4f01\u4e1a\u65b0\u589e',
+          '/service/edit': '\u670d\u52a1\u4f01\u4e1a\u7f16\u8f91',
         },
-        m = /(\d+)$/g,
+        j = /(\d+)$/g,
         p = /(\d+)\//g,
         b = (e) => {
           var M = e.breadcrumbs;
-          return Object(d['jsx'])(L['a'], {
+          return Object(d['jsx'])(u['a'], {
             children: M.map(
               (e, M) =>
                 M > 0 &&
-                !m.test(e.key) &&
+                !j.test(e.key) &&
                 Object(d['jsx'])(
-                  L['a'].Item,
+                  u['a'].Item,
                   {
-                    children: Object(d['jsx'])(h['a'], {
+                    children: Object(d['jsx'])(L['a'], {
                       to: {
                         pathname: e.match.url,
                         state: e.location.state,
                         query: e.location.query,
                       },
-                      children: j[e.key.replace(p, '')],
+                      children: m[e.key.replace(p, '')],
                     }),
                   },
                   e.key,
@@ -204,17 +212,17 @@
             ),
           });
         },
-        N = Object(u['a'])()(b),
+        N = Object(h['a'])()(b),
         O = t('zCsd');
       M['default'] = (e) => {
         var M = Object(c['useState'])({}),
           r = Object(a['a'])(M, 2),
-          l = r[0],
-          n = r[1],
+          n = r[0],
+          l = r[1],
           s = () => {
             Object(O['e'])().then((e) => {
               var M = e.data;
-              n(M.user);
+              l(M.user);
             });
           };
         return (
@@ -224,7 +232,7 @@
           Object(d['jsxs'])('div', {
             className: P.a.layout,
             children: [
-              Object(d['jsx'])(A, { props: e }),
+              Object(d['jsx'])(o, { props: e }),
               Object(d['jsxs'])('div', {
                 className: P.a.content,
                 children: [
@@ -239,7 +247,7 @@
                         className: P.a.user,
                         children: [
                           Object(d['jsx'])('img', { src: t('FPyV'), alt: '' }),
-                          Object(d['jsx'])('span', { children: l.userName }),
+                          Object(d['jsx'])('span', { children: n.userName }),
                         ],
                       }),
                     ],
