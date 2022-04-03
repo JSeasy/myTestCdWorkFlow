@@ -103,7 +103,15 @@ export default forwardRef((props: any, ref: any) => {
                 <Button style={{ width: 140 }} className="save">
                   完成
                 </Button>
-                <Button>取消</Button>
+                <Button
+                  onClick={() => {
+                    const old = [...showForm];
+                    old[0] = false;
+                    setShowForm([...old]);
+                  }}
+                >
+                  取消
+                </Button>
               </div>
             )}
           </div>
@@ -115,13 +123,15 @@ export default forwardRef((props: any, ref: any) => {
                 type="link"
                 className="editBtnTable"
                 onClick={() => {
-                  setShowForm([true, ...showForm]);
+                  const old = [...showForm];
+                  old[0] = true;
+                  setShowForm([...old]);
                 }}
               >
                 编辑
               </Button>
             </div>
-            <p>
+            <p style={{ marginTop: -20 }}>
               <span>公司名称：</span>
               <span>{info.orgName}</span>
             </p>
