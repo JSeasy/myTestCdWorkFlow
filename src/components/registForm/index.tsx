@@ -17,6 +17,11 @@ const gshy: any = {
   4: '汽车',
   5: '互联网',
 };
+const rzph: any = {
+  1: '额度优先',
+  2: '利率优先',
+  3: '速度优先',
+};
 export default forwardRef((props: any, ref: any) => {
   const [form] = Form.useForm();
   const { isInfo, info } = props;
@@ -115,7 +120,7 @@ export default forwardRef((props: any, ref: any) => {
                     form
                       .validateFields(['orgName', 'gshy', 'lxrxm', 'lxrdh'])
                       .then((values) => {
-                        saveApi({ ...values, id: info.id });
+                        saveApi({ ...values, id: info.id }, 0);
                       });
                   }}
                 >
@@ -259,7 +264,7 @@ export default forwardRef((props: any, ref: any) => {
                     form
                       .validateFields(['nsdj', 'nsze', 'kpze', 'fzze'])
                       .then((values) => {
-                        saveApi({ ...values, id: info.id });
+                        saveApi({ ...values, id: info.id }, 2);
                       });
                   }}
                 >
@@ -312,95 +317,178 @@ export default forwardRef((props: any, ref: any) => {
           </div>
         )}
         <Title title={'融资信息'} style={{ marginTop: 52, marginBottom: 40 }} />
-        <div style={{ width: 582, margin: '0 auto' }}>
-          <Form.Item label="融资类型">
-            <Row>
-              <Col span={9}>
-                <Form.Item
-                  name="rzlxXydk"
-                  noStyle
-                  valuePropName="checked"
-                  initialValue={false}
-                >
-                  <Checkbox style={{ whiteSpace: 'nowrap' }}>信用贷款</Checkbox>
-                </Form.Item>
-              </Col>
-              <Col span={15}>
-                <Form.Item name={['xydkFileList', 'id']} noStyle>
-                  <UploadForm
-                    fileType={2}
-                    title={
-                      <p style={{ whiteSpace: 'nowrap' }}>
-                        模板:
-                        <span
-                          className="color"
-                          onClick={() => {
-                            window.open('https://ipcrs.pbccrc.org.cn');
-                          }}
-                        >
-                          提交数据.xlsx
-                        </span>
-                      </p>
-                    }
-                  />
-                </Form.Item>
-              </Col>
-            </Row>
+        {showForm[3] && (
+          <div style={{ width: 582, margin: '0 auto' }}>
+            <Form.Item label="融资类型">
+              <Row>
+                <Col span={9}>
+                  <Form.Item
+                    name="rzlxXydk"
+                    noStyle
+                    valuePropName="checked"
+                    initialValue={false}
+                  >
+                    <Checkbox style={{ whiteSpace: 'nowrap' }}>
+                      信用贷款
+                    </Checkbox>
+                  </Form.Item>
+                </Col>
+                <Col span={15}>
+                  <Form.Item name={['xydkFileList', 'id']} noStyle>
+                    <UploadForm
+                      fileType={2}
+                      title={
+                        <p style={{ whiteSpace: 'nowrap' }}>
+                          模板:
+                          <span
+                            className="color"
+                            onClick={() => {
+                              window.open('https://ipcrs.pbccrc.org.cn');
+                            }}
+                          >
+                            提交数据.xlsx
+                          </span>
+                        </p>
+                      }
+                    />
+                  </Form.Item>
+                </Col>
+              </Row>
 
-            <Row style={{ marginTop: 30 }}>
-              <Col span={9}>
-                <Form.Item
-                  name="rzlxDydk"
-                  noStyle
-                  valuePropName="checked"
-                  initialValue={false}
+              <Row style={{ marginTop: 30 }}>
+                <Col span={9}>
+                  <Form.Item
+                    name="rzlxDydk"
+                    noStyle
+                    valuePropName="checked"
+                    initialValue={false}
+                  >
+                    <Checkbox style={{ whiteSpace: 'nowrap' }}>
+                      抵押贷款
+                    </Checkbox>
+                  </Form.Item>
+                </Col>
+                <Col span={15}>
+                  <Form.Item name={['dydkfileList', 'id']} noStyle>
+                    <UploadForm
+                      title={
+                        <p style={{ whiteSpace: 'nowrap' }}>
+                          模板:
+                          <span
+                            className="color"
+                            onClick={() => {
+                              window.open('https://ipcrs.pbccrc.org.cn');
+                            }}
+                          >
+                            提交数据.xlsx
+                          </span>
+                        </p>
+                      }
+                      fileType={3}
+                    />
+                  </Form.Item>
+                </Col>
+              </Row>
+            </Form.Item>
+            <Form.Item name="rzph" label="融资偏好" initialValue={1}>
+              <Radio.Group>
+                <Radio value={'1'}>额度优先</Radio>
+                <Radio value={'2'}>利率优先</Radio>
+                <Radio value={'3'}>速度优先</Radio>
+              </Radio.Group>
+            </Form.Item>
+            <Form.Item
+              name="xqje"
+              label="需求金额"
+              required
+              rules={[
+                {
+                  required: true,
+                  message: '请输入内容',
+                },
+              ]}
+            >
+              <Input size="large" />
+            </Form.Item>
+            {isInfo && (
+              <div style={{ textAlign: 'center', marginBottom: 30 }}>
+                <Button
+                  style={{ width: 140 }}
+                  className="save"
+                  onClick={() => {
+                    form
+                      .validateFields([
+                        'rzlxDydk',
+                        'rzlxXydk',
+                        'xydkFileList',
+                        'dydkfileList',
+                        'xqje',
+                        'rzph',
+                      ])
+                      .then((values) => {
+                        saveApi({ ...values, id: info.id }, 3);
+                      });
+                  }}
                 >
-                  <Checkbox style={{ whiteSpace: 'nowrap' }}>抵押贷款</Checkbox>
-                </Form.Item>
-              </Col>
-              <Col span={15}>
-                <Form.Item name={['dydkfileList', 'id']} noStyle>
-                  <UploadForm
-                    title={
-                      <p style={{ whiteSpace: 'nowrap' }}>
-                        模板:
-                        <span
-                          className="color"
-                          onClick={() => {
-                            window.open('https://ipcrs.pbccrc.org.cn');
-                          }}
-                        >
-                          提交数据.xlsx
-                        </span>
-                      </p>
-                    }
-                    fileType={3}
-                  />
-                </Form.Item>
-              </Col>
-            </Row>
-          </Form.Item>
-          <Form.Item name="rzph" label="融资偏好" initialValue={1}>
-            <Radio.Group>
-              <Radio value={'1'}>额度优先</Radio>
-              <Radio value={'2'}>利率优先</Radio>
-              <Radio value={'3'}>速度优先</Radio>
-            </Radio.Group>
-          </Form.Item>
-          <Form.Item
-            name="xqje"
-            label="需求金额"
-            required
-            rules={[
-              {
-                required: true,
-                message: '请输入内容',
-              },
-            ]}
-          >
-            <Input size="large" />
-          </Form.Item>
-        </div>
+                  完成
+                </Button>
+                <Button
+                  onClick={() => {
+                    const old = [...showForm];
+                    old[3] = false;
+                    setShowForm([...old]);
+                  }}
+                >
+                  取消
+                </Button>
+              </div>
+            )}
+          </div>
+        )}
+        {!showForm[3] && (
+          <div className={styles.formInfo} style={{ marginBottom: 30 }}>
+            <div>
+              <Button
+                type="link"
+                className="editBtnTable"
+                onClick={() => {
+                  const old = [...showForm];
+                  old[3] = true;
+                  setShowForm([...old]);
+                }}
+              >
+                编辑
+              </Button>
+            </div>
+            <p style={{ marginTop: -20, alignItems: 'flex-start' }}>
+              <span>融资类型：</span>
+              <span>
+                <p>
+                  {info.rzlxDydk == 1 ? '抵押贷款' : ''}
+
+                  <span className="color" style={{ padding: '0 12px' }}>
+                    {info.dydkfileList?.name}
+                  </span>
+                </p>
+                <p>
+                  {info.rzlxXydk == 1 ? '信用贷款' : ''}
+                  <span className="color" style={{ padding: '0 12px' }}>
+                    {info.xydkFileList?.name}
+                  </span>
+                </p>
+              </span>
+            </p>
+
+            <p>
+              <span>融资偏好：</span>
+              <span>{rzph[info.rzph]}</span>
+            </p>
+            <p>
+              <span>需求金额：</span>
+              <span>{info.xqje}</span>
+            </p>
+          </div>
+        )}
       </Form>
     </div>
   );
