@@ -2,7 +2,7 @@ import { Form, Button, Input, Radio, Col, Row, Select } from 'antd';
 import Checkbox from '../checkbox';
 import Title from '@/components/title/index';
 import UploadForm from '@/components/uploadForm';
-
+import { save } from '@/api/info';
 import styles from './index.less';
 import { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
 const layout = {
@@ -25,6 +25,14 @@ export default forwardRef((props: any, ref: any) => {
   useEffect(() => {
     isInfo && setShowForm([false, false, false, false]);
   }, []);
+
+  const saveApi = (data: any, index: number) => {
+    save(data).then((res) => {
+      const old = [...showForm];
+      old[index] = true;
+      setShowForm(old);
+    });
+  };
 
   useImperativeHandle(ref, () => ({
     validateForm: () => {
@@ -100,7 +108,17 @@ export default forwardRef((props: any, ref: any) => {
             </Form.Item>
             {isInfo && (
               <div style={{ textAlign: 'center' }}>
-                <Button style={{ width: 140 }} className="save">
+                <Button
+                  style={{ width: 140 }}
+                  className="save"
+                  onClick={() => {
+                    form
+                      .validateFields(['orgName', 'gshy', 'lxrxm', 'lxrdh'])
+                      .then((values) => {
+                        saveApi({ ...values, id: info.id });
+                      });
+                  }}
+                >
                   完成
                 </Button>
                 <Button
@@ -158,6 +176,9 @@ export default forwardRef((props: any, ref: any) => {
           <Form.Item name={['frzxbgfileList', 'id']} label="法人征信报告">
             <UploadForm
               fileType={1}
+              onChange={(id: any) => {
+                saveApi({ frzxbgfileList: { id }, id: info.id });
+              }}
               title={
                 <p style={{ whiteSpace: 'nowrap' }}>
                   可在
@@ -179,56 +200,117 @@ export default forwardRef((props: any, ref: any) => {
           title={'财务数据'}
           style={{ marginTop: 52, marginBottom: 40 }}
         ></Title>
-        <div style={{ width: 582, margin: '0 auto' }}>
-          <Form.Item
-            rules={[
-              {
-                required: true,
-                message: '请输入纳税等级',
-              },
-            ]}
-            name="nsdj"
-            label="纳税等级"
-          >
-            <Input placeholder="A/B/M/C" size="large" />
-          </Form.Item>
-          <Form.Item
-            rules={[
-              {
-                required: true,
-                message: '请输入内容',
-              },
-            ]}
-            name="nsze"
-            label="近一年纳税总额(万元)"
-          >
-            <Input size="large" />
-          </Form.Item>
-          <Form.Item
-            rules={[
-              {
-                required: true,
-                message: '请输入内容',
-              },
-            ]}
-            name="kpze"
-            label="近一年开票总额(万元)"
-          >
-            <Input size="large" />
-          </Form.Item>
-          <Form.Item
-            rules={[
-              {
-                required: true,
-                message: '请输入内容',
-              },
-            ]}
-            name="fzze"
-            label="企业当前负债余额(万元)"
-          >
-            <Input size="large" />
-          </Form.Item>
-        </div>
+        {showForm[2] && (
+          <div style={{ width: 582, margin: '0 auto' }}>
+            <Form.Item
+              rules={[
+                {
+                  required: true,
+                  message: '请输入纳税等级',
+                },
+              ]}
+              name="nsdj"
+              label="纳税等级"
+            >
+              <Input placeholder="A/B/M/C" size="large" />
+            </Form.Item>
+            <Form.Item
+              rules={[
+                {
+                  required: true,
+                  message: '请输入内容',
+                },
+              ]}
+              name="nsze"
+              label="近一年纳税总额(万元)"
+            >
+              <Input size="large" />
+            </Form.Item>
+            <Form.Item
+              rules={[
+                {
+                  required: true,
+                  message: '请输入内容',
+                },
+              ]}
+              name="kpze"
+              label="近一年开票总额(万元)"
+            >
+              <Input size="large" />
+            </Form.Item>
+            <Form.Item
+              rules={[
+                {
+                  required: true,
+                  message: '请输入内容',
+                },
+              ]}
+              name="fzze"
+              label="企业当前负债余额(万元)"
+            >
+              <Input size="large" />
+            </Form.Item>
+            {isInfo && (
+              <div style={{ textAlign: 'center' }}>
+                <Button
+                  style={{ width: 140 }}
+                  className="save"
+                  onClick={() => {
+                    form
+                      .validateFields(['nsdj', 'nsze', 'kpze', 'fzze'])
+                      .then((values) => {
+                        saveApi({ ...values, id: info.id });
+                      });
+                  }}
+                >
+                  完成
+                </Button>
+                <Button
+                  onClick={() => {
+                    const old = [...showForm];
+                    old[2] = false;
+                    setShowForm([...old]);
+                  }}
+                >
+                  取消
+                </Button>
+              </div>
+            )}
+          </div>
+        )}
+        {!showForm[2] && (
+          <div className={styles.formInfo}>
+            <div>
+              <Button
+                type="link"
+                className="editBtnTable"
+                onClick={() => {
+                  const old = [...showForm];
+                  old[2] = true;
+                  setShowForm([...old]);
+                }}
+              >
+                编辑
+              </Button>
+            </div>
+            <p style={{ marginTop: -20 }}>
+              <span>纳税等级：</span>
+              <span>{info.nsdj}</span>
+            </p>
+            <p>
+              <span>近一年纳税总额：</span>
+              <span>{info.nsze}</span>
+            </p>
+            <p>
+              <span>近一年开票总额：</span>
+              <span>{info.kpze}</span>
+            </p>
+            <p>
+              <span>企业当前负债余额：</span>
+              <span>{info.fzze}</span>
+            </p>
+          </div>
+        )}
         <Title title={'融资信息'} style={{ marginTop: 52, marginBottom: 40 }} />
         <div style={{ width: 582, margin: '0 auto' }}>
           <Form.Item label="融资类型">
