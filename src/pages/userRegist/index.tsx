@@ -197,7 +197,9 @@ export default (props: any) => {
                 <Button
                   onClick={() => {
                     ref.current.validateForm().then((values: any) => {
-                      saveCompanyInfo(values);
+                      saveCompanyInfo({ ...values, addType: 1 }).then(
+                        (res) => {},
+                      );
                     });
                   }}
                 >

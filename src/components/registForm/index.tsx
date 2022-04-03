@@ -1,4 +1,5 @@
-import { Form, Input, Radio, Checkbox, Col, Row, Select } from 'antd';
+import { Form, Input, Radio, Col, Row, Select } from 'antd';
+import Checkbox from '../checkbox';
 import Title from '@/components/title/index';
 import UploadForm from '@/components/uploadForm';
 

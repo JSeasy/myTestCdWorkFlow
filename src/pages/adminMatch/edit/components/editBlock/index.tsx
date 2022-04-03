@@ -1,7 +1,7 @@
 import { Form, Input, Select, Row, Col } from 'antd';
 import { useEffect, useState, useImperativeHandle } from 'react';
 import styles from './index.less';
-import Checkbox from './components/checkbox';
+import Checkbox from '../../../../../components/checkbox';
 export default (props: any, ref: any) => {
   const [form] = Form.useForm();
   const [require, setRequire] = useState(true);

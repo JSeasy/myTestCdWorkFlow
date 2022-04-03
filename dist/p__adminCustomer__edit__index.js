@@ -32,6 +32,25 @@
       var s = a('FNRQ');
       t['a'] = s['a'];
     },
+    PU71: function (e, t, a) {
+      'use strict';
+      a('TfCt');
+      var s = a('qVa7'),
+        c = a('ikfJ');
+      t['a'] = (e) => {
+        var t = (t) => {
+          var a = t.target.checked ? 1 : 0;
+          e.onChange(a);
+        };
+        return Object(c['jsx'])(s['a'], {
+          checked: 1 === e.checked,
+          onChange: (e) => {
+            t(e);
+          },
+          children: e.children,
+        });
+      };
+    },
     Ujwb: function (e, t, a) {
       e.exports = { registForm: 'registForm___2i8lL' };
     },
@@ -153,11 +172,11 @@
         c = (a('0d8f'), a('0Niv')),
         r = (a('6ihM'), a('NdOv')),
         l = (a('5tJY'), a('1olM')),
-        i = (a('TfCt'), a('qVa7')),
-        n = (a('VAo7'), a('7fed')),
-        j = (a('vh1u'), a('EyPa')),
-        d = (a('8yU/'), a('yaUO')),
-        o = a('4+7e'),
+        i = (a('VAo7'), a('7fed')),
+        n = (a('vh1u'), a('EyPa')),
+        j = (a('8yU/'), a('yaUO')),
+        d = a('4+7e'),
+        o = a('PU71'),
         b = a('khV9'),
         h = (a('vvyX'), a('sEMA')),
         m = a('T9Mk'),
@@ -170,7 +189,7 @@
             a = e.onChange,
             s = e.title,
             c = Object(m['useState'])(''),
-            r = Object(o['a'])(c, 2),
+            r = Object(d['a'])(c, 2),
             l = (r[0], r[1]),
             i = () => {
               var t = Object(x['d'])();
@@ -218,8 +237,8 @@
         f = a.n(v),
         y = { labelCol: { span: 9 }, wrapperCol: { span: 15, offset: 1 } };
       t['a'] = Object(m['forwardRef'])((e, t) => {
-        var a = d['a'].useForm(),
-          h = Object(o['a'])(a, 1),
+        var a = j['a'].useForm(),
+          h = Object(d['a'])(a, 1),
           O = h[0];
         return (
           Object(m['useImperativeHandle'])(t, () => ({
@@ -229,7 +248,7 @@
           Object(p['jsx'])('div', {
             className: f.a.registForm,
             children: Object(p['jsxs'])(
-              d['a'],
+              j['a'],
               Object(s['a'])(
                 Object(s['a'])({ form: O }, y),
                 {},
@@ -242,7 +261,7 @@
                     Object(p['jsxs'])('div', {
                       style: { width: 582, margin: '0 auto' },
                       children: [
-                        Object(p['jsx'])(d['a'].Item, {
+                        Object(p['jsx'])(j['a'].Item, {
                           name: 'orgName',
                           rules: [
                             {
@@ -252,13 +271,13 @@
                             },
                           ],
                           label: '\u516c\u53f8\u540d\u79f0',
-                          children: Object(p['jsx'])(j['a'], {
+                          children: Object(p['jsx'])(n['a'], {
                             placeholder:
                               '\u8bf7\u8f93\u5165\u516c\u53f8\u540d\u79f0',
                             size: 'large',
                           }),
                         }),
-                        Object(p['jsx'])(d['a'].Item, {
+                        Object(p['jsx'])(j['a'].Item, {
                           rules: [
                             {
                               required: !0,
@@ -269,33 +288,33 @@
                           name: 'gshy',
                           label: '\u516c\u53f8\u884c\u4e1a',
                           initialValue: 1,
-                          children: Object(p['jsxs'])(n['a'], {
+                          children: Object(p['jsxs'])(i['a'], {
                             size: 'large',
                             children: [
-                              Object(p['jsx'])(n['a'].Option, {
+                              Object(p['jsx'])(i['a'].Option, {
                                 value: 1,
                                 children: '\u670d\u88c5',
                               }),
-                              Object(p['jsx'])(n['a'].Option, {
+                              Object(p['jsx'])(i['a'].Option, {
                                 value: 2,
                                 children: '\u9910\u996e',
                               }),
-                              Object(p['jsx'])(n['a'].Option, {
+                              Object(p['jsx'])(i['a'].Option, {
                                 value: 3,
                                 children: '\u623f\u5730\u4ea7',
                               }),
-                              Object(p['jsx'])(n['a'].Option, {
+                              Object(p['jsx'])(i['a'].Option, {
                                 value: 4,
                                 children: '\u6c7d\u8f66',
                               }),
-                              Object(p['jsx'])(n['a'].Option, {
+                              Object(p['jsx'])(i['a'].Option, {
                                 value: 5,
                                 children: '\u4e92\u8054\u7f51',
                               }),
                             ],
                           }),
                         }),
-                        Object(p['jsx'])(d['a'].Item, {
+                        Object(p['jsx'])(j['a'].Item, {
                           rules: [
                             {
                               required: !0,
@@ -305,13 +324,13 @@
                           ],
                           name: 'lxrxm',
                           label: '\u8054\u7cfb\u4eba\u59d3\u540d',
-                          children: Object(p['jsx'])(j['a'], {
+                          children: Object(p['jsx'])(n['a'], {
                             placeholder:
                               '\u8bf7\u8f93\u5165\u8054\u7cfb\u4eba\u59d3\u540d',
                             size: 'large',
                           }),
                         }),
-                        Object(p['jsx'])(d['a'].Item, {
+                        Object(p['jsx'])(j['a'].Item, {
                           rules: [
                             {
                               required: !0,
@@ -321,7 +340,7 @@
                           ],
                           name: 'lxrdh',
                           label: '\u8054\u7cfb\u4eba\u7535\u8bdd',
-                          children: Object(p['jsx'])(j['a'], {
+                          children: Object(p['jsx'])(n['a'], {
                             placeholder:
                               '\u8bf7\u8f93\u5165\u8054\u7cfb\u4eba\u7535\u8bdd',
                             size: 'large',
@@ -336,7 +355,7 @@
                     }),
                     Object(p['jsx'])('div', {
                       style: { width: 582, margin: '0 auto' },
-                      children: Object(p['jsx'])(d['a'].Item, {
+                      children: Object(p['jsx'])(j['a'].Item, {
                         name: ['frzxbgfileList', 'id'],
                         label: '\u6cd5\u4eba\u5f81\u4fe1\u62a5\u544a',
                         children: Object(p['jsx'])(g, {
@@ -365,7 +384,7 @@
                     Object(p['jsxs'])('div', {
                       style: { width: 582, margin: '0 auto' },
                       children: [
-                        Object(p['jsx'])(d['a'].Item, {
+                        Object(p['jsx'])(j['a'].Item, {
                           rules: [
                             {
                               required: !0,
@@ -375,12 +394,12 @@
                           ],
                           name: 'nsdj',
                           label: '\u7eb3\u7a0e\u7b49\u7ea7',
-                          children: Object(p['jsx'])(j['a'], {
+                          children: Object(p['jsx'])(n['a'], {
                             placeholder: 'A/B/M/C',
                             size: 'large',
                           }),
                         }),
-                        Object(p['jsx'])(d['a'].Item, {
+                        Object(p['jsx'])(j['a'].Item, {
                           rules: [
                             {
                               required: !0,
@@ -390,9 +409,9 @@
                           name: 'nsze',
                           label:
                             '\u8fd1\u4e00\u5e74\u7eb3\u7a0e\u603b\u989d(\u4e07\u5143)',
-                          children: Object(p['jsx'])(j['a'], { size: 'large' }),
+                          children: Object(p['jsx'])(n['a'], { size: 'large' }),
                         }),
-                        Object(p['jsx'])(d['a'].Item, {
+                        Object(p['jsx'])(j['a'].Item, {
                           rules: [
                             {
                               required: !0,
@@ -402,9 +421,9 @@
                           name: 'kpze',
                           label:
                             '\u8fd1\u4e00\u5e74\u5f00\u7968\u603b\u989d(\u4e07\u5143)',
-                          children: Object(p['jsx'])(j['a'], { size: 'large' }),
+                          children: Object(p['jsx'])(n['a'], { size: 'large' }),
                         }),
-                        Object(p['jsx'])(d['a'].Item, {
+                        Object(p['jsx'])(j['a'].Item, {
                           rules: [
                             {
                               required: !0,
@@ -414,7 +433,7 @@
                           name: 'fzze',
                           label:
                             '\u4f01\u4e1a\u5f53\u524d\u8d1f\u503a\u4f59\u989d(\u4e07\u5143)',
-                          children: Object(p['jsx'])(j['a'], { size: 'large' }),
+                          children: Object(p['jsx'])(n['a'], { size: 'large' }),
                         }),
                       ],
                     }),
@@ -425,18 +444,19 @@
                     Object(p['jsxs'])('div', {
                       style: { width: 582, margin: '0 auto' },
                       children: [
-                        Object(p['jsxs'])(d['a'].Item, {
+                        Object(p['jsxs'])(j['a'].Item, {
                           label: '\u878d\u8d44\u7c7b\u578b',
                           children: [
                             Object(p['jsxs'])(r['a'], {
                               children: [
                                 Object(p['jsx'])(l['a'], {
                                   span: 9,
-                                  children: Object(p['jsx'])(d['a'].Item, {
+                                  children: Object(p['jsx'])(j['a'].Item, {
                                     name: 'rzlxXydk',
                                     noStyle: !0,
                                     valuePropName: 'checked',
-                                    children: Object(p['jsx'])(i['a'], {
+                                    initialValue: !1,
+                                    children: Object(p['jsx'])(o['a'], {
                                       style: { whiteSpace: 'nowrap' },
                                       children: '\u4fe1\u7528\u8d37\u6b3e',
                                     }),
@@ -444,7 +464,7 @@
                                 }),
                                 Object(p['jsx'])(l['a'], {
                                   span: 15,
-                                  children: Object(p['jsx'])(d['a'].Item, {
+                                  children: Object(p['jsx'])(j['a'].Item, {
                                     name: ['xydkFileList', 'id'],
                                     noStyle: !0,
                                     children: Object(p['jsx'])(g, {
@@ -475,11 +495,12 @@
                               children: [
                                 Object(p['jsx'])(l['a'], {
                                   span: 9,
-                                  children: Object(p['jsx'])(d['a'].Item, {
+                                  children: Object(p['jsx'])(j['a'].Item, {
                                     name: 'rzlxDydk',
                                     noStyle: !0,
                                     valuePropName: 'checked',
-                                    children: Object(p['jsx'])(i['a'], {
+                                    initialValue: !1,
+                                    children: Object(p['jsx'])(o['a'], {
                                       style: { whiteSpace: 'nowrap' },
                                       children: '\u62b5\u62bc\u8d37\u6b3e',
                                     }),
@@ -487,7 +508,7 @@
                                 }),
                                 Object(p['jsx'])(l['a'], {
                                   span: 15,
-                                  children: Object(p['jsx'])(d['a'].Item, {
+                                  children: Object(p['jsx'])(j['a'].Item, {
                                     name: ['dydkfileList', 'id'],
                                     noStyle: !0,
                                     children: Object(p['jsx'])(g, {
@@ -515,7 +536,7 @@
                             }),
                           ],
                         }),
-                        Object(p['jsx'])(d['a'].Item, {
+                        Object(p['jsx'])(j['a'].Item, {
                           name: 'rzph',
                           label: '\u878d\u8d44\u504f\u597d',
                           initialValue: 1,
@@ -536,7 +557,7 @@
                             ],
                           }),
                         }),
-                        Object(p['jsx'])(d['a'].Item, {
+                        Object(p['jsx'])(j['a'].Item, {
                           name: 'xqje',
                           label: '\u9700\u6c42\u91d1\u989d',
                           required: !0,
@@ -546,7 +567,7 @@
                               message: '\u8bf7\u8f93\u5165\u5185\u5bb9',
                             },
                           ],
-                          children: Object(p['jsx'])(j['a'], { size: 'large' }),
+                          children: Object(p['jsx'])(n['a'], { size: 'large' }),
                         }),
                       ],
                     }),

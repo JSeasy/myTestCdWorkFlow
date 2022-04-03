@@ -1,16 +1,33 @@
 import styles from './index.less';
 import RegistForm from '@/components/registForm';
 import { Divider } from 'antd';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { get, recentMatch } from '@/api/info';
+const cplb: any = {
+  1: '信用',
+  2: '抵押',
+  3: '其他',
+};
+const splx: any = {
+  1: '线上',
+  2: '线下',
+  3: '线上+线下',
+};
+const hkfs: any = {
+  1: '先息后本',
+  2: '等额本息',
+  3: '等额本金',
+  4: '其他',
+};
 export default (props: any) => {
   const ref = useRef(null);
+  const [recentList, setRecentList] = useState<any>([]);
   useEffect(() => {
     get().then((res) => {
       console.log(res);
     });
-    recentMatch().then((res) => {
-      console.log(res);
+    recentMatch().then(({ data }) => {
+      setRecentList(data.productList);
     });
   }, []);
   return (
@@ -21,30 +38,39 @@ export default (props: any) => {
       <div className={styles.right}>
         <h1>最近匹配结果</h1>
         <div className={styles.list}>
-          <div className={styles.item}>
-            <div className={styles.title}>
-              <h1>产品名</h1>
-              <span>信用贷款</span>
-              <span>95%</span>
-            </div>
-            <div className={styles.info}>
-              <span>300万</span>
-              <Divider type="vertical" className="divider" />
-              <span>300万</span>
-              <Divider type="vertical" className="divider" />
-              <span>300万</span>
-            </div>
-            <div className={styles.tip}>
-              <p>先息后本 / 1年期 / 线上</p>
-            </div>
-            <div className={styles.remark}>
-              <p>
-                备注:
-                XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-              </p>
-            </div>
-          </div>
-          <div className={styles.item}></div>
+          {recentList.map((item: any) => {
+            return (
+              <div className={styles.item}>
+                <div className={styles.title}>
+                  <h1>{item.cpmc}</h1>
+                  <span>{cplb[item.cplb]}贷款</span>
+                  <span>{item.pipeiDu}%</span>
+                </div>
+                <div className={styles.info}>
+                  <span>{item.ed}万</span>
+                  <Divider type="vertical" className="divider" />
+                  <span>{item.lilv}%</span>
+                  <Divider type="vertical" className="divider" />
+                  <span>
+                    {item.fksj} {item.fkdw == 1 ? '天' : '月'}
+                    放款
+                  </span>
+                </div>
+                <div className={styles.tip}>
+                  <p>
+                    {hkfs[item.hkfs]} / {item.qxsj}
+                    {item.qxdw == 1 ? '年' : '月'}/ {splx[item.splx]}
+                  </p>
+                </div>
+                <div className={styles.remark}>
+                  <p>
+                    备注:
+                    {item.remark}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>
