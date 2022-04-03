@@ -1,17 +1,31 @@
-import { Form, Input, Radio, Col, Row, Select } from 'antd';
+import { Form, Button, Input, Radio, Col, Row, Select } from 'antd';
 import Checkbox from '../checkbox';
 import Title from '@/components/title/index';
 import UploadForm from '@/components/uploadForm';
 
 import styles from './index.less';
-import { forwardRef, useImperativeHandle } from 'react';
+import { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
 const layout = {
   labelCol: { span: 9 },
   wrapperCol: { span: 15, offset: 1 },
 };
 
+const gshy: any = {
+  1: '服装',
+  2: '餐饮',
+  3: '房地产',
+  4: '汽车',
+  5: '互联网',
+};
 export default forwardRef((props: any, ref: any) => {
   const [form] = Form.useForm();
+  const { isInfo, info } = props;
+
+  const [showForm, setShowForm] = useState([true, true, true, true]);
+  useEffect(() => {
+    isInfo && setShowForm([false, false, false, false]);
+  }, []);
+
   useImperativeHandle(ref, () => ({
     validateForm: () => {
       return form.validateFields();
@@ -27,63 +41,104 @@ export default forwardRef((props: any, ref: any) => {
           title={'企业基本信息'}
           style={{ marginTop: 52, marginBottom: 40 }}
         ></Title>
-        <div style={{ width: 582, margin: '0 auto' }}>
-          <Form.Item
-            name="orgName"
-            rules={[
-              {
-                required: true,
-                message: '请输入公司名称',
-              },
-            ]}
-            label="公司名称"
-          >
-            <Input placeholder="请输入公司名称" size="large" />
-          </Form.Item>
-          <Form.Item
-            rules={[
-              {
-                required: true,
-                message: '请输入公司行业',
-              },
-            ]}
-            name="gshy"
-            label="公司行业"
-            initialValue={1}
-          >
-            <Select size="large">
-              <Select.Option value={1}>服装</Select.Option>
-              <Select.Option value={2}>餐饮</Select.Option>
-              <Select.Option value={3}>房地产</Select.Option>
-              <Select.Option value={4}>汽车</Select.Option>
-              <Select.Option value={5}>互联网</Select.Option>
-            </Select>
-          </Form.Item>
-          <Form.Item
-            rules={[
-              {
-                required: true,
-                message: '请输入联系人姓名',
-              },
-            ]}
-            name="lxrxm"
-            label="联系人姓名"
-          >
-            <Input placeholder="请输入联系人姓名" size="large" />
-          </Form.Item>
-          <Form.Item
-            rules={[
-              {
-                required: true,
-                message: '请输入联系人电话',
-              },
-            ]}
-            name="lxrdh"
-            label="联系人电话"
-          >
-            <Input placeholder="请输入联系人电话" size="large" />
-          </Form.Item>
-        </div>
+        {showForm[0] && (
+          <div style={{ width: 582, margin: '0 auto' }}>
+            <Form.Item
+              name="orgName"
+              rules={[
+                {
+                  required: true,
+                  message: '请输入公司名称',
+                },
+              ]}
+              label="公司名称"
+            >
+              <Input placeholder="请输入公司名称" size="large" />
+            </Form.Item>
+            <Form.Item
+              rules={[
+                {
+                  required: true,
+                  message: '请输入公司行业',
+                },
+              ]}
+              name="gshy"
+              label="公司行业"
+              initialValue={'1'}
+            >
+              <Select size="large">
+                <Select.Option value={'1'}>服装</Select.Option>
+                <Select.Option value={'2'}>餐饮</Select.Option>
+                <Select.Option value={'3'}>房地产</Select.Option>
+                <Select.Option value={'4'}>汽车</Select.Option>
+                <Select.Option value={'5'}>互联网</Select.Option>
+              </Select>
+            </Form.Item>
+            <Form.Item
+              rules={[
+                {
+                  required: true,
+                  message: '请输入联系人姓名',
+                },
+              ]}
+              name="lxrxm"
+              label="联系人姓名"
+            >
+              <Input placeholder="请输入联系人姓名" size="large" />
+            </Form.Item>
+            <Form.Item
+              rules={[
+                {
+                  required: true,
+                  message: '请输入联系人电话',
+                },
+              ]}
+              name="lxrdh"
+              label="联系人电话"
+            >
+              <Input placeholder="请输入联系人电话" size="large" />
+            </Form.Item>
+            {isInfo && (
+              <div style={{ textAlign: 'center' }}>
+                <Button style={{ width: 140 }} className="save">
+                  完成
+                </Button>
+                <Button>取消</Button>
+              </div>
+            )}
+          </div>
+        )}
+        {!showForm[0] && (
+          <div className={styles.formInfo}>
+            <div>
+              <Button
+                type="link"
+                className="editBtnTable"
+                onClick={() => {
+                  setShowForm([true, ...showForm]);
+                }}
+              >
+                编辑
+              </Button>
+            </div>
+            <p>
+              <span>公司名称：</span>
+              <span>{info.orgName}</span>
+            </p>
+            <p>
+              <span>公司行业：</span>
+              <span>{gshy[info.gshy]}</span>
+            </p>
+            <p>
+              <span>联系人姓名：</span>
+              <span>{info.lxrxm}</span>
+            </p>
+            <p>
+              <span>联系电话：</span>
+              <span>{info.lxrdh}</span>
+            </p>
+          </div>
+        )}
         {props.children}
         <Title
           title={'法人征信'}
@@ -235,9 +290,9 @@ export default forwardRef((props: any, ref: any) => {
           </Form.Item>
           <Form.Item name="rzph" label="融资偏好" initialValue={1}>
             <Radio.Group>
-              <Radio value={1}>额度优先</Radio>
-              <Radio value={2}>利率优先</Radio>
-              <Radio value={3}>速度优先</Radio>
+              <Radio value={'1'}>额度优先</Radio>
+              <Radio value={'2'}>利率优先</Radio>
+              <Radio value={'3'}>速度优先</Radio>
             </Radio.Group>
           </Form.Item>
           <Form.Item
