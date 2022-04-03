@@ -3,9 +3,10 @@ import styles from './index.less';
 import Breadcrumbs from './breadcrumbs';
 import { getUserInfo } from '@/api/login';
 import { useEffect, useState } from 'react';
-
+import { Dropdown } from 'antd';
+import Options from './components/options';
 export default (props: any) => {
-  const [info, setInfo] = useState({});
+  const [info, setInfo] = useState<any>({});
   const getUserInfoHook = () => {
     getUserInfo().then(({ data }) => {
       setInfo(data.user);
@@ -22,10 +23,12 @@ export default (props: any) => {
           <span className={styles.routerName}>
             <Breadcrumbs />
           </span>
-          <div className={styles.user}>
-            <img src={require('./assets/1.png')} alt="" />
-            <span>{info.userName}</span>
-          </div>
+          <Dropdown overlay={<Options />}>
+            <div className={styles.user}>
+              <img src={require('./assets/1.png')} alt="" />
+              <span>{info.userName}</span>
+            </div>
+          </Dropdown>
         </div>
         <div className={styles.mainContent}>{props.children}</div>
       </div>
