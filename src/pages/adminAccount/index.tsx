@@ -3,7 +3,7 @@ import Search from '@/components/searchInput';
 import Table from '@/components/table';
 import { useEffect, useState } from 'react';
 import createColumns from './columns';
-import { useHistory, useParams } from 'umi';
+import { useHistory, useModel, useParams } from 'umi';
 import {
   Modal,
   Form,
@@ -33,6 +33,11 @@ const layout = {
 const { Option } = Select;
 
 export default (props: any) => {
+  const {
+    initialState: {
+      ['/account']: { add, edit, del },
+    },
+  } = useModel('@@initialState');
   const history = useHistory();
   const params = useParams();
   const [searchCondition, setSearchCondition] = useState({
@@ -56,32 +61,36 @@ export default (props: any) => {
     const { row, col } = props;
     return (
       <>
-        <Button
-          type="link"
-          onClick={() => {
-            history.push({
-              pathname: '/account/edit',
-              state: {
-                id: row.id,
-              },
-            });
-          }}
-          className="editBtnTable"
-        >
-          <FormOutlined />
-          编辑
-        </Button>
-        <Button
-          type="link"
-          onClick={() => {
-            setDelVisible(true);
-            setId(row.id);
-          }}
-          className="delBtnTable"
-        >
-          <DeleteOutlined />
-          删除
-        </Button>
+        {edit && (
+          <Button
+            type="link"
+            onClick={() => {
+              history.push({
+                pathname: '/account/edit',
+                state: {
+                  id: row.id,
+                },
+              });
+            }}
+            className="editBtnTable"
+          >
+            <FormOutlined />
+            编辑
+          </Button>
+        )}
+        {del && (
+          <Button
+            type="link"
+            onClick={() => {
+              setDelVisible(true);
+              setId(row.id);
+            }}
+            className="delBtnTable"
+          >
+            <DeleteOutlined />
+            删除
+          </Button>
+        )}
       </>
     );
   };
@@ -141,20 +150,22 @@ export default (props: any) => {
               ]}
             />
           </div>
-          <Button
-            className="addBtn"
-            onClick={() => {
-              history.push({
-                pathname: '/account/add',
-                state: {
-                  id: '',
-                },
-              });
-            }}
-          >
-            <PlusOutlined />
-            新增
-          </Button>
+          {add && (
+            <Button
+              className="addBtn"
+              onClick={() => {
+                history.push({
+                  pathname: '/account/add',
+                  state: {
+                    id: '',
+                  },
+                });
+              }}
+            >
+              <PlusOutlined />
+              新增
+            </Button>
+          )}
         </div>
         <Table
           columns={columns}

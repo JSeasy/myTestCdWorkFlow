@@ -4,13 +4,17 @@ import Table from '@/components/table';
 import Select from '@/components/select';
 import { useEffect, useState } from 'react';
 import createColumns from './columns';
-import { useHistory } from 'umi';
+import { useHistory, useModel } from 'umi';
 import { Modal, Form, Input, Button } from 'antd';
 import { PlusOutlined, FormOutlined, DeleteOutlined } from '@ant-design/icons';
 import { get, del } from '@/api/customer';
 export default (props: any) => {
   const history = useHistory();
-
+  const {
+    initialState: {
+      ['/customer']: { add, edit, del },
+    },
+  } = useModel('@@initialState');
   const [searchCondition, setSearchCondition] = useState({
     name: '',
     top: '',
@@ -32,30 +36,34 @@ export default (props: any) => {
     const { row, col } = props;
     return (
       <>
-        <Button
-          type="link"
-          onClick={() =>
-            history.push({
-              pathname: '/customer/edit',
-              state: {
-                id: row.id,
-              },
-            })
-          }
-          className="editBtnTable"
-        >
-          <FormOutlined /> 编辑
-        </Button>
-        <Button
-          className="delBtnTable"
-          type="link"
-          onClick={() => {
-            setVisible(true);
-            setId(row.id);
-          }}
-        >
-          <DeleteOutlined /> 删除
-        </Button>
+        {edit && (
+          <Button
+            type="link"
+            onClick={() =>
+              history.push({
+                pathname: '/customer/edit',
+                state: {
+                  id: row.id,
+                },
+              })
+            }
+            className="editBtnTable"
+          >
+            <FormOutlined /> 编辑
+          </Button>
+        )}
+        {del && (
+          <Button
+            className="delBtnTable"
+            type="link"
+            onClick={() => {
+              setVisible(true);
+              setId(row.id);
+            }}
+          >
+            <DeleteOutlined /> 删除
+          </Button>
+        )}
       </>
     );
   };
@@ -114,15 +122,17 @@ export default (props: any) => {
               ]}
             />
           </div>
-          <Button
-            className="addBtn"
-            onClick={() => {
-              history.push('/customer/add');
-            }}
-          >
-            <PlusOutlined />
-            新增
-          </Button>
+          {add && (
+            <Button
+              className="addBtn"
+              onClick={() => {
+                history.push('/customer/add');
+              }}
+            >
+              <PlusOutlined />
+              新增
+            </Button>
+          )}
         </div>
         <Table
           columns={columns}

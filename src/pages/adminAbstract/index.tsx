@@ -3,7 +3,7 @@ import Search from '@/components/searchInput';
 import Table from '@/components/table';
 import { useEffect, useState, useRef } from 'react';
 import createColumns from './columns';
-import { useHistory, useParams } from 'umi';
+import { useHistory, useModel, useParams } from 'umi';
 import { Modal, Form, Input, Button, Row, Col, Tooltip, Select } from 'antd';
 import {
   FormOutlined,

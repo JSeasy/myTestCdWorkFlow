@@ -86,6 +86,12 @@ export default defineConfig({
           wrappers: ['@/wrappers/auth'],
         },
         {
+          path: '/system',
+          name: 'system',
+          component: '@/pages/adminSystem/index',
+          wrappers: ['@/wrappers/auth'],
+        },
+        {
           exact: false,
           path: '/match',
           name: 'match',
