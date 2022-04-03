@@ -17,8 +17,8 @@ export const recentMatch = () => {
 
 export const save = (data: any) => {
   return request({
-    url: '/services/v1/org/khd/saveQy',
-    method: 'POST',
+    url: '/services/v1/org/edit',
+    method: 'PUT',
     data,
   });
 };

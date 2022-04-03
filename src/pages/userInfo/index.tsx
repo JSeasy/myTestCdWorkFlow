@@ -36,7 +36,16 @@ export default (props: any) => {
   return (
     <div className={styles.userInfo}>
       <div className={styles.left}>
-        <RegistForm ref={ref} isInfo={true} info={info} />
+        <RegistForm
+          ref={ref}
+          isInfo={true}
+          info={info}
+          onchange={() => {
+            get().then(({ data }) => {
+              setInfo(data.userOrgInfo);
+            });
+          }}
+        />
       </div>
       <div className={styles.right}>
         <h1>最近匹配结果</h1>

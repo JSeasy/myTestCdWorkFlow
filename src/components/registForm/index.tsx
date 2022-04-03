@@ -24,7 +24,7 @@ const rzph: any = {
 };
 export default forwardRef((props: any, ref: any) => {
   const [form] = Form.useForm();
-  const { isInfo, info } = props;
+  const { isInfo, info, onchange } = props;
 
   const [showForm, setShowForm] = useState([true, true, true, true]);
   useEffect(() => {
@@ -34,8 +34,9 @@ export default forwardRef((props: any, ref: any) => {
   const saveApi = (data: any, index: number) => {
     save(data).then((res) => {
       const old = [...showForm];
-      old[index] = true;
+      old[index] = false;
       setShowForm(old);
+      onchange();
     });
   };
 
