@@ -146,32 +146,9 @@
         O = n('9cPI'),
         j = n('8tHZ'),
         C = n('f9wj'),
-        w = n('8qAB'),
-        E =
-          (Object(w['a'])(
-            'success',
-            'processing',
-            'error',
-            'default',
-            'warning',
-          ),
-          Object(w['a'])(
-            'pink',
-            'red',
-            'yellow',
-            'orange',
-            'cyan',
-            'green',
-            'blue',
-            'purple',
-            'geekblue',
-            'magenta',
-            'volcano',
-            'gold',
-            'lime',
-          )),
-        P = n('knPO'),
-        x = function (e, t) {
+        w = n('kwxP'),
+        E = n('knPO'),
+        P = function (e, t) {
           var n = {};
           for (var o in e)
             Object.prototype.hasOwnProperty.call(e, o) &&
@@ -186,7 +163,7 @@
           }
           return n;
         },
-        k = function (e, t) {
+        x = function (e, t) {
           var n = {},
             o = Object(a['a'])({}, e);
           return (
@@ -196,15 +173,15 @@
             { picked: n, omitted: o }
           );
         },
-        N = new RegExp('^('.concat(E.join('|'), ')(-inverse)?$'));
-      function R(e, t) {
+        k = new RegExp('^('.concat(w['a'].join('|'), ')(-inverse)?$'));
+      function N(e, t) {
         var n = e.type;
         if (
           ((!0 === n.__ANT_BUTTON || 'button' === e.type) &&
             e.props.disabled) ||
           (!0 === n.__ANT_SWITCH && (e.props.disabled || e.props.loading))
         ) {
-          var o = k(e.props.style, [
+          var o = x(e.props.style, [
               'position',
               'left',
               'right',
@@ -238,7 +215,7 @@
         }
         return e;
       }
-      var A = i['forwardRef'](function (e, t) {
+      var R = i['forwardRef'](function (e, t) {
         var n,
           c = i['useContext'](C['b']),
           l = c.getPopupContainer,
@@ -273,7 +250,7 @@
               Object(O['a'])({ arrowPointAtCenter: n, autoAdjustOverflow: o })
             );
           },
-          E = function (e, t) {
+          x = function (e, t) {
             var n = w(),
               o = Object.keys(n).find(function (e) {
                 return (
@@ -297,13 +274,13 @@
                   .concat(a.top));
             }
           },
-          k = function () {
+          R = function () {
             var t = e.title,
               n = e.overlay;
             return 0 === t ? t : n || t || '';
           },
           A = e.getPopupContainer,
-          S = x(e, ['getPopupContainer']),
+          S = P(e, ['getPopupContainer']),
           T = e.prefixCls,
           V = e.openClassName,
           D = e.getTooltipContainer,
@@ -316,7 +293,7 @@
           z = d;
         !('visible' in e) && b() && (z = !1);
         var J,
-          W = R(Object(j['b'])(M) ? M : i['createElement']('span', null, M), Z),
+          W = N(Object(j['b'])(M) ? M : i['createElement']('span', null, M), Z),
           q = W.props,
           _ = g()(
             q.className,
@@ -326,13 +303,13 @@
             H,
             ((n = {}),
             Object(o['a'])(n, ''.concat(Z, '-rtl'), 'rtl' === s),
-            Object(o['a'])(n, ''.concat(Z, '-').concat(L), L && N.test(L)),
+            Object(o['a'])(n, ''.concat(Z, '-').concat(L), L && k.test(L)),
             n),
           ),
           G = I;
         return (
           L &&
-            !N.test(L) &&
+            !k.test(L) &&
             ((G = Object(a['a'])(Object(a['a'])({}, I), { background: L })),
             (J = { '--antd-arrow-background-color': L })),
           i['createElement'](
@@ -343,17 +320,17 @@
               getTooltipContainer: A || D || l,
               ref: t,
               builtinPlacements: w(),
-              overlay: k(),
+              overlay: R(),
               visible: z,
               onVisibleChange: h,
-              onPopupAlign: E,
+              onPopupAlign: x,
               overlayInnerStyle: G,
               arrowContent: i['createElement']('span', {
                 className: ''.concat(Z, '-arrow-content'),
                 style: J,
               }),
               motion: {
-                motionName: Object(P['c'])(
+                motionName: Object(E['c'])(
                   B,
                   'zoom-big-fast',
                   e.transitionName,
@@ -365,15 +342,15 @@
           )
         );
       });
-      (A.displayName = 'Tooltip'),
-        (A.defaultProps = {
+      (R.displayName = 'Tooltip'),
+        (R.defaultProps = {
           placement: 'top',
           mouseEnterDelay: 0.1,
           mouseLeaveDelay: 0.1,
           arrowPointAtCenter: !1,
           autoAdjustOverflow: !0,
         });
-      t['a'] = A;
+      t['a'] = R;
     },
     '8CG2': function (e, t) {
       e.exports = function (e, t, n, o) {
@@ -671,6 +648,38 @@
           return void 0 !== n ? n : ''.concat(e, '-').concat(t);
         };
       t['a'] = l;
+    },
+    kwxP: function (e, t, n) {
+      'use strict';
+      n.d(t, 'b', function () {
+        return r;
+      }),
+        n.d(t, 'a', function () {
+          return a;
+        });
+      var o = n('8qAB'),
+        r = Object(o['a'])(
+          'success',
+          'processing',
+          'error',
+          'default',
+          'warning',
+        ),
+        a = Object(o['a'])(
+          'pink',
+          'red',
+          'yellow',
+          'orange',
+          'cyan',
+          'green',
+          'blue',
+          'purple',
+          'geekblue',
+          'magenta',
+          'volcano',
+          'gold',
+          'lime',
+        );
     },
     zR9O: function (e, t, n) {},
   },

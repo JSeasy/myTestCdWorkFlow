@@ -1,5 +1,5 @@
 (window['webpackJsonp'] = window['webpackJsonp'] || []).push([
-  [10],
+  [9],
   {
     '1olM': function (e, t, a) {
       'use strict';
@@ -33,19 +33,19 @@
         O = a('T9Mk'),
         h = a('q5+0'),
         v = a('ikfJ'),
-        f = { labelCol: { span: 8 }, wrapperCol: { span: 6, offset: 1 } };
+        p = { labelCol: { span: 8 }, wrapperCol: { span: 6, offset: 1 } };
       t['default'] = (e) => {
         var t = Object(h['g'])(),
           a = t.location.state,
           o = d['a'].useForm(),
-          p = Object(u['a'])(o, 1),
-          x = p[0],
+          f = Object(u['a'])(o, 1),
+          x = f[0],
           N = Object(O['useState'])([]),
           g = Object(u['a'])(N, 2),
           y = g[0],
           w = g[1],
           I = () => {
-            Object(m['f'])().then((e) => {
+            Object(m['e'])().then((e) => {
               var t = e.data;
               w(t.roleList);
             });
@@ -54,7 +54,7 @@
           I(), _();
         }, []);
         var _ = () => {
-            Object(m['e'])(a.id).then((e) => {
+            Object(m['d'])(a.id).then((e) => {
               var t = e.data,
                 a = t.user,
                 s = a.userName,
@@ -73,7 +73,7 @@
           },
           T = () => {
             x.validateFields().then((e) => {
-              Object(m['c'])(
+              Object(m['b'])(
                 Object(n['a'])(Object(n['a'])({}, e), {}, { id: a.id }),
               ).then((e) => {
                 t.push('/account');
@@ -90,7 +90,7 @@
             Object(v['jsxs'])(
               d['a'],
               Object(n['a'])(
-                Object(n['a'])({}, f),
+                Object(n['a'])({}, p),
                 {},
                 {
                   form: x,
@@ -220,23 +220,20 @@
     },
     dSNV: function (e, t, a) {
       'use strict';
-      a.d(t, 'd', function () {
+      a.d(t, 'c', function () {
         return r;
       }),
-        a.d(t, 'b', function () {
+        a.d(t, 'a', function () {
           return c;
         }),
-        a.d(t, 'a', function () {
+        a.d(t, 'b', function () {
           return l;
         }),
-        a.d(t, 'c', function () {
+        a.d(t, 'e', function () {
           return i;
         }),
-        a.d(t, 'f', function () {
+        a.d(t, 'd', function () {
           return n;
-        }),
-        a.d(t, 'e', function () {
-          return d;
         });
       var s = a('5lAy'),
         r = (e) =>
@@ -247,28 +244,22 @@
           }),
         c = (e) =>
           Object(s['a'])({
-            url: '/services/v1/user',
-            method: 'delete',
-            data: e,
-          }),
-        l = (e) =>
-          Object(s['a'])({
             url: '/services/v1/user/adminAddUser',
             method: 'POST',
             data: e,
           }),
-        i = (e) =>
+        l = (e) =>
           Object(s['a'])({
             url: '/services/v1/user/updateUser',
             method: 'POST',
             data: e,
           }),
-        n = () =>
+        i = () =>
           Object(s['a'])({
             url: '/services/v1/role/queryRoleList',
             method: 'GET',
           }),
-        d = (e) =>
+        n = (e) =>
           Object(s['a'])({ url: '/services/v1/user/' + e, method: 'GET' });
     },
     khV9: function (e, t, a) {

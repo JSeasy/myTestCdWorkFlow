@@ -1,7 +1,7 @@
 (window['webpackJsonp'] = window['webpackJsonp'] || []).push([
   [40],
   {
-    H2UZ: function (e, s, t) {
+    H2UZ: function (e, t, s) {
       e.exports = {
         userResult: 'userResult___3plsV',
         bar: 'bar___3c2te',
@@ -17,16 +17,16 @@
         rightItem: 'rightItem___3Amyd',
       };
     },
-    JKrI: function (e, s, t) {
+    JKrI: function (e, t, s) {
       'use strict';
-      t.r(s);
-      var c = t('0hF1'),
-        i = t('4+7e'),
-        a = t('T9Mk'),
-        j = t('H2UZ'),
-        r = t.n(j),
-        l = t('bNK3'),
-        d = (e) => ({
+      s.r(t);
+      var a = s('0hF1'),
+        c = s('4+7e'),
+        i = s('T9Mk'),
+        r = s('H2UZ'),
+        l = s.n(r),
+        j = s('bNK3'),
+        n = (e) => ({
           title: {
             text: e + '%',
             textStyle: { color: '#5B51C1', fontSize: 32 },
@@ -79,59 +79,76 @@
             },
           ],
         }),
-        n = d,
-        h = t('ikfJ'),
-        b = (e) => {
-          var s = Object(a['useRef'])(null);
+        b = n,
+        d = s('ikfJ'),
+        o = (e) => {
+          var t = Object(i['useRef'])(null);
           return (
-            Object(a['useEffect'])(() => {
-              var t = e.percent,
-                c = (e.index, l['a'](s.current)),
-                i = n(t);
-              c.setOption(i);
+            Object(i['useEffect'])(() => {
+              var s = e.percent,
+                a = (e.index, j['a'](t.current)),
+                c = b(s);
+              a.setOption(c);
             }, []),
-            Object(h['jsx'])('div', {
-              ref: s,
+            Object(d['jsx'])('div', {
+              ref: t,
               style: { width: 126, height: 126 },
             })
           );
         },
-        x = t('5lAy'),
-        O = (e) =>
-          Object(x['a'])({
+        h = s('5lAy'),
+        x = (e) =>
+          Object(h['a'])({
             url: '/services/v1/pipei/queryProduct',
             method: 'POST',
             data: e,
-          });
-      s['default'] = (e) => {
-        var s = Object(a['useState'])({ sortBy: 'ed' }),
-          t = Object(i['a'])(s, 2),
-          j = t[0],
-          l = t[1],
-          d = (e) => {
-            O(Object(c['a'])(Object(c['a'])({}, j), e)).then((e) => {
-              console.log(e);
+          }),
+        O = {
+          1: '\u5148\u606f\u540e\u672c',
+          2: '\u7b49\u989d\u672c\u606f',
+          3: '\u7b49\u989d\u672c\u91d1',
+          4: '\u5176\u4ed6',
+        },
+        m = {
+          1: '\u7ebf\u4e0a',
+          2: '\u7ebf\u4e0b',
+          3: '\u7ebf\u4e0a+\u7ebf\u4e0b',
+        },
+        p = { 1: '\u4fe1\u7528', 2: '\u62b5\u62bc', 3: '\u5176\u4ed6' };
+      t['default'] = (e) => {
+        var t = Object(i['useState'])({ sortBy: 'ed' }),
+          s = Object(c['a'])(t, 2),
+          r = s[0],
+          j = s[1],
+          n = Object(i['useState'])([]),
+          b = Object(c['a'])(n, 2),
+          h = b[0],
+          _ = b[1],
+          u = (e) => {
+            x(Object(a['a'])(Object(a['a'])({}, r), e)).then((e) => {
+              var t = e.data;
+              _(t.page.list);
             });
           };
         return (
-          Object(a['useEffect'])(() => {
-            d();
-          }, []),
-          Object(h['jsxs'])('div', {
-            className: r.a.userResult,
+          Object(i['useEffect'])(() => {
+            u();
+          }, [r]),
+          Object(d['jsxs'])('div', {
+            className: l.a.userResult,
             children: [
-              Object(h['jsxs'])('div', {
-                className: r.a.bar,
+              Object(d['jsxs'])('div', {
+                className: l.a.bar,
                 children: [
-                  Object(h['jsx'])('div', {
+                  Object(d['jsx'])('div', {
                     className: [
-                      r.a.barItem,
-                      'ed' === j.sortBy ? r.a.barItemActive : '',
+                      l.a.barItem,
+                      'ed' === r.sortBy ? l.a.barItemActive : '',
                     ].join(' '),
                     onClick: () => {
-                      l(
-                        Object(c['a'])(
-                          Object(c['a'])({}, j),
+                      j(
+                        Object(a['a'])(
+                          Object(a['a'])({}, r),
                           {},
                           { sortBy: 'ed' },
                         ),
@@ -139,15 +156,15 @@
                     },
                     children: '\u5229\u7387\u4f18\u5148',
                   }),
-                  Object(h['jsx'])('div', {
+                  Object(d['jsx'])('div', {
                     className: [
-                      r.a.barItem,
-                      'lilv' === j.sortBy ? r.a.barItemActive : '',
+                      l.a.barItem,
+                      'lilv' === r.sortBy ? l.a.barItemActive : '',
                     ].join(' '),
                     onClick: () => {
-                      l(
-                        Object(c['a'])(
-                          Object(c['a'])({}, j),
+                      j(
+                        Object(a['a'])(
+                          Object(a['a'])({}, r),
                           {},
                           { sortBy: 'lilv' },
                         ),
@@ -155,15 +172,15 @@
                     },
                     children: '\u989d\u5ea6\u4f18\u5148',
                   }),
-                  Object(h['jsx'])('div', {
+                  Object(d['jsx'])('div', {
                     className: [
-                      r.a.barItem,
-                      'fksj' === j.sortBy ? r.a.barItemActive : '',
+                      l.a.barItem,
+                      'fksj' === r.sortBy ? l.a.barItemActive : '',
                     ].join(' '),
                     onClick: () => {
-                      l(
-                        Object(c['a'])(
-                          Object(c['a'])({}, j),
+                      j(
+                        Object(a['a'])(
+                          Object(a['a'])({}, r),
                           {},
                           { sortBy: 'fksj' },
                         ),
@@ -173,238 +190,104 @@
                   }),
                 ],
               }),
-              Object(h['jsxs'])('div', {
-                className: r.a.list,
-                children: [
-                  Object(h['jsxs'])('div', {
-                    className: r.a.item,
-                    children: [
-                      Object(h['jsxs'])('div', {
-                        className: r.a.left,
-                        children: [
-                          Object(h['jsx'])(b, { percent: 100 }),
-                          Object(h['jsxs'])('div', {
-                            className: r.a.info,
-                            children: [
-                              Object(h['jsxs'])('h1', {
-                                children: [
-                                  Object(h['jsx'])('span', {
-                                    children:
-                                      '\u4ea7\u54c1\u540d\u4ea7\u54c1\u540d\u4ea7\u54c1\u540d',
-                                  }),
-                                  Object(h['jsx'])('span', {
-                                    children: '\u4fe1\u7528\u8d37\u6b3e',
-                                  }),
-                                ],
-                              }),
-                              Object(h['jsxs'])('div', {
-                                className: r.a.text,
-                                children: [
-                                  Object(h['jsx'])('p', {
-                                    children:
-                                      '\u8fd8\u6b3e\u65b9\u5f0f:\u5148\u606f\u540e\u672c',
-                                  }),
-                                  Object(h['jsx'])('p', {
-                                    children:
-                                      '\u8fd8\u6b3e\u671f\u9650:1\u5e74',
-                                  }),
-                                  Object(h['jsx'])('p', {
-                                    children:
-                                      '\u8d37\u6b3e\u65b9\u5f0f:\u7ebf\u4e0a',
-                                  }),
-                                ],
-                              }),
-                            ],
-                          }),
-                        ],
-                      }),
-                      Object(h['jsxs'])('div', {
-                        className: r.a.right,
-                        children: [
-                          Object(h['jsxs'])('div', {
-                            className: r.a.rightItem,
-                            children: [
-                              Object(h['jsx'])('h1', { children: '500\u4e07' }),
-                              Object(h['jsx'])('p', {
-                                children: '\u653e\u6b3e\u989d\u5ea6',
-                              }),
-                            ],
-                          }),
-                          Object(h['jsxs'])('div', {
-                            className: r.a.rightItem,
-                            children: [
-                              Object(h['jsx'])('h1', { children: '500\u4e07' }),
-                              Object(h['jsx'])('p', {
-                                children: '\u653e\u6b3e\u989d\u5ea6',
-                              }),
-                            ],
-                          }),
-                          Object(h['jsxs'])('div', {
-                            className: r.a.rightItem,
-                            children: [
-                              Object(h['jsx'])('h1', { children: '500\u4e07' }),
-                              Object(h['jsx'])('p', {
-                                children: '\u653e\u6b3e\u989d\u5ea6',
-                              }),
-                            ],
-                          }),
-                        ],
-                      }),
-                    ],
-                  }),
-                  Object(h['jsxs'])('div', {
-                    className: r.a.item,
-                    children: [
-                      Object(h['jsxs'])('div', {
-                        className: r.a.left,
-                        children: [
-                          Object(h['jsx'])(b, { percent: 50 }),
-                          Object(h['jsxs'])('div', {
-                            className: r.a.info,
-                            children: [
-                              Object(h['jsxs'])('h1', {
-                                children: [
-                                  Object(h['jsx'])('span', {
-                                    children:
-                                      '\u4ea7\u54c1\u540d\u4ea7\u54c1\u540d\u4ea7\u54c1\u540d',
-                                  }),
-                                  Object(h['jsx'])('span', {
-                                    children: '\u4fe1\u7528\u8d37\u6b3e',
-                                  }),
-                                ],
-                              }),
-                              Object(h['jsxs'])('div', {
-                                className: r.a.text,
-                                children: [
-                                  Object(h['jsx'])('p', {
-                                    children:
-                                      '\u8fd8\u6b3e\u65b9\u5f0f:\u5148\u606f\u540e\u672c',
-                                  }),
-                                  Object(h['jsx'])('p', {
-                                    children:
-                                      '\u8fd8\u6b3e\u671f\u9650:1\u5e74',
-                                  }),
-                                  Object(h['jsx'])('p', {
-                                    children:
-                                      '\u8d37\u6b3e\u65b9\u5f0f:\u7ebf\u4e0a',
-                                  }),
-                                ],
-                              }),
-                            ],
-                          }),
-                        ],
-                      }),
-                      Object(h['jsxs'])('div', {
-                        className: r.a.right,
-                        children: [
-                          Object(h['jsxs'])('div', {
-                            className: r.a.rightItem,
-                            children: [
-                              Object(h['jsx'])('h1', { children: '500\u4e07' }),
-                              Object(h['jsx'])('p', {
-                                children: '\u653e\u6b3e\u989d\u5ea6',
-                              }),
-                            ],
-                          }),
-                          Object(h['jsxs'])('div', {
-                            className: r.a.rightItem,
-                            children: [
-                              Object(h['jsx'])('h1', { children: '500\u4e07' }),
-                              Object(h['jsx'])('p', {
-                                children: '\u653e\u6b3e\u989d\u5ea6',
-                              }),
-                            ],
-                          }),
-                          Object(h['jsxs'])('div', {
-                            className: r.a.rightItem,
-                            children: [
-                              Object(h['jsx'])('h1', { children: '500\u4e07' }),
-                              Object(h['jsx'])('p', {
-                                children: '\u653e\u6b3e\u989d\u5ea6',
-                              }),
-                            ],
-                          }),
-                        ],
-                      }),
-                    ],
-                  }),
-                  Object(h['jsxs'])('div', {
-                    className: r.a.item,
-                    children: [
-                      Object(h['jsxs'])('div', {
-                        className: r.a.left,
-                        children: [
-                          Object(h['jsx'])(b, { percent: 90 }),
-                          Object(h['jsxs'])('div', {
-                            className: r.a.info,
-                            children: [
-                              Object(h['jsxs'])('h1', {
-                                children: [
-                                  Object(h['jsx'])('span', {
-                                    children:
-                                      '\u4ea7\u54c1\u540d\u4ea7\u54c1\u540d\u4ea7\u54c1\u540d',
-                                  }),
-                                  Object(h['jsx'])('span', {
-                                    children: '\u4fe1\u7528\u8d37\u6b3e',
-                                  }),
-                                ],
-                              }),
-                              Object(h['jsxs'])('div', {
-                                className: r.a.text,
-                                children: [
-                                  Object(h['jsx'])('p', {
-                                    children:
-                                      '\u8fd8\u6b3e\u65b9\u5f0f:\u5148\u606f\u540e\u672c',
-                                  }),
-                                  Object(h['jsx'])('p', {
-                                    children:
-                                      '\u8fd8\u6b3e\u671f\u9650:1\u5e74',
-                                  }),
-                                  Object(h['jsx'])('p', {
-                                    children:
-                                      '\u8d37\u6b3e\u65b9\u5f0f:\u7ebf\u4e0a',
-                                  }),
-                                ],
-                              }),
-                            ],
-                          }),
-                        ],
-                      }),
-                      Object(h['jsxs'])('div', {
-                        className: r.a.right,
-                        children: [
-                          Object(h['jsxs'])('div', {
-                            className: r.a.rightItem,
-                            children: [
-                              Object(h['jsx'])('h1', { children: '500\u4e07' }),
-                              Object(h['jsx'])('p', {
-                                children: '\u653e\u6b3e\u989d\u5ea6',
-                              }),
-                            ],
-                          }),
-                          Object(h['jsxs'])('div', {
-                            className: r.a.rightItem,
-                            children: [
-                              Object(h['jsx'])('h1', { children: '500\u4e07' }),
-                              Object(h['jsx'])('p', {
-                                children: '\u653e\u6b3e\u989d\u5ea6',
-                              }),
-                            ],
-                          }),
-                          Object(h['jsxs'])('div', {
-                            className: r.a.rightItem,
-                            children: [
-                              Object(h['jsx'])('h1', { children: '500\u4e07' }),
-                              Object(h['jsx'])('p', {
-                                children: '\u653e\u6b3e\u989d\u5ea6',
-                              }),
-                            ],
-                          }),
-                        ],
-                      }),
-                    ],
-                  }),
-                ],
+              Object(d['jsx'])('div', {
+                className: l.a.list,
+                children: h.map((e) => {
+                  var t = e.pipeidu,
+                    s = e.cpmc,
+                    a = e.fksj,
+                    c = e.fkdw,
+                    i = e.ed,
+                    r = e.lilv;
+                  return Object(d['jsxs'])(
+                    'div',
+                    {
+                      className: l.a.item,
+                      children: [
+                        Object(d['jsxs'])('div', {
+                          className: l.a.left,
+                          children: [
+                            Object(d['jsx'])(o, { percent: t || 0 }),
+                            Object(d['jsxs'])('div', {
+                              className: l.a.info,
+                              children: [
+                                Object(d['jsxs'])('h1', {
+                                  children: [
+                                    Object(d['jsx'])('span', { children: s }),
+                                    Object(d['jsxs'])('span', {
+                                      children: [p[e.cplb], '\u8d37\u6b3e'],
+                                    }),
+                                  ],
+                                }),
+                                Object(d['jsxs'])('div', {
+                                  className: l.a.text,
+                                  children: [
+                                    Object(d['jsxs'])('p', {
+                                      children: [
+                                        '\u8fd8\u6b3e\u65b9\u5f0f:',
+                                        O[e.hkfs],
+                                      ],
+                                    }),
+                                    Object(d['jsxs'])('p', {
+                                      children: [
+                                        '\u8fd8\u6b3e\u671f\u9650:',
+                                        e.qxsj,
+                                        1 == e.qxdw ? '\u5e74' : '\u6708',
+                                      ],
+                                    }),
+                                    Object(d['jsxs'])('p', {
+                                      children: [
+                                        '\u8d37\u6b3e\u65b9\u5f0f:',
+                                        m[e.splx],
+                                      ],
+                                    }),
+                                  ],
+                                }),
+                              ],
+                            }),
+                          ],
+                        }),
+                        Object(d['jsxs'])('div', {
+                          className: l.a.right,
+                          children: [
+                            Object(d['jsxs'])('div', {
+                              className: l.a.rightItem,
+                              children: [
+                                Object(d['jsxs'])('h1', {
+                                  children: [i, '\u4e07'],
+                                }),
+                                Object(d['jsx'])('p', {
+                                  children: '\u653e\u6b3e\u989d\u5ea6',
+                                }),
+                              ],
+                            }),
+                            Object(d['jsxs'])('div', {
+                              className: l.a.rightItem,
+                              children: [
+                                Object(d['jsxs'])('h1', { children: [r, '%'] }),
+                                Object(d['jsx'])('p', {
+                                  children: '\u653e\u6b3e\u5e74\u5229\u7387',
+                                }),
+                              ],
+                            }),
+                            Object(d['jsxs'])('div', {
+                              className: l.a.rightItem,
+                              children: [
+                                Object(d['jsxs'])('h1', {
+                                  children: [a, 1 == c ? '\u5929' : '\u6708'],
+                                }),
+                                Object(d['jsx'])('p', {
+                                  children: '\u653e\u6b3e\u901f\u5ea6',
+                                }),
+                              ],
+                            }),
+                          ],
+                        }),
+                      ],
+                    },
+                    e.id,
+                  );
+                }),
               }),
             ],
           })
