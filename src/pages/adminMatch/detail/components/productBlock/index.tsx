@@ -56,14 +56,14 @@ export default (props: any) => {
             <p>期限:</p>
             <p>
               {product.qxsj}
-              {product.qxdw === 1 ? '年' : '月'}
+              {product.qxdw == 1 ? '年' : '月'}
             </p>
           </div>
           <div className={styles.productItem}>
             <p>放款时间:</p>
             <p>
               {product.fksj}
-              {product.fkdw === 1 ? '天' : '月'}
+              {product.fkdw == 1 ? '天' : '月'}
             </p>
           </div>
           <div className={styles.productItem}>

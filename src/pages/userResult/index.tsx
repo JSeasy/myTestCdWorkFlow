@@ -5,18 +5,35 @@ import { get } from '@/api/userResult';
 import { useEffect } from 'react';
 import { CaretUpOutlined, CaretDownOutlined } from '@ant-design/icons';
 
+const hkfs: any = {
+  1: '先息后本',
+  2: '等额本息',
+  3: '等额本金',
+  4: '其他',
+};
+const splx: any = {
+  1: '线上',
+  2: '线下',
+  3: '线上+线下',
+};
+const cplb: any = {
+  1: '信用',
+  2: '抵押',
+  3: '其他',
+};
 export default (props: any) => {
   const [searchCondition, setSearchCondition] = useState({
     sortBy: 'ed',
   });
+  const [list, setList] = useState([]);
   const search = (params?: any) => {
-    get({ ...searchCondition, ...params }).then((res) => {
-      console.log(res);
+    get({ ...searchCondition, ...params }).then(({ data }) => {
+      setList(data.page.list);
     });
   };
   useEffect(() => {
     search();
-  }, []);
+  }, [searchCondition]);
   return (
     <div className={styles.userResult}>
       <div className={styles.bar}>
@@ -68,96 +85,47 @@ export default (props: any) => {
         </div>
       </div>
       <div className={styles.list}>
-        <div className={styles.item}>
-          <div className={styles.left}>
-            <Pie percent={100} />
-            <div className={styles.info}>
-              <h1>
-                <span>产品名产品名产品名</span>
-                <span>信用贷款</span>
-              </h1>
-              <div className={styles.text}>
-                <p>还款方式:先息后本</p>
-                <p>还款期限:1年</p>
-                <p>贷款方式:线上</p>
+        {list.map((item: any) => {
+          const { pipeidu, cpmc, fksj, fkdw, ed, lilv } = item;
+          return (
+            <div className={styles.item} key={item.id}>
+              <div className={styles.left}>
+                <Pie percent={pipeidu ? pipeidu : 0} />
+                <div className={styles.info}>
+                  <h1>
+                    <span>{cpmc}</span>
+                    <span>{cplb[item.cplb]}贷款</span>
+                  </h1>
+                  <div className={styles.text}>
+                    <p>还款方式:{hkfs[item.hkfs]}</p>
+                    <p>
+                      还款期限:{item.qxsj}
+                      {item.qxdw == 1 ? '年' : '月'}
+                    </p>
+                    <p>贷款方式:{splx[item.splx]}</p>
+                  </div>
+                </div>
+              </div>
+              <div className={styles.right}>
+                <div className={styles.rightItem}>
+                  <h1>{ed}万</h1>
+                  <p>放款额度</p>
+                </div>
+                <div className={styles.rightItem}>
+                  <h1>{lilv}%</h1>
+                  <p>放款年利率</p>
+                </div>
+                <div className={styles.rightItem}>
+                  <h1>
+                    {fksj}
+                    {fkdw == 1 ? '天' : '月'}
+                  </h1>
+                  <p>放款速度</p>
+                </div>
               </div>
             </div>
-          </div>
-          <div className={styles.right}>
-            <div className={styles.rightItem}>
-              <h1>500万</h1>
-              <p>放款额度</p>
-            </div>
-            <div className={styles.rightItem}>
-              <h1>500万</h1>
-              <p>放款额度</p>
-            </div>
-            <div className={styles.rightItem}>
-              <h1>500万</h1>
-              <p>放款额度</p>
-            </div>
-          </div>
-        </div>
-        <div className={styles.item}>
-          <div className={styles.left}>
-            <Pie percent={50} />
-            <div className={styles.info}>
-              <h1>
-                <span>产品名产品名产品名</span>
-                <span>信用贷款</span>
-              </h1>
-              <div className={styles.text}>
-                <p>还款方式:先息后本</p>
-                <p>还款期限:1年</p>
-                <p>贷款方式:线上</p>
-              </div>
-            </div>
-          </div>
-          <div className={styles.right}>
-            <div className={styles.rightItem}>
-              <h1>500万</h1>
-              <p>放款额度</p>
-            </div>
-            <div className={styles.rightItem}>
-              <h1>500万</h1>
-              <p>放款额度</p>
-            </div>
-            <div className={styles.rightItem}>
-              <h1>500万</h1>
-              <p>放款额度</p>
-            </div>
-          </div>
-        </div>
-        <div className={styles.item}>
-          <div className={styles.left}>
-            <Pie percent={90} />
-            <div className={styles.info}>
-              <h1>
-                <span>产品名产品名产品名</span>
-                <span>信用贷款</span>
-              </h1>
-              <div className={styles.text}>
-                <p>还款方式:先息后本</p>
-                <p>还款期限:1年</p>
-                <p>贷款方式:线上</p>
-              </div>
-            </div>
-          </div>
-          <div className={styles.right}>
-            <div className={styles.rightItem}>
-              <h1>500万</h1>
-              <p>放款额度</p>
-            </div>
-            <div className={styles.rightItem}>
-              <h1>500万</h1>
-              <p>放款额度</p>
-            </div>
-            <div className={styles.rightItem}>
-              <h1>500万</h1>
-              <p>放款额度</p>
-            </div>
-          </div>
-        </div>
+          );
+        })}
       </div>
     </div>
   );
