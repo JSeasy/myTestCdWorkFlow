@@ -65,7 +65,6 @@ export default defineConfig({
         {
           path: '/user/regist',
           component: '@/pages/userRegist/index',
-          wrappers: ['@/wrappers/auth'],
         },
         {
           path: '/user/forget',

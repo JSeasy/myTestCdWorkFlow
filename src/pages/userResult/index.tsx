@@ -24,12 +24,43 @@ const cplb: any = {
 export default (props: any) => {
   const [searchCondition, setSearchCondition] = useState({
     sortBy: 'ed',
+    order: '',
   });
   const [list, setList] = useState([]);
   const search = (params?: any) => {
     get({ ...searchCondition, ...params }).then(({ data }) => {
       setList(data.page.list);
     });
+  };
+  const conditionChange = (newSortBy: string) => {
+    const { sortBy, order } = searchCondition;
+    if (newSortBy === sortBy) {
+      if (order === '') {
+        setSearchCondition({
+          ...searchCondition,
+          sortBy,
+          order: 'desc',
+        });
+      } else if (order === 'desc') {
+        setSearchCondition({
+          ...searchCondition,
+          sortBy,
+          order: 'asc',
+        });
+      } else if (order === 'asc') {
+        setSearchCondition({
+          ...searchCondition,
+          order: '',
+          sortBy,
+        });
+      }
+    } else {
+      setSearchCondition({
+        ...searchCondition,
+        sortBy: newSortBy,
+        order: '',
+      });
+    }
   };
   useEffect(() => {
     search();
@@ -43,17 +74,24 @@ export default (props: any) => {
             searchCondition.sortBy === 'ed' ? styles.barItemActive : '',
           ].join(' ')}
           onClick={() => {
-            setSearchCondition({
-              ...searchCondition,
-              sortBy: 'ed',
-            });
+            conditionChange('ed');
           }}
         >
-          利率优先
-          {/* <span className={styles.sort}>
-            <CaretUpOutlined />
-            <CaretDownOutlined />
-          </span> */}
+          额度有限
+          {searchCondition.sortBy === 'ed' && (
+            <span className={styles.sort}>
+              <CaretUpOutlined
+                style={{
+                  color: searchCondition.order === 'desc' ? 'black' : '',
+                }}
+              />
+              <CaretDownOutlined
+                style={{
+                  color: searchCondition.order === 'asc' ? 'black' : '',
+                }}
+              />
+            </span>
+          )}
         </div>
         <div
           className={[
@@ -61,13 +99,24 @@ export default (props: any) => {
             searchCondition.sortBy === 'lilv' ? styles.barItemActive : '',
           ].join(' ')}
           onClick={() => {
-            setSearchCondition({
-              ...searchCondition,
-              sortBy: 'lilv',
-            });
+            conditionChange('lilv');
           }}
         >
           额度优先
+          {searchCondition.sortBy === 'lilv' && (
+            <span className={styles.sort}>
+              <CaretUpOutlined
+                style={{
+                  color: searchCondition.order === 'desc' ? 'black' : '',
+                }}
+              />
+              <CaretDownOutlined
+                style={{
+                  color: searchCondition.order === 'asc' ? 'black' : '',
+                }}
+              />
+            </span>
+          )}
         </div>
         <div
           className={[
@@ -75,13 +124,24 @@ export default (props: any) => {
             searchCondition.sortBy === 'fksj' ? styles.barItemActive : '',
           ].join(' ')}
           onClick={() => {
-            setSearchCondition({
-              ...searchCondition,
-              sortBy: 'fksj',
-            });
+            conditionChange('fksj');
           }}
         >
           速度优先
+          {searchCondition.sortBy === 'fksj' && (
+            <span className={styles.sort}>
+              <CaretUpOutlined
+                style={{
+                  color: searchCondition.order === 'desc' ? 'black' : '',
+                }}
+              />
+              <CaretDownOutlined
+                style={{
+                  color: searchCondition.order === 'asc' ? 'black' : '',
+                }}
+              />
+            </span>
+          )}
         </div>
       </div>
       <div className={styles.list}>
