@@ -50,7 +50,7 @@ export default () => {
             save();
           }}
         >
-          查看
+          保存
         </Button>
       </div>
     </div>
