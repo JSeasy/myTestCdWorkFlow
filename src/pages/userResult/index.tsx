@@ -77,7 +77,7 @@ export default (props: any) => {
             conditionChange('ed');
           }}
         >
-          额度有限
+          额度优先
           {searchCondition.sortBy === 'ed' && (
             <span className={styles.sort}>
               <CaretUpOutlined
