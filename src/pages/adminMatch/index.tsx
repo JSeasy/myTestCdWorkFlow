@@ -4,7 +4,7 @@ import Table from '@/components/table';
 import Select from '@/components/select';
 import { useEffect, useState } from 'react';
 import createColumns from './columns';
-import { useHistory, useParams } from 'umi';
+import { useHistory, useModel, useParams } from 'umi';
 import { Modal, Form, Input, Button } from 'antd';
 import { get, getInfo, edit, del } from '@/api/match';
 import {
@@ -14,6 +14,11 @@ import {
 } from '@ant-design/icons';
 
 export default (props: any) => {
+  const {
+    initialState: {
+      ['/match']: { edit, del },
+    },
+  } = useModel('@@initialState');
   const history = useHistory();
   const [searchCondition, setSearchCondition] = useState({
     orgName: '',
@@ -51,42 +56,48 @@ export default (props: any) => {
           <FormOutlined />
           详情
         </Button>
-        <Button
-          type="link"
-          onClick={() =>
-            history.push({
-              pathname: '/match/edit',
-              state: {
-                id: row.id,
-              },
-            })
-          }
-        >
-          <FormOutlined />
-          编辑
-        </Button>
-        <Button
-          type="link"
-          onClick={() => {
-            setVisible(true);
-            setId(row.id);
-            form.setFieldsValue({ remark: row.remark });
-          }}
-        >
-          <SolutionOutlined />
-          备注
-        </Button>
-        <Button
-          className="delBtnTable"
-          type="link"
-          onClick={() => {
-            setDelVisible(true);
-            setId(row.id);
-          }}
-        >
-          <DeleteOutlined />
-          删除
-        </Button>
+        {edit && (
+          <Button
+            type="link"
+            onClick={() =>
+              history.push({
+                pathname: '/match/edit',
+                state: {
+                  id: row.id,
+                },
+              })
+            }
+          >
+            <FormOutlined />
+            编辑
+          </Button>
+        )}
+        {edit && (
+          <Button
+            type="link"
+            onClick={() => {
+              setVisible(true);
+              setId(row.id);
+              form.setFieldsValue({ remark: row.remark });
+            }}
+          >
+            <SolutionOutlined />
+            备注
+          </Button>
+        )}
+        {del && (
+          <Button
+            className="delBtnTable"
+            type="link"
+            onClick={() => {
+              setDelVisible(true);
+              setId(row.id);
+            }}
+          >
+            <DeleteOutlined />
+            删除
+          </Button>
+        )}
       </>
     );
   };

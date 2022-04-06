@@ -22,9 +22,12 @@ const hkfs: any = {
 export default (props: any) => {
   const ref = useRef(null);
   const [recentList, setRecentList] = useState<any>([]);
+  const [info, setInfo] = useState({});
   useEffect(() => {
-    get().then((res) => {
-      console.log(res);
+    get().then(({ data }) => {
+      const form = ref.current.getForm();
+      form.setFieldsValue({ ...data.userOrgInfo });
+      setInfo(data.userOrgInfo);
     });
     recentMatch().then(({ data }) => {
       setRecentList(data.productList);
@@ -33,14 +36,23 @@ export default (props: any) => {
   return (
     <div className={styles.userInfo}>
       <div className={styles.left}>
-        <RegistForm ref={ref} />
+        <RegistForm
+          ref={ref}
+          isInfo={true}
+          info={info}
+          onchange={() => {
+            get().then(({ data }) => {
+              setInfo(data.userOrgInfo);
+            });
+          }}
+        />
       </div>
       <div className={styles.right}>
         <h1>最近匹配结果</h1>
         <div className={styles.list}>
           {recentList.map((item: any) => {
             return (
-              <div className={styles.item}>
+              <div className={styles.item} key={item.id}>
                 <div className={styles.title}>
                   <h1>{item.cpmc}</h1>
                   <span>{cplb[item.cplb]}贷款</span>

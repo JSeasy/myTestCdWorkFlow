@@ -14,3 +14,11 @@ export const recentMatch = () => {
     method: 'GET',
   });
 };
+
+export const save = (data: any) => {
+  return request({
+    url: '/services/v1/org/edit',
+    method: 'PUT',
+    data,
+  });
+};

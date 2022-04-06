@@ -6,7 +6,7 @@ export default (props: any) => {
   };
   return (
     <Checkbox
-      checked={props.checked === 1}
+      checked={props.checked == 1}
       onChange={(e) => {
         onchange(e);
       }}

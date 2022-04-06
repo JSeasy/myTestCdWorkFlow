@@ -1,5 +1,5 @@
 (window['webpackJsonp'] = window['webpackJsonp'] || []).push([
-  [9],
+  [8],
   {
     '1olM': function (e, t, a) {
       'use strict';
@@ -56,7 +56,7 @@
           y = g[0],
           q = g[1],
           N = () => {
-            Object(O['f'])().then((e) => {
+            Object(O['e'])().then((e) => {
               var t = e.data;
               q(t.roleList);
             });
@@ -202,23 +202,20 @@
     },
     dSNV: function (e, t, a) {
       'use strict';
-      a.d(t, 'd', function () {
+      a.d(t, 'c', function () {
         return r;
       }),
-        a.d(t, 'b', function () {
+        a.d(t, 'a', function () {
           return c;
         }),
-        a.d(t, 'a', function () {
+        a.d(t, 'b', function () {
           return l;
         }),
-        a.d(t, 'c', function () {
+        a.d(t, 'e', function () {
           return i;
         }),
-        a.d(t, 'f', function () {
+        a.d(t, 'd', function () {
           return n;
-        }),
-        a.d(t, 'e', function () {
-          return d;
         });
       var s = a('5lAy'),
         r = (e) =>
@@ -229,28 +226,22 @@
           }),
         c = (e) =>
           Object(s['a'])({
-            url: '/services/v1/user',
-            method: 'delete',
-            data: e,
-          }),
-        l = (e) =>
-          Object(s['a'])({
             url: '/services/v1/user/adminAddUser',
             method: 'POST',
             data: e,
           }),
-        i = (e) =>
+        l = (e) =>
           Object(s['a'])({
             url: '/services/v1/user/updateUser',
             method: 'POST',
             data: e,
           }),
-        n = () =>
+        i = () =>
           Object(s['a'])({
             url: '/services/v1/role/queryRoleList',
             method: 'GET',
           }),
-        d = (e) =>
+        n = (e) =>
           Object(s['a'])({ url: '/services/v1/user/' + e, method: 'GET' });
     },
     khV9: function (e, t, a) {

@@ -4,7 +4,7 @@ import Table from '@/components/table';
 import Select from '@/components/select';
 import { useEffect, useState } from 'react';
 import createColumns from './columns';
-import { useHistory } from 'umi';
+import { useHistory, useModel } from 'umi';
 import { Modal, Form, Input, Button } from 'antd';
 import {
   EyeOutlined,
@@ -14,6 +14,11 @@ import {
 } from '@ant-design/icons';
 import { get, del } from '@/api/service/index';
 export default (props: any) => {
+  const {
+    initialState: {
+      ['/service']: { add, edit, del },
+    },
+  } = useModel('@@initialState');
   const history = useHistory();
   const [searchCondition, setSearchCondition] = useState({
     orgName: '',
@@ -36,31 +41,35 @@ export default (props: any) => {
     const { row, col } = props;
     return (
       <>
-        <Button
-          type="link"
-          onClick={() =>
-            history.push({
-              pathname: '/service/edit',
-              state: {
-                id: row.id,
-              },
-            })
-          }
-        >
-          <FormOutlined />
-          编辑
-        </Button>
-        <Button
-          type="link"
-          className="delBtnTable"
-          onClick={() => {
-            setVisible(true);
-            setId(row.id);
-          }}
-        >
-          <DeleteOutlined />
-          删除
-        </Button>
+        {edit && (
+          <Button
+            type="link"
+            onClick={() =>
+              history.push({
+                pathname: '/service/edit',
+                state: {
+                  id: row.id,
+                },
+              })
+            }
+          >
+            <FormOutlined />
+            编辑
+          </Button>
+        )}
+        {del && (
+          <Button
+            type="link"
+            className="delBtnTable"
+            onClick={() => {
+              setVisible(true);
+              setId(row.id);
+            }}
+          >
+            <DeleteOutlined />
+            删除
+          </Button>
+        )}
       </>
     );
   };
@@ -124,15 +133,17 @@ export default (props: any) => {
             /> */}
           </div>
           <div>
-            <Button
-              className="addBtn"
-              onClick={() => {
-                history.push('/service/add');
-              }}
-            >
-              <PlusOutlined />
-              新增
-            </Button>
+            {add && (
+              <Button
+                className="addBtn"
+                onClick={() => {
+                  history.push('/service/add');
+                }}
+              >
+                <PlusOutlined />
+                新增
+              </Button>
+            )}
           </div>
         </div>
         <Table

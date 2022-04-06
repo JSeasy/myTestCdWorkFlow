@@ -65,7 +65,6 @@ export default defineConfig({
         {
           path: '/user/regist',
           component: '@/pages/userRegist/index',
-          wrappers: ['@/wrappers/auth'],
         },
         {
           path: '/user/forget',
@@ -89,6 +88,12 @@ export default defineConfig({
           path: '/match',
           name: 'match',
           component: '@/pages/adminMatch/index',
+          wrappers: ['@/wrappers/auth'],
+        },
+        {
+          path: '/system',
+          name: 'system',
+          component: '@/pages/adminSystem/index',
           wrappers: ['@/wrappers/auth'],
         },
         {

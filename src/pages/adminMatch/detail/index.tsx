@@ -108,7 +108,7 @@ export default (props: any) => {
                   window.open(userInfo.xydkFileList.addrUrl);
                 }}
               >
-                {userInfo.xydkFileList.name}
+                {userInfo?.xydkFileList?.name}
               </span>
             </p>
           </div>
@@ -125,7 +125,7 @@ export default (props: any) => {
                   window.open(userInfo.dydkfileList.addrUrl);
                 }}
               >
-                {userInfo.dydkfileList.name}
+                {userInfo?.dydkfileList?.name}
               </span>
             </p>
           </div>

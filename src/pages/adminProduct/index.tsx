@@ -20,10 +20,6 @@ export default (props: any) => {
     initialState: {
       ['/product']: { add, edit, del },
     },
-    loading,
-    error,
-    refresh,
-    setInitialState,
   } = useModel('@@initialState');
 
   const history = useHistory();
