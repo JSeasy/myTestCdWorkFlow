@@ -391,7 +391,7 @@ export default forwardRef((props: any, ref: any) => {
                 </Col>
               </Row>
             </Form.Item>
-            <Form.Item name="rzph" label="融资偏好" initialValue={1}>
+            <Form.Item name="rzph" label="融资偏好" initialValue={'1'}>
               <Radio.Group>
                 <Radio value={'1'}>额度优先</Radio>
                 <Radio value={'2'}>利率优先</Radio>
