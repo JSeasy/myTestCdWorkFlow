@@ -11,8 +11,7 @@ export default (props: any) => {
   const { state } = history.location;
   const save = () => {
     ref.current.validateForm().then((values: any) => {
-      console.log(values);
-      edit({ values }).then(() => {
+      edit({ ...values, id: state.id }).then(() => {
         history.push('/customer');
       });
     });
@@ -20,7 +19,6 @@ export default (props: any) => {
   useEffect(() => {
     getRow(state.id).then(({ data }) => {
       const form = ref.current.getForm();
-      console.log(data.userOrgInfo);
       form.setFieldsValue({ ...data.userOrgInfo });
     });
   }, []);

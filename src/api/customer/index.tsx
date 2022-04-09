@@ -27,7 +27,7 @@ export const add = (data: any) => {
 
 export const edit = (data: any) => {
   return request({
-    url: '/services/1v/org/edit',
+    url: '/services/v1/org/edit',
     method: 'PUT',
     data,
   });
