@@ -144,7 +144,7 @@ export default (props: any) => {
       <Title title="备注" />
       <div className={styles.remark}>
         <p>备注:</p>
-        <p style={{ marginLeft: 12 }}>{userInfo.remark}111111111111111111</p>
+        <p style={{ marginLeft: 12 }}>{userInfo.remark}</p>
       </div>
     </div>
   );
