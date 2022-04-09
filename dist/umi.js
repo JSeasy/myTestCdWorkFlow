@@ -56280,12 +56280,6 @@
                   ),
                 loading: Me,
               }),
-              wrappers: [
-                Object(v['c'])({
-                  loader: () => n.e(45).then(n.bind(null, 'GZYO')),
-                  loading: Me,
-                }),
-              ],
               exact: !0,
             },
             {

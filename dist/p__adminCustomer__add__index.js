@@ -1667,7 +1667,7 @@
           }),
         l = (e) =>
           Object(n['a'])({
-            url: '/services/1v/org/edit',
+            url: '/services/v1/org/edit',
             method: 'PUT',
             data: e,
           }),

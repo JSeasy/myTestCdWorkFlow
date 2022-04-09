@@ -475,9 +475,9 @@
                 className: p.a.remark,
                 children: [
                   Object(d['jsx'])('p', { children: '\u5907\u6ce8:' }),
-                  Object(d['jsxs'])('p', {
+                  Object(d['jsx'])('p', {
                     style: { marginLeft: 12 },
-                    children: [_.remark, '111111111111111111'],
+                    children: _.remark,
                   }),
                 ],
               }),

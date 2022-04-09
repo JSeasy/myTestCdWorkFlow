@@ -120,7 +120,7 @@
                         );
                       }, {}),
                       E = this.state.checked,
-                      I = p()(
+                      P = p()(
                         a,
                         l,
                         ((e = {}),
@@ -130,7 +130,7 @@
                       );
                     return j.a.createElement(
                       'span',
-                      { className: I, style: s },
+                      { className: P, style: s },
                       j.a.createElement(
                         'input',
                         Object(n['a'])(
@@ -337,17 +337,17 @@
                 w = e.onMouseEnter,
                 N = e.onMouseLeave,
                 E = l('radio', d),
-                I = ''.concat(E, '-group'),
-                P = m;
+                P = ''.concat(E, '-group'),
+                z = m;
               if (b && b.length > 0) {
-                var z = 'button' === h ? ''.concat(E, '-button') : E;
-                P = b.map(function (e) {
+                var I = 'button' === h ? ''.concat(E, '-button') : E;
+                z = b.map(function (e) {
                   return 'string' === typeof e || 'number' === typeof e
                     ? r['createElement'](
                         v,
                         {
                           key: e.toString(),
-                          prefixCls: z,
+                          prefixCls: I,
                           disabled: x,
                           value: e,
                           checked: p === e,
@@ -358,7 +358,7 @@
                         v,
                         {
                           key: 'radio-group-value-options-'.concat(e.value),
-                          prefixCls: z,
+                          prefixCls: I,
                           disabled: e.disabled || x,
                           value: e.value,
                           checked: p === e.value,
@@ -370,11 +370,11 @@
               }
               var T = y || o,
                 F = i()(
-                  I,
-                  ''.concat(I, '-').concat(f),
+                  P,
+                  ''.concat(P, '-').concat(f),
                   ((a = {}),
-                  Object(n['a'])(a, ''.concat(I, '-').concat(T), T),
-                  Object(n['a'])(a, ''.concat(I, '-rtl'), 'rtl' === s),
+                  Object(n['a'])(a, ''.concat(P, '-').concat(T), T),
+                  Object(n['a'])(a, ''.concat(P, '-rtl'), 'rtl' === s),
                   a),
                   j,
                 );
@@ -388,7 +388,7 @@
                   id: C,
                   ref: t,
                 }),
-                P,
+                z,
               );
             };
           return r['createElement'](
@@ -438,9 +438,9 @@
           );
         },
         E = r['forwardRef'](N),
-        I = v;
-      (I.Button = E), (I.Group = C);
-      t['a'] = I;
+        P = v;
+      (P.Button = E), (P.Group = C);
+      t['a'] = P;
     },
     '0d8f': function (e, t, a) {
       'use strict';
@@ -556,10 +556,11 @@
           d = a.location.state,
           h = () => {
             t.current.validateForm().then((e) => {
-              console.log(e),
-                Object(j['b'])({ values: e }).then(() => {
-                  a.push('/customer');
-                });
+              Object(j['b'])(
+                Object(l['a'])(Object(l['a'])({}, e), {}, { id: d.id }),
+              ).then(() => {
+                a.push('/customer');
+              });
             });
           };
         return (
@@ -567,8 +568,7 @@
             Object(j['d'])(d.id).then((e) => {
               var a = e.data,
                 n = t.current.getForm();
-              console.log(a.userOrgInfo),
-                n.setFieldsValue(Object(l['a'])({}, a.userOrgInfo));
+              n.setFieldsValue(Object(l['a'])({}, a.userOrgInfo));
             });
           }, []),
           Object(p['jsxs'])('div', {
@@ -738,18 +738,18 @@
           y = f[0],
           N = e.isInfo,
           E = e.info,
-          I = e.onchange,
-          P = Object(p['useState'])([!0, !0, !0, !0]),
-          z = Object(u['a'])(P, 2),
-          T = z[0],
-          F = z[1];
+          P = e.onchange,
+          z = Object(p['useState'])([!0, !0, !0, !0]),
+          I = Object(u['a'])(z, 2),
+          T = I[0],
+          F = I[1];
         Object(p['useEffect'])(() => {
           N && F([!1, !1, !1, !1]);
         }, []);
         var M = (e, t) => {
           Object(m['c'])(e).then((e) => {
             var a = [...T];
-            (a[t] = !1), F(a), I();
+            (a[t] = !1), F(a), P();
           });
         };
         return (
@@ -1446,14 +1446,14 @@
             w = r['useState'](m.value || a || []),
             N = Object(d['a'])(w, 2),
             E = N[0],
-            I = N[1],
-            P = r['useState']([]),
-            z = Object(d['a'])(P, 2),
-            T = z[0],
-            F = z[1];
+            P = N[1],
+            z = r['useState']([]),
+            I = Object(d['a'])(z, 2),
+            T = I[0],
+            F = I[1];
           r['useEffect'](
             function () {
-              'value' in m && I(m.value || []);
+              'value' in m && P(m.value || []);
             },
             [m.value],
           );
@@ -1479,7 +1479,7 @@
             S = function (e) {
               var t = E.indexOf(e.value),
                 a = Object(o['a'])(E);
-              -1 === t ? a.push(e.value) : a.splice(t, 1), 'value' in m || I(a);
+              -1 === t ? a.push(e.value) : a.splice(t, 1), 'value' in m || P(a);
               var n = M();
               null === x ||
                 void 0 === x ||
@@ -1609,33 +1609,33 @@
               },
               [g.value],
             );
-          var I = C('checkbox', l),
-            P = Object(c['a'])({}, g);
+          var P = C('checkbox', l),
+            z = Object(c['a'])({}, g);
           N &&
             !y &&
-            ((P.onChange = function () {
+            ((z.onChange = function () {
               g.onChange && g.onChange.apply(g, arguments),
                 N.toggleOption && N.toggleOption({ label: d, value: g.value });
             }),
-            (P.name = N.name),
-            (P.checked = -1 !== N.value.indexOf(g.value)),
-            (P.disabled = g.disabled || N.disabled));
-          var z = s()(
+            (z.name = N.name),
+            (z.checked = -1 !== N.value.indexOf(g.value)),
+            (z.disabled = g.disabled || N.disabled));
+          var I = s()(
               ((a = {}),
-              Object(n['a'])(a, ''.concat(I, '-wrapper'), !0),
-              Object(n['a'])(a, ''.concat(I, '-rtl'), 'rtl' === w),
-              Object(n['a'])(a, ''.concat(I, '-wrapper-checked'), P.checked),
-              Object(n['a'])(a, ''.concat(I, '-wrapper-disabled'), P.disabled),
+              Object(n['a'])(a, ''.concat(P, '-wrapper'), !0),
+              Object(n['a'])(a, ''.concat(P, '-rtl'), 'rtl' === w),
+              Object(n['a'])(a, ''.concat(P, '-wrapper-checked'), z.checked),
+              Object(n['a'])(a, ''.concat(P, '-wrapper-disabled'), z.disabled),
               a),
               o,
             ),
-            T = s()(Object(n['a'])({}, ''.concat(I, '-indeterminate'), b));
+            T = s()(Object(n['a'])({}, ''.concat(P, '-indeterminate'), b));
           return r['createElement'](
             'label',
-            { className: z, style: h, onMouseEnter: O, onMouseLeave: f },
+            { className: I, style: h, onMouseEnter: O, onMouseLeave: f },
             r['createElement'](
               i['a'],
-              Object(c['a'])({}, P, { prefixCls: I, className: T, ref: t }),
+              Object(c['a'])({}, z, { prefixCls: P, className: T, ref: t }),
             ),
             void 0 !== d && r['createElement']('span', null, d),
           );
@@ -1679,7 +1679,7 @@
           }),
         l = (e) =>
           Object(n['a'])({
-            url: '/services/1v/org/edit',
+            url: '/services/v1/org/edit',
             method: 'PUT',
             data: e,
           }),

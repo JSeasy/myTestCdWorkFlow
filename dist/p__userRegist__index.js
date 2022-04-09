@@ -828,7 +828,11 @@
                       onClick: () => {
                         y.validateFields().then((e) => {
                           f(e).then((e) => {
-                            m(2);
+                            window.localStorage.setItem(
+                              'token',
+                              e.data['x-auth-token'],
+                            ),
+                              m(2);
                           });
                         });
                       },

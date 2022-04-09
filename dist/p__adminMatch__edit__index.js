@@ -786,7 +786,7 @@
                 onClick: () => {
                   u();
                 },
-                children: '\u67e5\u770b',
+                children: '\u4fdd\u5b58',
               }),
             }),
           ],
