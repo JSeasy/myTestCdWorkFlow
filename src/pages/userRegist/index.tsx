@@ -176,6 +176,10 @@ export default (props: any) => {
               onClick={() => {
                 form.validateFields().then((values) => {
                   saveUserInfo(values).then((res) => {
+                    window.localStorage.setItem(
+                      'token',
+                      res.data['x-auth-token'],
+                    );
                     setActive(2);
                   });
                 });
