@@ -1391,7 +1391,7 @@
                           Object(x['jsx'])(d['a'].Item, {
                             name: 'rzph',
                             label: '\u878d\u8d44\u504f\u597d',
-                            initialValue: 1,
+                            initialValue: '1',
                             children: Object(x['jsxs'])(n['a'].Group, {
                               children: [
                                 Object(x['jsx'])(n['a'], {
