@@ -90,6 +90,10 @@ export default (props: any) => {
           <p>{userInfo.nsze}</p>
         </div>
         <div className={styles.item}>
+          <p>近一年开票总额(万元):</p>
+          <p>{userInfo.kpze}</p>
+        </div>
+        <div className={styles.item}>
           <p>企业当前负债余额(万元)：</p>
           <p>{userInfo.fzze}</p>
         </div>
