@@ -13,8 +13,11 @@ import {
   CopyOutlined,
   RetweetOutlined,
   DeleteOutlined,
+  CloudUploadOutlined,
 } from '@ant-design/icons';
 import Add_Edit_Copy from './add&edit/index';
+import { uploadFile, openUploadWindow } from '@/utils/index';
+
 export default (props: any) => {
   const {
     initialState: {
@@ -76,6 +79,22 @@ export default (props: any) => {
   const [viewVisible, setViewVisible] = useState(false);
   const [uid, setUid] = useState('');
 
+  const upload = (id: string) => {
+    const input = openUploadWindow();
+    input.onchange = (e: any) => {
+      const file = e.target.files[0];
+      const data = createForm(file, 6, id);
+      uploadFile(data).then(({ data }: any) => {});
+    };
+  };
+  const createForm = (file: any, fileType: any, id: string) => {
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('wjlb ', fileType);
+    formData.append('objectId ', id);
+    return formData;
+  };
+
   const Action = (props: any) => {
     const history = useHistory();
     const { row, col } = props;
@@ -107,6 +126,18 @@ export default (props: any) => {
             <FormOutlined /> 编辑
           </Button>
         )}
+        {
+          <Button
+            type="link"
+            className="editBtnTable"
+            onClick={() => {
+              upload(row.id);
+            }}
+          >
+            <CloudUploadOutlined />
+            上传
+          </Button>
+        }
         <Button
           type="link"
           onClick={() => setRevertVisible(true)}
@@ -114,6 +145,7 @@ export default (props: any) => {
         >
           <RetweetOutlined /> 重构
         </Button>
+
         {del && (
           <Button
             type="link"
