@@ -54838,12 +54838,14 @@
               ? 'lineY'
               : 'rect';
           });
-        n._brushController.setPanels(s).enableBrush(
-          !(!o || !s.length) && {
-            brushType: 'auto',
-            brushStyle: t.getModel('brushStyle').getItemStyle(),
-          },
-        );
+        n._brushController
+          .setPanels(s)
+          .enableBrush(
+            !(!o || !s.length) && {
+              brushType: 'auto',
+              brushStyle: t.getModel('brushStyle').getItemStyle(),
+            },
+          );
       }
       gh('dataZoom', function (t) {
         var e = t.getComponent('toolbox', 0),
