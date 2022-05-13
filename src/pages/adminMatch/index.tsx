@@ -10,8 +10,10 @@ import { get, getInfo, edit, del } from '@/api/match';
 import {
   DeleteOutlined,
   FormOutlined,
+  CloudUploadOutlined,
   SolutionOutlined,
 } from '@ant-design/icons';
+import { uploadFile, openUploadWindow } from '@/utils/index';
 
 export default (props: any) => {
   const {
@@ -24,6 +26,22 @@ export default (props: any) => {
     orgName: '',
     rzlx: '',
   });
+  const upload = (id: string) => {
+    const input = openUploadWindow();
+    input.onchange = (e: any) => {
+      const file = e.target.files[0];
+      const data = createForm(file, 6, id);
+      uploadFile(data);
+    };
+  };
+  const createForm = (file: any, fileType: any, id: string) => {
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('wjlb ', fileType);
+    formData.append('objectId ', id);
+    return formData;
+  };
+
   const [data, setData] = useState([]);
   const [info, setInfo] = useState({});
   const [visible, setVisible] = useState(false);
@@ -56,6 +74,18 @@ export default (props: any) => {
           <FormOutlined />
           详情
         </Button>
+        {
+          <Button
+            type="link"
+            className="editBtnTable"
+            onClick={() => {
+              upload(row.id);
+            }}
+          >
+            <CloudUploadOutlined />
+            上传
+          </Button>
+        }
         {edit && (
           <Button
             type="link"
