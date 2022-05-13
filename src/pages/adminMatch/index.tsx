@@ -77,7 +77,6 @@ export default (props: any) => {
         {
           <Button
             type="link"
-            className="editBtnTable"
             onClick={() => {
               upload(row.id);
             }}
