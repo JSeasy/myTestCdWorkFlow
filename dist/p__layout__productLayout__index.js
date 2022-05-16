@@ -4,16 +4,16 @@
     l1cM: function (e, t, a) {
       'use strict';
       a.r(t);
-      a('+EJo');
-      var c = a('/RO9'),
-        b = a('T9Mk'),
-        s = a('q5+0'),
+      a('1zsP');
+      var c = a('70JQ'),
+        s = a('T9Mk'),
+        b = a('q5+0'),
         j = a('ikfJ'),
         n = c['a'].TabPane;
       t['default'] = (e) => {
-        var t = Object(s['g'])(),
-          a = Object(s['i'])(),
-          r = Object(b['useMemo'])(() => () => a.id, []),
+        var t = Object(b['g'])(),
+          a = Object(b['i'])(),
+          r = Object(s['useMemo'])(() => () => a.id, []),
           i = (e) => {
             t.replace('/product/' + r() + '/' + e);
           };
