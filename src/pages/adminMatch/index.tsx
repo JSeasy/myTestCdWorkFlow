@@ -31,7 +31,9 @@ export default (props: any) => {
     input.onchange = (e: any) => {
       const file = e.target.files[0];
       const data = createForm(file, 6, id);
-      uploadFile(data);
+      uploadFile(data).then(() => {
+        search();
+      });
     };
   };
   const createForm = (file: any, fileType: any, id: string) => {

@@ -1,4 +1,5 @@
 import styles from './index.less';
+import { Button } from 'antd';
 const rzls: any = {
   1: '信用',
   2: '抵押',
@@ -29,6 +30,22 @@ const createColumns = (element: any) => {
           <span className={text === '1' ? styles.yipipei : styles.weipipei}>
             {text === '1' ? '已匹配' : '未匹配'}
           </span>
+        );
+      },
+    },
+    {
+      title: '匹配文件',
+      dataIndex: 'addUrl',
+      render(text: string) {
+        return (
+          <Button
+            type="link"
+            onClick={() => {
+              window.open(text);
+            }}
+          >
+            查看
+          </Button>
         );
       },
     },
