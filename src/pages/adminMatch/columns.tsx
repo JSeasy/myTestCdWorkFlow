@@ -35,7 +35,7 @@ const createColumns = (element: any) => {
     },
     {
       title: '匹配文件',
-      dataIndex: 'addUrl',
+      dataIndex: 'addrUrl',
       render(text: string) {
         return (
           <Button
