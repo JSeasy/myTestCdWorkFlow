@@ -35,13 +35,13 @@ const createColumns = (element: any) => {
     },
     {
       title: '匹配文件',
-      dataIndex: 'addrUrl',
-      render(text: string) {
+      dataIndex: 'fileList',
+      render(fileList: any) {
         return (
           <Button
             type="link"
             onClick={() => {
-              window.open(text);
+              window.open(fileList.addrUrl);
             }}
           >
             查看
