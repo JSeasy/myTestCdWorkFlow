@@ -3,20 +3,20 @@
   {
     '/wk5': function (e, t, n) {
       'use strict';
-      var a = n('7eJq'),
-        c = n('3UCj'),
-        r = n('bvuw'),
-        l = n('8CZ5'),
-        i = n('784L'),
-        s = n('6NPg'),
-        o = n('LdBP'),
-        u = n('ZLan'),
+      var a = n('Ou+A'),
+        c = n('KLal'),
+        r = n('P+Vm'),
+        l = n('tJ49'),
+        i = n('Yrqj'),
+        o = n('QEIf'),
+        s = n('DMBx'),
+        u = n('7ozg'),
         d = n('T9Mk'),
         b = n.n(d),
         f = n('jK+o'),
-        v = n.n(f),
-        m = (function (e) {
-          Object(o['a'])(n, e);
+        m = n.n(f),
+        v = (function (e) {
+          Object(s['a'])(n, e);
           var t = Object(u['a'])(n);
           function n(e) {
             var a;
@@ -52,7 +52,7 @@
             return (a.state = { checked: c }), a;
           }
           return (
-            Object(s['a'])(
+            Object(o['a'])(
               n,
               [
                 {
@@ -75,12 +75,12 @@
                       n = t.prefixCls,
                       l = t.className,
                       i = t.style,
-                      s = t.name,
-                      o = t.id,
+                      o = t.name,
+                      s = t.id,
                       u = t.type,
                       d = t.disabled,
                       f = t.readOnly,
-                      m = t.tabIndex,
+                      v = t.tabIndex,
                       p = t.onClick,
                       j = t.onFocus,
                       h = t.onBlur,
@@ -120,7 +120,7 @@
                         );
                       }, {}),
                       w = this.state.checked,
-                      P = v()(
+                      I = m()(
                         n,
                         l,
                         ((e = {}),
@@ -130,18 +130,18 @@
                       );
                     return b.a.createElement(
                       'span',
-                      { className: P, style: i },
+                      { className: I, style: i },
                       b.a.createElement(
                         'input',
                         Object(a['a'])(
                           {
-                            name: s,
-                            id: o,
+                            name: o,
+                            id: s,
                             type: u,
                             required: C,
                             readOnly: f,
                             disabled: d,
-                            tabIndex: m,
+                            tabIndex: v,
                             className: ''.concat(n, '-input'),
                             checked: !!w,
                             onClick: p,
@@ -183,7 +183,7 @@
             n
           );
         })(d['Component']);
-      (m.defaultProps = {
+      (v.defaultProps = {
         prefixCls: 'rc-checkbox',
         className: '',
         style: {},
@@ -196,7 +196,7 @@
         onKeyPress: function () {},
         onKeyUp: function () {},
       }),
-        (t['a'] = m);
+        (t['a'] = v);
     },
     '2WS0': function (e, t, n) {
       'use strict';
@@ -213,10 +213,10 @@
           return i;
         }),
         n.d(t, 'b', function () {
-          return s;
+          return o;
         }),
         n.d(t, 'c', function () {
-          return o;
+          return s;
         });
       var a = n('5lAy'),
         c = (e) =>
@@ -234,13 +234,13 @@
           }),
         i = (e) =>
           Object(a['a'])({ url: '/services/v1/role', method: 'POST', data: e }),
-        s = (e) =>
+        o = (e) =>
           Object(a['a'])({
             url: '/services/v1/role',
             method: 'delete',
             data: e,
           }),
-        o = (e) =>
+        s = (e) =>
           Object(a['a'])({
             url: '/services/v1/role/edit',
             method: 'PUT',
@@ -250,34 +250,33 @@
     '8ExD': function (e, t, n) {
       e.exports = { roleDetail: 'roleDetail___MH_MW' };
     },
-    F7Dx: function (e, t, n) {},
     'K/B4': function (e, t, n) {
       'use strict';
-      n('TfCt');
-      var a = n('qVa7'),
+      n('teHG');
+      var a = n('ZoyK'),
         c = n('feUP'),
         r = n.n(c),
         l = n('T9Mk'),
         i = n.n(l),
-        s = n('ikfJ');
+        o = n('ikfJ');
       t['a'] = (e) => {
         var t = e.data,
           n = e.onChange,
           c = e.menuIds,
           l = (e) =>
-            Object(s['jsxs'])(
+            Object(o['jsxs'])(
               'div',
               {
                 className: 'item',
                 children: [
-                  Object(s['jsxs'])('p', { children: [e.menuName, ':'] }),
-                  Object(s['jsx'])('div', {
+                  Object(o['jsxs'])('p', { children: [e.menuName, ':'] }),
+                  Object(o['jsx'])('div', {
                     className: r.a.checkboxs,
                     children: e.auth.map((e) =>
-                      Object(s['jsx'])(
+                      Object(o['jsx'])(
                         i.a.Fragment,
                         {
-                          children: Object(s['jsx'])(a['a'], {
+                          children: Object(o['jsx'])(a['a'], {
                             value: e.menuId,
                             children: e.menuName,
                           }),
@@ -290,23 +289,23 @@
               },
               e.menuId,
             ),
-          o = (e, t) =>
+          s = (e, t) =>
             t.map((t) =>
-              Object(s['jsxs'])(
+              Object(o['jsxs'])(
                 'div',
                 {
                   className: 'item',
                   children: [
-                    Object(s['jsxs'])('p', {
+                    Object(o['jsxs'])('p', {
                       children: [e.menuName, '-', t.menuName, ':'],
                     }),
-                    Object(s['jsx'])('div', {
+                    Object(o['jsx'])('div', {
                       className: r.a.checkboxs,
                       children: t.auth.map((e) =>
-                        Object(s['jsx'])(
+                        Object(o['jsx'])(
                           i.a.Fragment,
                           {
-                            children: Object(s['jsx'])(a['a'], {
+                            children: Object(o['jsx'])(a['a'], {
                               value: e.menuId,
                               children: e.menuName,
                             }),
@@ -320,15 +319,15 @@
                 t.menuId,
               ),
             );
-        return Object(s['jsx'])('div', {
+        return Object(o['jsx'])('div', {
           className: r.a.permissionCb,
-          children: Object(s['jsx'])('div', {
+          children: Object(o['jsx'])('div', {
             className: 'list',
-            children: Object(s['jsx'])(a['a'].Group, {
+            children: Object(o['jsx'])(a['a'].Group, {
               onChange: n,
               value: c,
               children: t.map((e) =>
-                e.children.length ? o(e, e.children) : l(e),
+                e.children.length ? s(e, e.children) : l(e),
               ),
             }),
           }),
@@ -345,27 +344,27 @@
     LXxA: function (e, t, n) {
       'use strict';
       n.r(t);
-      n('vvyX');
-      var a = n('sEMA'),
+      n('uoUd');
+      var a = n('qB0e'),
         c = n('0hF1'),
-        r = (n('vh1u'), n('EyPa')),
-        l = (n('8yU/'), n('yaUO')),
+        r = (n('ydr8'), n('kiQS')),
+        l = (n('bCul'), n('W5NL')),
         i = n('4+7e'),
-        s = n('8ExD'),
-        o = n.n(s),
+        o = n('8ExD'),
+        s = n.n(o),
         u = n('khV9'),
         d = n('2WS0'),
         b = n('T9Mk'),
         f = n('K/B4'),
-        v = n('q5+0'),
-        m = n('9kvl'),
+        m = n('q5+0'),
+        v = n('9kvl'),
         p = n('ikfJ'),
         j = { labelCol: { span: 4 }, wrapperCol: { span: 20, offset: 1 } };
       t['default'] = (e) => {
-        var t = Object(v['g'])(),
-          n = Object(m['c'])('@@initialState'),
-          s = n.initialState['/role'].edit;
-        if (!s) return Object(p['jsx'])(v['a'], { to: '/404' });
+        var t = Object(m['g'])(),
+          n = Object(v['c'])('@@initialState'),
+          o = n.initialState['/role'].edit;
+        if (!o) return Object(p['jsx'])(m['a'], { to: '/404' });
         var h = e.location.state,
           O = l['a'].useForm(),
           x = Object(i['a'])(O, 1),
@@ -376,26 +375,26 @@
           N = g[1],
           E = Object(b['useState'])([]),
           w = Object(i['a'])(E, 2),
-          P = w[0],
-          I = w[1],
-          _ = () => {
+          I = w[0],
+          K = w[1],
+          P = () => {
             Object(d['f'])(h.id).then((e) => {
               var t = e.data,
                 n = t.sysRole,
                 a = t.menus;
               y.setFieldsValue({ remark: n.remark, roleName: n.roleName }),
                 N(a),
-                I(n.menuIds);
+                K(n.menuIds);
             });
           };
         Object(b['useEffect'])(() => {
-          _();
+          P();
         }, []);
-        var K = (e) => {
-          I(e);
+        var _ = (e) => {
+          K(e);
         };
         return Object(p['jsxs'])('div', {
-          className: o.a.roleDetail,
+          className: s.a.roleDetail,
           children: [
             Object(p['jsx'])(u['a'], {
               title: '\u89d2\u8272\u4fe1\u606f',
@@ -442,7 +441,7 @@
               title: '\u8d44\u6e90',
               style: { marginTop: 64, marginBottom: 64 },
             }),
-            Object(p['jsx'])(f['a'], { data: C, onChange: K, menuIds: P }),
+            Object(p['jsx'])(f['a'], { data: C, onChange: _, menuIds: I }),
             Object(p['jsx'])('div', {
               style: { textAlign: 'center', width: 481, margin: '0 auto' },
               children: Object(p['jsx'])(a['a'], {
@@ -452,7 +451,7 @@
                       Object(c['a'])(
                         Object(c['a'])({}, e),
                         {},
-                        { menuIds: P, roleId: h.id },
+                        { menuIds: I, roleId: h.id },
                       ),
                     ).then(() => {
                       t.push('/role');
@@ -466,9 +465,267 @@
         });
       };
     },
-    TfCt: function (e, t, n) {
+    ZoyK: function (e, t, n) {
       'use strict';
-      n('/YAq'), n('F7Dx');
+      var a = n('KLal'),
+        c = n('Ou+A'),
+        r = n('T9Mk'),
+        l = n('jK+o'),
+        i = n.n(l),
+        o = n('/wk5'),
+        s = n('vjJ4'),
+        u = n('GThX'),
+        d = n('EJA8'),
+        b = n('ni4d'),
+        f = n('I2Ht'),
+        m = function (e, t) {
+          var n = {};
+          for (var a in e)
+            Object.prototype.hasOwnProperty.call(e, a) &&
+              t.indexOf(a) < 0 &&
+              (n[a] = e[a]);
+          if (null != e && 'function' === typeof Object.getOwnPropertySymbols) {
+            var c = 0;
+            for (a = Object.getOwnPropertySymbols(e); c < a.length; c++)
+              t.indexOf(a[c]) < 0 &&
+                Object.prototype.propertyIsEnumerable.call(e, a[c]) &&
+                (n[a[c]] = e[a[c]]);
+          }
+          return n;
+        },
+        v = r['createContext'](null),
+        p = function (e, t) {
+          var n = e.defaultValue,
+            l = e.children,
+            o = e.options,
+            s = void 0 === o ? [] : o,
+            p = e.prefixCls,
+            j = e.className,
+            h = e.style,
+            O = e.onChange,
+            x = m(e, [
+              'defaultValue',
+              'children',
+              'options',
+              'prefixCls',
+              'className',
+              'style',
+              'onChange',
+            ]),
+            y = r['useContext'](f['b']),
+            k = y.getPrefixCls,
+            C = y.direction,
+            N = r['useState'](x.value || n || []),
+            E = Object(d['a'])(N, 2),
+            w = E[0],
+            I = E[1],
+            K = r['useState']([]),
+            P = Object(d['a'])(K, 2),
+            _ = P[0],
+            S = P[1];
+          r['useEffect'](
+            function () {
+              'value' in x && I(x.value || []);
+            },
+            [x.value],
+          );
+          var T = function () {
+              return s.map(function (e) {
+                return 'string' === typeof e || 'number' === typeof e
+                  ? { label: e, value: e }
+                  : e;
+              });
+            },
+            F = function (e) {
+              S(function (t) {
+                return t.filter(function (t) {
+                  return t !== e;
+                });
+              });
+            },
+            M = function (e) {
+              S(function (t) {
+                return [].concat(Object(u['a'])(t), [e]);
+              });
+            },
+            B = function (e) {
+              var t = w.indexOf(e.value),
+                n = Object(u['a'])(w);
+              -1 === t ? n.push(e.value) : n.splice(t, 1), 'value' in x || I(n);
+              var a = T();
+              null === O ||
+                void 0 === O ||
+                O(
+                  n
+                    .filter(function (e) {
+                      return -1 !== _.indexOf(e);
+                    })
+                    .sort(function (e, t) {
+                      var n = a.findIndex(function (t) {
+                          return t.value === e;
+                        }),
+                        c = a.findIndex(function (e) {
+                          return e.value === t;
+                        });
+                      return n - c;
+                    }),
+                );
+            },
+            D = k('checkbox', p),
+            V = ''.concat(D, '-group'),
+            A = Object(b['a'])(x, ['value', 'disabled']);
+          s &&
+            s.length > 0 &&
+            (l = T().map(function (e) {
+              return r['createElement'](
+                g,
+                {
+                  prefixCls: D,
+                  key: e.value.toString(),
+                  disabled: 'disabled' in e ? e.disabled : x.disabled,
+                  value: e.value,
+                  checked: -1 !== w.indexOf(e.value),
+                  onChange: e.onChange,
+                  className: ''.concat(V, '-item'),
+                  style: e.style,
+                },
+                e.label,
+              );
+            }));
+          var U = {
+              toggleOption: B,
+              value: w,
+              disabled: x.disabled,
+              name: x.name,
+              registerValue: M,
+              cancelValue: F,
+            },
+            G = i()(
+              V,
+              Object(a['a'])({}, ''.concat(V, '-rtl'), 'rtl' === C),
+              j,
+            );
+          return r['createElement'](
+            'div',
+            Object(c['a'])({ className: G, style: h }, A, { ref: t }),
+            r['createElement'](v.Provider, { value: U }, l),
+          );
+        },
+        j = r['forwardRef'](p),
+        h = r['memo'](j),
+        O = n('M9k3'),
+        x = function (e, t) {
+          var n = {};
+          for (var a in e)
+            Object.prototype.hasOwnProperty.call(e, a) &&
+              t.indexOf(a) < 0 &&
+              (n[a] = e[a]);
+          if (null != e && 'function' === typeof Object.getOwnPropertySymbols) {
+            var c = 0;
+            for (a = Object.getOwnPropertySymbols(e); c < a.length; c++)
+              t.indexOf(a[c]) < 0 &&
+                Object.prototype.propertyIsEnumerable.call(e, a[c]) &&
+                (n[a[c]] = e[a[c]]);
+          }
+          return n;
+        },
+        y = function (e, t) {
+          var n,
+            l = e.prefixCls,
+            u = e.className,
+            d = e.children,
+            b = e.indeterminate,
+            m = void 0 !== b && b,
+            p = e.style,
+            j = e.onMouseEnter,
+            h = e.onMouseLeave,
+            y = e.skipGroup,
+            k = void 0 !== y && y,
+            g = x(e, [
+              'prefixCls',
+              'className',
+              'children',
+              'indeterminate',
+              'style',
+              'onMouseEnter',
+              'onMouseLeave',
+              'skipGroup',
+            ]),
+            C = r['useContext'](f['b']),
+            N = C.getPrefixCls,
+            E = C.direction,
+            w = r['useContext'](v),
+            I = Object(r['useContext'])(s['b']),
+            K = I.isFormItemInput,
+            P = r['useRef'](g.value);
+          r['useEffect'](function () {
+            null === w || void 0 === w || w.registerValue(g.value),
+              Object(O['a'])(
+                'checked' in g || !!w || !('value' in g),
+                'Checkbox',
+                '`value` is not a valid prop, do you mean `checked`?',
+              );
+          }, []),
+            r['useEffect'](
+              function () {
+                if (!k)
+                  return (
+                    g.value !== P.current &&
+                      (null === w || void 0 === w || w.cancelValue(P.current),
+                      null === w || void 0 === w || w.registerValue(g.value),
+                      (P.current = g.value)),
+                    function () {
+                      return null === w || void 0 === w
+                        ? void 0
+                        : w.cancelValue(g.value);
+                    }
+                  );
+              },
+              [g.value],
+            );
+          var _ = N('checkbox', l),
+            S = Object(c['a'])({}, g);
+          w &&
+            !k &&
+            ((S.onChange = function () {
+              g.onChange && g.onChange.apply(g, arguments),
+                w.toggleOption && w.toggleOption({ label: d, value: g.value });
+            }),
+            (S.name = w.name),
+            (S.checked = -1 !== w.value.indexOf(g.value)),
+            (S.disabled = g.disabled || w.disabled));
+          var T = i()(
+              ((n = {}),
+              Object(a['a'])(n, ''.concat(_, '-wrapper'), !0),
+              Object(a['a'])(n, ''.concat(_, '-rtl'), 'rtl' === E),
+              Object(a['a'])(n, ''.concat(_, '-wrapper-checked'), S.checked),
+              Object(a['a'])(n, ''.concat(_, '-wrapper-disabled'), S.disabled),
+              Object(a['a'])(n, ''.concat(_, '-wrapper-in-form-item'), K),
+              n),
+              u,
+            ),
+            F = i()(Object(a['a'])({}, ''.concat(_, '-indeterminate'), m)),
+            M = m ? 'mixed' : void 0;
+          return r['createElement'](
+            'label',
+            { className: T, style: p, onMouseEnter: j, onMouseLeave: h },
+            r['createElement'](
+              o['a'],
+              Object(c['a'])({ 'aria-checked': M }, S, {
+                prefixCls: _,
+                className: F,
+                ref: t,
+              }),
+            ),
+            void 0 !== d && r['createElement']('span', null, d),
+          );
+        },
+        k = r['forwardRef'](y);
+      k.displayName = 'Checkbox';
+      var g = k,
+        C = g;
+      (C.Group = h), (C.__ANT_CHECKBOX = !0);
+      t['a'] = C;
     },
     feUP: function (e, t, n) {
       e.exports = {
@@ -491,258 +748,10 @@
           ],
         });
     },
-    qVa7: function (e, t, n) {
+    rUAB: function (e, t, n) {},
+    teHG: function (e, t, n) {
       'use strict';
-      var a = n('3UCj'),
-        c = n('7eJq'),
-        r = n('T9Mk'),
-        l = n('jK+o'),
-        i = n.n(l),
-        s = n('/wk5'),
-        o = n('mKQt'),
-        u = n('DZ87'),
-        d = n('AYaK'),
-        b = n('f9wj'),
-        f = function (e, t) {
-          var n = {};
-          for (var a in e)
-            Object.prototype.hasOwnProperty.call(e, a) &&
-              t.indexOf(a) < 0 &&
-              (n[a] = e[a]);
-          if (null != e && 'function' === typeof Object.getOwnPropertySymbols) {
-            var c = 0;
-            for (a = Object.getOwnPropertySymbols(e); c < a.length; c++)
-              t.indexOf(a[c]) < 0 &&
-                Object.prototype.propertyIsEnumerable.call(e, a[c]) &&
-                (n[a[c]] = e[a[c]]);
-          }
-          return n;
-        },
-        v = r['createContext'](null),
-        m = function (e, t) {
-          var n = e.defaultValue,
-            l = e.children,
-            s = e.options,
-            m = void 0 === s ? [] : s,
-            p = e.prefixCls,
-            j = e.className,
-            h = e.style,
-            O = e.onChange,
-            x = f(e, [
-              'defaultValue',
-              'children',
-              'options',
-              'prefixCls',
-              'className',
-              'style',
-              'onChange',
-            ]),
-            y = r['useContext'](b['b']),
-            g = y.getPrefixCls,
-            C = y.direction,
-            N = r['useState'](x.value || n || []),
-            E = Object(u['a'])(N, 2),
-            w = E[0],
-            P = E[1],
-            I = r['useState']([]),
-            _ = Object(u['a'])(I, 2),
-            K = _[0],
-            T = _[1];
-          r['useEffect'](
-            function () {
-              'value' in x && P(x.value || []);
-            },
-            [x.value],
-          );
-          var S = function () {
-              return m.map(function (e) {
-                return 'string' === typeof e || 'number' === typeof e
-                  ? { label: e, value: e }
-                  : e;
-              });
-            },
-            F = function (e) {
-              T(function (t) {
-                return t.filter(function (t) {
-                  return t !== e;
-                });
-              });
-            },
-            D = function (e) {
-              T(function (t) {
-                return [].concat(Object(o['a'])(t), [e]);
-              });
-            },
-            M = function (e) {
-              var t = w.indexOf(e.value),
-                n = Object(o['a'])(w);
-              -1 === t ? n.push(e.value) : n.splice(t, 1), 'value' in x || P(n);
-              var a = S();
-              null === O ||
-                void 0 === O ||
-                O(
-                  n
-                    .filter(function (e) {
-                      return -1 !== K.indexOf(e);
-                    })
-                    .sort(function (e, t) {
-                      var n = a.findIndex(function (t) {
-                          return t.value === e;
-                        }),
-                        c = a.findIndex(function (e) {
-                          return e.value === t;
-                        });
-                      return n - c;
-                    }),
-                );
-            },
-            V = g('checkbox', p),
-            q = ''.concat(V, '-group'),
-            U = Object(d['a'])(x, ['value', 'disabled']);
-          m &&
-            m.length > 0 &&
-            (l = S().map(function (e) {
-              return r['createElement'](
-                k,
-                {
-                  prefixCls: V,
-                  key: e.value.toString(),
-                  disabled: 'disabled' in e ? e.disabled : x.disabled,
-                  value: e.value,
-                  checked: -1 !== w.indexOf(e.value),
-                  onChange: e.onChange,
-                  className: ''.concat(q, '-item'),
-                  style: e.style,
-                },
-                e.label,
-              );
-            }));
-          var B = {
-              toggleOption: M,
-              value: w,
-              disabled: x.disabled,
-              name: x.name,
-              registerValue: D,
-              cancelValue: F,
-            },
-            L = i()(
-              q,
-              Object(a['a'])({}, ''.concat(q, '-rtl'), 'rtl' === C),
-              j,
-            );
-          return r['createElement'](
-            'div',
-            Object(c['a'])({ className: L, style: h }, U, { ref: t }),
-            r['createElement'](v.Provider, { value: B }, l),
-          );
-        },
-        p = r['forwardRef'](m),
-        j = r['memo'](p),
-        h = n('M9Ln'),
-        O = function (e, t) {
-          var n = {};
-          for (var a in e)
-            Object.prototype.hasOwnProperty.call(e, a) &&
-              t.indexOf(a) < 0 &&
-              (n[a] = e[a]);
-          if (null != e && 'function' === typeof Object.getOwnPropertySymbols) {
-            var c = 0;
-            for (a = Object.getOwnPropertySymbols(e); c < a.length; c++)
-              t.indexOf(a[c]) < 0 &&
-                Object.prototype.propertyIsEnumerable.call(e, a[c]) &&
-                (n[a[c]] = e[a[c]]);
-          }
-          return n;
-        },
-        x = function (e, t) {
-          var n,
-            l = e.prefixCls,
-            o = e.className,
-            u = e.children,
-            d = e.indeterminate,
-            f = void 0 !== d && d,
-            m = e.style,
-            p = e.onMouseEnter,
-            j = e.onMouseLeave,
-            x = e.skipGroup,
-            y = void 0 !== x && x,
-            k = O(e, [
-              'prefixCls',
-              'className',
-              'children',
-              'indeterminate',
-              'style',
-              'onMouseEnter',
-              'onMouseLeave',
-              'skipGroup',
-            ]),
-            g = r['useContext'](b['b']),
-            C = g.getPrefixCls,
-            N = g.direction,
-            E = r['useContext'](v),
-            w = r['useRef'](k.value);
-          r['useEffect'](function () {
-            null === E || void 0 === E || E.registerValue(k.value),
-              Object(h['a'])(
-                'checked' in k || !!E || !('value' in k),
-                'Checkbox',
-                '`value` is not a valid prop, do you mean `checked`?',
-              );
-          }, []),
-            r['useEffect'](
-              function () {
-                if (!y)
-                  return (
-                    k.value !== w.current &&
-                      (null === E || void 0 === E || E.cancelValue(w.current),
-                      null === E || void 0 === E || E.registerValue(k.value),
-                      (w.current = k.value)),
-                    function () {
-                      return null === E || void 0 === E
-                        ? void 0
-                        : E.cancelValue(k.value);
-                    }
-                  );
-              },
-              [k.value],
-            );
-          var P = C('checkbox', l),
-            I = Object(c['a'])({}, k);
-          E &&
-            !y &&
-            ((I.onChange = function () {
-              k.onChange && k.onChange.apply(k, arguments),
-                E.toggleOption && E.toggleOption({ label: u, value: k.value });
-            }),
-            (I.name = E.name),
-            (I.checked = -1 !== E.value.indexOf(k.value)),
-            (I.disabled = k.disabled || E.disabled));
-          var _ = i()(
-              ((n = {}),
-              Object(a['a'])(n, ''.concat(P, '-wrapper'), !0),
-              Object(a['a'])(n, ''.concat(P, '-rtl'), 'rtl' === N),
-              Object(a['a'])(n, ''.concat(P, '-wrapper-checked'), I.checked),
-              Object(a['a'])(n, ''.concat(P, '-wrapper-disabled'), I.disabled),
-              n),
-              o,
-            ),
-            K = i()(Object(a['a'])({}, ''.concat(P, '-indeterminate'), f));
-          return r['createElement'](
-            'label',
-            { className: _, style: m, onMouseEnter: p, onMouseLeave: j },
-            r['createElement'](
-              s['a'],
-              Object(c['a'])({}, I, { prefixCls: P, className: K, ref: t }),
-            ),
-            void 0 !== u && r['createElement']('span', null, u),
-          );
-        },
-        y = r['forwardRef'](x);
-      y.displayName = 'Checkbox';
-      var k = y,
-        g = k;
-      (g.Group = j), (g.__ANT_CHECKBOX = !0);
-      t['a'] = g;
+      n('VAud'), n('rUAB');
     },
   },
 ]);
