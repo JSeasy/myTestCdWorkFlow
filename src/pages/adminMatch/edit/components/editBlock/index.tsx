@@ -1,4 +1,4 @@
-import { Form, Input, Select, Row, Col } from 'antd';
+import { Form, Input, Select, Row, Col, Button } from 'antd';
 import { useEffect, useState, useImperativeHandle } from 'react';
 import styles from './index.less';
 import Checkbox from '../../../../../components/checkbox';
@@ -26,6 +26,9 @@ export default (props: any, ref: any) => {
           <Input />
         </Form.Item>
         <div className={styles.formContent}>
+          <div style={{ textAlign: 'right', paddingBottom: 12 }}>
+            <a>查看匹配结果</a>
+          </div>
           <Row>
             <Col span={4}>
               <Form.Item
