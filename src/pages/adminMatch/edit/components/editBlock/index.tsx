@@ -1,8 +1,11 @@
 import { Form, Input, Select, Row, Col, Button } from 'antd';
 import { useEffect, useState, useImperativeHandle } from 'react';
+import { useHistory } from 'umi';
 import styles from './index.less';
 import Checkbox from '../../../../../components/checkbox';
 export default (props: any, ref: any) => {
+  console.log(props, 'xxx');
+  const history = useHistory();
   const [form] = Form.useForm();
   const [require, setRequire] = useState(true);
   const submit = () => {
@@ -27,7 +30,16 @@ export default (props: any, ref: any) => {
         </Form.Item>
         <div className={styles.formContent}>
           <div style={{ textAlign: 'right', paddingBottom: 12 }}>
-            <a>查看匹配结果</a>
+            <a
+              onClick={() => {
+                history.push({
+                  pathname: '/matchDetailByProduct',
+                  query: { id: props.info.id },
+                });
+              }}
+            >
+              查看匹配结果
+            </a>
           </div>
           <Row>
             <Col span={4}>

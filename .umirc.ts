@@ -91,6 +91,12 @@ export default defineConfig({
           wrappers: ['@/wrappers/auth'],
         },
         {
+          path: '/matchDetailByProduct',
+          name: 'match',
+          component: '@/pages/adminMatchProductDetail/index',
+          wrappers: ['@/wrappers/auth'],
+        },
+        {
           path: '/system',
           name: 'system',
           component: '@/pages/adminSystem/index',
