@@ -39,7 +39,7 @@ const map: any = {
   系统日志: '/system',
   查看: 'read',
   编辑: 'edit',
-  删除: 'del',
+  删除: 'delBtn',
   新增: 'add',
 };
 

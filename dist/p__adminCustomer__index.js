@@ -10125,7 +10125,7 @@
           l = n.initialState['/customer'],
           m = l.add,
           b = l.edit,
-          E = l.del,
+          E = l.delBtn,
           k = Object(p['useState'])({ name: '', top: '' }),
           N = Object(i['a'])(k, 2),
           w = N[0],
@@ -10182,7 +10182,7 @@
           },
           J = h((e, t) => Object(v['jsx'])(q, { row: e, col: t }, e.id)),
           X = (e) => {
-            Object(C['c'])(
+            Object(C['d'])(
               Object(a['a'])(
                 Object(a['a'])({}, w),
                 {},
@@ -10288,7 +10288,7 @@
                 okText: '\u5220\u9664',
                 width: 400,
                 onOk: () => {
-                  E([D]).then(() => {
+                  Object(C['b'])([D]).then(() => {
                     B(!1), X();
                   });
                 },
@@ -14694,17 +14694,20 @@
     },
     zh2q: function (e, t, n) {
       'use strict';
-      n.d(t, 'c', function () {
+      n.d(t, 'd', function () {
         return a;
       }),
-        n.d(t, 'a', function () {
+        n.d(t, 'b', function () {
           return o;
         }),
-        n.d(t, 'b', function () {
+        n.d(t, 'a', function () {
           return c;
         }),
-        n.d(t, 'd', function () {
+        n.d(t, 'c', function () {
           return i;
+        }),
+        n.d(t, 'e', function () {
+          return l;
         });
       var r = n('5lAy'),
         a = (e) =>
@@ -14715,17 +14718,23 @@
           }),
         o = (e) =>
           Object(r['a'])({
+            url: '/services/v1/org',
+            method: 'DELETE',
+            data: e,
+          }),
+        c = (e) =>
+          Object(r['a'])({
             url: '/services/v1/org/khd/saveQy',
             method: 'POST',
             data: e,
           }),
-        c = (e) =>
+        i = (e) =>
           Object(r['a'])({
             url: '/services/v1/org/edit',
             method: 'PUT',
             data: e,
           }),
-        i = (e) =>
+        l = (e) =>
           Object(r['a'])({ url: '/services/v1/org/khd/' + e, method: 'GET' });
     },
   },

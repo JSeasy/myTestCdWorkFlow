@@ -631,28 +631,28 @@
                     }),
                 );
             },
-            V = g('checkbox', O),
-            A = ''.concat(V, '-group'),
-            K = Object(j['a'])(v, ['value', 'disabled']);
+            L = g('checkbox', O),
+            V = ''.concat(L, '-group'),
+            A = Object(j['a'])(v, ['value', 'disabled']);
           o &&
             o.length > 0 &&
             (l = S().map(function (e) {
               return r['createElement'](
                 k,
                 {
-                  prefixCls: V,
+                  prefixCls: L,
                   key: e.value.toString(),
                   disabled: 'disabled' in e ? e.disabled : v.disabled,
                   value: e.value,
                   checked: -1 !== N.indexOf(e.value),
                   onChange: e.onChange,
-                  className: ''.concat(A, '-item'),
+                  className: ''.concat(V, '-item'),
                   style: e.style,
                 },
                 e.label,
               );
             }));
-          var L = {
+          var K = {
               toggleOption: q,
               value: N,
               disabled: v.disabled,
@@ -661,14 +661,14 @@
               cancelValue: _,
             },
             B = s()(
-              A,
-              Object(n['a'])({}, ''.concat(A, '-rtl'), 'rtl' === C),
+              V,
+              Object(n['a'])({}, ''.concat(V, '-rtl'), 'rtl' === C),
               f,
             );
           return r['createElement'](
             'div',
-            Object(c['a'])({ className: B, style: x }, K, { ref: t }),
-            r['createElement'](h.Provider, { value: L }, l),
+            Object(c['a'])({ className: B, style: x }, A, { ref: t }),
+            r['createElement'](h.Provider, { value: K }, l),
           );
         },
         f = r['forwardRef'](O),
@@ -818,7 +818,7 @@
           d = a.location.state,
           h = () => {
             t.current.validateForm().then((e) => {
-              Object(j['b'])(
+              Object(j['c'])(
                 Object(l['a'])(Object(l['a'])({}, e), {}, { id: d.id }),
               ).then(() => {
                 a.push('/customer');
@@ -827,7 +827,7 @@
           };
         return (
           Object(o['useEffect'])(() => {
-            Object(j['d'])(d.id).then((e) => {
+            Object(j['e'])(d.id).then((e) => {
               var a = e.data,
                 n = t.current.getForm();
               n.setFieldsValue(Object(l['a'])({}, a.userOrgInfo));
@@ -1670,17 +1670,20 @@
     },
     zh2q: function (e, t, a) {
       'use strict';
-      a.d(t, 'c', function () {
+      a.d(t, 'd', function () {
         return c;
       }),
-        a.d(t, 'a', function () {
+        a.d(t, 'b', function () {
           return r;
         }),
-        a.d(t, 'b', function () {
+        a.d(t, 'a', function () {
           return l;
         }),
-        a.d(t, 'd', function () {
+        a.d(t, 'c', function () {
           return s;
+        }),
+        a.d(t, 'e', function () {
+          return i;
         });
       var n = a('5lAy'),
         c = (e) =>
@@ -1691,17 +1694,23 @@
           }),
         r = (e) =>
           Object(n['a'])({
+            url: '/services/v1/org',
+            method: 'DELETE',
+            data: e,
+          }),
+        l = (e) =>
+          Object(n['a'])({
             url: '/services/v1/org/khd/saveQy',
             method: 'POST',
             data: e,
           }),
-        l = (e) =>
+        s = (e) =>
           Object(n['a'])({
             url: '/services/v1/org/edit',
             method: 'PUT',
             data: e,
           }),
-        s = (e) =>
+        i = (e) =>
           Object(n['a'])({ url: '/services/v1/org/khd/' + e, method: 'GET' });
     },
   },

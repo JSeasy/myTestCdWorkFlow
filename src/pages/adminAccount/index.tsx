@@ -35,7 +35,7 @@ const { Option } = Select;
 export default (props: any) => {
   const {
     initialState: {
-      ['/account']: { add, edit, del },
+      ['/account']: { add, edit, delBtn },
     },
   } = useModel('@@initialState');
   const history = useHistory();
@@ -78,7 +78,7 @@ export default (props: any) => {
             编辑
           </Button>
         )}
-        {del && (
+        {delBtn && (
           <Button
             type="link"
             onClick={() => {

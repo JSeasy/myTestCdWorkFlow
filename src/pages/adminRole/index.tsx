@@ -19,7 +19,7 @@ const { Option } = Select;
 export default (props: any) => {
   const {
     initialState: {
-      ['/role']: { add, edit, del },
+      ['/role']: { add, edit, delBtn },
     },
   } = useModel('@@initialState');
 
@@ -65,7 +65,7 @@ export default (props: any) => {
             编辑
           </Button>
         )}
-        {del && (
+        {delBtn && (
           <Button
             type="link"
             onClick={() => {

@@ -18,7 +18,7 @@ import { uploadFile, openUploadWindow } from '@/utils/index';
 export default (props: any) => {
   const {
     initialState: {
-      ['/match']: { edit, del },
+      ['/match']: { edit, delBtn },
     },
   } = useModel('@@initialState');
   const history = useHistory();
@@ -116,7 +116,7 @@ export default (props: any) => {
             备注
           </Button>
         )}
-        {del && (
+        {delBtn && (
           <Button
             className="delBtnTable"
             type="link"

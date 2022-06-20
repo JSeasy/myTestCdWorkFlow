@@ -8918,19 +8918,25 @@
           }),
         g = (e) =>
           Object(h['a'])({
+            url: '/services/v1/model',
+            method: 'DELETE',
+            data: e,
+          }),
+        O = (e) =>
+          Object(h['a'])({
             url: '/services/v1/model/copy',
             method: 'POST',
             data: e,
           }),
-        O = (e) =>
+        j = (e) =>
           Object(h['a'])({ url: '/services/v1/model', method: 'PUT', data: e }),
-        j = () =>
+        x = () =>
           Object(h['a'])({
             url: '/services/v1/model/list/template',
             method: 'GET',
           }),
-        x = n('tJ49'),
-        C = {
+        C = n('tJ49'),
+        E = {
           icon: {
             tag: 'svg',
             attrs: { viewBox: '64 64 896 896', focusable: 'false' },
@@ -8946,18 +8952,18 @@
           name: 'copy',
           theme: 'outlined',
         },
-        E = C,
-        k = n('ING4'),
-        N = function (e, t) {
+        k = E,
+        N = n('ING4'),
+        w = function (e, t) {
           return f['createElement'](
-            k['a'],
-            Object(x['a'])(Object(x['a'])({}, e), {}, { ref: t, icon: E }),
+            N['a'],
+            Object(C['a'])(Object(C['a'])({}, e), {}, { ref: t, icon: k }),
           );
         };
-      N.displayName = 'CopyOutlined';
-      var w = f['forwardRef'](N),
-        S = n('jzin'),
-        K = {
+      w.displayName = 'CopyOutlined';
+      var S = f['forwardRef'](w),
+        K = n('jzin'),
+        P = {
           icon: {
             tag: 'svg',
             attrs: { viewBox: '0 0 1024 1024', focusable: 'false' },
@@ -8973,31 +8979,31 @@
           name: 'retweet',
           theme: 'outlined',
         },
-        P = K,
-        I = function (e, t) {
+        I = P,
+        T = function (e, t) {
           return f['createElement'](
-            k['a'],
-            Object(x['a'])(Object(x['a'])({}, e), {}, { ref: t, icon: P }),
+            N['a'],
+            Object(C['a'])(Object(C['a'])({}, e), {}, { ref: t, icon: I }),
           );
         };
-      I.displayName = 'RetweetOutlined';
-      var T = f['forwardRef'](I),
-        M = n('fkEL'),
-        R = n('7uZj'),
-        D = n('Aghq'),
-        L = (n('iwEx'), n('TfuQ')),
-        z = (n('tzUK'), n('x7LA')),
-        A = (n('gfMV'), n('cih1')),
-        H = (n('ydr8'), n('kiQS')),
-        B = n('LpHj'),
-        V = (n('cJjC'), n('s2Zf')),
-        _ = n('ylX1'),
-        F = n.n(_),
-        W = n('mS9r'),
-        U = n('ikfJ'),
-        G = V['a'].Option,
-        q = { labelCol: { span: 6 }, wrapperCol: { span: 18 } },
-        J = (e) => {
+      T.displayName = 'RetweetOutlined';
+      var M = f['forwardRef'](T),
+        R = n('fkEL'),
+        D = n('7uZj'),
+        L = n('Aghq'),
+        z = (n('iwEx'), n('TfuQ')),
+        A = (n('tzUK'), n('x7LA')),
+        H = (n('gfMV'), n('cih1')),
+        B = (n('ydr8'), n('kiQS')),
+        V = n('LpHj'),
+        _ = (n('cJjC'), n('s2Zf')),
+        F = n('ylX1'),
+        W = n.n(F),
+        U = n('mS9r'),
+        G = n('ikfJ'),
+        q = _['a'].Option,
+        J = { labelCol: { span: 6 }, wrapperCol: { span: 18 } },
+        X = (e) => {
           var t = e.id,
             n = e.onOk,
             a = e.onCancel,
@@ -9012,19 +9018,19 @@
             b = Object(i['a'])(m, 2),
             h = b[0],
             y = b[1],
-            x = () => {
-              j().then((e) => {
+            g = () => {
+              x().then((e) => {
                 y(e.data.modelList);
               });
             };
           Object(f['useEffect'])(() => {
-            !t && x();
+            !t && g();
           }, []);
           var C = (function () {
-            var e = Object(B['a'])(
-              F.a.mark(function e() {
+            var e = Object(V['a'])(
+              W.a.mark(function e() {
                 var r;
-                return F.a.wrap(function (e) {
+                return W.a.wrap(function (e) {
                   while (1)
                     switch ((e.prev = e.next)) {
                       case 0:
@@ -9032,14 +9038,6 @@
                       case 2:
                         (r = e.sent),
                           u
-                            ? g(
-                                Object(o['a'])(
-                                  Object(o['a'])({}, r),
-                                  {},
-                                  { id: t },
-                                ),
-                              ).then(n)
-                            : t
                             ? O(
                                 Object(o['a'])(
                                   Object(o['a'])({}, r),
@@ -9047,7 +9045,15 @@
                                   { id: t },
                                 ),
                               ).then(n)
-                            : g(r).then(n);
+                            : t
+                            ? j(
+                                Object(o['a'])(
+                                  Object(o['a'])({}, r),
+                                  {},
+                                  { id: t },
+                                ),
+                              ).then(n)
+                            : O(r).then(n);
                       case 4:
                       case 'end':
                         return e.stop();
@@ -9059,7 +9065,7 @@
               return e.apply(this, arguments);
             };
           })();
-          return Object(U['jsx'])(r['a'], {
+          return Object(G['jsx'])(r['a'], {
             wrapClassName: 'myModal',
             getContainer: '#root',
             title: u
@@ -9071,10 +9077,10 @@
             onOk: C,
             onCancel: a,
             destroyOnClose: !0,
-            children: Object(U['jsxs'])(
+            children: Object(G['jsxs'])(
               c['a'],
               Object(o['a'])(
-                Object(o['a'])({ form: v }, q),
+                Object(o['a'])({ form: v }, J),
                 {},
                 {
                   colon: !0,
@@ -9082,10 +9088,10 @@
                   labelAlign: 'left',
                   children: [
                     u &&
-                      Object(U['jsx'])(c['a'].Item, {
+                      Object(G['jsx'])(c['a'].Item, {
                         label: '\u590d\u5236\u6a21\u578b',
                         required: !0,
-                        children: Object(U['jsx'])('p', {
+                        children: Object(G['jsx'])('p', {
                           style: {
                             fontSize: 14,
                             color: '#646093',
@@ -9094,18 +9100,18 @@
                           children: s,
                         }),
                       }),
-                    Object(U['jsx'])(c['a'].Item, {
+                    Object(G['jsx'])(c['a'].Item, {
                       label: u
                         ? '\u65b0\u6a21\u578b\u540d'
                         : '\u6a21\u578b\u540d',
                       required: !0,
-                      children: Object(U['jsxs'])(L['a'], {
+                      children: Object(G['jsxs'])(z['a'], {
                         gutter: 8,
                         align: 'middle',
                         children: [
-                          Object(U['jsx'])(A['a'], {
+                          Object(G['jsx'])(H['a'], {
                             span: 22,
-                            children: Object(U['jsx'])(c['a'].Item, {
+                            children: Object(G['jsx'])(c['a'].Item, {
                               name: 'label',
                               noStyle: !0,
                               rules: [
@@ -9115,20 +9121,20 @@
                                     '\u8bf7\u8f93\u5165\u6a21\u578b\u540d',
                                 },
                               ],
-                              children: Object(U['jsx'])(H['a'], {
+                              children: Object(G['jsx'])(B['a'], {
                                 size: 'large',
                                 placeholder:
                                   '\u8bf7\u8f93\u5165\u6a21\u578b\u540d',
                               }),
                             }),
                           }),
-                          Object(U['jsx'])(A['a'], {
+                          Object(G['jsx'])(H['a'], {
                             span: 2,
-                            children: Object(U['jsx'])(z['a'], {
+                            children: Object(G['jsx'])(A['a'], {
                               placement: 'right',
                               title:
                                 '\u6a21\u578b\u663e\u793a\u540d\u79f0\uff0c\u4e00\u822c\u4e3a\u4e2d\u6587\uff0c\u5982"\u6ce8\u518c\u6a21\u578b"',
-                              children: Object(U['jsx'])(W['a'], {
+                              children: Object(G['jsx'])(U['a'], {
                                 style: {
                                   fontSize: 20,
                                   color: '#6F7CAB',
@@ -9141,16 +9147,16 @@
                       }),
                     }),
                     !t &&
-                      Object(U['jsx'])(c['a'].Item, {
+                      Object(G['jsx'])(c['a'].Item, {
                         label: '\u6a21\u677f',
                         required: !0,
-                        children: Object(U['jsxs'])(L['a'], {
+                        children: Object(G['jsxs'])(z['a'], {
                           gutter: 8,
                           align: 'middle',
                           children: [
-                            Object(U['jsx'])(A['a'], {
+                            Object(G['jsx'])(H['a'], {
                               span: 22,
-                              children: Object(U['jsx'])(c['a'].Item, {
+                              children: Object(G['jsx'])(c['a'].Item, {
                                 name: 'id',
                                 noStyle: !0,
                                 rules: [
@@ -9159,16 +9165,16 @@
                                     message: '\u8bf7\u9009\u62e9\u6a21\u677f',
                                   },
                                 ],
-                                children: Object(U['jsxs'])(V['a'], {
+                                children: Object(G['jsxs'])(_['a'], {
                                   size: 'large',
                                   children: [
-                                    Object(U['jsx'])(G, {
+                                    Object(G['jsx'])(q, {
                                       value: '',
                                       children: '--\u6a21\u677f--',
                                     }),
                                     h.map((e) =>
-                                      Object(U['jsx'])(
-                                        G,
+                                      Object(G['jsx'])(
+                                        q,
                                         { value: e.id, children: e.label },
                                         e.id,
                                       ),
@@ -9177,13 +9183,13 @@
                                 }),
                               }),
                             }),
-                            Object(U['jsx'])(A['a'], {
+                            Object(G['jsx'])(H['a'], {
                               span: 2,
-                              children: Object(U['jsx'])(z['a'], {
+                              children: Object(G['jsx'])(A['a'], {
                                 placement: 'right',
                                 title:
                                   '\u5efa\u8bae\u4f7f\u7528\u6a21\u677f\u4e00\u952e\u521b\u5efa\u6a21\u578b\uff0c\u719f\u6089\u540e\u53ef\u81ea\u884c\u521b\u5efa\u6a21\u578b',
-                                children: Object(U['jsx'])(W['a'], {
+                                children: Object(G['jsx'])(U['a'], {
                                   style: {
                                     fontSize: 20,
                                     color: '#6F7CAB',
@@ -9206,37 +9212,37 @@
           n = t.initialState['/product'],
           l = n.add,
           p = n.edit,
-          h = n.del,
-          g = Object(b['g'])(),
-          O = c['a'].useForm(),
-          j = Object(i['a'])(O, 1),
-          x = (j[0], Object(f['useState'])({ label: '' })),
-          C = Object(i['a'])(x, 2),
-          E = C[0],
-          k = C[1],
-          N = Object(f['useState'])({ current: 1, pageSize: 10, total: 0 }),
-          K = Object(i['a'])(N, 2),
-          P = K[0],
-          I = K[1],
-          L = Object(f['useState'])([]),
-          z = Object(i['a'])(L, 2),
-          A = z[0],
-          H = z[1],
-          B = (e) => {
+          h = n.delBtn,
+          O = Object(b['g'])(),
+          j = c['a'].useForm(),
+          x = Object(i['a'])(j, 1),
+          C = (x[0], Object(f['useState'])({ label: '' })),
+          E = Object(i['a'])(C, 2),
+          k = E[0],
+          N = E[1],
+          w = Object(f['useState'])({ current: 1, pageSize: 10, total: 0 }),
+          P = Object(i['a'])(w, 2),
+          I = P[0],
+          T = P[1],
+          z = Object(f['useState'])([]),
+          A = Object(i['a'])(z, 2),
+          H = A[0],
+          B = A[1],
+          V = (e) => {
             y(
               Object(o['a'])(
-                Object(o['a'])({}, E),
+                Object(o['a'])({}, k),
                 {},
-                { pageNo: P.current, pageSize: P.pageSize },
+                { pageNo: I.current, pageSize: I.pageSize },
                 e,
               ),
             ).then((e) => {
               var t = e.data,
                 n = t.page;
-              H(n.list),
-                I(
+              B(n.list),
+                T(
                   Object(o['a'])(
-                    Object(o['a'])({}, P),
+                    Object(o['a'])({}, I),
                     {},
                     {
                       total: n.rowCount,
@@ -9248,208 +9254,208 @@
             });
           };
         Object(f['useEffect'])(() => {
-          B();
+          V();
         }, []);
-        var V = Object(f['useState'])(!1),
-          _ = Object(i['a'])(V, 2),
-          F = _[0],
-          W = _[1],
-          G = Object(f['useState'])(''),
-          q = Object(i['a'])(G, 2),
-          X = q[0],
-          Y = q[1],
-          Q = Object(f['useState'])(''),
-          Z = Object(i['a'])(Q, 2),
-          $ = Z[0],
-          ee = Z[1],
-          te = Object(f['useState'])(!1),
-          ne = Object(i['a'])(te, 2),
-          re = ne[0],
-          ae = ne[1],
-          oe = Object(f['useState'])(!1),
-          ce = Object(i['a'])(oe, 2),
-          ie = ce[0],
-          le = ce[1],
-          se = Object(f['useState'])(!1),
-          ue = Object(i['a'])(se, 2),
-          de = ue[0],
-          fe = ue[1],
-          pe = Object(f['useState'])(!1),
-          ve = Object(i['a'])(pe, 2),
-          me = ve[0],
-          be = ve[1],
-          he = Object(f['useState'])(''),
-          ye = Object(i['a'])(he, 2),
-          ge = ye[0],
-          Oe = ye[1],
-          je = (e) => {
+        var _ = Object(f['useState'])(!1),
+          F = Object(i['a'])(_, 2),
+          W = F[0],
+          U = F[1],
+          q = Object(f['useState'])(''),
+          J = Object(i['a'])(q, 2),
+          Y = J[0],
+          Q = J[1],
+          Z = Object(f['useState'])(''),
+          $ = Object(i['a'])(Z, 2),
+          ee = $[0],
+          te = $[1],
+          ne = Object(f['useState'])(!1),
+          re = Object(i['a'])(ne, 2),
+          ae = re[0],
+          oe = re[1],
+          ce = Object(f['useState'])(!1),
+          ie = Object(i['a'])(ce, 2),
+          le = ie[0],
+          se = ie[1],
+          ue = Object(f['useState'])(!1),
+          de = Object(i['a'])(ue, 2),
+          fe = de[0],
+          pe = de[1],
+          ve = Object(f['useState'])(!1),
+          me = Object(i['a'])(ve, 2),
+          be = me[0],
+          he = me[1],
+          ye = Object(f['useState'])(''),
+          ge = Object(i['a'])(ye, 2),
+          Oe = ge[0],
+          je = ge[1],
+          xe = (e) => {
             Object(b['g'])();
             var t = e.row;
             e.col;
-            return Object(U['jsxs'])(U['Fragment'], {
+            return Object(G['jsxs'])(G['Fragment'], {
               children: [
-                Object(U['jsxs'])(a['a'], {
+                Object(G['jsxs'])(a['a'], {
                   type: 'link',
                   className: 'editBtnTable',
                   onClick: () => {
-                    W(!0), Y(t.id), ae(!0), ee(t.label);
+                    U(!0), Q(t.id), oe(!0), te(t.label);
                   },
-                  children: [Object(U['jsx'])(w, {}), ' \u590d\u5236'],
+                  children: [Object(G['jsx'])(S, {}), ' \u590d\u5236'],
                 }),
                 p &&
-                  Object(U['jsxs'])(a['a'], {
+                  Object(G['jsxs'])(a['a'], {
                     type: 'link',
                     className: 'editBtnTable',
                     onClick: () => {
-                      W(!0), Y(t.id), ee(t.label), ae(!1);
+                      U(!0), Q(t.id), te(t.label), oe(!1);
                     },
-                    children: [Object(U['jsx'])(S['a'], {}), ' \u7f16\u8f91'],
+                    children: [Object(G['jsx'])(K['a'], {}), ' \u7f16\u8f91'],
                   }),
-                Object(U['jsxs'])(a['a'], {
+                Object(G['jsxs'])(a['a'], {
                   type: 'link',
-                  onClick: () => fe(!0),
+                  onClick: () => pe(!0),
                   className: 'delBtnTable',
-                  children: [Object(U['jsx'])(T, {}), ' \u91cd\u6784'],
+                  children: [Object(G['jsx'])(M, {}), ' \u91cd\u6784'],
                 }),
                 h &&
-                  Object(U['jsxs'])(a['a'], {
+                  Object(G['jsxs'])(a['a'], {
                     type: 'link',
                     onClick: () => {
-                      le(!0), Y(t.id);
+                      se(!0), Q(t.id);
                     },
                     className: 'delBtnTable',
-                    children: [Object(U['jsx'])(M['a'], {}), '\u5220\u9664'],
+                    children: [Object(G['jsx'])(R['a'], {}), '\u5220\u9664'],
                   }),
               ],
             });
           },
-          xe = (e) => {
+          Ce = (e) => {
             Object(b['g'])(), e.row;
             var t = e.col;
-            return Object(U['jsxs'])(a['a'], {
+            return Object(G['jsxs'])(a['a'], {
               type: 'link',
               className: 'editBtn',
               onClick: () => {
-                be(!0), Oe(t);
+                he(!0), je(t);
               },
-              children: [Object(U['jsx'])(R['a'], {}), ' \u67e5\u770b'],
+              children: [Object(G['jsx'])(D['a'], {}), ' \u67e5\u770b'],
             });
           },
-          Ce = v(
-            (e, t) => Object(U['jsx'])(je, { row: e, col: t }),
-            (e, t) => Object(U['jsx'])(xe, { row: e, col: t }),
+          Ee = v(
+            (e, t) => Object(G['jsx'])(xe, { row: e, col: t }),
+            (e, t) => Object(G['jsx'])(Ce, { row: e, col: t }),
           );
-        return Object(U['jsxs'])(U['Fragment'], {
+        return Object(G['jsxs'])(G['Fragment'], {
           children: [
-            Object(U['jsxs'])('div', {
+            Object(G['jsxs'])('div', {
               className: s.a.adminProduct,
               children: [
-                Object(U['jsxs'])('div', {
+                Object(G['jsxs'])('div', {
                   className: s.a.topBar,
                   children: [
-                    Object(U['jsx'])('div', {
+                    Object(G['jsx'])('div', {
                       className: s.a.searchCondition,
-                      children: Object(U['jsx'])(u['a'], {
+                      children: Object(G['jsx'])(u['a'], {
                         placeholder:
                           '\u914d\u7f6e\u4fe1\u606f\u540d\u79f0\u641c\u7d22',
-                        value: E.label,
+                        value: k.label,
                         onChange: (e) => {
-                          k({ label: e.target.value }), console.log(E);
+                          N({ label: e.target.value }), console.log(k);
                         },
-                        onPressEnter: () => B({ pageNo: 1 }),
-                        onSearch: () => B({ pageNo: 1 }),
+                        onPressEnter: () => V({ pageNo: 1 }),
+                        onSearch: () => V({ pageNo: 1 }),
                       }),
                     }),
                     !!l &&
-                      Object(U['jsxs'])(a['a'], {
+                      Object(G['jsxs'])(a['a'], {
                         className: 'addBtn',
                         onClick: () => {
-                          W(!0), Y(''), ee(''), ae(!1);
+                          U(!0), Q(''), te(''), oe(!1);
                         },
                         children: [
-                          Object(U['jsx'])(D['a'], {}),
+                          Object(G['jsx'])(L['a'], {}),
                           '\u65b0\u589e',
                         ],
                       }),
                   ],
                 }),
-                Object(U['jsx'])(d['a'], {
-                  columns: Ce,
-                  dataSource: A,
+                Object(G['jsx'])(d['a'], {
+                  columns: Ee,
+                  dataSource: H,
                   rowKey: 'id',
-                  pageInfo: P,
+                  pageInfo: I,
                   onChange: (e, t) => {
-                    B({ pageNo: e, pageSize: t });
+                    V({ pageNo: e, pageSize: t });
                   },
                   onRow: (e) => ({
                     onDoubleClick: () => {
-                      g.push('/product/' + e.id);
+                      O.push('/product/' + e.id);
                     },
                   }),
                 }),
               ],
             }),
-            Object(U['jsx'])(J, {
-              visible: F,
-              id: X,
-              onCancel: () => W(!1),
-              label: $,
-              isCopy: re,
+            Object(G['jsx'])(X, {
+              visible: W,
+              id: Y,
+              onCancel: () => U(!1),
+              label: ee,
+              isCopy: ae,
               onOk: () => {
-                W(!1), B();
+                U(!1), V();
               },
             }),
-            Object(U['jsxs'])(r['a'], {
+            Object(G['jsxs'])(r['a'], {
               wrapClassName: 'myModal',
               getContainer: '#root',
-              visible: me,
-              onOk: () => be(!1),
-              onCancel: () => be(!1),
+              visible: be,
+              onOk: () => he(!1),
+              onCancel: () => he(!1),
               okText: '\u77e5\u9053\u4e86',
               closable: !1,
               cancelButtonProps: { style: { display: 'none' } },
               children: [
-                Object(U['jsx'])('p', {
+                Object(G['jsx'])('p', {
                   children:
                     '\u901a\u8fc7\u63a5\u53e3\u4e0a\u4f20\u8bf7\u643a\u5e26\u6b64\u53c2\u6570',
                 }),
-                Object(U['jsxs'])('p', { children: ['guid:', ge] }),
+                Object(G['jsxs'])('p', { children: ['guid:', Oe] }),
               ],
             }),
-            Object(U['jsx'])(r['a'], {
+            Object(G['jsx'])(r['a'], {
               wrapClassName: 'myModal',
               getContainer: '#root',
-              visible: ie,
+              visible: le,
               title: '\u5220\u9664\u6a21\u578b',
               okText: '\u5220\u9664',
               width: 400,
               onOk: () => {
-                h([X]).then(() => {
-                  le(!1), B();
+                g([Y]).then(() => {
+                  se(!1), V();
                 });
               },
-              onCancel: () => le(!1),
+              onCancel: () => se(!1),
               okButtonProps: {
                 style: { background: '#ff4651', borderColor: '#ff4651' },
               },
-              children: Object(U['jsx'])('p', {
+              children: Object(G['jsx'])('p', {
                 style: { textAlign: 'center' },
                 children: '\u786e\u8ba4\u5220\u9664\u8be5\u6a21\u578b\u5417?',
               }),
             }),
-            Object(U['jsx'])(r['a'], {
+            Object(G['jsx'])(r['a'], {
               wrapClassName: 'myModal',
               getContainer: '#root',
-              visible: de,
+              visible: fe,
               title: '\u91cd\u6784\u6a21\u578b',
               okText: '\u91cd\u6784',
               width: 400,
-              onOk: () => fe(!1),
-              onCancel: () => fe(!1),
+              onOk: () => pe(!1),
+              onCancel: () => pe(!1),
               okButtonProps: {
                 style: { background: '#ff4651', borderColor: '#ff4651' },
               },
-              children: Object(U['jsx'])('p', {
+              children: Object(G['jsx'])('p', {
                 style: { textAlign: 'center' },
                 children:
                   '\u786e\u8ba4\u91cd\u65b0\u6784\u5efa\u6a21\u578b\u5c06\u6e05\u7a7a\u5386\u53f2\u6570\u636e!',

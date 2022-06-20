@@ -16,7 +16,7 @@ import { get, del } from '@/api/service/index';
 export default (props: any) => {
   const {
     initialState: {
-      ['/service']: { add, edit, del },
+      ['/service']: { add, edit, delBtn },
     },
   } = useModel('@@initialState');
   const history = useHistory();
@@ -57,7 +57,7 @@ export default (props: any) => {
             编辑
           </Button>
         )}
-        {del && (
+        {delBtn && (
           <Button
             type="link"
             className="delBtnTable"

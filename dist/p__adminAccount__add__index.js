@@ -37,13 +37,13 @@
         var t = Object(m['g'])(),
           a = d['a'].useForm(),
           j = Object(u['a'])(a, 1),
-          p = j[0],
-          v = Object(h['useState'])([]),
-          g = Object(u['a'])(v, 2),
+          v = j[0],
+          p = Object(h['useState'])([]),
+          g = Object(u['a'])(p, 2),
           T = g[0],
           V = g[1],
           q = () => {
-            Object(O['e'])().then((e) => {
+            Object(O['f'])().then((e) => {
               var t = e.data;
               V(t.roleList);
             });
@@ -52,7 +52,7 @@
           q();
         }, []);
         var y = () => {
-          p.validateFields().then((e) => {
+          v.validateFields().then((e) => {
             Object(O['a'])(Object(n['a'])({}, e)).then((e) => {
               t.push('/account');
             });
@@ -71,7 +71,7 @@
                 Object(n['a'])({}, x),
                 {},
                 {
-                  form: p,
+                  form: v,
                   children: [
                     Object(f['jsx'])(d['a'].Item, {
                       name: 'userName',
@@ -194,20 +194,23 @@
     },
     dSNV: function (e, t, a) {
       'use strict';
-      a.d(t, 'c', function () {
+      a.d(t, 'd', function () {
         return r;
       }),
-        a.d(t, 'a', function () {
+        a.d(t, 'b', function () {
           return c;
         }),
-        a.d(t, 'b', function () {
+        a.d(t, 'a', function () {
           return i;
         }),
-        a.d(t, 'e', function () {
+        a.d(t, 'c', function () {
           return l;
         }),
-        a.d(t, 'd', function () {
+        a.d(t, 'f', function () {
           return n;
+        }),
+        a.d(t, 'e', function () {
+          return d;
         });
       var s = a('5lAy'),
         r = (e) =>
@@ -218,22 +221,28 @@
           }),
         c = (e) =>
           Object(s['a'])({
+            url: '/services/v1/user',
+            method: 'delete',
+            data: e,
+          }),
+        i = (e) =>
+          Object(s['a'])({
             url: '/services/v1/user/adminAddUser',
             method: 'POST',
             data: e,
           }),
-        i = (e) =>
+        l = (e) =>
           Object(s['a'])({
             url: '/services/v1/user/updateUser',
             method: 'POST',
             data: e,
           }),
-        l = () =>
+        n = () =>
           Object(s['a'])({
             url: '/services/v1/role/queryRoleList',
             method: 'GET',
           }),
-        n = (e) =>
+        d = (e) =>
           Object(s['a'])({ url: '/services/v1/user/' + e, method: 'GET' });
     },
     gfMV: function (e, t, a) {

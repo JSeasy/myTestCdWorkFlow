@@ -8915,7 +8915,7 @@
             n = t.initialState['/account'],
             l = n.add,
             s = n.edit,
-            v = n.del,
+            v = n.delBtn,
             E = Object(h['g'])(),
             N =
               (Object(h['i'])(),
@@ -8981,7 +8981,7 @@
               }),
             J = m((e, t) => Object(C['jsx'])(q, { row: e, col: t }, e.id)),
             X = (e) => {
-              Object(x['c'])(
+              Object(x['d'])(
                 Object(a['a'])(
                   Object(a['a'])({}, w),
                   {},
@@ -9091,7 +9091,7 @@
                   okText: '\u5220\u9664',
                   width: 400,
                   onOk: () => {
-                    v([F]).then(() => {
+                    Object(x['b'])([F]).then(() => {
                       B(!1), X();
                     });
                   },
@@ -13893,20 +13893,23 @@
     },
     dSNV: function (e, t, n) {
       'use strict';
-      n.d(t, 'c', function () {
+      n.d(t, 'd', function () {
         return a;
       }),
-        n.d(t, 'a', function () {
+        n.d(t, 'b', function () {
           return o;
         }),
-        n.d(t, 'b', function () {
+        n.d(t, 'a', function () {
           return c;
         }),
-        n.d(t, 'e', function () {
+        n.d(t, 'c', function () {
           return i;
         }),
-        n.d(t, 'd', function () {
+        n.d(t, 'f', function () {
           return l;
+        }),
+        n.d(t, 'e', function () {
+          return s;
         });
       var r = n('5lAy'),
         a = (e) =>
@@ -13917,22 +13920,28 @@
           }),
         o = (e) =>
           Object(r['a'])({
+            url: '/services/v1/user',
+            method: 'delete',
+            data: e,
+          }),
+        c = (e) =>
+          Object(r['a'])({
             url: '/services/v1/user/adminAddUser',
             method: 'POST',
             data: e,
           }),
-        c = (e) =>
+        i = (e) =>
           Object(r['a'])({
             url: '/services/v1/user/updateUser',
             method: 'POST',
             data: e,
           }),
-        i = () =>
+        l = () =>
           Object(r['a'])({
             url: '/services/v1/role/queryRoleList',
             method: 'GET',
           }),
-        l = (e) =>
+        s = (e) =>
           Object(r['a'])({ url: '/services/v1/user/' + e, method: 'GET' });
     },
     fkEL: function (e, t, n) {

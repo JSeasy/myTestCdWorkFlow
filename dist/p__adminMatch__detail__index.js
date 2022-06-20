@@ -28,17 +28,20 @@
     },
     jzBK: function (e, c, s) {
       'use strict';
-      s.d(c, 'b', function () {
+      s.d(c, 'c', function () {
         return i;
       }),
-        s.d(c, 'a', function () {
+        s.d(c, 'b', function () {
           return j;
         }),
-        s.d(c, 'd', function () {
+        s.d(c, 'a', function () {
           return l;
         }),
-        s.d(c, 'c', function () {
+        s.d(c, 'e', function () {
           return d;
+        }),
+        s.d(c, 'd', function () {
+          return a;
         });
       var t = s('5lAy'),
         i = (e) =>
@@ -54,8 +57,14 @@
             data: e,
           }),
         l = (e) =>
+          Object(t['a'])({
+            url: '/services/v1/pipei/edit',
+            method: 'DELETE',
+            data: e,
+          }),
+        d = (e) =>
           Object(t['a'])({ url: '/services/v1/pipei/' + e, method: 'GET' }),
-        d = () =>
+        a = () =>
           Object(t['a'])({
             url: '/services/v1/pipei/getPipeiCount',
             method: 'GET',
@@ -101,7 +110,7 @@
           3: '\u7b49\u989d\u672c\u91d1',
           4: '\u5176\u4ed6',
         },
-        x = (e) => {
+        O = (e) => {
           var c = e.product;
           return Object(d['jsx'])('div', {
             className: l.a.formBlock,
@@ -216,8 +225,8 @@
             }),
           });
         },
-        O = s('iiHg'),
-        p = s.n(O),
+        p = s('iiHg'),
+        x = s.n(p),
         h = s('q5+0'),
         m = s('T9Mk'),
         o = s('jzBK'),
@@ -242,27 +251,27 @@
           r = Object(m['useState'])([]),
           n = Object(t['a'])(r, 2),
           b = n[0],
-          O = n[1],
+          p = n[1],
           N = Object(m['useState'])({}),
           f = Object(t['a'])(N, 2),
           _ = f[0],
           k = f[1];
         return (
           Object(m['useEffect'])(() => {
-            Object(o['d'])(a.id).then((e) => {
-              O(e.data.pipeiInfo.productVOList),
+            Object(o['e'])(a.id).then((e) => {
+              p(e.data.pipeiInfo.productVOList),
                 k(e.data.pipeiInfo.userOrgInfoVO);
             });
           }, []),
           Object(d['jsxs'])('div', {
-            className: p.a.matchDetail,
+            className: x.a.matchDetail,
             children: [
               Object(d['jsx'])(i['a'], { title: '\u4f01\u4e1a\u4fe1\u606f' }),
               Object(d['jsxs'])('div', {
-                className: p.a.list,
+                className: x.a.list,
                 children: [
                   Object(d['jsxs'])('div', {
-                    className: p.a.item,
+                    className: x.a.item,
                     children: [
                       Object(d['jsx'])('p', {
                         children: '\u516c\u53f8\u540d\u79f0:',
@@ -271,7 +280,7 @@
                     ],
                   }),
                   Object(d['jsxs'])('div', {
-                    className: p.a.item,
+                    className: x.a.item,
                     children: [
                       Object(d['jsx'])('p', {
                         children: '\u516c\u53f8\u884c\u4e1a:',
@@ -280,7 +289,7 @@
                     ],
                   }),
                   Object(d['jsxs'])('div', {
-                    className: p.a.item,
+                    className: x.a.item,
                     children: [
                       Object(d['jsx'])('p', {
                         children: '\u8054\u7cfb\u4eba\u59d3\u540d:',
@@ -289,7 +298,7 @@
                     ],
                   }),
                   Object(d['jsxs'])('div', {
-                    className: p.a.item,
+                    className: x.a.item,
                     children: [
                       Object(d['jsx'])('p', {
                         children: '\u8054\u7cfb\u7535\u8bdd:',
@@ -301,10 +310,10 @@
               }),
               Object(d['jsx'])(i['a'], { title: '\u8d26\u53f7\u4fe1\u606f' }),
               Object(d['jsxs'])('div', {
-                className: p.a.list,
+                className: x.a.list,
                 children: [
                   Object(d['jsxs'])('div', {
-                    className: p.a.item,
+                    className: x.a.item,
                     children: [
                       Object(d['jsx'])('p', {
                         children: '\u767b\u5f55\u624b\u673a\u53f7:',
@@ -313,7 +322,7 @@
                     ],
                   }),
                   Object(d['jsxs'])('div', {
-                    className: p.a.item,
+                    className: x.a.item,
                     children: [
                       Object(d['jsx'])('p', {
                         children: '\u767b\u5f55\u5bc6\u7801:',
@@ -325,9 +334,9 @@
               }),
               Object(d['jsx'])(i['a'], { title: '\u6cd5\u4eba\u5f81\u4fe1' }),
               Object(d['jsx'])('div', {
-                className: p.a.list,
+                className: x.a.list,
                 children: Object(d['jsxs'])('div', {
-                  className: p.a.item,
+                  className: x.a.item,
                   children: [
                     Object(d['jsx'])('p', {
                       children: '\u6cd5\u4eba\u5f81\u4fe1\u62a5\u544a:',
@@ -360,10 +369,10 @@
               }),
               Object(d['jsx'])(i['a'], { title: '\u8d22\u52a1\u6570\u636e' }),
               Object(d['jsxs'])('div', {
-                className: p.a.list,
+                className: x.a.list,
                 children: [
                   Object(d['jsxs'])('div', {
-                    className: p.a.item,
+                    className: x.a.item,
                     children: [
                       Object(d['jsx'])('p', {
                         children: '\u7eb3\u7a0e\u7b49\u7ea7:',
@@ -374,7 +383,7 @@
                     ],
                   }),
                   Object(d['jsxs'])('div', {
-                    className: p.a.item,
+                    className: x.a.item,
                     children: [
                       Object(d['jsx'])('p', {
                         children:
@@ -384,7 +393,7 @@
                     ],
                   }),
                   Object(d['jsxs'])('div', {
-                    className: p.a.item,
+                    className: x.a.item,
                     children: [
                       Object(d['jsx'])('p', {
                         children:
@@ -394,7 +403,7 @@
                     ],
                   }),
                   Object(d['jsxs'])('div', {
-                    className: p.a.item,
+                    className: x.a.item,
                     children: [
                       Object(d['jsx'])('p', {
                         children:
@@ -407,11 +416,11 @@
               }),
               Object(d['jsx'])(i['a'], { title: '\u878d\u8d44\u4fe1\u606f' }),
               Object(d['jsxs'])('div', {
-                className: p.a.list,
+                className: x.a.list,
                 children: [
                   _.rzlxXydk &&
                     Object(d['jsxs'])('div', {
-                      className: p.a.item,
+                      className: x.a.item,
                       children: [
                         Object(d['jsx'])('p', {
                           children: '\u878d\u8d44\u7c7b\u578b:',
@@ -440,7 +449,7 @@
                     }),
                   _.rzlxDydk &&
                     Object(d['jsxs'])('div', {
-                      className: p.a.item,
+                      className: x.a.item,
                       children: [
                         Object(d['jsx'])('p', {}),
                         Object(d['jsxs'])('p', {
@@ -465,7 +474,7 @@
                       ],
                     }),
                   Object(d['jsxs'])('div', {
-                    className: p.a.item,
+                    className: x.a.item,
                     children: [
                       Object(d['jsx'])('p', {
                         children: '\u878d\u8d44\u504f\u597d:',
@@ -477,12 +486,12 @@
               }),
               Object(d['jsx'])(i['a'], { title: '\u4ea7\u54c1\u4fe1\u606f' }),
               Object(d['jsx'])('div', {
-                className: p.a.blockWrap,
-                children: b.map((e) => Object(d['jsx'])(x, { product: e })),
+                className: x.a.blockWrap,
+                children: b.map((e) => Object(d['jsx'])(O, { product: e })),
               }),
               Object(d['jsx'])(i['a'], { title: '\u5907\u6ce8' }),
               Object(d['jsxs'])('div', {
-                className: p.a.remark,
+                className: x.a.remark,
                 children: [
                   Object(d['jsx'])('p', { children: '\u5907\u6ce8:' }),
                   Object(d['jsx'])('p', {

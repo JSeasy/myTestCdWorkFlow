@@ -12,7 +12,7 @@ export default (props: any) => {
   const history = useHistory();
   const {
     initialState: {
-      ['/customer']: { add, edit, del },
+      ['/customer']: { add, edit, delBtn },
     },
   } = useModel('@@initialState');
   const [searchCondition, setSearchCondition] = useState({
@@ -52,7 +52,7 @@ export default (props: any) => {
             <FormOutlined /> 编辑
           </Button>
         )}
-        {del && (
+        {delBtn && (
           <Button
             className="delBtnTable"
             type="link"

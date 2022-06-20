@@ -648,7 +648,7 @@
           n = t.initialState['/service'],
           l = n.add,
           p = n.edit,
-          x = n.del,
+          x = n.delBtn,
           C = Object(b['g'])(),
           E = Object(f['useState'])({ orgName: '', gshy: '' }),
           k = Object(i['a'])(E, 2),
@@ -704,7 +704,7 @@
             }),
           q = v((e, t) => Object(j['jsx'])(G, { row: e, col: t }, e.id)),
           J = (e) => {
-            Object(O['c'])(
+            Object(O['d'])(
               Object(a['a'])(
                 Object(a['a'])({}, N),
                 {},
@@ -794,7 +794,7 @@
                 okText: '\u5220\u9664',
                 width: 400,
                 onOk: () => {
-                  x([V]).then(() => {
+                  Object(O['b'])([V]).then(() => {
                     H(!1), J();
                   });
                 },
@@ -10226,20 +10226,23 @@
     },
     P7pi: function (e, t, n) {
       'use strict';
-      n.d(t, 'c', function () {
+      n.d(t, 'd', function () {
         return a;
       }),
-        n.d(t, 'e', function () {
+        n.d(t, 'f', function () {
           return o;
         }),
         n.d(t, 'a', function () {
           return c;
         }),
-        n.d(t, 'b', function () {
+        n.d(t, 'c', function () {
           return i;
         }),
-        n.d(t, 'd', function () {
+        n.d(t, 'b', function () {
           return l;
+        }),
+        n.d(t, 'e', function () {
+          return s;
         });
       var r = n('5lAy'),
         a = (e) =>
@@ -10262,7 +10265,13 @@
             method: 'PUT',
             data: e,
           }),
-        l = () =>
+        l = (e) =>
+          Object(r['a'])({
+            url: '/services/v1/fworg',
+            method: 'DELETE',
+            data: e,
+          }),
+        s = () =>
           Object(r['a'])({
             url: '/services/v1/common/areaTree',
             method: 'GET',

@@ -13777,7 +13777,7 @@
             n = t.initialState['/role'],
             l = n.add,
             s = n.edit,
-            v = n.del,
+            v = n.delBtn,
             E = Object(p['useState'])(!1),
             k = Object(i['a'])(E, 2),
             N = k[0],

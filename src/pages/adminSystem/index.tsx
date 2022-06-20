@@ -12,7 +12,7 @@ import DatePicker from '@/components/datePicker';
 export default (props: any) => {
   const {
     initialState: {
-      ['/system']: { add, edit, del },
+      ['/system']: { add, edit, delBtn },
     },
   } = useModel('@@initialState');
   const [searchCondition, setSearchCondition] = useState({

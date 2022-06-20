@@ -32,7 +32,7 @@
           w = N[0],
           T = N[1],
           y = () => {
-            Object(m['e'])().then((e) => {
+            Object(m['f'])().then((e) => {
               var t = e.data;
               T(t.roleList);
             });
@@ -41,7 +41,7 @@
           y(), E();
         }, []);
         var E = () => {
-            Object(m['d'])(a.id).then((e) => {
+            Object(m['e'])(a.id).then((e) => {
               var t = e.data,
                 a = t.user,
                 s = a.userName,
@@ -60,7 +60,7 @@
           },
           I = () => {
             v.validateFields().then((e) => {
-              Object(m['b'])(
+              Object(m['c'])(
                 Object(n['a'])(Object(n['a'])({}, e), {}, { id: a.id }),
               ).then((e) => {
                 t.push('/account');
@@ -212,20 +212,23 @@
     },
     dSNV: function (e, t, a) {
       'use strict';
-      a.d(t, 'c', function () {
+      a.d(t, 'd', function () {
         return r;
       }),
-        a.d(t, 'a', function () {
+        a.d(t, 'b', function () {
           return c;
         }),
-        a.d(t, 'b', function () {
+        a.d(t, 'a', function () {
           return i;
         }),
-        a.d(t, 'e', function () {
+        a.d(t, 'c', function () {
           return l;
         }),
-        a.d(t, 'd', function () {
+        a.d(t, 'f', function () {
           return n;
+        }),
+        a.d(t, 'e', function () {
+          return d;
         });
       var s = a('5lAy'),
         r = (e) =>
@@ -236,22 +239,28 @@
           }),
         c = (e) =>
           Object(s['a'])({
+            url: '/services/v1/user',
+            method: 'delete',
+            data: e,
+          }),
+        i = (e) =>
+          Object(s['a'])({
             url: '/services/v1/user/adminAddUser',
             method: 'POST',
             data: e,
           }),
-        i = (e) =>
+        l = (e) =>
           Object(s['a'])({
             url: '/services/v1/user/updateUser',
             method: 'POST',
             data: e,
           }),
-        l = () =>
+        n = () =>
           Object(s['a'])({
             url: '/services/v1/role/queryRoleList',
             method: 'GET',
           }),
-        n = (e) =>
+        d = (e) =>
           Object(s['a'])({ url: '/services/v1/user/' + e, method: 'GET' });
     },
     gfMV: function (e, t, a) {

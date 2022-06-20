@@ -14756,7 +14756,7 @@
           o =
             (n.add,
             n.edit,
-            n.del,
+            n.delBtn,
             Object(u['useState'])({
               userName: '',
               createTimeEnd: '',

@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import createColumns from './columns';
 import { useHistory, useModel } from 'umi';
 import { Modal, Form, Button } from 'antd';
-import { get } from '@/api/product/index';
+import { get, del } from '@/api/product/index';
 import {
   PlusOutlined,
   FormOutlined,
@@ -19,7 +19,7 @@ import Add_Edit_Copy from './add&edit/index';
 export default (props: any) => {
   const {
     initialState: {
-      ['/product']: { add, edit, del },
+      ['/product']: { add, edit, delBtn },
     },
   } = useModel('@@initialState');
 
@@ -117,7 +117,7 @@ export default (props: any) => {
           <RetweetOutlined /> 重构
         </Button>
 
-        {del && (
+        {delBtn && (
           <Button
             type="link"
             onClick={() => {

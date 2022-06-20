@@ -110,7 +110,7 @@
                         'value',
                         'required',
                       ]),
-                      N = Object.keys(w).reduce(function (e, t) {
+                      E = Object.keys(w).reduce(function (e, t) {
                         return (
                           ('aria-' !== t.substr(0, 5) &&
                             'data-' !== t.substr(0, 5) &&
@@ -119,18 +119,18 @@
                           e
                         );
                       }, {}),
-                      I = this.state.checked,
-                      E = p()(
+                      N = this.state.checked,
+                      I = p()(
                         n,
                         l,
                         ((e = {}),
-                        Object(c['a'])(e, ''.concat(n, '-checked'), I),
+                        Object(c['a'])(e, ''.concat(n, '-checked'), N),
                         Object(c['a'])(e, ''.concat(n, '-disabled'), u),
                         e),
                       );
                     return j.a.createElement(
                       'span',
-                      { className: E, style: s },
+                      { className: I, style: s },
                       j.a.createElement(
                         'input',
                         Object(a['a'])(
@@ -143,7 +143,7 @@
                             disabled: u,
                             tabIndex: h,
                             className: ''.concat(n, '-input'),
-                            checked: !!I,
+                            checked: !!N,
                             onClick: O,
                             onFocus: f,
                             onBlur: x,
@@ -155,7 +155,7 @@
                             ref: this.saveInput,
                             value: k,
                           },
-                          N,
+                          E,
                         ),
                       ),
                       j.a.createElement('span', {
@@ -261,9 +261,9 @@
                   a.call(s, t);
             },
             w = e.prefixCls,
-            N = e.className,
-            I = e.children,
-            E = e.style,
+            E = e.className,
+            N = e.children,
+            I = e.style,
             z = x(e, ['prefixCls', 'className', 'children', 'style']),
             T = O('radio', w),
             P =
@@ -285,13 +285,13 @@
             Object(a['a'])(n, ''.concat(P, '-wrapper-rtl'), 'rtl' === m),
             Object(a['a'])(n, ''.concat(P, '-wrapper-in-form-item'), k),
             n),
-            N,
+            E,
           );
           return r['createElement'](
             'label',
             {
               className: A,
-              style: E,
+              style: I,
               onMouseEnter: e.onMouseEnter,
               onMouseLeave: e.onMouseLeave,
             },
@@ -299,7 +299,7 @@
               l['a'],
               Object(c['a'])({}, S, { type: 'radio', prefixCls: P, ref: y }),
             ),
-            void 0 !== I ? r['createElement']('span', null, I) : null,
+            void 0 !== N ? r['createElement']('span', null, N) : null,
           );
         },
         v = r['forwardRef'](m);
@@ -320,7 +320,7 @@
           );
         }, {});
       }
-      var N = r['forwardRef'](function (e, t) {
+      var E = r['forwardRef'](function (e, t) {
           var n = r['useContext'](u['b']),
             l = n.getPrefixCls,
             s = n.direction,
@@ -351,18 +351,18 @@
                 g = e.id,
                 k = e.onMouseEnter,
                 C = e.onMouseLeave,
-                N = l('radio', d),
-                I = ''.concat(N, '-group'),
-                E = x;
+                E = l('radio', d),
+                N = ''.concat(E, '-group'),
+                I = x;
               b &&
                 b.length > 0 &&
-                (E = b.map(function (e) {
+                (I = b.map(function (e) {
                   return 'string' === typeof e || 'number' === typeof e
                     ? r['createElement'](
                         y,
                         {
                           key: e.toString(),
-                          prefixCls: N,
+                          prefixCls: E,
                           disabled: f,
                           value: e,
                           checked: p === e,
@@ -373,7 +373,7 @@
                         y,
                         {
                           key: 'radio-group-value-options-'.concat(e.value),
-                          prefixCls: N,
+                          prefixCls: E,
                           disabled: e.disabled || f,
                           value: e.value,
                           checked: p === e.value,
@@ -384,11 +384,11 @@
                 }));
               var z = m || o,
                 T = i()(
-                  I,
-                  ''.concat(I, '-').concat(O),
+                  N,
+                  ''.concat(N, '-').concat(O),
                   ((n = {}),
-                  Object(a['a'])(n, ''.concat(I, '-').concat(z), z),
-                  Object(a['a'])(n, ''.concat(I, '-rtl'), 'rtl' === s),
+                  Object(a['a'])(n, ''.concat(N, '-').concat(z), z),
+                  Object(a['a'])(n, ''.concat(N, '-rtl'), 'rtl' === s),
                   n),
                   j,
                 );
@@ -402,7 +402,7 @@
                   id: g,
                   ref: t,
                 }),
-                E,
+                I,
               );
             };
           return r['createElement'](
@@ -419,8 +419,8 @@
             f(),
           );
         }),
-        I = r['memo'](N),
-        E = function (e, t) {
+        N = r['memo'](E),
+        I = function (e, t) {
           var n = {};
           for (var a in e)
             Object.prototype.hasOwnProperty.call(e, a) &&
@@ -439,7 +439,7 @@
           var n = r['useContext'](u['b']),
             a = n.getPrefixCls,
             l = e.prefixCls,
-            s = E(e, ['prefixCls']),
+            s = I(e, ['prefixCls']),
             i = a('radio', l);
           return r['createElement'](
             O,
@@ -452,7 +452,7 @@
         },
         T = r['forwardRef'](z),
         P = y;
-      (P.Button = T), (P.Group = I);
+      (P.Button = T), (P.Group = N);
       t['a'] = P;
     },
     'FX5/': function (e, t, n) {
@@ -664,16 +664,16 @@
             g = y.getPrefixCls,
             C = y.direction,
             w = r['useState'](v.value || n || []),
-            N = Object(u['a'])(w, 2),
-            I = N[0],
-            E = N[1],
+            E = Object(u['a'])(w, 2),
+            N = E[0],
+            I = E[1],
             z = r['useState']([]),
             T = Object(u['a'])(z, 2),
             P = T[0],
             S = T[1];
           r['useEffect'](
             function () {
-              'value' in v && E(v.value || []);
+              'value' in v && I(v.value || []);
             },
             [v.value],
           );
@@ -697,9 +697,9 @@
               });
             },
             M = function (e) {
-              var t = I.indexOf(e.value),
-                n = Object(d['a'])(I);
-              -1 === t ? n.push(e.value) : n.splice(t, 1), 'value' in v || E(n);
+              var t = N.indexOf(e.value),
+                n = Object(d['a'])(N);
+              -1 === t ? n.push(e.value) : n.splice(t, 1), 'value' in v || I(n);
               var a = A();
               null === m ||
                 void 0 === m ||
@@ -720,8 +720,8 @@
                 );
             },
             q = g('checkbox', O),
-            K = ''.concat(q, '-group'),
-            L = Object(j['a'])(v, ['value', 'disabled']);
+            L = ''.concat(q, '-group'),
+            K = Object(j['a'])(v, ['value', 'disabled']);
           o &&
             o.length > 0 &&
             (l = A().map(function (e) {
@@ -732,9 +732,9 @@
                   key: e.value.toString(),
                   disabled: 'disabled' in e ? e.disabled : v.disabled,
                   value: e.value,
-                  checked: -1 !== I.indexOf(e.value),
+                  checked: -1 !== N.indexOf(e.value),
                   onChange: e.onChange,
-                  className: ''.concat(K, '-item'),
+                  className: ''.concat(L, '-item'),
                   style: e.style,
                 },
                 e.label,
@@ -742,20 +742,20 @@
             }));
           var V = {
               toggleOption: M,
-              value: I,
+              value: N,
               disabled: v.disabled,
               name: v.name,
               registerValue: _,
               cancelValue: F,
             },
             B = s()(
-              K,
-              Object(a['a'])({}, ''.concat(K, '-rtl'), 'rtl' === C),
+              L,
+              Object(a['a'])({}, ''.concat(L, '-rtl'), 'rtl' === C),
               f,
             );
           return r['createElement'](
             'div',
-            Object(c['a'])({ className: B, style: x }, L, { ref: t }),
+            Object(c['a'])({ className: B, style: x }, K, { ref: t }),
             r['createElement'](h.Provider, { value: V }, l),
           );
         },
@@ -801,15 +801,15 @@
             ]),
             C = r['useContext'](b['b']),
             w = C.getPrefixCls,
-            N = C.direction,
-            I = r['useContext'](h),
-            E = Object(r['useContext'])(o['b']),
-            z = E.isFormItemInput,
+            E = C.direction,
+            N = r['useContext'](h),
+            I = Object(r['useContext'])(o['b']),
+            z = I.isFormItemInput,
             T = r['useRef'](k.value);
           r['useEffect'](function () {
-            null === I || void 0 === I || I.registerValue(k.value),
+            null === N || void 0 === N || N.registerValue(k.value),
               Object(m['a'])(
-                'checked' in k || !!I || !('value' in k),
+                'checked' in k || !!N || !('value' in k),
                 'Checkbox',
                 '`value` is not a valid prop, do you mean `checked`?',
               );
@@ -819,13 +819,13 @@
                 if (!g)
                   return (
                     k.value !== T.current &&
-                      (null === I || void 0 === I || I.cancelValue(T.current),
-                      null === I || void 0 === I || I.registerValue(k.value),
+                      (null === N || void 0 === N || N.cancelValue(T.current),
+                      null === N || void 0 === N || N.registerValue(k.value),
                       (T.current = k.value)),
                     function () {
-                      return null === I || void 0 === I
+                      return null === N || void 0 === N
                         ? void 0
-                        : I.cancelValue(k.value);
+                        : N.cancelValue(k.value);
                     }
                   );
               },
@@ -833,19 +833,19 @@
             );
           var P = w('checkbox', l),
             S = Object(c['a'])({}, k);
-          I &&
+          N &&
             !g &&
             ((S.onChange = function () {
               k.onChange && k.onChange.apply(k, arguments),
-                I.toggleOption && I.toggleOption({ label: u, value: k.value });
+                N.toggleOption && N.toggleOption({ label: u, value: k.value });
             }),
-            (S.name = I.name),
-            (S.checked = -1 !== I.value.indexOf(k.value)),
-            (S.disabled = k.disabled || I.disabled));
+            (S.name = N.name),
+            (S.checked = -1 !== N.value.indexOf(k.value)),
+            (S.disabled = k.disabled || N.disabled));
           var A = s()(
               ((n = {}),
               Object(a['a'])(n, ''.concat(P, '-wrapper'), !0),
-              Object(a['a'])(n, ''.concat(P, '-rtl'), 'rtl' === N),
+              Object(a['a'])(n, ''.concat(P, '-rtl'), 'rtl' === E),
               Object(a['a'])(n, ''.concat(P, '-wrapper-checked'), S.checked),
               Object(a['a'])(n, ''.concat(P, '-wrapper-disabled'), S.disabled),
               Object(a['a'])(n, ''.concat(P, '-wrapper-in-form-item'), z),
@@ -993,20 +993,20 @@
           O = d['a'].useForm(),
           f = Object(u['a'])(O, 1),
           y = f[0],
-          N = e.isInfo,
-          I = e.info,
-          E = e.onchange,
+          E = e.isInfo,
+          N = e.info,
+          I = e.onchange,
           z = Object(p['useState'])([!0, !0, !0, !0]),
           T = Object(u['a'])(z, 2),
           P = T[0],
           S = T[1];
         Object(p['useEffect'])(() => {
-          N && S([!1, !1, !1, !1]);
+          E && S([!1, !1, !1, !1]);
         }, []);
         var A = (e, t) => {
           Object(v['c'])(e).then((e) => {
             var n = [...P];
-            (n[t] = !1), S(n), E();
+            (n[t] = !1), S(n), I();
           });
         };
         return (
@@ -1116,7 +1116,7 @@
                               size: 'large',
                             }),
                           }),
-                          N &&
+                          E &&
                             Object(x['jsxs'])('div', {
                               style: { textAlign: 'center' },
                               children: [
@@ -1134,7 +1134,7 @@
                                         Object(s['a'])(
                                           Object(s['a'])({}, e),
                                           {},
-                                          { id: I.id },
+                                          { id: N.id },
                                         ),
                                         0,
                                       );
@@ -1174,7 +1174,7 @@
                               Object(x['jsx'])('span', {
                                 children: '\u516c\u53f8\u540d\u79f0\uff1a',
                               }),
-                              Object(x['jsx'])('span', { children: I.orgName }),
+                              Object(x['jsx'])('span', { children: N.orgName }),
                             ],
                           }),
                           Object(x['jsxs'])('p', {
@@ -1182,7 +1182,7 @@
                               Object(x['jsx'])('span', {
                                 children: '\u516c\u53f8\u884c\u4e1a\uff1a',
                               }),
-                              Object(x['jsx'])('span', { children: C[I.gshy] }),
+                              Object(x['jsx'])('span', { children: C[N.gshy] }),
                             ],
                           }),
                           Object(x['jsxs'])('p', {
@@ -1191,7 +1191,7 @@
                                 children:
                                   '\u8054\u7cfb\u4eba\u59d3\u540d\uff1a',
                               }),
-                              Object(x['jsx'])('span', { children: I.lxrxm }),
+                              Object(x['jsx'])('span', { children: N.lxrxm }),
                             ],
                           }),
                           Object(x['jsxs'])('p', {
@@ -1199,7 +1199,7 @@
                               Object(x['jsx'])('span', {
                                 children: '\u8054\u7cfb\u7535\u8bdd\uff1a',
                               }),
-                              Object(x['jsx'])('span', { children: I.lxrdh }),
+                              Object(x['jsx'])('span', { children: N.lxrdh }),
                             ],
                           }),
                         ],
@@ -1217,7 +1217,7 @@
                         children: Object(x['jsx'])(m, {
                           fileType: 1,
                           onChange: (e) => {
-                            A({ frzxbgfileList: { id: e }, id: I.id });
+                            A({ frzxbgfileList: { id: e }, id: N.id });
                           },
                           title: Object(x['jsxs'])('p', {
                             style: { whiteSpace: 'nowrap' },
@@ -1301,7 +1301,7 @@
                               size: 'large',
                             }),
                           }),
-                          N &&
+                          E &&
                             Object(x['jsxs'])('div', {
                               style: { textAlign: 'center' },
                               children: [
@@ -1319,7 +1319,7 @@
                                         Object(s['a'])(
                                           Object(s['a'])({}, e),
                                           {},
-                                          { id: I.id },
+                                          { id: N.id },
                                         ),
                                         2,
                                       );
@@ -1359,7 +1359,7 @@
                               Object(x['jsx'])('span', {
                                 children: '\u7eb3\u7a0e\u7b49\u7ea7\uff1a',
                               }),
-                              Object(x['jsx'])('span', { children: I.nsdj }),
+                              Object(x['jsx'])('span', { children: N.nsdj }),
                             ],
                           }),
                           Object(x['jsxs'])('p', {
@@ -1368,7 +1368,7 @@
                                 children:
                                   '\u8fd1\u4e00\u5e74\u7eb3\u7a0e\u603b\u989d\uff1a',
                               }),
-                              Object(x['jsx'])('span', { children: I.nsze }),
+                              Object(x['jsx'])('span', { children: N.nsze }),
                             ],
                           }),
                           Object(x['jsxs'])('p', {
@@ -1377,7 +1377,7 @@
                                 children:
                                   '\u8fd1\u4e00\u5e74\u5f00\u7968\u603b\u989d\uff1a',
                               }),
-                              Object(x['jsx'])('span', { children: I.kpze }),
+                              Object(x['jsx'])('span', { children: N.kpze }),
                             ],
                           }),
                           Object(x['jsxs'])('p', {
@@ -1386,7 +1386,7 @@
                                 children:
                                   '\u4f01\u4e1a\u5f53\u524d\u8d1f\u503a\u4f59\u989d\uff1a',
                               }),
-                              Object(x['jsx'])('span', { children: I.fzze }),
+                              Object(x['jsx'])('span', { children: N.fzze }),
                             ],
                           }),
                         ],
@@ -1526,7 +1526,7 @@
                               size: 'large',
                             }),
                           }),
-                          N &&
+                          E &&
                             Object(x['jsxs'])('div', {
                               style: { textAlign: 'center', marginBottom: 30 },
                               children: [
@@ -1546,7 +1546,7 @@
                                         Object(s['a'])(
                                           Object(s['a'])({}, e),
                                           {},
-                                          { id: I.id },
+                                          { id: N.id },
                                         ),
                                         3,
                                       );
@@ -1591,14 +1591,14 @@
                                 children: [
                                   Object(x['jsxs'])('p', {
                                     children: [
-                                      1 == I.rzlxDydk
+                                      1 == N.rzlxDydk
                                         ? '\u62b5\u62bc\u8d37\u6b3e'
                                         : '',
                                       Object(x['jsx'])('span', {
                                         className: 'color',
                                         style: { padding: '0 12px' },
                                         children:
-                                          null === (n = I.dydkfileList) ||
+                                          null === (n = N.dydkfileList) ||
                                           void 0 === n
                                             ? void 0
                                             : n.name,
@@ -1607,14 +1607,14 @@
                                   }),
                                   Object(x['jsxs'])('p', {
                                     children: [
-                                      1 == I.rzlxXydk
+                                      1 == N.rzlxXydk
                                         ? '\u4fe1\u7528\u8d37\u6b3e'
                                         : '',
                                       Object(x['jsx'])('span', {
                                         className: 'color',
                                         style: { padding: '0 12px' },
                                         children:
-                                          null === (h = I.xydkFileList) ||
+                                          null === (h = N.xydkFileList) ||
                                           void 0 === h
                                             ? void 0
                                             : h.name,
@@ -1630,7 +1630,7 @@
                               Object(x['jsx'])('span', {
                                 children: '\u878d\u8d44\u504f\u597d\uff1a',
                               }),
-                              Object(x['jsx'])('span', { children: w[I.rzph] }),
+                              Object(x['jsx'])('span', { children: w[N.rzph] }),
                             ],
                           }),
                           Object(x['jsxs'])('p', {
@@ -1638,7 +1638,7 @@
                               Object(x['jsx'])('span', {
                                 children: '\u9700\u6c42\u91d1\u989d\uff1a',
                               }),
-                              Object(x['jsx'])('span', { children: I.xqje }),
+                              Object(x['jsx'])('span', { children: N.xqje }),
                             ],
                           }),
                         ],
@@ -1658,17 +1658,20 @@
     },
     zh2q: function (e, t, n) {
       'use strict';
-      n.d(t, 'c', function () {
+      n.d(t, 'd', function () {
         return c;
       }),
-        n.d(t, 'a', function () {
+        n.d(t, 'b', function () {
           return r;
         }),
-        n.d(t, 'b', function () {
+        n.d(t, 'a', function () {
           return l;
         }),
-        n.d(t, 'd', function () {
+        n.d(t, 'c', function () {
           return s;
+        }),
+        n.d(t, 'e', function () {
+          return i;
         });
       var a = n('5lAy'),
         c = (e) =>
@@ -1679,17 +1682,23 @@
           }),
         r = (e) =>
           Object(a['a'])({
+            url: '/services/v1/org',
+            method: 'DELETE',
+            data: e,
+          }),
+        l = (e) =>
+          Object(a['a'])({
             url: '/services/v1/org/khd/saveQy',
             method: 'POST',
             data: e,
           }),
-        l = (e) =>
+        s = (e) =>
           Object(a['a'])({
             url: '/services/v1/org/edit',
             method: 'PUT',
             data: e,
           }),
-        s = (e) =>
+        i = (e) =>
           Object(a['a'])({ url: '/services/v1/org/khd/' + e, method: 'GET' });
     },
   },
