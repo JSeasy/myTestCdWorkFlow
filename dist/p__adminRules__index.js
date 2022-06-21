@@ -17092,7 +17092,7 @@
                       }),
                     ],
                   }),
-                  e.conditions.map((e, a) =>
+                  e.conditions.map((e, o) =>
                     Object(f['jsxs'])(
                       'div',
                       {
@@ -17107,16 +17107,16 @@
                                 var n = N(e),
                                   r = n.type;
                                 x((n) => {
-                                  (n[t].conditions[a].expressions[0].column =
+                                  (n[t].conditions[o].expressions[0].column =
                                     e),
-                                    (n[t].conditions[a].expressions[0].type =
+                                    (n[t].conditions[o].expressions[0].type =
                                       r);
                                 });
                               } else
                                 x((e) => {
-                                  (e[t].conditions[a].expressions[0].column =
+                                  (e[t].conditions[o].expressions[0].column =
                                     ''),
-                                    (e[t].conditions[a].expressions[0].type =
+                                    (e[t].conditions[o].expressions[0].type =
                                       '');
                                 });
                             },
@@ -17134,12 +17134,12 @@
                             value: e.operator,
                             onChange: (e) => {
                               x((n) => {
-                                n[t].conditions[a].operator = e;
+                                n[t].conditions[o].operator = e;
                                 var r = p.find((t) => t.value === e);
-                                (n[t].conditions[a].expressions[1].type = r
+                                (n[t].conditions[o].expressions[1].type = r
                                   ? r.type
                                   : ''),
-                                  (n[t].conditions[a].expressions[1].value =
+                                  (n[t].conditions[o].expressions[1].value =
                                     '');
                               });
                             },
@@ -17159,14 +17159,23 @@
                               value: e.expressions[1].value,
                               onChange: (e) => {
                                 x((n) => {
-                                  n[t].conditions[a].expressions[1].value =
+                                  n[t].conditions[o].expressions[1].value =
                                     e.target.value;
                                 });
                               },
                             }),
+                          Object(f['jsx'])(a['a'], {
+                            type: 'link',
+                            onClick: () => {
+                              x((e) => {
+                                e[t].conditions.splice(o, 1);
+                              });
+                            },
+                            children: '\u5220\u9664',
+                          }),
                         ],
                       },
-                      a,
+                      o,
                     ),
                   ),
                 ],
