@@ -297,6 +297,16 @@ export default forwardRef((props: any, ref: any) => {
                       }}
                     ></Input>
                   )}
+                  <Button
+                    type="link"
+                    onClick={() => {
+                      updateRuleDefinition((draft) => {
+                        draft[ruleIndex].conditions.splice(index, 1);
+                      });
+                    }}
+                  >
+                    删除
+                  </Button>
                 </div>
               );
             })}

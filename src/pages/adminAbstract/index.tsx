@@ -219,7 +219,7 @@ export default (props: any) => {
         getContainer={'#root'}
         visible={visible}
         title={id ? '编辑字段' : '新增字段'}
-        width={560}
+        width={620}
         onOk={() => {
           const ruleDefinition = ref.current.getRuleDefinition() || '';
           console.log(ruleDefinition);
