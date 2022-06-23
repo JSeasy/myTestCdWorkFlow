@@ -58,7 +58,7 @@
           }),
         l = (e) =>
           Object(t['a'])({
-            url: '/services/v1/pipei/edit',
+            url: '/services/v1/pipei',
             method: 'DELETE',
             data: e,
           }),

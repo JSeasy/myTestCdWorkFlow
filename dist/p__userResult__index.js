@@ -25,7 +25,7 @@
         r = t('T9Mk'),
         i = t('H2UZ'),
         l = t.n(i),
-        j = t('lrpV'),
+        j = t('bNK3'),
         o = (e) => ({
           title: {
             text: e + '%',
