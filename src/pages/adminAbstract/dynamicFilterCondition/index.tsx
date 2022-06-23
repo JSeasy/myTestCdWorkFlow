@@ -227,6 +227,19 @@ export default forwardRef((props: any, ref: any) => {
                   <PlusOutlined />
                   添加集
                 </Button>
+                {!!ruleIndex && (
+                  <Button
+                    type="link"
+                    onClick={() => {
+                      updateRuleDefinition((draft) => {
+                        // draft[ruleIndex].conditions.splice(index, 1);
+                        draft.splice(ruleIndex, 1);
+                      });
+                    }}
+                  >
+                    删除
+                  </Button>
+                )}
               </div>
             </div>
             {rule.conditions.map((item: any, index: number) => {

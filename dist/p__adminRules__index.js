@@ -17088,6 +17088,16 @@
                               '\u6dfb\u52a0\u96c6',
                             ],
                           }),
+                          !!t &&
+                            Object(f['jsx'])(a['a'], {
+                              type: 'link',
+                              onClick: () => {
+                                x((e) => {
+                                  e.splice(t, 1);
+                                });
+                              },
+                              children: '\u5220\u9664',
+                            }),
                         ],
                       }),
                     ],
