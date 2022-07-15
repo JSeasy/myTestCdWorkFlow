@@ -43,7 +43,7 @@ export default () => {
             <p className={styles.tip}>欢迎使用xxx系统</p>
           </div>
           <div className={styles.right}>
-            <p className={styles.title}>登录1</p>
+            <p className={styles.title}>登录222</p>
             <div className={styles.border}></div>
             <Form form={form} layout="vertical">
               <Form.Item
